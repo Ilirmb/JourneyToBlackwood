@@ -36,10 +36,10 @@ public class playerStatistics : MonoBehaviour {
     {
         frustration = newFrustration;
     }
-    //This function is called by the slider itself whenever its value changes
+    //This function is called to translate the value of the slider into frustration
     public void onSliderValueChange(float sliderValue)
     {
-        //Slider value is between 0 and 10 so we can multiply it by itself to get an exponential graph between 0 and 100
+        //Slider value is between 0 and 10 so we can multiply it by itself to get an exponential curve between 0 and 100
         frustration = (Mathf.Pow(sliderValue,2));
     }
 
@@ -58,6 +58,7 @@ public class playerStatistics : MonoBehaviour {
         {
             stamina = maxStamina;
         }
+        textSpawn.spawnText(string.Format("-{0:0.##}", recoveredStamina), new Color(255, 150, 0));
     }
 
 

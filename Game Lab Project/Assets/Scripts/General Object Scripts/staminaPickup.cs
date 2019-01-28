@@ -8,10 +8,14 @@ public class staminaPickup : MonoBehaviour {
 
     public float staminaOnPickup = 10;
 
+    //OnTriggerEnter weirdness means we need to make sure the recovery doesn't trigger twice before the game object has a chance to be destroyed
+    private bool hasTriggered = false;
+
     public void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.tag == "Player")
+        if(other.tag == "Player" && !hasTriggered)
         {
+            hasTriggered = true;
             playerStatistics.recoverStamina(staminaOnPickup);
             Destroy(gameObject);
         }

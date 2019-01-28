@@ -2,7 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class damageBox : MonoBehaviour {
+/// <summary>
+/// Take this script and put it on to any object with a 2D Collider that is a trigger and it'll deal damage to the player
+/// </summary>
+
+public class damageCollider : MonoBehaviour {
+
+    [SerializeField] private float damageToDeal = GameConst.DAMAGE_FROM_HIT;
+    [SerializeField] private float invulnerabilityTime = 1.5f;
 
     private bool triggered;
     private playerStatistics playerStatistics;
@@ -12,7 +19,7 @@ public class damageBox : MonoBehaviour {
         if (other.tag == "Player")
         {
             triggered = true;
-            Debug.Log("triggered");
+            //Debug.Log("triggered");
         }
     }
 
@@ -21,7 +28,7 @@ public class damageBox : MonoBehaviour {
         if (other.tag == "Player")
         {
             triggered = false;
-            Debug.Log("untriggered");
+            //Debug.Log("untriggered");
         }
     }
 
@@ -34,7 +41,7 @@ public class damageBox : MonoBehaviour {
 	void Update () {
 		if (triggered == true)
         {
-            playerStatistics.damageStamina(GameConst.DAMAGE_FROM_HIT, 1.5f);
+            playerStatistics.damageStamina(damageToDeal, invulnerabilityTime);
         }
 	}
 }

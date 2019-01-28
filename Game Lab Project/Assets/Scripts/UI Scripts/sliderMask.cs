@@ -23,8 +23,6 @@ public class sliderMask : MonoBehaviour {
         frustrationFace.toggleDragging(true);
     }
 
-    //OnDragEnd and OnPointerUp activate a little differently so we have a backup function to make sure that the mask gets where it needs to be
-    //This function will always be called when the mouse is released off of the object, while the above function is only acitvated if there's a 'drag' in progress when the mouse button is released
     public void onPointerUp()
     {
         frustrationFace.toggleDragging(false);
