@@ -15,6 +15,7 @@ public class bottomlessDrop : MonoBehaviour {
         {
             //The playerStatistics script is attached to the player, so playerStatistics.gameObject.transform.position is the Vector3 position of the player
             playerStatistics.gameObject.transform.position = respawnPoint.position;
+            playerStatistics.gameObject.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
             //The following line is probably better, however the above line is faster and allows the text to spawn at the respawn rather than where the player was at the killplane
             //playerStatistics.gameObject.GetComponent<Rigidbody2D>().MovePosition(respawnPoint.position);
 
