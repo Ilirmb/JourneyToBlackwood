@@ -12,6 +12,7 @@ public class staminaBar : MonoBehaviour {
     //The scale only works if it's calculated from the parents origin, aka 0, so we offset this using the minimum position of the bar
     private const float POSITION_SCALE = 100 / (STAMINA_MAX_POS - STAMINA_MIN_POS);
     private float stamina = 100;
+    private float maxStamina = 100;
 
     private playerStatistics playerStatistics;
     private Text finalTenText;
@@ -24,14 +25,18 @@ public class staminaBar : MonoBehaviour {
         finalTenText = GameObject.Find("Stamina Last Text").GetComponent<Text>();
     }
 	
-	// Update is called once per frame
+	// So there's definitely a better way to do this
+    //You could have a call whenever the stamina changes instead of updating it every frame
+    //But I'm too busy to do this right now, just something to keep in mind if performance is an issue
 	void Update () {
         //Get stamina and update the stamina bar's location to reflect that
         stamina = playerStatistics.getStamina();
+        maxStamina = playerStatistics.maxStamina;
         //Reverse the offset from parent origin (the calculation for POSITION_SCALE required it to be zero for the scale to work)
         transform.localPosition = new Vector3(STAMINA_MIN_POS + (stamina / POSITION_SCALE), 0, 0);
         //Update stamina bar text
-        gameObject.GetComponentInChildren<Text>().text = string.Format("{0:0}", stamina);
+        gameObject.transform.GetChild(0).GetComponent<Text>().text = string.Format("{0:0}", stamina);
+        gameObject.transform.GetChild(1).GetComponent<Text>().text = string.Format("/{0:0}", maxStamina);
         //Check if the final 10 stamina point text should show
         if (stamina <= 20 && stamina >= 0)
         {

@@ -2,32 +2,34 @@ using System;
 using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
 
-namespace UnityStandardAssets._2D
+
+[RequireComponent(typeof(CustomPlatformerCharacter2D))]
+public class CustomPlatformer2DUserControl : MonoBehaviour
 {
-    [RequireComponent(typeof (CustomPlatformerCharacter2D))]
-    public class CustomPlatformer2DUserControl : MonoBehaviour
+    private CustomPlatformerCharacter2D m_Character;
+    private bool m_Jump;
+    public bool canControl = true;
+
+
+    private void Awake()
     {
-        private CustomPlatformerCharacter2D m_Character;
-        private bool m_Jump;
+        m_Character = GetComponent<CustomPlatformerCharacter2D>();
+    }
 
 
-        private void Awake()
+    private void Update()
+    {
+        if (!m_Jump)
         {
-            m_Character = GetComponent<CustomPlatformerCharacter2D>();
+            // Read the jump input in Update so button presses aren't missed.
+            m_Jump = CrossPlatformInputManager.GetButtonDown("Jump");
         }
+    }
 
 
-        private void Update()
-        {
-            if (!m_Jump)
-            {
-                // Read the jump input in Update so button presses aren't missed.
-                m_Jump = CrossPlatformInputManager.GetButtonDown("Jump");
-            }
-        }
-
-
-        private void FixedUpdate()
+    private void FixedUpdate()
+    {
+        if (canControl)
         {
             // Read the inputs.
             bool crouch = Input.GetKey(KeyCode.LeftControl);
@@ -38,3 +40,4 @@ namespace UnityStandardAssets._2D
         }
     }
 }
+

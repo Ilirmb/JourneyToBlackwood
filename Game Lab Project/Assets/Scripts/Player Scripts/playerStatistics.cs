@@ -31,7 +31,12 @@ public class playerStatistics : MonoBehaviour {
         stamina = newStamina;
         if (stamina > maxStamina) stamina = maxStamina;
     }
-   
+   public void increaseMaxStamina(float maxStamIncrease)
+    {
+        maxStamina += maxStamIncrease;
+        stamina += maxStamIncrease;
+        textSpawn.spawnText(string.Format("+{0:0.##}", maxStamIncrease), new Color(0, 150, 255));
+    }
     public void setFrustration(float newFrustration)
     {
         frustration = newFrustration;
@@ -58,7 +63,7 @@ public class playerStatistics : MonoBehaviour {
         {
             stamina = maxStamina;
         }
-        textSpawn.spawnText(string.Format("-{0:0.##}", recoveredStamina), new Color(255, 150, 0));
+        textSpawn.spawnText(string.Format("+{0:0.##}", recoveredStamina), new Color(255, 150, 0));
     }
 
 
