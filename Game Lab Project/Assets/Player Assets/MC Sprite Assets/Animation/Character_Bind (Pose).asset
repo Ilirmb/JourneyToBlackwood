@@ -1,0 +1,99 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae0543fe805424df99fe08ce744cbe49, type: 3}
+  m_Name: Character_Bind (Pose)
+  m_EditorClassIdentifier: 
+  m_PoseEntries:
+  - path: IK/MAIN
+    localPosition: {x: -0.9675727, y: 0.13775301, z: 0}
+    localRotation: {x: 0, y: 0, z: 0.7101998, w: 0.7040003}
+    localScale: {x: 1, y: 1, z: 1}
+  - path: IK/MAIN/Torso Bone[MAIN]
+    localPosition: {x: 1.1082082, y: 0.02889824, z: 0.01367188}
+    localRotation: {x: 0, y: 0, z: 0.10644421, w: 0.99431866}
+    localScale: {x: 1, y: 1, z: 1}
+  - path: IK/MAIN/Left Leg Bone
+    localPosition: {x: -1.5579163, y: 0.6748678, z: 0.01367188}
+    localRotation: {x: -0, y: -0, z: 0.99704605, w: 0.07680621}
+    localScale: {x: 1, y: 1, z: 1}
+  - path: IK/MAIN/Left Leg Bone/Left Leg Joint Bone
+    localPosition: {x: 2.144336, y: -0.00000035762787, z: 0}
+    localRotation: {x: 0, y: 0, z: 0.059518345, w: 0.9982272}
+    localScale: {x: 1, y: 1, z: 1}
+  - path: IK/MAIN/Left Leg Bone/Left Leg Joint Bone/Left Foot Bone
+    localPosition: {x: 2.789274, y: 0.00000008568168, z: 0}
+    localRotation: {x: 0, y: 0, z: 0.21627395, w: 0.9763327}
+    localScale: {x: 1, y: 1, z: 1}
+  - path: IK/MAIN/Left Arm Bone
+    localPosition: {x: 2.0082424, y: 1.4162576, z: 0.01367188}
+    localRotation: {x: 0, y: 0, z: -0.99714714, w: -0.075482026}
+    localScale: {x: 1, y: 1, z: 1}
+  - path: IK/MAIN/Left Arm Bone/Lower Left Arm Bone
+    localPosition: {x: 1.977843, y: 0.0000001192093, z: 0}
+    localRotation: {x: 0, y: 0, z: 0.004576808, w: 0.9999895}
+    localScale: {x: 1, y: 1, z: 1}
+  - path: IK/MAIN/Left Arm Bone/Lower Left Arm Bone/Left Hand Bone
+    localPosition: {x: 2.0523775, y: 0.000007522176, z: 0}
+    localRotation: {x: 0, y: 0, z: 0, w: 1}
+    localScale: {x: 1, y: 1, z: 1}
+  - path: IK/MAIN/Head Bone
+    localPosition: {x: 3.3908794, y: 0.2562275, z: 0.01367188}
+    localRotation: {x: 0, y: 0, z: -0.3474137, w: 0.93771195}
+    localScale: {x: 1, y: 1, z: 1}
+  - path: IK/MAIN/Head Bone/Pony Tail Bone
+    localPosition: {x: -0.6533999, y: 1.0647626, z: 0}
+    localRotation: {x: 0, y: 0, z: -0.9948871, w: 0.100993715}
+    localScale: {x: 1, y: 1, z: 1}
+  - path: IK/MAIN/Head Bone/Hair Bone
+    localPosition: {x: 3.1093826, y: -0.042373985, z: 0}
+    localRotation: {x: 0, y: 0, z: -0.9228794, w: 0.38508925}
+    localScale: {x: 1, y: 1, z: 1}
+  - path: IK/MAIN/Head Bone/Hair Bone/Hair Bone 2
+    localPosition: {x: 1.1894581, y: 0, z: 0}
+    localRotation: {x: 0, y: 0, z: -0.22131827, w: 0.97520167}
+    localScale: {x: 1, y: 1, z: 1}
+  - path: IK/MAIN/Head Bone/Hair Bone/Hair Bone 3
+    localPosition: {x: -0.2633438, y: -4.501485, z: 0}
+    localRotation: {x: 0, y: 0, z: 0.11424734, w: 0.99345237}
+    localScale: {x: 1.0000013, y: 1.0000013, z: 1}
+  - path: IK/MAIN/Head Bone/Hair Bone/Hair Bone 3/Hair Bone 4
+    localPosition: {x: 1.271954, y: -0, z: 0}
+    localRotation: {x: -0, y: -0, z: 0.08414555, w: 0.9964535}
+    localScale: {x: 1, y: 1, z: 1}
+  - path: IK/MAIN/Right Arm Bone
+    localPosition: {x: 2.0223053, y: -0.71861434, z: 0.01367188}
+    localRotation: {x: 0, y: 0, z: -0.99950385, w: 0.031499367}
+    localScale: {x: 1, y: 1, z: 1}
+  - path: IK/MAIN/Right Arm Bone/Lower Right Arm Bone
+    localPosition: {x: 1.9359643, y: 0, z: 0}
+    localRotation: {x: 0, y: 0, z: 0.06965065, w: 0.99757147}
+    localScale: {x: 1, y: 1, z: 1}
+  - path: IK/MAIN/Right Arm Bone/Lower Right Arm Bone/Right Hand Bone
+    localPosition: {x: 2.193282, y: -0.000000031293894, z: 0}
+    localRotation: {x: 0, y: 0, z: 0, w: 1}
+    localScale: {x: 1, y: 1, z: 1}
+  - path: IK/MAIN/Right Leg Bone
+    localPosition: {x: -1.4989165, y: -0.47146368, z: 0.01367188}
+    localRotation: {x: -0, y: -0, z: -0.99946105, w: 0.032829285}
+    localScale: {x: 1, y: 1, z: 1}
+  - path: IK/MAIN/Right Leg Bone/Right Leg Joint Bone
+    localPosition: {x: 2.223836, y: 0.000000004656613, z: 0}
+    localRotation: {x: 0, y: 0, z: -0.029411593, w: 0.99956745}
+    localScale: {x: 1, y: 1, z: 1}
+  - path: IK/MAIN/Right Leg Bone/Right Leg Joint Bone/Right Foot Bone
+    localPosition: {x: 2.7087276, y: 0.0000003680325, z: 0}
+    localRotation: {x: 0, y: 0, z: 0.009002106, w: 0.99995947}
+    localScale: {x: 1, y: 1, z: 1}
+  - path: IK/MAIN/Torso_2_Bone
+    localPosition: {x: -0.3982572, y: 0.0195992, z: 0.01367188}
+    localRotation: {x: -0, y: -0, z: -0.9995899, w: 0.028636213}
+    localScale: {x: 1, y: 1, z: 1}
