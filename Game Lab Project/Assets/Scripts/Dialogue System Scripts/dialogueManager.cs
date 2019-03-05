@@ -37,7 +37,7 @@ public class dialogueTree
                 }
                 currentParentNode.setNumButtons(currentParentNode.getChildCount());
                 //Prints out every member in order with children indexes, very useful for debugging
-                Debug.Log(currentParentNode);
+                //Debug.Log(currentParentNode);
             }
         }
         //Encoding[1] has the nodes to add events to
@@ -66,12 +66,12 @@ public class nodeTextLine
     private int treeIndex;
     private List<nodeTextLine> children = new List<nodeTextLine>();
     //Whether this node should use button selection or rely on an outside source to choose a child to follow
-    //By default this is -1 which will use button selection, any other value will be the value of the child
+    //By default this is -1 which will use button selection, any other value will be the index of the next child to load
     [Range(-1, 3)] private int overrideButtonSelection = -1;
     [Range(0, 4)] private int numButtons;
 
     private nodeEvent triggeredEvent = new nodeEvent();
-
+    //Constructors
     public nodeTextLine()
     {
         line = "";
@@ -87,51 +87,61 @@ public class nodeTextLine
         spriteToDisplay = defaultSprite;
     }
 
+    //Accessors and mutators
     public void addChild(nodeTextLine child)
     {
         children.Add(child);
     }
-
-    public void setNumButtons(int num)
+    public nodeTextLine getChildAt(int index)
     {
-        numButtons = num;
+        return children[index];
+    }
+
+    public int getNextNode()
+    {
+        return overrideButtonSelection;
+    }
+    public void setNextNode(int index)
+    {
+        overrideButtonSelection = index;
+    }
+
+    public nodeEvent getEvent()
+    {
+        return triggeredEvent;
     }
     public void setEvent(nodeEvent managerEvent)
     {
         triggeredEvent = managerEvent;
     }
+
+    public string getLine()
+    {
+        return line;
+    }
     public void setLine(string newLine)
     {
         line = newLine;
     }
-    public void setNextChild(int index)
+
+    public Sprite getSprite()
     {
-        overrideButtonSelection = index;
+        return spriteToDisplay;
     }
     public void setSprite(Sprite sprite)
     {
         spriteToDisplay = sprite;
     }
-    public int getNextChild()
-    {
-        return overrideButtonSelection;
-    }
-    public nodeEvent getEvent()
-    {
-        return triggeredEvent;
-    }
-    public string getLine()
-    {
-        return line;
-    }
-    public Sprite getSprite()
-    {
-        return spriteToDisplay;
-    }
+
     public int getNumButtons()
     {
         return numButtons;
     }
+    public void setNumButtons(int num)
+    {
+        numButtons = num;
+    }
+
     public int getIndex()
     {
         return treeIndex;
@@ -139,10 +149,6 @@ public class nodeTextLine
     public int getChildCount()
     {
         return children.Count;
-    }
-    public nodeTextLine getChild(int index)
-    {
-        return children[index];
     }
 
     //This is called to send tell any listeners that the dialogue tree reached this point, which they'll know by the index of the node
@@ -182,23 +188,29 @@ public class nodeTextLine
 
 [System.Serializable]
 public class nodeEvent : UnityEvent<int> { }
-public class dialogueManager : MonoBehaviour
+
+public class DialogueManager : MonoBehaviour
 {
 
     public dialogueTree dialogueTree;
     public TextAsset dialogueTextAsset;
     public nodeTextLine currentNode;
-    public UnityEngine.UI.Text textBox;
+    public Text textBox;
     public disableButtonChildren currentButtonLayout;
-    //public Sprite playerSprite; // Currently obselete, may be useful later
-    public Image NPCFaceRenderer;
+    //public Sprite playerSprite; // Currently obselete, may be useful later, but player dialogue may just be in a separate node using the same sprite
+    private Image NPCFaceRenderer;
 
     public nodeEvent dialogueEvent;
     public GameObject player;
     //Sometimes we need to disable and enable the trigger that activated this script within this script itself, so we have a variable that lets fuction calls pass their colliders in so we can disable them here
     public Collider2D triggeredThis;
 
-    //For starting a new dialogue with the already existing dialogueTree and NPCsprite
+    /// <summary>
+    /// This function and all overrides initiate dialogue.
+    /// The different overrides deal with different ways of starting dialogue, like whether or not to generate a new dialogueTree or to disable a trigger
+    /// 
+    /// This specific option disables a collider to prevent reentering the same dialogue while youre in it, while starting a dialogue with the dialogue managers existing tree
+    /// </summary>
     public void startDialogue(Collider2D triggerToDisable)
     {
         triggeredThis = triggerToDisable;
@@ -215,8 +227,9 @@ public class dialogueManager : MonoBehaviour
         currentButtonLayout = null;
         displayText(currentNode.getLine());
     }
-    //Start a dialogue with the existing tree and without disabling anything.
-    //This is mostly used for colliders, where we still want them to have collision but we don't want it to stop interacting entirely
+    ///<summary>Start a dialogue with the existing tree and without disabling anything.
+    ///This is mostly used for colliders, where we still want them to have collision but we don't want it to stop interacting entirely
+    ///</summary>
     public void startDialogue()
     {
         gameObject.GetComponent<Canvas>().enabled = true;
@@ -230,7 +243,7 @@ public class dialogueManager : MonoBehaviour
         currentButtonLayout = null;
         displayText(currentNode.getLine());
     }
-    //Start a new dialogue with a new textasset
+    /// <summary> Start a new dialogue with a new textasset </summary>
     public void startDialogue(TextAsset dialogue, Sprite NPCSprite)
     {
         gameObject.GetComponent<Canvas>().enabled = true;
@@ -271,6 +284,7 @@ public class dialogueManager : MonoBehaviour
         gameObject.GetComponent<Canvas>().enabled = false;
         gameObject.GetComponent<GraphicRaycaster>().enabled = false;
         player.GetComponent<CustomPlatformer2DUserControl>().canControl = true;
+        currentButtonLayout.disableChildren();
         //The bool will be set to false and it'll move on immediately if the first half is false,
         //so we can both check for triggerThis's existance and it's properties in the same line
         if (triggeredThis != null && !triggeredThis.enabled)
@@ -286,6 +300,9 @@ public class dialogueManager : MonoBehaviour
         dialogueTree.getNodeAtIndex(nodeIndex).setEvent(dialogueEvent);
     }
 
+    /// <summary>
+    /// When you need to make a dialogue tree without starting dialogue, say to decide where you want the dialogue to go based on certain outcomes outside of the dialogue, you use this method then call a startDialogue that doesn't make a new tree after you've added your
+    /// </summary>
     public void makeDialogueTree(TextAsset dialogue, Sprite defaultSprite)
     {
         dialogueTextAsset = dialogue;
@@ -295,15 +312,15 @@ public class dialogueManager : MonoBehaviour
 
     public void OnButtonPressed(int buttonID)
     {
-        if (currentNode.getNextChild() == -1)
+        if (currentNode.getNextNode() == -1)
         {
             if (currentNode.getEvent() != null)
             {
                 currentNode.triggerEvent();
             }
-            if (currentNode.getChildCount() != 0)
+            if (currentNode.getNumButtons() != 0)
             {
-                currentNode = currentNode.getChild(buttonID);
+                currentNode = currentNode.getChildAt(buttonID);
                 displayText(currentNode.getLine());
             }
             else
@@ -317,11 +334,10 @@ public class dialogueManager : MonoBehaviour
             {
                 currentNode.triggerEvent();
             }
-            currentNode = currentNode.getChild(currentNode.getNextChild());
+            currentNode = currentNode.getChildAt(currentNode.getNextNode());
             displayText(currentNode.getLine());
         }
     }
-
 
     public void displayText(string unsplitLine)
     {
@@ -335,7 +351,7 @@ public class dialogueManager : MonoBehaviour
             currentButtonLayout.disableChildren();
         }
 
-        if (currentNode.getNumButtons() != 0 && currentNode.getNextChild() == -1)
+        if (currentNode.getNumButtons() != 0 && currentNode.getNextNode() == -1)
         {
             //Well so much for elegance. To get the buttons to spawn on top of the text box and other things they need to be below them in the heirarcy
             //Before chilcount - 1 was pretty perfect, but now we use childcount + 2 because there are 3 more objects on top of the button layouts
@@ -347,7 +363,7 @@ public class dialogueManager : MonoBehaviour
         }
 
         //didn't use foreach here because (reason)
-        if (currentNode.getNextChild() == -1)
+        if (currentNode.getNextNode() == -1)
         {
             if (dialogue.Length > 1)
             {

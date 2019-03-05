@@ -4,17 +4,21 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class playerStatistics : MonoBehaviour {
+public class PlayerStatistics : MonoBehaviour {
 
-    private stamLossTextManager textSpawn;
-    public checkpoint checkpoint;
+    private StamLossTextManager textSpawn;
+    public Checkpoint checkpoint;
     
     public float invulnTimer = 0;
-    private int textFrameTimer = 0;
     private float damageOverTime = 0;
     public float stamina = 100;
     public float maxStamina = 100;
     public float frustration = 0;
+
+    [Tooltip("The distance a player has to walk before they take one 'GameConst.STAMINA_DRAIN_PER_DISTANCE_WALKED' worth of stamina damage")]
+    public float walkDistanceToDamageStam = 4.0f;
+    private bool isMoving = false;
+    private Vector2 positionLastFrame;
 
     public float getStamina()
     {
@@ -24,6 +28,10 @@ public class playerStatistics : MonoBehaviour {
     public float getFrustration()
     {
         return frustration;
+    }
+    public void moving(bool m)
+    {
+        isMoving = m;
     }
 
     public void setStamina(float newStamina)
@@ -85,7 +93,7 @@ public class playerStatistics : MonoBehaviour {
     /// The player takes stamina damage and an invulnerability timer is activated, where the player can't take damage
     /// </summary>
     /// <param name="damage">Damage to be dealt</param>
-    /// <param name="invuln">Time invulnerability should last</param>
+    /// <param name="invuln">How long in seconds invulnerability should last</param>
     public void damageStamina(float damage, float invuln)
     {
         damage = reduceDamageByFrustration(damage);
@@ -121,10 +129,11 @@ public class playerStatistics : MonoBehaviour {
         damage = reduceDamageByFrustration(damage);
         stamina -= damage;
         damageOverTime += damage;
-        if (++textFrameTimer == 20)
+        //if (++textFrameTimer == 20)
+        if(damageOverTime >= 1.0f)
         {
-            textSpawn.spawnText(string.Format("{0:0.##}", damageOverTime), new Color(0, 255, 0));
-            textFrameTimer = 0;
+            textSpawn.spawnText(string.Format("{0:0.##}", 1.0f), new Color(0, 255, 0));
+            //textFrameTimer = 0;
             damageOverTime = 0;
         }
     }
@@ -134,7 +143,7 @@ public class playerStatistics : MonoBehaviour {
         stamina -= damage;
         textSpawn.spawnText(string.Format("{0:0.##}", damage), new Color(255, 255, 0));
     }
-    public void lastCheckpoint(checkpoint newCheckpoint)
+    public void lastCheckpoint(Checkpoint newCheckpoint)
     {
         if (checkpoint != newCheckpoint)
         {
@@ -152,13 +161,15 @@ public class playerStatistics : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        textSpawn = GetComponentInChildren<stamLossTextManager>();
-        //The idea here is to create a checkpoint at the location of the player, but it's not working and doesn't need to
-        //checkpoint = new checkpoint(gameObject.transform.position);
+        textSpawn = GetComponentInChildren<StamLossTextManager>();
+        //The idea here is to create a Checkpoint at the location of the player, but it's not working and doesn't need to because 
+        //Checkpoint = new Checkpoint(gameObject.transform.position);
+        positionLastFrame = transform.position;
 	}
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update()
+    {
 
         if (invulnTimer > 0)
         {
@@ -169,7 +180,7 @@ public class playerStatistics : MonoBehaviour {
                 gameObject.GetComponent<SpriteRenderer>().enabled = !gameObject.GetComponent<SpriteRenderer>().enabled;
             }
             //If this is the last frame where the character has invulnerability, then the sprite should be set to rendered
-            if(invulnTimer <= 0)
+            if (invulnTimer <= 0)
             {
                 gameObject.GetComponent<SpriteRenderer>().enabled = true;
                 //For future math reasons we reset the timer to zero because time.delta time can make it less than that.
@@ -179,21 +190,29 @@ public class playerStatistics : MonoBehaviour {
 
         if (stamina <= 0)
         {
-            //if checkpoint is null, just reload the scene
+            //if Checkpoint is null, just reload the scene
             if (checkpoint == null)
             {
                 // Restart if stamina is equal to or less than 0
                 // Pretty blunt way of reloading, literally reloads the first scene
                 SceneManager.LoadScene(SceneManager.GetSceneAt(0).name);
             }
-            //Otherwise go to checkpoint
+            //Otherwise go to Checkpoint
             else
             {
                 gameObject.GetComponent<Rigidbody2D>().MovePosition(checkpoint.transform.position);
                 stamina = 100f;
-                //We set the invulnerability timer to allow the player to reorient themselves at the checkpoint
+                //We set the invulnerability timer to allow the player to reorient themselves at the Checkpoint
                 invulnTimer = 1.5f;
             }
         }
-	}
+
+        if (isMoving)
+        {
+            float distanceSinceLastFrame = Mathf.Abs((transform.position.x - positionLastFrame.x)); //In unity distance units
+            damageFromMoving(distanceSinceLastFrame * (GameConst.STAMINA_DRAIN_PER_DISTANCE_WALKED / walkDistanceToDamageStam));
+        }
+
+        positionLastFrame = new Vector2(transform.position.x, transform.position.y);
+    }
 }

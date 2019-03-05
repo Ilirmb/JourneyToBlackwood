@@ -7,7 +7,7 @@ public class wizardDialogueEventTest : MonoBehaviour {
     public int wizardFriendship = 0;
 
     public TextAsset textAsset;
-    public dialogueManager dialogueManager;
+    public DialogueManager dialogueManager;
     public Sprite defaultSprite;
 
     private void OnTriggerEnter2D(Collider2D collision)

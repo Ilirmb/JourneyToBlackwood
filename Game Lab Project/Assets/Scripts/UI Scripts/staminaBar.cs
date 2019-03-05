@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-public class staminaBar : MonoBehaviour {
+public class StaminaBar : MonoBehaviour {
 
     //The 'full' and 'empty' positions of the stamina bar. These are found out manually by placing the bar in the 'retracted' state and the fully extended state
     //It should be noted that the stamina bar is child to the sprite mask, so it's transform is relative to the center of the mask, not the world origin
@@ -14,15 +14,15 @@ public class staminaBar : MonoBehaviour {
     private float stamina = 100;
     private float maxStamina = 100;
 
-    private playerStatistics playerStatistics;
-    private Text finalTenText;
+    private PlayerStatistics playerStatistics;
+    private Text finalText;
 
     // Use this for initialization
     void Start () {
         //Grabs the instance of playerStatistic that we want from the player character
         //IF THE CHARACTER'S NAME CHANGES FROM 'CharacterRobotBoy' it MUST be changed here and in other instances
-        playerStatistics = GameObject.Find(GameConst.PLAYER_OBJECT_NAME).GetComponent<playerStatistics>();
-        finalTenText = GameObject.Find("Stamina Last Text").GetComponent<Text>();
+        playerStatistics = GameObject.Find(GameConst.PLAYER_OBJECT_NAME).GetComponent<PlayerStatistics>();
+        finalText = GameObject.Find("Stamina Last Text").GetComponent<Text>();
     }
 	
 	// So there's definitely a better way to do this
@@ -40,12 +40,12 @@ public class staminaBar : MonoBehaviour {
         //Check if the final 10 stamina point text should show
         if (stamina <= 20 && stamina >= 0)
         {
-            finalTenText.enabled = true;
-            finalTenText.text = string.Format("{0:0.00}", stamina);
+            finalText.enabled = true;
+            finalText.text = string.Format("{0:0.00}", stamina);
         }
         else
         {
-            finalTenText.enabled = false;
+            finalText.enabled = false;
         }
     }
 }

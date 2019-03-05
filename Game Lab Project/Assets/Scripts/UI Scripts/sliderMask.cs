@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class sliderMask : MonoBehaviour {
+public class SliderMask : MonoBehaviour {
 
     public Slider slider;
-    private playerStatistics playerStatistics;
-    private frustrationFace frustrationFace;
+    private PlayerStatistics playerStatistics;
+    private FrustrationFace frustrationFace;
 
     private float startingY = 225f;
     private float endingY = -45f;
@@ -36,8 +36,8 @@ public class sliderMask : MonoBehaviour {
     // Use this for initialization
     void Start () {
         slider = GetComponentInChildren<Slider>();
-        playerStatistics = GameObject.Find(GameConst.PLAYER_OBJECT_NAME).GetComponent<playerStatistics>();
-        frustrationFace = transform.parent.GetComponentInChildren<frustrationFace>();
+        playerStatistics = GameObject.Find(GameConst.PLAYER_OBJECT_NAME).GetComponent<PlayerStatistics>();
+        frustrationFace = transform.parent.GetComponentInChildren<FrustrationFace>();
 
         distancePerFrame = (endingY - startingY) / animTotalFrames;
     }

@@ -24,7 +24,7 @@ public class wizardQuestApple : MonoBehaviour
     public enum appleStatus { notGotten, gotten, eaten };
     public appleStatus currentAppleStatus = appleStatus.notGotten;
 
-    public dialogueManager dialogueManager;
+    public DialogueManager dialogueManager;
     bool firstEncoutner = true;
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -36,18 +36,20 @@ public class wizardQuestApple : MonoBehaviour
                 gameObject.GetComponent<BoxCollider2D>().enabled = false;
 
                 dialogueManager.makeDialogueTree(questIntro, wizardSprite);
-                //We hide the third option because we only want to access it through player options
-                dialogueManager.dialogueTree.getNodeAtIndex(3).setNumButtons(2);
+                nodeTextLine branchingNode = dialogueManager.dialogueTree.getNodeAtIndex(3);
+                //We hide the third option because we only want to access it through external variables
+                branchingNode.setNumButtons(2);
 
-                nodeTextLine node = dialogueManager.dialogueTree.getNodeAtIndex(3);
+                //These are those external variables that affect the 
                 if (currentAppleStatus == appleStatus.eaten)
                 {
-                    node.setNextChild(2);
-                    node.setLine("So I helped you, will you help me?|Oh, Um...");
-                } else if (currentAppleStatus == appleStatus.gotten)
+                    branchingNode.setNextNode(2);
+                    branchingNode.setLine("So I helped you, will you help me?|Oh, Um...");
+                }
+                else if (currentAppleStatus == appleStatus.gotten)
                 {
-                    node.setNextChild(3);
-                    node.setLine("So I helped you, will you help me?|Oh, actually...!");
+                    branchingNode.setNextNode(3);
+                    branchingNode.setLine("So I helped you, will you help me?|Oh, actually...!");
                 }
 
                 dialogueManager.startDialogue(GetComponent<Collider2D>());
@@ -61,7 +63,7 @@ public class wizardQuestApple : MonoBehaviour
 
     private void OnMouseDown()
     {
-
+        //Debug.Log("wizard clicked");
         if (!firstEncoutner)
         {
             if (!questWasRejected)
@@ -74,11 +76,11 @@ public class wizardQuestApple : MonoBehaviour
                         dialogueManager.makeDialogueTree(questOutro, wizardSprite);
                         if (currentAppleStatus == appleStatus.gotten)
                         {
-                            dialogueManager.dialogueTree.getNodeAtIndex(1).setNextChild(1);
+                            dialogueManager.dialogueTree.getNodeAtIndex(1).setNextNode(1);
                         }
                         else
                         {
-                            dialogueManager.dialogueTree.getNodeAtIndex(1).setNextChild(0);
+                            dialogueManager.dialogueTree.getNodeAtIndex(1).setNextNode(0);
                         }
                         //The quest is over now
                         questInProgress = false;
@@ -94,18 +96,27 @@ public class wizardQuestApple : MonoBehaviour
                     dialogueManager.makeDialogueTree(questCompleted, wizardSprite);
                     if (currentAppleStatus == appleStatus.gotten)
                     {
-                        dialogueManager.dialogueTree.getNodeAtIndex(1).setNextChild(0);
+                        dialogueManager.dialogueTree.getNodeAtIndex(1).setNextNode(0);
                     }
                     else
                     {
-                        dialogueManager.dialogueTree.getNodeAtIndex(1).setNextChild(1);
+                        dialogueManager.dialogueTree.getNodeAtIndex(1).setNextNode(1);
                     }
                     dialogueManager.startDialogue(GetComponent<BoxCollider2D>());
                 }
             }
             else
             {
-                dialogueManager.startDialogue(rejectedDialogue, GetComponent<BoxCollider2D>(), wizardSprite);
+                //This works because we only need to rebuild the tree and reset the hidden option when the dialogue has switched to the apple and then back to the wizard
+                if (dialogueManager.dialogueTextAsset != rejectedDialogue)
+                {
+                    dialogueManager.makeDialogueTree(rejectedDialogue, wizardSprite);
+                    if (currentAppleStatus != appleStatus.gotten)
+                    {
+                        dialogueManager.dialogueTree.getNodeAtIndex(2).setNumButtons(0);
+                    }
+                }
+                dialogueManager.startDialogue(GetComponent<Collider2D>());
             }
 
         }
@@ -133,12 +144,7 @@ public class wizardQuestApple : MonoBehaviour
                 case 5:
                     gameObject.GetComponentInChildren<Text>().text = "Friendship: " + --wizardFriendship;
                     questWasRejected = true;
-                    UnityEventTools.RemovePersistentListener<int>(dialogueEvent, dialogueEventHandler);
                     //dialogueEvent.RemoveListener(this.dialogueEventHandler);
-                    break;
-                case 7:
-                    gameObject.GetComponentInChildren<Text>().text = "Friendship: " + ++wizardFriendship;
-                    questInProgress = true;
                     break;
                 case 8:
                     questInProgress = true;
@@ -146,7 +152,6 @@ public class wizardQuestApple : MonoBehaviour
                 case 9:
                     gameObject.GetComponentInChildren<Text>().text = "Friendship: " + --wizardFriendship;
                     questWasRejected = true;
-                    UnityEventTools.RemovePersistentListener<int>(dialogueEvent, dialogueEventHandler);
                     //dialogueEvent.RemoveListener(this.dialogueEventHandler);
                     break;
                 case 10:
@@ -154,9 +159,12 @@ public class wizardQuestApple : MonoBehaviour
                     UnityEventTools.RemovePersistentListener<int>(dialogueEvent, dialogueEventHandler);
                     //dialogueEvent.RemoveListener(this.dialogueEventHandler);
                     break;
+                case 11:
+                    gameObject.GetComponentInChildren<Text>().text = "Friendship: " + ++wizardFriendship;
+                    break;
                 case 12:
                 case 14:
-                    GameObject.Find(GameConst.PLAYER_OBJECT_NAME).GetComponent<playerStatistics>().increaseMaxStamina(20);
+                    GameObject.Find(GameConst.PLAYER_OBJECT_NAME).GetComponent<PlayerStatistics>().increaseMaxStamina(20);
                     UnityEventTools.RemovePersistentListener<int>(dialogueEvent, dialogueEventHandler);
                     //dialogueEvent.RemoveListener(this.dialogueEventHandler);
                     break;
@@ -176,14 +184,35 @@ public class wizardQuestApple : MonoBehaviour
                     break;
                 case 7:
                     gameObject.GetComponentInChildren<Text>().text = "Friendship: " + ++wizardFriendship;
-                    UnityEventTools.RemovePersistentListener<int>(dialogueEvent, dialogueEventHandler);
-                    //dialogueEvent.RemoveListener(this.dialogueEventHandler);
                     break;
                 case 8: //Both case 8 and 10 go to the same place.
                 case 10:
-                    GameObject.Find(GameConst.PLAYER_OBJECT_NAME).GetComponent<playerStatistics>().increaseMaxStamina(20);
+                    GameObject.Find(GameConst.PLAYER_OBJECT_NAME).GetComponent<PlayerStatistics>().increaseMaxStamina(20);
+                    questInProgress = false;
                     UnityEventTools.RemovePersistentListener<int>(dialogueEvent, dialogueEventHandler);
                     //dialogueEvent.RemoveListener(this.dialogueEventHandler);
+                    break;
+            }
+        }
+        else if (dialogueManager.dialogueTextAsset == rejectedDialogue)
+        {
+            switch (nodeIndex)
+            {
+                case 7:
+                    wizardFriendship -= 2;
+                    gameObject.GetComponentInChildren<Text>().text = "Friendship: " + wizardFriendship;
+                    questWasRejected = false;
+                    questInProgress = false;
+                    currentAppleStatus = appleStatus.notGotten;
+                    UnityEventTools.RemovePersistentListener<int>(dialogueEvent, dialogueEventHandler);
+                    break;
+                case 9:
+                    gameObject.GetComponentInChildren<Text>().text = "Friendship: " + ++wizardFriendship;
+                    UnityEventTools.RemovePersistentListener<int>(dialogueEvent, dialogueEventHandler);
+                    break;
+                case 10:
+                case 12:
+                    GameObject.Find(GameConst.PLAYER_OBJECT_NAME).GetComponent<PlayerStatistics>().increaseMaxStamina(20);
                     break;
             }
         }
@@ -192,10 +221,10 @@ public class wizardQuestApple : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        dialogueEvent = GameObject.Find("Dialogue Canvas").GetComponent<dialogueManager>().dialogueEvent;
+        dialogueEvent = GameObject.Find("Dialogue Canvas").GetComponent<DialogueManager>().dialogueEvent;
         UnityEventTools.AddPersistentListener<int>(dialogueEvent, dialogueEventHandler);
         //dialogueEvent.AddListener(dialogueEventHandler);
-        dialogueEvent.AddListener((int i) => { Debug.Log("Event triggered index of: " + i); });
+        //dialogueEvent.AddListener((int i) => { Debug.Log("Event triggered index of: " + i); });
     }
 
     // Update is called once per frame

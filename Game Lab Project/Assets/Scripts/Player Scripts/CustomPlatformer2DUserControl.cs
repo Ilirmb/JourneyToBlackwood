@@ -9,6 +9,7 @@ public class CustomPlatformer2DUserControl : MonoBehaviour
     private CustomPlatformerCharacter2D m_Character;
     private bool m_Jump;
     public bool canControl = true;
+    public float move;
 
 
     private void Awake()
@@ -33,9 +34,10 @@ public class CustomPlatformer2DUserControl : MonoBehaviour
         {
             // Read the inputs.
             bool crouch = Input.GetKey(KeyCode.LeftControl);
-            float h = CrossPlatformInputManager.GetAxis("Horizontal");
+            bool run = Input.GetKey(KeyCode.LeftShift);
+            move = CrossPlatformInputManager.GetAxis("Horizontal");
             // Pass all parameters to the character control script.
-            m_Character.Move(h, crouch, m_Jump);
+            m_Character.Move(move, crouch, m_Jump, run);
             m_Jump = false;
         }
     }

@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class staminaPickup : MonoBehaviour {
+public class StaminaPickup : MonoBehaviour {
 
-    private playerStatistics playerStatistics;
+    private PlayerStatistics playerStatistics;
 
     public float staminaOnPickup = 10;
 
@@ -23,7 +23,7 @@ public class staminaPickup : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        playerStatistics = GameObject.Find(GameConst.PLAYER_OBJECT_NAME).GetComponent<playerStatistics>();
+        playerStatistics = GameObject.Find(GameConst.PLAYER_OBJECT_NAME).GetComponent<PlayerStatistics>();
     }
 	
 	// Update is called once per frame

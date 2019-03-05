@@ -6,11 +6,11 @@ using UnityEditor.Events;
 
 public class appleQuestApple : MonoBehaviour
 {
-    private playerStatistics playerStatistics;
+    private PlayerStatistics playerStatistics;
     private nodeEvent dialogueEvent;
     public Sprite appleSprite;
     public Sprite eatenSprite;
-    public dialogueManager dialogue;
+    public DialogueManager dialogue;
     public wizardQuestApple quest;
     public TextAsset appleDialogue;
     private bool triggered = false;
@@ -60,8 +60,8 @@ public class appleQuestApple : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        playerStatistics = GameObject.Find(GameConst.PLAYER_OBJECT_NAME).GetComponent<playerStatistics>();
-        dialogueEvent = GameObject.Find("Dialogue Canvas").GetComponent<dialogueManager>().dialogueEvent;
+        playerStatistics = GameObject.Find(GameConst.PLAYER_OBJECT_NAME).GetComponent<PlayerStatistics>();
+        dialogueEvent = GameObject.Find("Dialogue Canvas").GetComponent<DialogueManager>().dialogueEvent;
         UnityEventTools.AddPersistentListener<int>(dialogueEvent, dialogueEventHandler);
         //dialogueEvent.AddListener(dialogueEventHandler);
     }

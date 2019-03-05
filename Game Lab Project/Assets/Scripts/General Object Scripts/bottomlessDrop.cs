@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class bottomlessDrop : MonoBehaviour {
+public class BottomlessDrop : MonoBehaviour {
 
     private Transform respawnPoint;
-    private playerStatistics playerStatistics;
+    private PlayerStatistics playerStatistics;
 
     private float tempInvuln;
 
@@ -13,11 +13,11 @@ public class bottomlessDrop : MonoBehaviour {
     {
         if (other.tag == "Player")
         {
-            //The playerStatistics script is attached to the player, so playerStatistics.gameObject.transform.position is the Vector3 position of the player
+            //The PlayerStatistics script is attached to the player, so PlayerStatistics.gameObject.transform.position is the Vector3 position of the player
             playerStatistics.gameObject.transform.position = respawnPoint.position;
             playerStatistics.gameObject.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
             //The following line is probably better, however the above line is faster and allows the text to spawn at the respawn rather than where the player was at the killplane
-            //playerStatistics.gameObject.GetComponent<Rigidbody2D>().MovePosition(respawnPoint.position);
+            //PlayerStatistics.gameObject.GetComponent<Rigidbody2D>().MovePosition(respawnPoint.position);
 
             //OnTriggerEnter seems to be able to trigger more than once per frame, so we need to make sure that players don't take double damage from the killplane
             if (tempInvuln <= 0)
@@ -30,9 +30,9 @@ public class bottomlessDrop : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        //There is only one child of bottomlessDrop, the respawn point.
+        //There is only one child of BottomlessDrop, the respawn point.
         respawnPoint = transform.GetChild(0);
-        playerStatistics = GameObject.Find(GameConst.PLAYER_OBJECT_NAME).GetComponent<playerStatistics>();
+        playerStatistics = GameObject.Find(GameConst.PLAYER_OBJECT_NAME).GetComponent<PlayerStatistics>();
     }
 	
 	// Update is called once per frame

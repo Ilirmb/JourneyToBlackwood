@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class frustrationFace : MonoBehaviour {
+public class FrustrationFace : MonoBehaviour {
 
     public Sprite happySprite;
     public Sprite ehhSprite;

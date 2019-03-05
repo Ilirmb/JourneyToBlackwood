@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class stamLossText : MonoBehaviour {
+public class StamLossText : MonoBehaviour {
 
     private float timer = 0;
     private float killTime = 2f;
-    public stamLossTextManager destroyer;
+    public StamLossTextManager destroyer;
 
-    public void init(stamLossTextManager creator, string Text, Color color)
+    public void init(StamLossTextManager creator, string Text, Color color)
     {
         GetComponentInChildren<Text>().color = color;
         GetComponentInChildren<Text>().text = Text;
