@@ -55,6 +55,7 @@ public class wizardQuestApple : MonoBehaviour
                 dialogueManager.startDialogue(GetComponent<Collider2D>());
 
                 firstEncoutner = false;
+                //Shrink the box back down after the player has ran into him the first time.
                 GetComponent<BoxCollider2D>().size = new Vector2(5.5f, 6.5f);
                 GetComponent<BoxCollider2D>().offset = new Vector2(0f, 0f);
             }

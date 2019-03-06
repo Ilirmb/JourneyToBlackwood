@@ -60,6 +60,7 @@ public class dialogueTree
 public class nodeTextLine
 {
     //Node content
+    private string name;
     private string line;
     private Sprite spriteToDisplay;
     //Node metacontent
@@ -74,6 +75,7 @@ public class nodeTextLine
     //Constructors
     public nodeTextLine()
     {
+        name = "";
         line = "";
         treeIndex = 0;
         spriteToDisplay = null;
@@ -81,7 +83,10 @@ public class nodeTextLine
     }
     public nodeTextLine(string text, int index, Sprite defaultSprite)
     {
-        line = text;
+        List<string> temp = new List<string>(text.Split('|'));
+        name = temp[0];
+        temp.RemoveAt(0);
+        line = string.Join("|", temp.ToArray()); //Parse the rest of the List<string> as a single string, replacing the delimiter that was removed with the first 'split' call
         treeIndex = index;
         triggeredEvent = null;
         spriteToDisplay = defaultSprite;
@@ -113,6 +118,11 @@ public class nodeTextLine
     public void setEvent(nodeEvent managerEvent)
     {
         triggeredEvent = managerEvent;
+    }
+
+    public string getName()
+    {
+        return name;
     }
 
     public string getLine()
@@ -196,6 +206,7 @@ public class DialogueManager : MonoBehaviour
     public TextAsset dialogueTextAsset;
     public nodeTextLine currentNode;
     public Text textBox;
+    public Text nameBox;
     public disableButtonChildren currentButtonLayout;
     //public Sprite playerSprite; // Currently obselete, may be useful later, but player dialogue may just be in a separate node using the same sprite
     private Image NPCFaceRenderer;
@@ -345,6 +356,10 @@ public class DialogueManager : MonoBehaviour
 
         string[] dialogue = unsplitLine.Split('|');
         textBox.text = dialogue[0];
+        if (currentNode.getName() != "")
+        {
+            nameBox.text = currentNode.getName();
+        }
         
         if (currentButtonLayout != null)
         {
@@ -401,9 +416,5 @@ public class DialogueManager : MonoBehaviour
         NPCFaceRenderer = GameObject.Find("NPC Face").GetComponent<Image>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
+  
 }
