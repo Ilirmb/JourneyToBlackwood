@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class wizardDialogueEventTest : MonoBehaviour {
+public class dialogueScriptTest : MonoBehaviour {
     public int wizardFriendship = 0;
 
     public TextAsset textAsset;
@@ -13,8 +13,6 @@ public class wizardDialogueEventTest : MonoBehaviour {
     private void OnTriggerEnter2D(Collider2D collision)
     {
         dialogueManager.startDialogue(textAsset, defaultSprite);
-        dialogueManager.dialogueTree.getNodeAtIndex(23).setEvent(dialogueManager.dialogueEvent);
-        dialogueManager.dialogueTree.getNodeAtIndex(12).setEvent(dialogueManager.dialogueEvent);
     }
 
     public void dialogueEventHandler(int nodeIndex)
@@ -31,13 +29,4 @@ public class wizardDialogueEventTest : MonoBehaviour {
                 break;
         }
     }
-
-    // Use this for initialization
-    void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	}
 }

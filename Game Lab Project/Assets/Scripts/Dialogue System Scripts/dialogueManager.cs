@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
-
+/// <summary>
+/// The tree structure itself, incling instructions on how to decode raw text and make a tree out of it
+/// </summary>
 public class dialogueTree
 {
     private List<nodeTextLine> treeMember = new List<nodeTextLine>();
@@ -57,6 +59,9 @@ public class dialogueTree
     }
 }
 
+/// <summary>
+/// The actual nodes themselves. Mostly consists of accessors and mutators
+/// </summary>
 public class nodeTextLine
 {
     //Node content
@@ -196,9 +201,15 @@ public class nodeTextLine
     }
 }
 
+/// <summary>
+/// A custom unity event that's visible in the inspector view for debugging purposes
+/// </summary>
 [System.Serializable]
 public class nodeEvent : UnityEvent<int> { }
 
+/// <summary>
+/// The actual class that is implemented in the dialogue scripts. Contains everything an outside script should need to properly use and modify a dialogue tree
+/// </summary>
 public class DialogueManager : MonoBehaviour
 {
 
