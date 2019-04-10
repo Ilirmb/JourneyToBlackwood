@@ -171,7 +171,7 @@ public class PlayerStatistics : MonoBehaviour {
     void Update()
     {
 
-        if (invulnTimer > 0)
+        /*if (invulnTimer > 0)
         {
             invulnTimer -= Time.deltaTime;
             //Flickers sprite by turning the game renderer on and off every couple of frames
@@ -186,9 +186,9 @@ public class PlayerStatistics : MonoBehaviour {
                 //For future math reasons we reset the timer to zero because time.delta time can make it less than that.
                 invulnTimer = 0;
             }
-        }
+        }*/
 
-        if (stamina <= 0)
+        if (stamina <= 0) // I should really only check this only every time stamina is updated, but that happens basically every frame if you're moving anyway so it shouldn't make too big of a difference.
         {
             //if Checkpoint is null, just reload the scene
             if (checkpoint == null)
