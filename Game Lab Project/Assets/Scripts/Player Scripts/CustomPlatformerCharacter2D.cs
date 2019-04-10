@@ -11,6 +11,7 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
     [SerializeField] private LayerMask m_WhatIsGround;                  // A mask determining what is ground to the character
 
     private Transform m_GroundCheck;    // A position marking where to check if the player is grounded.
+    private float m_TrueSpeed;
     const float k_GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
     public bool m_Grounded;            // Whether or not the player is grounded.
     private Transform m_CeilingCheck;   // A position marking where to check for ceilings
@@ -77,14 +78,13 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
         {
             // Reduce the speed if crouching by the crouchSpeed multiplier
             move = (crouch ? move * m_CrouchSpeed : move);
-            move = (run ? move * 1.5f : move);
 
             // The Speed animator parameter is set to the absolute value of the horizontal input.
-            hspeed = Mathf.Abs(move);
-            m_Anim.SetFloat("Speed", hspeed);
 
             // Move the character
-            m_Rigidbody2D.velocity = new Vector2(move * m_MaxSpeed, m_Rigidbody2D.velocity.y);
+            m_TrueSpeed = (run ? m_MaxSpeed * 1.5f : m_MaxSpeed);
+            m_Rigidbody2D.velocity = new Vector2(move * m_TrueSpeed, m_Rigidbody2D.velocity.y);
+            m_Anim.SetFloat("Speed", Mathf.Abs(m_Rigidbody2D.velocity.x),.3f, Time.deltaTime);
 
             //Tells the player object if it's moving or not
             //I've decided to only allow the player to be considered moving under their own will if they are grounded, in case something else decides to move the player while they're in the air. Essentially, stamina will only be added while on the ground.

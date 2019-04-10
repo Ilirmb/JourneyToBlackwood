@@ -5,7 +5,7 @@ using UnityEngine;
 public class FallingApple : MonoBehaviour
 {
 
-    public float waitBetweenDrops = 3f;
+    public float waitBetweenDrops = 1f;
     public float waitBeforeDespawn = 1f;
 
     public float randomAngularSpeed = 45f;
