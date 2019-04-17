@@ -57,7 +57,7 @@ GameObject:
   - component: {fileID: 222230698612740858}
   - component: {fileID: 114521912857673336}
   - component: {fileID: 114939822774052186}
-  - component: {fileID: 114148121925474846}
+  - component: {fileID: 114781096296609466}
   m_Layer: 5
   m_Name: Slider Mask
   m_TagString: Untagged
@@ -157,7 +157,7 @@ GameObject:
   - component: {fileID: 224865355170599712}
   - component: {fileID: 222802186575079608}
   - component: {fileID: 114550124326540890}
-  - component: {fileID: 114956193041542834}
+  - component: {fileID: 114739096983221124}
   m_Layer: 5
   m_Name: Frustration Face
   m_TagString: Untagged
@@ -358,20 +358,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114148121925474846
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1179589803138684}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0c3b7b5361a4fc841badbd28b5925bd5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  slider: {fileID: 0}
-  animCurrentFrame: 1
-  animTargetFrame: 1
 --- !u!114 &114195653375171248
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -493,7 +479,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
+        - m_Target: {fileID: 114781096296609466}
           m_MethodName: onClickRelease
           m_Mode: 1
           m_Arguments:
@@ -510,7 +496,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
+        - m_Target: {fileID: 114781096296609466}
           m_MethodName: onClick
           m_Mode: 1
           m_Arguments:
@@ -527,7 +513,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
+        - m_Target: {fileID: 114781096296609466}
           m_MethodName: onPointerUp
           m_Mode: 1
           m_Arguments:
@@ -745,6 +731,20 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.Slider+SliderEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &114739096983221124
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1476731195433282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fcf3e0958a2cfe479bdbe03426a8c90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  happySprite: {fileID: 21300000, guid: 189da8e6c252be1478ab379b1112ff8c, type: 3}
+  ehhSprite: {fileID: 21300000, guid: 41191cfac3573ea4aa0a3a6dd6bacf27, type: 3}
+  frustratedSprite: {fileID: 21300000, guid: 22c55c18684aa904ca27b683fbf84191, type: 3}
 --- !u!114 &114763338907486070
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -805,6 +805,20 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114781096296609466
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1179589803138684}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c3b7b5361a4fc841badbd28b5925bd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slider: {fileID: 0}
+  animCurrentFrame: 1
+  animTargetFrame: 1
 --- !u!114 &114939822774052186
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -817,20 +831,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ShowMaskGraphic: 0
---- !u!114 &114956193041542834
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1476731195433282}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8fcf3e0958a2cfe479bdbe03426a8c90, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  happySprite: {fileID: 0}
-  ehhSprite: {fileID: 0}
-  frustratedSprite: {fileID: 0}
 --- !u!114 &114986274039150700
 MonoBehaviour:
   m_ObjectHideFlags: 1
