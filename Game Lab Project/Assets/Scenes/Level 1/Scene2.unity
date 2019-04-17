@@ -1692,7 +1692,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4783052092837988, guid: 5a8f1b9d0e60a7b42959192c22bf3da5, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0.66
+      value: -0.3
       objectReference: {fileID: 0}
     - target: {fileID: 4546293914810746, guid: 5a8f1b9d0e60a7b42959192c22bf3da5, type: 2}
       propertyPath: m_LocalPosition.y
@@ -27356,6 +27356,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 865c2e04bfe4bee43802b2823a2fafbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  checkpoint: {fileID: 0}
+  invulnTimer: 0
+  stamina: 100
+  maxStamina: 100
+  frustration: 0
+  walkDistanceToDamageStam: 4
 --- !u!1 &1358462443
 GameObject:
   m_ObjectHideFlags: 0
