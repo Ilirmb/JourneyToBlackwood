@@ -222,7 +222,9 @@ public class wizardQuestApple : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        dialogueEvent = GameObject.Find("Dialogue Canvas").GetComponent<DialogueManager>().dialogueEvent;
+        dialogueManager = GameObject.Find("Dialogue Canvas").GetComponent<DialogueManager>();
+        dialogueEvent = dialogueManager.dialogueEvent;
+
         UnityEventTools.AddPersistentListener<int>(dialogueEvent, dialogueEventHandler);
         //dialogueEvent.AddListener(dialogueEventHandler);
         //dialogueEvent.AddListener((int i) => { Debug.Log("Event triggered index of: " + i); });

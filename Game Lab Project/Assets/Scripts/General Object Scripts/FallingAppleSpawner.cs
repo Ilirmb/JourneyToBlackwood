@@ -10,26 +10,31 @@ public class FallingAppleSpawner : MonoBehaviour {
 
     public float timeBetweenSpawns = 2f;
 
+    private bool isRunning;
+
     // Use this for initialization
     void Start () {
         applePrefab = Resources.Load("Prefabs/Falling Apple") as GameObject;
         isOnScreen = false;
-
+        isRunning = false;
 	}
 	
 	private IEnumerator AppleSpawner(float waitTime)
     {
+        isRunning = true;
         while (isOnScreen)
         {
             Instantiate(applePrefab, this.transform);
             yield return new WaitForSecondsRealtime(waitTime);
         }
+        isRunning = false;
     }
 
     private void OnBecameVisible()
     {
         isOnScreen = true;
-        StartCoroutine(AppleSpawner(timeBetweenSpawns));
+        if(!isRunning)
+            StartCoroutine(AppleSpawner(timeBetweenSpawns));
     }
 
     private void OnBecameInvisible()

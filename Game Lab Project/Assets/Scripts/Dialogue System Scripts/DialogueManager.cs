@@ -218,7 +218,7 @@ public class DialogueManager : MonoBehaviour
     public nodeTextLine currentNode;
     public Text textBox;
     public Text nameBox;
-    public disableButtonChildren currentButtonLayout;
+    public DisableButtonChildren currentButtonLayout;
     //public Sprite playerSprite; // Currently obselete, may be useful later, but player dialogue may just be in a separate node using the same sprite
     private Image NPCFaceRenderer;
 
@@ -242,7 +242,7 @@ public class DialogueManager : MonoBehaviour
 
         //Prevent the player from moving while they're in dialogue
         player.GetComponent<CustomPlatformer2DUserControl>().canControl = false;
-        player.GetComponent<Animator>().SetFloat("Speed", 0f);
+        player.GetComponentInChildren<Animator>().SetFloat("Speed", 0f);
         player.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
 
         currentNode = dialogueTree.getNodeAtIndex(1);
@@ -258,7 +258,7 @@ public class DialogueManager : MonoBehaviour
         gameObject.GetComponent<GraphicRaycaster>().enabled = true;
         //Prevent the player from moving while they're in dialogue
         player.GetComponent<CustomPlatformer2DUserControl>().canControl = false;
-        player.GetComponent<Animator>().SetFloat("Speed", 0f);
+        player.GetComponentInChildren<Animator>().SetFloat("Speed", 0f);
         player.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
 
         currentNode = dialogueTree.getNodeAtIndex(1);
@@ -273,7 +273,7 @@ public class DialogueManager : MonoBehaviour
 
         //Prevent the player from moving while they're in dialogue
         player.GetComponent<CustomPlatformer2DUserControl>().canControl = false;
-        player.GetComponent<Animator>().SetFloat("Speed", 0f);
+        player.GetComponentInChildren<Animator>().SetFloat("Speed", 0f);
         player.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
 
         dialogueTextAsset = dialogue;
@@ -291,7 +291,7 @@ public class DialogueManager : MonoBehaviour
 
         //Prevent the player from moving while they're in dialogue
         player.GetComponent<CustomPlatformer2DUserControl>().canControl = false;
-        player.GetComponent<Animator>().SetFloat("Speed", 0f);
+        player.GetComponentInChildren<Animator>().SetFloat("Speed", 0f);
         player.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
 
         dialogueTextAsset = dialogue;
@@ -381,11 +381,11 @@ public class DialogueManager : MonoBehaviour
         {
             //Well so much for elegance. To get the buttons to spawn on top of the text box and other things they need to be below them in the heirarcy
             //Before chilcount - 1 was pretty perfect, but now we use childcount + 2 because there are 3 more objects on top of the button layouts
-            currentButtonLayout = transform.GetChild(currentNode.getNumButtons() + 2).gameObject.GetComponent<disableButtonChildren>();
+            currentButtonLayout = transform.GetChild(currentNode.getNumButtons() + 2).gameObject.GetComponent<DisableButtonChildren>();
         }
         else
         {
-            currentButtonLayout = transform.GetChild(3).gameObject.GetComponent<disableButtonChildren>();
+            currentButtonLayout = transform.GetChild(3).gameObject.GetComponent<DisableButtonChildren>();
         }
 
         //didn't use foreach here because (reason)

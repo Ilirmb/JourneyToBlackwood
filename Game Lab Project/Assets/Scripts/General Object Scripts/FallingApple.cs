@@ -53,6 +53,7 @@ public class FallingApple : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Debug.Log("Do damage here!");
+            other.GetComponent<PlayerStatistics>().damageStamina(10, 1f);
             StartCoroutine(WaitAndDespawn(waitBeforeDespawn));
         }
         else if (other.gameObject.layer == LayerMask.NameToLayer("Ground"))
