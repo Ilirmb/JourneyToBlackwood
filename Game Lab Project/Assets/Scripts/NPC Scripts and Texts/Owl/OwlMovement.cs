@@ -30,5 +30,7 @@ public class OwlMovement : MonoBehaviour {
             new WaitForSeconds(2);
             rb.velocity = new Vector2(0, 0);
         }
+
+		rb.velocity = new Vector2(rb.velocity.x, player.velocity.y);
     }
 }
