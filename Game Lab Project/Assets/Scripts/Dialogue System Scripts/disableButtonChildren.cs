@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class disableButtonChildren : MonoBehaviour {
+public class DisableButtonChildren : MonoBehaviour {
     int numChildren;
     private GameObject currentChild;
     private bool childrenDisabled = false;
@@ -45,9 +45,4 @@ public class disableButtonChildren : MonoBehaviour {
 	void Start () {
 		numChildren = gameObject.transform.childCount;
     }
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 }
