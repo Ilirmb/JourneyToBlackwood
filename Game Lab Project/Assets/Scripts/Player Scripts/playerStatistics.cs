@@ -171,9 +171,10 @@ public class PlayerStatistics : MonoBehaviour {
     void Update()
     {
 
-        /*if (invulnTimer > 0)
+        if (invulnTimer > 0)
         {
             invulnTimer -= Time.deltaTime;
+        }/*
             //Flickers sprite by turning the game renderer on and off every couple of frames
             if (Time.frameCount % 5 == 0)
             {
