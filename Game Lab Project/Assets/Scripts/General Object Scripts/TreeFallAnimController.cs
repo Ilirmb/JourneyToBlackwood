@@ -13,12 +13,14 @@ public class TreeFallAnimController : MonoBehaviour {
         hasFallen = false;
 	}
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (!hasFallen)
-        {
-            anim.SetBool("TreeFall", true);
-            hasFallen = true;
+        if (other.CompareTag("Player")){
+            if (!hasFallen)
+            {
+                anim.SetBool("TreeFall", true);
+                hasFallen = true;
+            }
         }
     }
 }
