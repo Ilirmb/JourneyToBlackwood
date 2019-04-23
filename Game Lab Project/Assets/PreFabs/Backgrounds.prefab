@@ -377,7 +377,7 @@ Transform:
   m_GameObject: {fileID: 1712571146541754}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 10}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalScale: {x: 0.66, y: 0.66, z: 1}
   m_Children:
   - {fileID: 4945235619848344}
   - {fileID: 4674370043866386}
@@ -418,7 +418,7 @@ Transform:
   m_GameObject: {fileID: 1032730796023104}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 10}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalScale: {x: 0.66, y: 0.66, z: 1}
   m_Children:
   - {fileID: 4059861666794620}
   - {fileID: 4664235718267136}
@@ -498,7 +498,7 @@ Transform:
   m_GameObject: {fileID: 1092064488370270}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 10}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalScale: {x: 0.66, y: 0.66, z: 1}
   m_Children:
   - {fileID: 4727581076776760}
   - {fileID: 4660868091203492}
@@ -513,7 +513,7 @@ Transform:
   m_GameObject: {fileID: 1128668678662102}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 10}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalScale: {x: 0.66, y: 0.66, z: 1}
   m_Children:
   - {fileID: 4474263412117436}
   - {fileID: 4329172932316862}
@@ -626,7 +626,7 @@ Transform:
   m_GameObject: {fileID: 1969512289057950}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 10}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalScale: {x: 0.66, y: 0.66, z: 1}
   m_Children:
   - {fileID: 4145982977363914}
   - {fileID: 4080910069257438}
@@ -640,8 +640,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1085276043371518}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 10}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalPosition: {x: 0, y: 0.66, z: 10}
+  m_LocalScale: {x: 0.66, y: 0.66, z: 1}
   m_Children:
   - {fileID: 4135227107502774}
   - {fileID: 4546293914810746}
@@ -656,7 +656,7 @@ Transform:
   m_GameObject: {fileID: 1611953649336918}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 10}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalScale: {x: 0.66, y: 0.66, z: 1}
   m_Children:
   - {fileID: 4710022903175784}
   - {fileID: 4427932902524944}
@@ -687,7 +687,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 933692bd435d9184ab384d22c311e633, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxEffect: 0.6
+  parallaxEffectX: 0.7
+  parallaxEffectY: 0.94
+  limitsY: 0
 --- !u!114 &114080128826454228
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -699,7 +701,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 933692bd435d9184ab384d22c311e633, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxEffect: 0.5
+  parallaxEffectX: 0.6
+  parallaxEffectY: 0.92
+  limitsY: 0
 --- !u!114 &114143657298000154
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -711,7 +715,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 933692bd435d9184ab384d22c311e633, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxEffect: 0.3
+  parallaxEffectX: 0.4
+  parallaxEffectY: 0.95
+  limitsY: 0
 --- !u!114 &114278369966643396
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -723,7 +729,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 933692bd435d9184ab384d22c311e633, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxEffect: 0.4
+  parallaxEffectX: 0.5
+  parallaxEffectY: 0.9
+  limitsY: 1.67
 --- !u!114 &114350427928753310
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -735,7 +743,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 933692bd435d9184ab384d22c311e633, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxEffect: 0.8
+  parallaxEffectX: 0.9
+  parallaxEffectY: 0.98
+  limitsY: 1.67
 --- !u!114 &114436851575983622
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -747,7 +757,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 933692bd435d9184ab384d22c311e633, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxEffect: 0.7
+  parallaxEffectX: 0.8
+  parallaxEffectY: 0.96
+  limitsY: 1.67
 --- !u!114 &114994394290449630
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -759,7 +771,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 933692bd435d9184ab384d22c311e633, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxEffect: 1
+  parallaxEffectX: 1
+  parallaxEffectY: 1
+  limitsY: 0
 --- !u!212 &212015722261283850
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -1484,7 +1498,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 150
+  m_SortingOrder: -4
   m_Sprite: {fileID: 21300000, guid: 86bbbf99eefd27e488983e791772ef2c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1530,7 +1544,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 150
+  m_SortingOrder: -4
   m_Sprite: {fileID: 21300000, guid: 86bbbf99eefd27e488983e791772ef2c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1668,7 +1682,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 150
+  m_SortingOrder: -4
   m_Sprite: {fileID: 21300000, guid: 86bbbf99eefd27e488983e791772ef2c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
