@@ -25,6 +25,7 @@ public class Thornbush : MonoBehaviour {
         if (collision.CompareTag("Player"))
         {
             cldr.enabled = false;
+            collision.GetComponent<PlayerStatistics>().damageStamina(5, 1f);
             Debug.Log("Damage Player Thornbush");
         }
     }
