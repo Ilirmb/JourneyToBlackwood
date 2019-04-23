@@ -20,10 +20,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4973272681663630}
   - component: {fileID: 212395495624212040}
+  - component: {fileID: 114213508115530582}
   - component: {fileID: 50753978254493032}
   - component: {fileID: 58291468582699140}
   - component: {fileID: 58401036031915632}
-  - component: {fileID: 114213508115530582}
   m_Layer: 0
   m_Name: Falling Apple
   m_TagString: Untagged
@@ -56,9 +56,9 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 0.09
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 1.5
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -105,7 +105,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be23cebde57013a449350546ec566bce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waitBetweenDrops: 0.5
+  waitBeforeDrop: 0
   waitBeforeDespawn: 0.5
   randomAngularSpeed: 45
   popOffForce: 100

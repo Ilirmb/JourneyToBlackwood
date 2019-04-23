@@ -5,7 +5,7 @@ using UnityEngine;
 public class FallingApple : MonoBehaviour
 {
 
-    public float waitBetweenDrops = 1f;
+    public float waitBeforeDrop = 1f;
     public float waitBeforeDespawn = 1f;
 
     public float randomAngularSpeed = 45f;
@@ -23,7 +23,7 @@ public class FallingApple : MonoBehaviour
         sr = this.GetComponent<SpriteRenderer>();
         rb = this.GetComponent<Rigidbody2D>();
         cldr = this.GetComponent<CircleCollider2D>();
-        StartCoroutine(WaitAndDrop(waitBetweenDrops)); //The coroutine waits for a bit after the apple is spawned before dropping it
+        StartCoroutine(WaitAndDrop(waitBeforeDrop)); //The coroutine waits for a bit after the apple is spawned before dropping it
         startFlashing = false;
     }
 
