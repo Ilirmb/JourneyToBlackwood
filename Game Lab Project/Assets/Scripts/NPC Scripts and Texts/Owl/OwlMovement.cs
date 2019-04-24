@@ -10,13 +10,16 @@ public class OwlMovement : MonoBehaviour {
 
     public SpriteRenderer sprite;
 
+    //Distance owl is above player
+    public float owlHeight = 2;
+
 	// Use this for initialization
 	void Start () {
 		
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void LateUpdate () {
 		if (player.velocity.x > 0 && player.position.x > rb.position.x + 3)
         {
             rb.velocity = new Vector2(player.velocity.x, 0);
@@ -31,6 +34,11 @@ public class OwlMovement : MonoBehaviour {
             rb.velocity = new Vector2(0, 0);
         }
 
-        rb.velocity = new Vector2(rb.velocity.x, player.velocity.y);
+        rb.position = new Vector2(rb.position.x, player.position.y + owlHeight);
+
+        if(Mathf.Abs(player.position.x - rb.position.x) > 20)
+        {
+            rb.position = new Vector2(player.position.x, player.position.y + owlHeight);
+        }
     }
 }
