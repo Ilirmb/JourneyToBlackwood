@@ -445,7 +445,7 @@ PlatformEffector2D:
   m_SurfaceArc: 180
   m_UseSideFriction: 0
   m_UseSideBounce: 0
-  m_SideArc: 1
+  m_SideArc: 15
 --- !u!61 &156820734
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -743,7 +743,7 @@ PlatformEffector2D:
   m_SurfaceArc: 180
   m_UseSideFriction: 0
   m_UseSideBounce: 0
-  m_SideArc: 1
+  m_SideArc: 15
 --- !u!61 &284377388
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1684,7 +1684,7 @@ PlatformEffector2D:
   m_SurfaceArc: 180
   m_UseSideFriction: 0
   m_UseSideBounce: 0
-  m_SideArc: 1
+  m_SideArc: 15
 --- !u!61 &654534625
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1938,7 +1938,7 @@ PlatformEffector2D:
   m_SurfaceArc: 180
   m_UseSideFriction: 0
   m_UseSideBounce: 0
-  m_SideArc: 1
+  m_SideArc: 15
 --- !u!61 &770933059
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2048,6 +2048,7 @@ MonoBehaviour:
   player: {fileID: 1355951891}
   rb: {fileID: 808943895}
   sprite: {fileID: 808943893}
+  owlHeight: 2
 --- !u!212 &808943893
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2264,6 +2265,7 @@ GameObject:
   - component: {fileID: 941828533}
   - component: {fileID: 941828532}
   - component: {fileID: 941828534}
+  - component: {fileID: 941828535}
   m_Layer: 8
   m_Name: Tilemap
   m_TagString: Untagged
@@ -26521,9 +26523,27 @@ TilemapCollider2D:
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_UsedByEffector: 0
+  m_UsedByEffector: 1
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
+--- !u!251 &941828535
+PlatformEffector2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 941828530}
+  m_Enabled: 1
+  m_UseColliderMask: 1
+  m_ColliderMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RotationalOffset: 0
+  m_UseOneWay: 1
+  m_UseOneWayGrouping: 0
+  m_SurfaceArc: 180
+  m_UseSideFriction: 0
+  m_UseSideBounce: 0
+  m_SideArc: 45
 --- !u!1 &977121896
 GameObject:
   m_ObjectHideFlags: 0
@@ -26640,7 +26660,7 @@ PlatformEffector2D:
   m_SurfaceArc: 180
   m_UseSideFriction: 0
   m_UseSideBounce: 0
-  m_SideArc: 1
+  m_SideArc: 15
 --- !u!61 &985969506
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -26833,7 +26853,7 @@ PlatformEffector2D:
   m_SurfaceArc: 180
   m_UseSideFriction: 0
   m_UseSideBounce: 0
-  m_SideArc: 1
+  m_SideArc: 15
 --- !u!61 &1130789417
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -27088,7 +27108,7 @@ PlatformEffector2D:
   m_SurfaceArc: 180
   m_UseSideFriction: 0
   m_UseSideBounce: 0
-  m_SideArc: 1
+  m_SideArc: 15
 --- !u!61 &1200231749
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -27574,7 +27594,7 @@ PlatformEffector2D:
   m_SurfaceArc: 180
   m_UseSideFriction: 0
   m_UseSideBounce: 0
-  m_SideArc: 1
+  m_SideArc: 15
 --- !u!61 &1381287502
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -27845,6 +27865,36 @@ Prefab:
       propertyPath: m_SortingOrder
       value: -3
       objectReference: {fileID: 0}
+    - target: {fileID: 114898334753424572, guid: d605ee05b791acc45baa1d9ace42b849,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2603711dd48b12b49959234328280398, type: 2}
+    - target: {fileID: 114292961625641976, guid: d605ee05b791acc45baa1d9ace42b849,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2603711dd48b12b49959234328280398, type: 2}
+    - target: {fileID: 114000034886708294, guid: d605ee05b791acc45baa1d9ace42b849,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2603711dd48b12b49959234328280398, type: 2}
+    - target: {fileID: 137588984817760996, guid: d605ee05b791acc45baa1d9ace42b849,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2603711dd48b12b49959234328280398, type: 2}
+    - target: {fileID: 137832799604997384, guid: d605ee05b791acc45baa1d9ace42b849,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2603711dd48b12b49959234328280398, type: 2}
+    - target: {fileID: 137704497994878000, guid: d605ee05b791acc45baa1d9ace42b849,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2603711dd48b12b49959234328280398, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d605ee05b791acc45baa1d9ace42b849, type: 2}
   m_IsPrefabAsset: 0
@@ -28202,7 +28252,7 @@ PlatformEffector2D:
   m_SurfaceArc: 180
   m_UseSideFriction: 0
   m_UseSideBounce: 0
-  m_SideArc: 1
+  m_SideArc: 15
 --- !u!61 &1671209724
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -28415,7 +28465,7 @@ PlatformEffector2D:
   m_SurfaceArc: 180
   m_UseSideFriction: 0
   m_UseSideBounce: 0
-  m_SideArc: 1
+  m_SideArc: 15
 --- !u!61 &1859483211
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -28488,7 +28538,7 @@ PlatformEffector2D:
   m_SurfaceArc: 180
   m_UseSideFriction: 0
   m_UseSideBounce: 0
-  m_SideArc: 1
+  m_SideArc: 15
 --- !u!61 &1953889817
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -29006,7 +29056,7 @@ PlatformEffector2D:
   m_SurfaceArc: 180
   m_UseSideFriction: 0
   m_UseSideBounce: 0
-  m_SideArc: 1
+  m_SideArc: 15
 --- !u!61 &2145021311
 BoxCollider2D:
   m_ObjectHideFlags: 0
