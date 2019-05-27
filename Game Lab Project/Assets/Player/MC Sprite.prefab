@@ -217,6 +217,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4906569569493180}
   - component: {fileID: 95259233697514838}
+  - component: {fileID: 114506161411296312}
   m_Layer: 0
   m_Name: MC Sprite
   m_TagString: Untagged
@@ -709,6 +710,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4296489090463552}
+  - component: {fileID: 114764478573118800}
   m_Layer: 0
   m_Name: Skin
   m_TagString: Untagged
@@ -1707,7 +1709,7 @@ MonoBehaviour:
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_SortingLayerID: 0
-  m_SortingOrder: -1
+  m_SortingOrder: 0
   m_BoneTransforms:
   - {fileID: 4667081875863034}
 --- !u!114 &114292961625641976
@@ -1897,6 +1899,22 @@ MonoBehaviour:
   m_Length: 2.1443381
   m_ChildTransform: {fileID: 0}
   m_AttachedIK: {fileID: 0}
+--- !u!114 &114506161411296312
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1268328432774160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb22bf5e02568984889dce4b628f7d5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SFX_Footsteps_Rocks_Snekers: {fileID: 8300000, guid: 03e8630792f26a04780323f2523377a6,
+    type: 3}
+  SFX_Footsteps_Rocks_Sneaker_Jump_Landing: {fileID: 8300000, guid: d3646ae2af4431349a9e66c9fd014f41,
+    type: 3}
+  audioS: {fileID: 0}
 --- !u!114 &114529462476856594
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2006,6 +2024,17 @@ MonoBehaviour:
   m_Length: 1
   m_ChildTransform: {fileID: 0}
   m_AttachedIK: {fileID: 0}
+--- !u!114 &114764478573118800
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1919833952306934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37d87cc820861104cb2b345fccbc6ab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114798420637799314
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3073,7 +3102,7 @@ SkinnedMeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: 0
   serializedVersion: 2
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
