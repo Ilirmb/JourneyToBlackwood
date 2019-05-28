@@ -30,6 +30,9 @@ public class SkinToneAdjust : MonoBehaviour {
     // Use this for initialization
     void Start () {
 
+        CustomizationManager.instance.OnSkinChanged.AddListener(SetSkinSV);
+        CustomizationManager.instance.OnCostumeChanged.AddListener(CostumeChanged);
+
         // Creates instances of the HSV and default sprite materials to be applied at runtime as needed.
         skinMaterial = new Material(Shader.Find("Custom/HSVRangeShader"));
         spriteMaterial = new Material(Shader.Find("Sprites/Default"));
@@ -48,7 +51,14 @@ public class SkinToneAdjust : MonoBehaviour {
         head = skeleton.Find(h => h.name == "Head");
         skinBodyParts.Add(head);
 
-        // Determine the components that need to be recolored based on the costume. Not ready yet.
+        // Determine the components that need to be recolored based on the costume.
+        CostumeData costume = CustomizationManager.instance.GetCurrentCostume();
+
+        if(costume != null)
+        {
+            foreach (string s in costume.skinMeshes)
+                AddSkinTarget(s);
+        }
 
         // Applies skin color
         ApplySkinColorToTargets();
@@ -60,7 +70,7 @@ public class SkinToneAdjust : MonoBehaviour {
     /// ApplySkinColorToTargets
     /// Applies the current selected skin color to all body parts that are to be affected
     /// </summary>
-    public void ApplySkinColorToTargets()
+    private void ApplySkinColorToTargets()
     {
         foreach(SpriteMeshInstance smi in skinBodyParts)
             smi.sharedMaterial = skinMaterial;
@@ -72,7 +82,7 @@ public class SkinToneAdjust : MonoBehaviour {
     /// Adds a new skin target with the given name.
     /// </summary>
     /// <param name="target">The name of the mesh to target.</param>
-    public void AddSkinTarget(string target)
+    private void AddSkinTarget(string target)
     {
         skinBodyParts.Add(skeleton.Find(t => t.name == target));
     }
@@ -84,8 +94,11 @@ public class SkinToneAdjust : MonoBehaviour {
     /// This should be called whenever a costume change occurs, sense some costume parts will not need to be affected by the shader.
     /// </summary>
 
-    public void ResetSkinTargets()
+    private void ResetSkinTargets()
     {
+        foreach(SpriteMeshInstance smi in skinBodyParts)
+            smi.sharedMaterial = spriteMaterial;
+
         skinBodyParts.Clear();
 
         // Head always needs to be affected
@@ -97,9 +110,30 @@ public class SkinToneAdjust : MonoBehaviour {
     /// SetSkinSV
     /// Sets the skin saturation and value
     /// </summary>
-    public void SetSkinSV()
+    private void SetSkinSV()
     {
         skinMaterial.SetVector("_HSVAAdjust", 
             new Vector4(0.0f, CustomizationManager.instance.GetSkinSat(), CustomizationManager.instance.GetSkinVal(), 0.0f));
+    }
+
+
+    /// <summary>
+    /// Costume Changed
+    /// Called whenever a costume is changed and updates the meshes to be impacted by the shader.
+    /// </summary>
+    private void CostumeChanged()
+    {
+        ResetSkinTargets();
+
+        // Determine the components that need to be recolored based on the costume.
+        CostumeData costume = CustomizationManager.instance.GetCurrentCostume();
+
+        if (costume != null)
+        {
+            foreach (string s in costume.skinMeshes)
+                AddSkinTarget(s);
+        }
+
+        ApplySkinColorToTargets();
     }
 }

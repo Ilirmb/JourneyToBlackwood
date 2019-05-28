@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class CustomizationManager : MonoBehaviour {
 
@@ -26,6 +27,26 @@ public class CustomizationManager : MonoBehaviour {
     private float skinToneMaxValue = 0.4f;
 
 
+    // List of all costumes in the game
+    [SerializeField]
+    private List<CostumeData> costumeList = new List<CostumeData>();
+
+    // Current Selected costume
+    private CostumeData currentCostume;
+
+    // Current costume index
+    private int currentCostumeIndex;
+
+
+    // Event that is called whenever the skin color is changed
+    [HideInInspector]
+    public UnityEvent OnSkinChanged;
+
+    // Event that is called whenever the costume is changed
+    [HideInInspector]
+    public UnityEvent OnCostumeChanged;
+
+
 
     // Use this for initialization
     void Awake () {
@@ -44,6 +65,9 @@ public class CustomizationManager : MonoBehaviour {
             return;
         }
 
+        // Set current costume to the first in the list if the list is not empty
+        currentCostume = costumeList.Count > 0 ? costumeList[0] : null;
+        currentCostumeIndex = costumeList.Count > 0 ? 0 : -1;
     }
 
 
@@ -59,6 +83,8 @@ public class CustomizationManager : MonoBehaviour {
 
         // We only need to adjust saturation for darker skin tones.
         skinToneSat = amt < 0.0f ? skinToneMaxSaturation * -amt : skinToneMinSaturation * amt;
+
+        OnSkinChanged.Invoke();
     }
 
 
@@ -81,5 +107,50 @@ public class CustomizationManager : MonoBehaviour {
     public float GetSkinSat()
     {
         return skinToneSat;
+    }
+
+
+    /// <summary>
+    /// GetCurrentCostume
+    /// Returns the current selected costume
+    /// </summary>
+    /// <returns>The current selected costume</returns>
+    public CostumeData GetCurrentCostume()
+    {
+        return currentCostume;
+    }
+
+
+    /// <summary>
+    /// SetCurrentCostume
+    /// Sets the current costume to the given index
+    /// </summary>
+    /// <param name="index">Costume to set</param>
+    public void SetCurrentCostume(int index)
+    {
+        // Set the costume to the index if it is in bounds, otherwise, set it to null
+        currentCostume = (index >= costumeList.Count || index < 0) ? null : costumeList[index];
+        currentCostumeIndex = (index >= costumeList.Count || index < 0) ? -1: index;
+
+        OnCostumeChanged.Invoke();
+    }
+
+
+    /// <summary>
+    /// AdvanceCurrentCostume
+    /// Advances to the next costume in the list moving in the given direction
+    /// </summary>
+    /// <param name="dir">Direction to scroll</param>
+    public void AdvanceCurrentCostume(int dir)
+    {
+        currentCostumeIndex += dir;
+
+        if (currentCostumeIndex < 0)
+            currentCostumeIndex = costumeList.Count - 1;
+
+        if (currentCostumeIndex > costumeList.Count - 1)
+            currentCostumeIndex = 0;
+
+        SetCurrentCostume(currentCostumeIndex);
     }
 }

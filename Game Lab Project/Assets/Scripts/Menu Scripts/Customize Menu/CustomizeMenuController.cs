@@ -5,9 +5,6 @@ using UnityEngine.UI;
 
 public class CustomizeMenuController : MonoBehaviour {
 
-    // Placeholder, will be deleted
-    public SkinToneAdjust sta;
-
     [SerializeField]
     private Slider skinColorSlider;
 
@@ -21,7 +18,12 @@ public class CustomizeMenuController : MonoBehaviour {
     public void ChangeSkinColor()
     {
         CustomizationManager.instance.AdjustSkinToneValues(skinColorSlider.value);
-        sta.SetSkinSV();
+    }
+
+
+    public void ChangeCostume(int dir)
+    {
+        CustomizationManager.instance.AdvanceCurrentCostume(dir);
     }
 
 }
