@@ -25,12 +25,6 @@ public class CustomizationManager : MonoBehaviour {
     [SerializeField]
     private float skinToneMaxValue = 0.4f;
 
-    // Range of acceptable saturation values
-    private float saturationRange;
-
-    // Range of acceptable value...values
-    private float valueRange;
-
 
 
     // Use this for initialization
@@ -50,10 +44,6 @@ public class CustomizationManager : MonoBehaviour {
             return;
         }
 
-        // Define ranges for skin saturation and value
-        saturationRange = (Mathf.Abs(skinToneMaxSaturation) + Mathf.Abs(skinToneMinSaturation));
-        valueRange = (Mathf.Abs(skinToneMaxValue) + Mathf.Abs(skinToneMinValue));
-
     }
 
 
@@ -64,13 +54,11 @@ public class CustomizationManager : MonoBehaviour {
     /// <param name="amt">Amount to adjust saturation and value.</param>
     public void AdjustSkinToneValues(float amt)
     {
-        skinToneVal = 0.0f + ((valueRange / 2.0f) * amt);
+        // Sets skin tone value using the min range if amt is less than 0 and the max range if amt is greater than 0
+        skinToneVal = amt < 0.0f ? skinToneMinValue * -amt : skinToneMaxValue * amt;
 
         // We only need to adjust saturation for darker skin tones.
-        if (amt < 0.0f)
-            skinToneSat = 0.0f + ((saturationRange / 2.0f) * -amt);
-        else
-            skinToneSat = 0.0f;
+        skinToneSat = amt < 0.0f ? skinToneMaxSaturation * -amt : skinToneMinSaturation * amt;
     }
 
 

@@ -5,6 +5,12 @@ using Anima2D;
 
 public class SkinToneAdjust : MonoBehaviour {
 
+    // Min and max ranges of color the material should target.
+    [SerializeField]
+    private float HSVRangeMin = 0.04f;
+    [SerializeField]
+    private float HSVRangeMax = 0.08f;
+
     // List of meshes that will be affected by the shader.
     private List<SpriteMeshInstance> skinBodyParts = new List<SpriteMeshInstance>(1);
 
@@ -27,6 +33,10 @@ public class SkinToneAdjust : MonoBehaviour {
         // Creates instances of the HSV and default sprite materials to be applied at runtime as needed.
         skinMaterial = new Material(Shader.Find("Custom/HSVRangeShader"));
         spriteMaterial = new Material(Shader.Find("Sprites/Default"));
+
+        // Adjust HSV ranges
+        skinMaterial.SetFloat("_HSVRangeMin", HSVRangeMin);
+        skinMaterial.SetFloat("_HSVRangeMax", HSVRangeMax);
 
         // Find all sprite meshes attached to the player. This makes recoloring far easier.
         SpriteMeshInstance[] meshes = GetComponentsInChildren<SpriteMeshInstance>();
