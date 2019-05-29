@@ -23,6 +23,9 @@ public class CostumeChange : MonoBehaviour {
         // Find all sprite meshes attached to the player. This will avoid accessive GetComponent calls
         skeleton = PlayerMeshSkeleton.GetSkeleton();
 
+        // Update the player's costume
+        CostumeChanged();
+
     }
 
 
