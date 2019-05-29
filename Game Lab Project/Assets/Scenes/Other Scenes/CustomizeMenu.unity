@@ -233,8 +233,8 @@ MonoBehaviour:
   skinToneMinValue: -0.3
   skinToneMaxValue: 0.2
   costumeList:
-  - {fileID: 11400000, guid: 4380a1731c3fb96468ffb38b6b69d4a1, type: 2}
   - {fileID: 11400000, guid: 596624aece07cd9488f2b4afb8c72f73, type: 2}
+  - {fileID: 11400000, guid: 4380a1731c3fb96468ffb38b6b69d4a1, type: 2}
   OnSkinChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -634,6 +634,33 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d605ee05b791acc45baa1d9ace42b849, type: 2}
   m_IsPrefabAsset: 0
+--- !u!1 &274971358 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1919833952306934, guid: d605ee05b791acc45baa1d9ace42b849,
+    type: 2}
+  m_PrefabInternal: {fileID: 274971357}
+--- !u!114 &274971359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 274971358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4553a2f8a79d774439d5215af34a663a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &274971360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 274971358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 881e5267804b8d04599091c1515d19bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &661093326
 GameObject:
   m_ObjectHideFlags: 0

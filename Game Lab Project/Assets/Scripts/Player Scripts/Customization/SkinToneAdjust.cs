@@ -11,6 +11,9 @@ public class SkinToneAdjust : MonoBehaviour {
     [SerializeField]
     private float HSVRangeMax = 0.08f;
 
+    // List of all meshes in the player's skeleton
+    private List<SpriteMeshInstance> skeleton = new List<SpriteMeshInstance>();
+
     // List of meshes that will be affected by the shader.
     private List<SpriteMeshInstance> skinBodyParts = new List<SpriteMeshInstance>(1);
 
@@ -19,9 +22,6 @@ public class SkinToneAdjust : MonoBehaviour {
 
     // An instance of the default sprite material.
     private Material spriteMaterial;
-
-    // List of all meshes in the player's skeleton
-    private List<SpriteMeshInstance> skeleton = new List<SpriteMeshInstance>();
 
     // The player's head. The head will always be affected by skin color.
     private SpriteMeshInstance head;
@@ -42,10 +42,7 @@ public class SkinToneAdjust : MonoBehaviour {
         skinMaterial.SetFloat("_HSVRangeMax", HSVRangeMax);
 
         // Find all sprite meshes attached to the player. This makes recoloring far easier.
-        SpriteMeshInstance[] meshes = GetComponentsInChildren<SpriteMeshInstance>();
-
-        foreach (SpriteMeshInstance smi in meshes)
-            skeleton.Add(smi);
+        skeleton = PlayerMeshSkeleton.GetSkeleton();
 
         // Gets a reference to the player's head
         head = skeleton.Find(h => h.name == "Head");
@@ -56,7 +53,9 @@ public class SkinToneAdjust : MonoBehaviour {
 
         if(costume != null)
         {
-            foreach (string s in costume.skinMeshes)
+            List<string> costumeTargets = costume.GetSkinTargets();
+
+            foreach (string s in costumeTargets)
                 AddSkinTarget(s);
         }
 
@@ -130,7 +129,9 @@ public class SkinToneAdjust : MonoBehaviour {
 
         if (costume != null)
         {
-            foreach (string s in costume.skinMeshes)
+            List<string> costumeTargets = costume.GetSkinTargets();
+
+            foreach (string s in costumeTargets)
                 AddSkinTarget(s);
         }
 

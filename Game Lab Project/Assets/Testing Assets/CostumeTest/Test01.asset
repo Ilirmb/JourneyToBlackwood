@@ -12,7 +12,12 @@ MonoBehaviour:
   m_Name: Test01
   m_EditorClassIdentifier: 
   skinMeshes:
-  - Upper Left Arm
-  - Lower Left Arm
-  - Left Hand
-  - Left Arm Joint
+  - mesh: {fileID: 11400000, guid: 23e206bad22b63141a6083c27e8a811b, type: 2}
+    skinTarget: Torso_1
+    isSkin: 0
+  - mesh: {fileID: 11400000, guid: 1610d32f67d56fe41bd9c6f3f0624a68, type: 2}
+    skinTarget: Torso_2
+    isSkin: 0
+  - mesh: {fileID: 11400000, guid: 5dfc019ab1958ff489761f9565ba23ab, type: 2}
+    skinTarget: Upper Left Arm
+    isSkin: 1
