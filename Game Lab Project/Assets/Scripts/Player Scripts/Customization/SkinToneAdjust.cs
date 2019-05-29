@@ -60,6 +60,7 @@ public class SkinToneAdjust : MonoBehaviour {
         }
 
         // Applies skin color
+        SetSkinSV();
         ApplySkinColorToTargets();
 
     }

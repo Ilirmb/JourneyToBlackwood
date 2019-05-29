@@ -87,6 +87,7 @@ GameObject:
   - component: {fileID: 4614853107715646}
   - component: {fileID: 114049228427245640}
   - component: {fileID: 137981192789266860}
+  - component: {fileID: 114632054357094164}
   m_Layer: 0
   m_Name: Lower Left Leg
   m_TagString: Untagged
@@ -711,6 +712,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4296489090463552}
   - component: {fileID: 114764478573118800}
+  - component: {fileID: 114210397251477700}
+  - component: {fileID: 114215306183349818}
   m_Layer: 0
   m_Name: Skin
   m_TagString: Untagged
@@ -1597,6 +1600,28 @@ MonoBehaviour:
   m_Length: 2.223838
   m_ChildTransform: {fileID: 0}
   m_AttachedIK: {fileID: 0}
+--- !u!114 &114210397251477700
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1919833952306934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4553a2f8a79d774439d5215af34a663a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114215306183349818
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1919833952306934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 881e5267804b8d04599091c1515d19bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114224015261329122
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1881,7 +1906,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Length: 1.1894593
+  m_Length: 1.1894602
   m_ChildTransform: {fileID: 4366631413013690}
   m_AttachedIK: {fileID: 0}
 --- !u!114 &114504014231197082
@@ -1964,6 +1989,17 @@ MonoBehaviour:
   m_SortingOrder: 0
   m_BoneTransforms:
   - {fileID: 4552460628622466}
+--- !u!114 &114632054357094164
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1180021684859404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bcf8345dd4fdac40bced8726b4203e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114658454401796980
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2064,7 +2100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Length: 1.2719526
+  m_Length: 1.2719687
   m_ChildTransform: {fileID: 4882914039453514}
   m_AttachedIK: {fileID: 0}
 --- !u!114 &114872716234382518

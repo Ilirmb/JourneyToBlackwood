@@ -26,4 +26,16 @@ public class CustomizeMenuController : MonoBehaviour {
         CustomizationManager.instance.AdvanceCurrentCostume(dir);
     }
 
+
+    public void ChangeHairStyle(int dir)
+    {
+        CustomizationManager.instance.AdvanceCurrentHairStyle(dir);
+    }
+
+
+    public void ChangeFace(int dir)
+    {
+        CustomizationManager.instance.AdvanceCurrentFace(dir);
+    }
+
 }

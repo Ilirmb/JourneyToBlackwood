@@ -31,11 +31,25 @@ public class CustomizationManager : MonoBehaviour {
     [SerializeField]
     private List<CostumeData> costumeList = new List<CostumeData>();
 
+    // List of all hairstyles in the game
+    [SerializeField]
+    private List<CostumeData> hairList = new List<CostumeData>();
+
+    // List of all faces in the game
+    [SerializeField]
+    private List<CostumeData> faceList = new List<CostumeData>();
+
     // Current Selected costume
     private CostumeData currentCostume;
 
+    // Current Selected costume
+    private CostumeData currentHair;
+
+    // Current Selected costume
+    private CostumeData currentFace;
+
     // Current costume index
-    private int currentCostumeIndex;
+    private int currentCostumeIndex, currentHairIndex, currentFaceIndex;
 
 
     // Event that is called whenever the skin color is changed
@@ -45,6 +59,14 @@ public class CustomizationManager : MonoBehaviour {
     // Event that is called whenever the costume is changed
     [HideInInspector]
     public UnityEvent OnCostumeChanged;
+
+    // Event that is called whenever the hairstyle is changed
+    [HideInInspector]
+    public UnityEvent OnHairStyleChanged;
+
+    // Event that is called whenever the face is changed
+    [HideInInspector]
+    public UnityEvent OnFaceChanged;
 
 
 
@@ -68,6 +90,14 @@ public class CustomizationManager : MonoBehaviour {
         // Set current costume to the first in the list if the list is not empty
         currentCostume = costumeList.Count > 0 ? costumeList[0] : null;
         currentCostumeIndex = costumeList.Count > 0 ? 0 : -1;
+
+        // Set current hairstyle to the first in the list if the list is not empty
+        currentHair = hairList.Count > 0 ? hairList[0] : null;
+        currentHairIndex = hairList.Count > 0 ? 0 : -1;
+
+        // Set current face to the first in the list if the list is not empty
+        currentFace = faceList.Count > 0 ? faceList[0] : null;
+        currentFaceIndex = faceList.Count > 0 ? 0 : -1;
     }
 
 
@@ -122,6 +152,28 @@ public class CustomizationManager : MonoBehaviour {
 
 
     /// <summary>
+    /// GetCurrentHairStyle
+    /// Returns the current selected hairstyle
+    /// </summary>
+    /// <returns>The current selected hairstyle</returns>
+    public CostumeData GetCurrentHairStyle()
+    {
+        return currentHair;
+    }
+
+
+    /// <summary>
+    /// GetCurrentFace
+    /// Returns the current selected face
+    /// </summary>
+    /// <returns>The current selected face</returns>
+    public CostumeData GetCurrentFace()
+    {
+        return currentFace;
+    }
+
+
+    /// <summary>
     /// SetCurrentCostume
     /// Sets the current costume to the given index
     /// </summary>
@@ -133,6 +185,36 @@ public class CustomizationManager : MonoBehaviour {
         currentCostumeIndex = (index >= costumeList.Count || index < 0) ? -1: index;
 
         OnCostumeChanged.Invoke();
+    }
+
+
+    /// <summary>
+    /// SetCurrentHairStyle
+    /// Sets the current hairstyle to the given index
+    /// </summary>
+    /// <param name="index">Hairstyle to set</param>
+    public void SetCurrentHairStyle(int index)
+    {
+        // Set the hairstyle to the index if it is in bounds, otherwise, set it to null
+        currentHair = (index >= hairList.Count || index < 0) ? null : hairList[index];
+        currentHairIndex = (index >= hairList.Count || index < 0) ? -1 : index;
+
+        OnHairStyleChanged.Invoke();
+    }
+
+
+    /// <summary>
+    /// SetCurrentFace
+    /// Sets the current face to the given index
+    /// </summary>
+    /// <param name="index">Face to set</param>
+    public void SetCurrentFace(int index)
+    {
+        // Set the hairstyle to the index if it is in bounds, otherwise, set it to null
+        currentFace = (index >= faceList.Count || index < 0) ? null : faceList[index];
+        currentFaceIndex = (index >= faceList.Count || index < 0) ? -1 : index;
+
+        OnFaceChanged.Invoke();
     }
 
 
@@ -152,5 +234,43 @@ public class CustomizationManager : MonoBehaviour {
             currentCostumeIndex = 0;
 
         SetCurrentCostume(currentCostumeIndex);
+    }
+
+
+    /// <summary>
+    /// AdvanceCurrentHairStyle
+    /// Advances to the next hairstyle in the list moving in the given direction
+    /// </summary>
+    /// <param name="dir">Direction to scroll</param>
+    public void AdvanceCurrentHairStyle(int dir)
+    {
+        currentHairIndex += dir;
+
+        if (currentHairIndex < 0)
+            currentHairIndex = hairList.Count - 1;
+
+        if (currentHairIndex > hairList.Count - 1)
+            currentHairIndex = 0;
+
+        SetCurrentHairStyle(currentHairIndex);
+    }
+
+
+    /// <summary>
+    /// AdvanceCurrentFace
+    /// Advances to the next face in the list moving in the given direction
+    /// </summary>
+    /// <param name="dir">Direction to scroll</param>
+    public void AdvanceCurrentFace(int dir)
+    {
+        currentFaceIndex += dir;
+
+        if (currentFaceIndex < 0)
+            currentFaceIndex = faceList.Count - 1;
+
+        if (currentFaceIndex > faceList.Count - 1)
+            currentFaceIndex = 0;
+
+        SetCurrentFace(currentFaceIndex);
     }
 }

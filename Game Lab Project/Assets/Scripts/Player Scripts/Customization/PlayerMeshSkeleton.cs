@@ -23,6 +23,16 @@ public class PlayerMeshSkeleton : MonoBehaviour {
 
 
     /// <summary>
+    /// OnDestroy
+    /// Cleans up the skeleton between scenes
+    /// </summary>
+    private void OnDestroy()
+    {
+        skeleton.Clear();
+    }
+
+
+    /// <summary>
     /// GetSkeleton
     /// Returns the player's skeleton
     /// </summary>
