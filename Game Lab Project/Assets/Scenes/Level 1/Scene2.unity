@@ -204,6 +204,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   offsetY: 2.5
+  movementSpeed: 0.2
+  horizontalDeadZoneLength: 0.04
+  verticalDeadZoneLength: 0.01
+  verticalDeadZoneCenter: 0.25
 --- !u!1001 &98340153
 Prefab:
   m_ObjectHideFlags: 0
@@ -362,6 +366,34 @@ Prefab:
       propertyPath: m_AnchoredPosition.y
       value: 0.09199524
       objectReference: {fileID: 0}
+    - target: {fileID: 1074083476662212, guid: b12487abd56fbd14589e635098ac4308, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1157878006758950, guid: b12487abd56fbd14589e635098ac4308, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1372513540334990, guid: b12487abd56fbd14589e635098ac4308, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1950853564998164, guid: b12487abd56fbd14589e635098ac4308, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491427481040532, guid: b12487abd56fbd14589e635098ac4308, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1122387216719396, guid: b12487abd56fbd14589e635098ac4308, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1673635342334788, guid: b12487abd56fbd14589e635098ac4308, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b12487abd56fbd14589e635098ac4308, type: 2}
   m_IsPrefabAsset: 0
@@ -445,7 +477,7 @@ PlatformEffector2D:
   m_SurfaceArc: 180
   m_UseSideFriction: 0
   m_UseSideBounce: 0
-  m_SideArc: 15
+  m_SideArc: 45
 --- !u!61 &156820734
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -743,7 +775,7 @@ PlatformEffector2D:
   m_SurfaceArc: 180
   m_UseSideFriction: 0
   m_UseSideBounce: 0
-  m_SideArc: 15
+  m_SideArc: 45
 --- !u!61 &284377388
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1684,7 +1716,7 @@ PlatformEffector2D:
   m_SurfaceArc: 180
   m_UseSideFriction: 0
   m_UseSideBounce: 0
-  m_SideArc: 15
+  m_SideArc: 45
 --- !u!61 &654534625
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1938,7 +1970,7 @@ PlatformEffector2D:
   m_SurfaceArc: 180
   m_UseSideFriction: 0
   m_UseSideBounce: 0
-  m_SideArc: 15
+  m_SideArc: 45
 --- !u!61 &770933059
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -26660,7 +26692,7 @@ PlatformEffector2D:
   m_SurfaceArc: 180
   m_UseSideFriction: 0
   m_UseSideBounce: 0
-  m_SideArc: 15
+  m_SideArc: 45
 --- !u!61 &985969506
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -26853,7 +26885,7 @@ PlatformEffector2D:
   m_SurfaceArc: 180
   m_UseSideFriction: 0
   m_UseSideBounce: 0
-  m_SideArc: 15
+  m_SideArc: 45
 --- !u!61 &1130789417
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -27108,7 +27140,7 @@ PlatformEffector2D:
   m_SurfaceArc: 180
   m_UseSideFriction: 0
   m_UseSideBounce: 0
-  m_SideArc: 15
+  m_SideArc: 45
 --- !u!61 &1200231749
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -27485,7 +27517,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1358462443}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.6034732, z: 0}
+  m_LocalPosition: {x: 0, y: -0.67, z: 0}
   m_LocalScale: {x: 0.56448287, y: 0.5644837, z: 1}
   m_Children: []
   m_Father: {fileID: 1733082287}
@@ -27594,7 +27626,7 @@ PlatformEffector2D:
   m_SurfaceArc: 180
   m_UseSideFriction: 0
   m_UseSideBounce: 0
-  m_SideArc: 15
+  m_SideArc: 45
 --- !u!61 &1381287502
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -28212,7 +28244,7 @@ PlatformEffector2D:
   m_SurfaceArc: 180
   m_UseSideFriction: 0
   m_UseSideBounce: 0
-  m_SideArc: 15
+  m_SideArc: 45
 --- !u!61 &1671209724
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -28322,7 +28354,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1355951887}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -180.038, y: -17.47, z: 0}
+  m_LocalPosition: {x: -15.81, y: 16.92, z: 0}
   m_LocalScale: {x: 1.7715329, y: 1.7715304, z: 1}
   m_Children:
   - {fileID: 1358462444}
@@ -28425,7 +28457,7 @@ PlatformEffector2D:
   m_SurfaceArc: 180
   m_UseSideFriction: 0
   m_UseSideBounce: 0
-  m_SideArc: 15
+  m_SideArc: 45
 --- !u!61 &1859483211
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -28498,7 +28530,7 @@ PlatformEffector2D:
   m_SurfaceArc: 180
   m_UseSideFriction: 0
   m_UseSideBounce: 0
-  m_SideArc: 15
+  m_SideArc: 45
 --- !u!61 &1953889817
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -28995,7 +29027,7 @@ PlatformEffector2D:
   m_SurfaceArc: 180
   m_UseSideFriction: 0
   m_UseSideBounce: 0
-  m_SideArc: 15
+  m_SideArc: 45
 --- !u!61 &2145021311
 BoxCollider2D:
   m_ObjectHideFlags: 0

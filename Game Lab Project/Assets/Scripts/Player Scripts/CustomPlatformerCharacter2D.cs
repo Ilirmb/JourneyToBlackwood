@@ -12,7 +12,7 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
 
     private Transform m_GroundCheck;    // A position marking where to check if the player is grounded.
     private float m_TrueSpeed;
-    const float k_GroundedRadius = .4f; // Radius of the overlap circle to determine if grounded
+    const float k_GroundedRadius = .15f; // Radius of the overlap circle to determine if grounded
     public bool m_Grounded;            // Whether or not the player is grounded.
     private Transform m_CeilingCheck;   // A position marking where to check for ceilings
     const float k_CeilingRadius = .01f; // Radius of the overlap circle to determine if the player can stand up
@@ -50,6 +50,7 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
             if (colliders[i].gameObject != gameObject)
                 m_Grounded = true;
         }
+
         m_Anim.SetBool("Grounded", m_Grounded);
 
         // Set the vertical animation
@@ -126,6 +127,17 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
         Vector3 theScale = transform.localScale;
         theScale.x *= -1;
         transform.localScale = theScale;
+    }
+
+
+    /// <summary>
+    /// GetIsGrounded
+    /// Returns true if the player is grounded
+    /// </summary>
+    /// <returns>If the player is grounded</returns>
+    public bool GetIsGrounded()
+    {
+        return m_Grounded;
     }
 }
 
