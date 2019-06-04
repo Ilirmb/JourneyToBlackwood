@@ -21,12 +21,18 @@ public class CostumePieceDrawer : PropertyDrawer {
             var indent = EditorGUI.indentLevel;
             EditorGUI.indentLevel = 0;
 
-            var meshRect = new Rect(position.x, position.y, position.width * 0.5f - 5, position.height / 4);
-            var targetRect = new Rect(position.x + position.width * 0.5f, position.y, position.width * 0.45f, position.height / 4);
-            var skinRect = new Rect(position.x, position.y + position.height * 0.75f, position.width * 0.45f, position.height);
-            //EditorGUI.PrefixLabel(new Rect(25, 45, 100, 15), 0, new GUIContent("Preview:"));
+            var meshRect = new Rect(position.x, position.y + position.height / 5, position.width * 0.45f, position.height / 5);
+            var targetRect = new Rect(position.x + position.width * 0.5f, position.y + position.height / 5, position.width * 0.45f, position.height / 5);
+            var skinRect = new Rect(position.x + position.width * 0.5f, position.y + position.height * 0.75f, position.width * 0.45f, position.height);
 
-            EditorGUI.PropertyField(meshRect, property.FindPropertyRelative("mesh"), GUIContent.none);
+            EditorGUI.PrefixLabel(
+                new Rect(position.x, position.y, position.width * 0.45f, position.height / 5), 0, new GUIContent("Mesh"));
+            EditorGUI.PrefixLabel(
+                new Rect(position.x + position.width * 0.5f, position.y, position.width * 0.5f - 5, position.height / 5), 1, new GUIContent("Target"));
+        EditorGUI.PrefixLabel(new Rect(position.x + position.width * 0.5f, position.y + position.height * 0.6f, position.width * 0.45f, position.height), 
+            2, new GUIContent("Is Skin?"));
+
+        EditorGUI.PropertyField(meshRect, property.FindPropertyRelative("mesh"), GUIContent.none);
             EditorGUI.PropertyField(targetRect, property.FindPropertyRelative("skinTarget"), GUIContent.none);
             EditorGUI.PropertyField(skinRect, property.FindPropertyRelative("isSkin"), GUIContent.none);
 
@@ -34,6 +40,8 @@ public class CostumePieceDrawer : PropertyDrawer {
             var sprite = (property.FindPropertyRelative("mesh").objectReferenceValue as SpriteMesh).sprite;
             if (sprite != null)
             {
+                Rect pos = position;
+
                 Vector2 fullSize = new Vector2(sprite.texture.width, sprite.texture.height);
                 Vector2 size = new Vector2(sprite.textureRect.width, sprite.textureRect.height);
 
@@ -44,16 +52,18 @@ public class CostumePieceDrawer : PropertyDrawer {
                 coords.height /= fullSize.y;
 
                 Vector2 ratio;
-                ratio.x = (position.width / 2.0f) / size.x;
-                ratio.y = (position.height / 2.0f) / size.y;
+                ratio.x = (position.width / 2.5f) / size.x;
+                ratio.y = (position.height / 2.5f) / size.y;
                 float minRatio = Mathf.Min(ratio.x, ratio.y);
 
-                Vector2 center = position.center;
-                position.width = size.x * minRatio;
-                position.height = size.y * minRatio;
-                position.center = center;
+                Vector2 center = pos.center;
+                pos.width = size.x * minRatio;
+                pos.height = size.y * minRatio;
+                pos.center = center;
+                pos.x = position.x;
+                pos.y = position.y + (position.height * 0.45f);
 
-                GUI.DrawTextureWithTexCoords(position, sprite.texture, coords);
+                GUI.DrawTextureWithTexCoords(pos, sprite.texture, coords);
             }
 
             // Set indent back to what it was
@@ -69,7 +79,7 @@ public class CostumePieceDrawer : PropertyDrawer {
     public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
     {
         //return property.isExpanded ? base.GetPropertyHeight(property, label) * 4 : base.GetPropertyHeight(property, label);
-        return base.GetPropertyHeight(property, label) * 4;
+        return base.GetPropertyHeight(property, label) * 5;
     }
 
 }
