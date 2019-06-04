@@ -13,6 +13,12 @@ public class OwlMovement : MonoBehaviour {
     //Distance owl is above player
     public float owlHeight = 2;
 
+    // Amount owl is offset to the right
+    [SerializeField]
+    private float owlOffset = -3;
+
+    private Vector3 velocity = Vector3.zero;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -20,7 +26,8 @@ public class OwlMovement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void LateUpdate () {
-		if (player.velocity.x > 0 && player.position.x > rb.position.x + 3)
+
+        if (player.velocity.x > 0 && player.position.x > rb.position.x + 3)
         {
             rb.velocity = new Vector2(player.velocity.x, 0);
             sprite.flipX = true;
@@ -34,11 +41,15 @@ public class OwlMovement : MonoBehaviour {
             rb.velocity = new Vector2(0, 0);
         }
 
-        rb.position = new Vector2(rb.position.x, player.position.y + owlHeight);
+        /*rb.position = new Vector2(rb.position.x, player.position.y + owlHeight);
 
         if(Mathf.Abs(player.position.x - rb.position.x) > 20)
         {
             rb.position = new Vector2(player.position.x, player.position.y + owlHeight);
-        }
+        }*/
+
+        Vector3 newPos = player.transform.position;
+        newPos.y += owlHeight;
+        transform.position = Vector3.SmoothDamp(transform.position, newPos, ref velocity, 0.05f);
     }
 }

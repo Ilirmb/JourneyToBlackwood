@@ -6,6 +6,8 @@ public class CamFollow : MonoBehaviour {
 
     Camera cam;
     Transform player;
+    [SerializeField] float maxCameraHeight = 24.4f;
+    [SerializeField] float minCameraHeight = -50.0f;
     [SerializeField] float offsetY = 2.5f;
     [SerializeField] float movementSpeed = 0.2f;
 
@@ -58,8 +60,16 @@ public class CamFollow : MonoBehaviour {
             }
             else if(!playerMov.GetIsGrounded() && playerPos.y < (verticalDeadZoneCenter - verticalDeadZoneLength / 2.0f))
             {
-                newPos.y = player.position.y;
+                newPos.y = player.position.y - (offsetY * ((Mathf.Abs(playerRigidbody.velocity.y) / 9.8f)));
+                speed = 0.3f;
             }
+
+
+            // Clamp camera height
+            if (newPos.y > maxCameraHeight)
+                newPos.y = maxCameraHeight;
+            else if(newPos.y < minCameraHeight)
+                newPos.y = minCameraHeight;
 
             transform.position = Vector3.SmoothDamp(transform.position, newPos, ref velocity, speed);
 

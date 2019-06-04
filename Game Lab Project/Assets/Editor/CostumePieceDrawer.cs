@@ -8,13 +8,13 @@ public class CostumePieceDrawer : PropertyDrawer {
 
     public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
     {
-        //property.isExpanded = EditorGUI.Foldout(position, property.isExpanded, label);
-
         EditorGUI.BeginProperty(position, label, property);
 
-        //if (property.isExpanded)
-        //{
-            // Draw label
+        //property.isExpanded = EditorGUI.Foldout(position, property.isExpanded, label);
+        property.isExpanded = true;
+        if (property.isExpanded)
+        {
+        // Draw label
             position = EditorGUI.PrefixLabel(position, GUIUtility.GetControlID(FocusType.Passive), label);
 
             // Don't make child fields be indented
@@ -29,10 +29,10 @@ public class CostumePieceDrawer : PropertyDrawer {
                 new Rect(position.x, position.y, position.width * 0.45f, position.height / 5), 0, new GUIContent("Mesh"));
             EditorGUI.PrefixLabel(
                 new Rect(position.x + position.width * 0.5f, position.y, position.width * 0.5f - 5, position.height / 5), 1, new GUIContent("Target"));
-        EditorGUI.PrefixLabel(new Rect(position.x + position.width * 0.5f, position.y + position.height * 0.6f, position.width * 0.45f, position.height), 
-            2, new GUIContent("Is Skin?"));
+            EditorGUI.PrefixLabel(new Rect(position.x + position.width * 0.5f, position.y + position.height * 0.6f, position.width * 0.45f, position.height), 
+                2, new GUIContent("Is Skin?"));
 
-        EditorGUI.PropertyField(meshRect, property.FindPropertyRelative("mesh"), GUIContent.none);
+            EditorGUI.PropertyField(meshRect, property.FindPropertyRelative("mesh"), GUIContent.none);
             EditorGUI.PropertyField(targetRect, property.FindPropertyRelative("skinTarget"), GUIContent.none);
             EditorGUI.PropertyField(skinRect, property.FindPropertyRelative("isSkin"), GUIContent.none);
 
@@ -68,7 +68,7 @@ public class CostumePieceDrawer : PropertyDrawer {
 
             // Set indent back to what it was
             EditorGUI.indentLevel = indent;
-        //}
+        }
 
         EditorGUI.EndProperty();
 
