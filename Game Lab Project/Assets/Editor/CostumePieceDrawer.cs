@@ -10,9 +10,9 @@ public class CostumePieceDrawer : PropertyDrawer {
     {
         EditorGUI.BeginProperty(position, label, property);
 
-        //property.isExpanded = EditorGUI.Foldout(position, property.isExpanded, label);
-        property.isExpanded = true;
-        if (property.isExpanded)
+        Rect foldoutRect = new Rect(position.x, position.y, position.width, EditorGUIUtility.singleLineHeight);
+
+        if (property.isExpanded = EditorGUI.Foldout(foldoutRect, property.isExpanded, label, true))
         {
         // Draw label
             position = EditorGUI.PrefixLabel(position, GUIUtility.GetControlID(FocusType.Passive), label);
@@ -78,8 +78,8 @@ public class CostumePieceDrawer : PropertyDrawer {
 
     public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
     {
-        //return property.isExpanded ? base.GetPropertyHeight(property, label) * 4 : base.GetPropertyHeight(property, label);
-        return base.GetPropertyHeight(property, label) * 5;
+        return property.isExpanded ? base.GetPropertyHeight(property, label) * 5 : base.GetPropertyHeight(property, label);
+        //return base.GetPropertyHeight(property, label) * 5;
     }
 
 }
