@@ -6,21 +6,23 @@ public class CamFollow : MonoBehaviour {
 
     Camera cam;
     Transform player;
+    [SerializeField] float maxCameraLength = 40f;
+    [SerializeField] float minCameraLength = -200f;
     [SerializeField] float maxCameraHeight = 24.4f;
-    [SerializeField] float minCameraHeight = -50.0f;
+    [SerializeField] float minCameraHeight = -50f;
     [SerializeField] float offsetY = 2.5f;
     [SerializeField] float movementSpeed = 0.2f;
 
     [SerializeField]
-    float horizontalDeadZoneCenter = 0.5f;
+    float horizontalDeadZoneCenter = 0.4f;
     float hdzc;
 
     [SerializeField]
-    float horizontalDeadZoneLength = 0.04f;
+    float horizontalDeadZoneLength = 0.15f;
     [SerializeField]
     float verticalDeadZoneCenter = 0.25f;
     [SerializeField]
-    float verticalDeadZoneLength = 0.01f;
+    float verticalDeadZoneLength = 0f;
 
     // Used to determine when the player starts moving
     private CustomPlatformerCharacter2D playerMov;
@@ -53,6 +55,7 @@ public class CamFollow : MonoBehaviour {
 
         Vector3 playerPos = cam.WorldToViewportPoint(player.position);
 
+
         // Adjust the camera position if the player has moved out of the "neutral position" horizontally or vertically.
         if(playerPos.x > (horizontalDeadZoneCenter + horizontalDeadZoneLength / 2.0f) || 
             playerPos.x < (horizontalDeadZoneCenter - horizontalDeadZoneLength / 2.0f) ||
@@ -78,15 +81,27 @@ public class CamFollow : MonoBehaviour {
             else if(!playerMov.GetIsGrounded() && playerPos.y < (verticalDeadZoneCenter - verticalDeadZoneLength / 2.0f))
             {
                 newPos.y = player.position.y + offsetY;
-                //speed = Time.deltaTime;
+
+                if(playerRigidbody.velocity.y < 0.0f)
+                {
+                    transform.position = newPos.y < minCameraHeight ?
+                        new Vector3(transform.position.x, minCameraHeight, transform.position.z) : 
+                        new Vector3(transform.position.x, newPos.y, transform.position.z);
+                }
             }
 
 
             // Clamp camera height
             if (newPos.y > maxCameraHeight)
                 newPos.y = maxCameraHeight;
-            else if(newPos.y < minCameraHeight)
+            else if (newPos.y < minCameraHeight)
                 newPos.y = minCameraHeight;
+
+            // Clap camera x dimension
+            if (newPos.x > maxCameraLength)
+                newPos.x = maxCameraLength;
+            else if (newPos.x < minCameraLength)
+                newPos.x = minCameraLength;
 
             transform.position = Vector3.SmoothDamp(transform.position, newPos, ref velocity, speed);
 

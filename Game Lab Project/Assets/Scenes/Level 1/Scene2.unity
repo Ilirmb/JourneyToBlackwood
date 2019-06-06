@@ -203,13 +203,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a635797e0aa4b1249a56b9b765303034, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxCameraLength: 60
+  minCameraLength: -200
   maxCameraHeight: 24.4
   minCameraHeight: -50
   offsetY: 2.5
   movementSpeed: 0.2
-  horizontalDeadZoneCenter: 0.35
-  horizontalDeadZoneLength: 0.06
-  verticalDeadZoneCenter: 0.3
+  horizontalDeadZoneCenter: 0.4
+  horizontalDeadZoneLength: 0.15
+  verticalDeadZoneCenter: 0.25
   verticalDeadZoneLength: 0
 --- !u!1001 &98340153
 Prefab:
@@ -371,7 +373,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1074083476662212, guid: b12487abd56fbd14589e635098ac4308, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1157878006758950, guid: b12487abd56fbd14589e635098ac4308, type: 2}
       propertyPath: m_IsActive
