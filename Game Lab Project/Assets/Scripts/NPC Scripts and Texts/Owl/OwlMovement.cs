@@ -36,7 +36,6 @@ public class OwlMovement : MonoBehaviour {
 	void LateUpdate () {
 
         Vector3 target = new Vector3(player.transform.position.x + owlOffset, player.transform.position.y + owlHeight);
-        Debug.Log(target);
         Vector3 current = transform.position;
 
         if(Vector3.Distance(current, target) > maxOwlDistance)
