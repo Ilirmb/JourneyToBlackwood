@@ -43,8 +43,9 @@ public class CamFollow : MonoBehaviour {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         playerMov = player.gameObject.GetComponent<CustomPlatformerCharacter2D>();
         playerRigidbody = player.gameObject.GetComponent<Rigidbody2D>();
-        
-        Vector3 newPos = new Vector3(player.position.x, player.position.y + offsetY, -10f);
+
+        float offset = (0.5f - horizontalDeadZoneCenter) / 0.4f;
+        Vector3 newPos = new Vector3(player.position.x + (2.0f * offset), player.position.y + offsetY, -10f);
         gameObject.transform.position = newPos;
     }
 	
@@ -53,13 +54,17 @@ public class CamFollow : MonoBehaviour {
     {
         //gameObject.transform.position = newPos;
 
-        Vector3 playerPos = cam.WorldToViewportPoint(player.position);
+        Vector3 playerPos = cam.WorldToViewportPoint(new Vector3(player.position.x + (0.5f * playerMov.GetDirection()), player.position.y));
+        playerPos.x = (Mathf.Round(playerPos.x * 100.0f) / 100.0f);
+        playerPos.y = (Mathf.Round(playerPos.y * 100.0f) / 100.0f);
 
+        Debug.Log(playerPos.x);
+        Debug.Log((playerPos.x > (horizontalDeadZoneCenter + horizontalDeadZoneLength / 2.0f)) + " " + (playerPos.x < (horizontalDeadZoneCenter - horizontalDeadZoneLength / 2.0f)));
 
         // Adjust the camera position if the player has moved out of the "neutral position" horizontally or vertically.
-        if(playerPos.x > (horizontalDeadZoneCenter + horizontalDeadZoneLength / 2.0f) || 
+        if (playerPos.x > (horizontalDeadZoneCenter + horizontalDeadZoneLength / 2.0f) || 
             playerPos.x < (horizontalDeadZoneCenter - horizontalDeadZoneLength / 2.0f) ||
-            playerPos.y > (verticalDeadZoneCenter + verticalDeadZoneLength / 2.0f) || 
+            (playerPos.y > (verticalDeadZoneCenter + verticalDeadZoneLength / 2.0f) && playerMov.GetIsGrounded()) || 
             playerPos.y < (verticalDeadZoneCenter - verticalDeadZoneLength / 2.0f))
         {
             // Adjusts camera to display more of the level in the player's direction, SMW style
@@ -68,9 +73,10 @@ public class CamFollow : MonoBehaviour {
             if (playerPos.x < (horizontalDeadZoneCenter - horizontalDeadZoneLength / 2.0f))
                 horizontalDeadZoneCenter = 1 - hdzc;
 
-            float offset = (0.5f - horizontalDeadZoneCenter) / 0.1f;
+            float offset = 5.0f * hdzc * playerMov.GetDirection();
+            Debug.Log(offset + " " + horizontalDeadZoneCenter);
 
-            Vector3 newPos = new Vector3(player.position.x + (2.0f * offset), transform.position.y, -10f);
+            Vector3 newPos = new Vector3(player.position.x + offset, transform.position.y, -10f);
             float speed = movementSpeed;
 
             // Track player y position if the player is not jumping.

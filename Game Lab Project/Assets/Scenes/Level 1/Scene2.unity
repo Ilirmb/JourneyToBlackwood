@@ -209,10 +209,10 @@ MonoBehaviour:
   minCameraHeight: -50
   offsetY: 2.5
   movementSpeed: 0.2
-  horizontalDeadZoneCenter: 0.4
-  horizontalDeadZoneLength: 0.15
+  horizontalDeadZoneCenter: 0.36
+  horizontalDeadZoneLength: 0.16
   verticalDeadZoneCenter: 0.25
-  verticalDeadZoneLength: 0
+  verticalDeadZoneLength: 0.01
 --- !u!1001 &98340153
 Prefab:
   m_ObjectHideFlags: 0
@@ -28362,7 +28362,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1355951887}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 24.2, y: 9.5, z: 0}
+  m_LocalPosition: {x: 24, y: 9.5, z: 0}
   m_LocalScale: {x: 1.7715329, y: 1.7715304, z: 1}
   m_Children:
   - {fileID: 1358462444}

@@ -139,5 +139,16 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
     {
         return m_Grounded;
     }
+
+
+    /// <summary>
+    /// GetDirection
+    /// Returns an int value based on what direction the player is facing
+    /// </summary>
+    /// <returns>1 if the player is facing right, -1 if the player is facing left</returns>
+    public int GetDirection()
+    {
+        return m_FacingRight ? 1 : -1;
+    }
 }
 
