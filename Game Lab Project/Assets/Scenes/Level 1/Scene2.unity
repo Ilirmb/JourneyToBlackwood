@@ -161,7 +161,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 2100000, guid: 2603711dd48b12b49959234328280398, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1657,6 +1657,29 @@ Prefab:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 114550124326540890, guid: 71343c6d95c5adb49b187fc07af2bba8,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114739096983221124, guid: 71343c6d95c5adb49b187fc07af2bba8,
+        type: 2}
+      propertyPath: happySprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 32399946d444c1a4fbc454ff65509044,
+        type: 3}
+    - target: {fileID: 114739096983221124, guid: 71343c6d95c5adb49b187fc07af2bba8,
+        type: 2}
+      propertyPath: ehhSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 5faac164223f4084cb0bcc6394520e69,
+        type: 3}
+    - target: {fileID: 114739096983221124, guid: 71343c6d95c5adb49b187fc07af2bba8,
+        type: 2}
+      propertyPath: frustratedSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 31b07defd4df05a41919ec7847eb66f2,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 71343c6d95c5adb49b187fc07af2bba8, type: 2}
   m_IsPrefabAsset: 0
@@ -2411,7 +2434,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -28089,7 +28112,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -29253,7 +29276,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []

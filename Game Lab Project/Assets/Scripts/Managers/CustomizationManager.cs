@@ -299,4 +299,52 @@ public class CustomizationManager : MonoBehaviour {
     {
         return HSVRangeMax;
     }
+
+
+    public Sprite GetPlayerEyes()
+    {
+        foreach (CostumePiece cp in currentHair.skinMeshes)
+        {
+            if (cp.GetSkinTarget().Equals("Eyeris"))
+                return cp.GetSpriteMesh().sprite;
+        }
+
+        return null;
+    }
+
+
+    public Sprite GetPlayerHair()
+    {
+        foreach (CostumePiece cp in currentHair.skinMeshes)
+        {
+            if (cp.GetSkinTarget().Equals("Hair"))
+                return cp.GetSpriteMesh().sprite;
+        }
+
+        return null;
+    }
+
+
+    public Sprite GetPlayerHairExtra()
+    {
+        foreach (CostumePiece cp in currentHair.skinMeshes)
+        {
+            if (cp.GetSkinTarget().Equals("PonyTail"))
+                return cp.GetSpriteMesh().sprite;
+        }
+
+        return null;
+    }
+
+
+    public Sprite GetPlayerFace()
+    {
+        foreach (CostumePiece cp in currentFace.skinMeshes)
+        {
+            if (cp.GetSkinTarget().Equals("Head"))
+                return cp.GetSpriteMesh().sprite;
+        }
+
+        return null;
+    }
 }

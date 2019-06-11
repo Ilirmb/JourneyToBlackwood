@@ -23,13 +23,13 @@ public class CostumePieceDrawer : PropertyDrawer {
 
             var meshRect = new Rect(position.x, position.y + position.height / 5, position.width * 0.45f, position.height / 5);
             var targetRect = new Rect(position.x + position.width * 0.5f, position.y + position.height / 5, position.width * 0.45f, position.height / 5);
-            var skinRect = new Rect(position.x + position.width * 0.5f, position.y + position.height * 0.75f, position.width * 0.45f, position.height);
+            var skinRect = new Rect(position.x + position.width * 0.5f, position.y + position.height * 0.75f, position.width * 0.45f, position.height / 5);
 
             EditorGUI.PrefixLabel(
                 new Rect(position.x, position.y, position.width * 0.45f, position.height / 5), 0, new GUIContent("Mesh"));
             EditorGUI.PrefixLabel(
                 new Rect(position.x + position.width * 0.5f, position.y, position.width * 0.5f - 5, position.height / 5), 1, new GUIContent("Target"));
-            EditorGUI.PrefixLabel(new Rect(position.x + position.width * 0.5f, position.y + position.height * 0.6f, position.width * 0.45f, position.height), 
+            EditorGUI.PrefixLabel(new Rect(position.x + position.width * 0.5f, position.y + position.height * 0.6f, position.width * 0.45f, position.height / 5), 
                 2, new GUIContent("Is Skin?"));
 
             EditorGUI.PropertyField(meshRect, property.FindPropertyRelative("mesh"), GUIContent.none);

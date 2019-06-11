@@ -45,6 +45,11 @@ public class FrustrationFace : MonoBehaviour
             new Vector4(0.0f, CustomizationManager.instance.GetSkinSat(), CustomizationManager.instance.GetSkinVal(), 0.0f));
 
         face.material = skinMaterial;
+
+        hair.sprite = CustomizationManager.instance.GetPlayerHair();
+        hairBack.sprite = CustomizationManager.instance.GetPlayerHairExtra();
+        eyes.sprite = CustomizationManager.instance.GetPlayerEyes();
+        face.sprite = CustomizationManager.instance.GetPlayerFace();
     }
 
     // Update is called once per frame
@@ -53,15 +58,15 @@ public class FrustrationFace : MonoBehaviour
         {
             if (slider.value <= 3.33)
             {
-                image.sprite = happySprite;
+                face.sprite = happySprite;
             }
             else if (slider.value >= 3.33 && slider.value <= 6.66)
             {
-                image.sprite = ehhSprite;
+                face.sprite = ehhSprite;
             }
             else
             {
-                image.sprite = frustratedSprite;
+                face.sprite = frustratedSprite;
             }
         }
     }
