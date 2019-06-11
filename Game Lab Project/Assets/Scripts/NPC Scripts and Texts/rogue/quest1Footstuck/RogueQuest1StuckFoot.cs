@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor.Events;
+//using UnityEditor.Events;
 
 public class RogueQuest1StuckFoot : MonoBehaviour {
     public DialogueManager dialogueManager;
@@ -50,7 +50,7 @@ public class RogueQuest1StuckFoot : MonoBehaviour {
         LeaveWithoutRogue = Resources.Load("Text/Rouge/Quest1/LeaveWithoutRogue") as TextAsset;
         QuestRejectedText = Resources.Load("Text/Rouge/Quest1/QuestRejected") as TextAsset;
         
-        UnityEventTools.AddPersistentListener<int>(dialogueManager.dialogueEvent, EventHandler); //How this script knows what events are what. The event calls this script's eventHandler function with the ID of the dialogue node that triggered it
+        //UnityEventTools.AddPersistentListener<int>(dialogueManager.dialogueEvent, EventHandler); //How this script knows what events are what. The event calls this script's eventHandler function with the ID of the dialogue node that triggered it
     }
     
     private void OnTriggerEnter2D(Collider2D other)

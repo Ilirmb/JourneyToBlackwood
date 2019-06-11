@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 //For debugging purposes only, remove later
-using UnityEditor.Events;
+//using UnityEditor.Events;
 
 public class appleQuestApple : MonoBehaviour
 {
@@ -40,13 +40,13 @@ public class appleQuestApple : MonoBehaviour
                 case 2:
                     playerStatistics.increaseMaxStamina(5);
                     quest.changeAppleStatus(wizardQuestApple.appleStatus.eaten);
-                    UnityEventTools.RemovePersistentListener<int>(dialogueEvent, dialogueEventHandler);
-                    //dialogueEvent.RemoveListener(this.dialogueEventHandler);
+                    //UnityEventTools.RemovePersistentListener<int>(dialogueEvent, dialogueEventHandler);
+                    dialogueEvent.RemoveListener(this.dialogueEventHandler);
                     break;
                 case 3:
                     quest.changeAppleStatus(wizardQuestApple.appleStatus.gotten);
-                    UnityEventTools.RemovePersistentListener<int>(dialogueEvent, dialogueEventHandler);
-                    //dialogueEvent.RemoveListener(this.dialogueEventHandler);
+                    //UnityEventTools.RemovePersistentListener<int>(dialogueEvent, dialogueEventHandler);
+                    dialogueEvent.RemoveListener(this.dialogueEventHandler);
                     break;
             }
             //We make a manual call to endDialogue to make sure it ends before we destroy the game object
@@ -62,8 +62,8 @@ public class appleQuestApple : MonoBehaviour
     {
         playerStatistics = GameObject.Find(GameConst.PLAYER_OBJECT_NAME).GetComponent<PlayerStatistics>();
         dialogueEvent = GameObject.Find("Dialogue Canvas").GetComponent<DialogueManager>().dialogueEvent;
-        UnityEventTools.AddPersistentListener<int>(dialogueEvent, dialogueEventHandler);
-        //dialogueEvent.AddListener(dialogueEventHandler);
+        //UnityEventTools.AddPersistentListener<int>(dialogueEvent, dialogueEventHandler);
+        dialogueEvent.AddListener(dialogueEventHandler);
     }
 
     // Update is called once per frame

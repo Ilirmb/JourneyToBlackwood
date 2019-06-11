@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEditor.Events;
+//using UnityEditor.Events;
 
 public class wizardQuestApple : MonoBehaviour
 {
@@ -157,8 +157,8 @@ public class wizardQuestApple : MonoBehaviour
                     break;
                 case 10:
                     gameObject.GetComponentInChildren<Text>().text = "Friendship: " + --wizardFriendship;
-                    UnityEventTools.RemovePersistentListener<int>(dialogueEvent, dialogueEventHandler);
-                    //dialogueEvent.RemoveListener(this.dialogueEventHandler);
+                    //UnityEventTools.RemovePersistentListener<int>(dialogueEvent, dialogueEventHandler);
+                    dialogueEvent.RemoveListener(this.dialogueEventHandler);
                     break;
                 case 11:
                     gameObject.GetComponentInChildren<Text>().text = "Friendship: " + ++wizardFriendship;
@@ -166,8 +166,8 @@ public class wizardQuestApple : MonoBehaviour
                 case 12:
                 case 14:
                     GameObject.Find(GameConst.PLAYER_OBJECT_NAME).GetComponent<PlayerStatistics>().increaseMaxStamina(20);
-                    UnityEventTools.RemovePersistentListener<int>(dialogueEvent, dialogueEventHandler);
-                    //dialogueEvent.RemoveListener(this.dialogueEventHandler);
+                    //UnityEventTools.RemovePersistentListener<int>(dialogueEvent, dialogueEventHandler);
+                    dialogueEvent.RemoveListener(this.dialogueEventHandler);
                     break;
                 default:
                     break;
@@ -180,8 +180,8 @@ public class wizardQuestApple : MonoBehaviour
                 case 6:
                     wizardFriendship -= 2;
                     gameObject.GetComponentInChildren<Text>().text = "Friendship: " + wizardFriendship;
-                    UnityEventTools.RemovePersistentListener<int>(dialogueEvent, dialogueEventHandler);
-                    //dialogueEvent.RemoveListener(this.dialogueEventHandler);
+                    //UnityEventTools.RemovePersistentListener<int>(dialogueEvent, dialogueEventHandler);
+                    dialogueEvent.RemoveListener(this.dialogueEventHandler);
                     break;
                 case 7:
                     gameObject.GetComponentInChildren<Text>().text = "Friendship: " + ++wizardFriendship;
@@ -190,8 +190,8 @@ public class wizardQuestApple : MonoBehaviour
                 case 10:
                     GameObject.Find(GameConst.PLAYER_OBJECT_NAME).GetComponent<PlayerStatistics>().increaseMaxStamina(20);
                     questInProgress = false;
-                    UnityEventTools.RemovePersistentListener<int>(dialogueEvent, dialogueEventHandler);
-                    //dialogueEvent.RemoveListener(this.dialogueEventHandler);
+                    //UnityEventTools.RemovePersistentListener<int>(dialogueEvent, dialogueEventHandler);
+                    dialogueEvent.RemoveListener(this.dialogueEventHandler);
                     break;
             }
         }
@@ -205,11 +205,11 @@ public class wizardQuestApple : MonoBehaviour
                     questWasRejected = false;
                     questInProgress = false;
                     currentAppleStatus = appleStatus.notGotten;
-                    UnityEventTools.RemovePersistentListener<int>(dialogueEvent, dialogueEventHandler);
+                    //UnityEventTools.RemovePersistentListener<int>(dialogueEvent, dialogueEventHandler);
                     break;
                 case 9:
                     gameObject.GetComponentInChildren<Text>().text = "Friendship: " + ++wizardFriendship;
-                    UnityEventTools.RemovePersistentListener<int>(dialogueEvent, dialogueEventHandler);
+                    //UnityEventTools.RemovePersistentListener<int>(dialogueEvent, dialogueEventHandler);
                     break;
                 case 10:
                 case 12:
@@ -225,8 +225,8 @@ public class wizardQuestApple : MonoBehaviour
         dialogueManager = GameObject.Find("Dialogue Canvas").GetComponent<DialogueManager>();
         dialogueEvent = dialogueManager.dialogueEvent;
 
-        UnityEventTools.AddPersistentListener<int>(dialogueEvent, dialogueEventHandler);
-        //dialogueEvent.AddListener(dialogueEventHandler);
+        //UnityEventTools.AddPersistentListener<int>(dialogueEvent, dialogueEventHandler);
+        dialogueEvent.AddListener(dialogueEventHandler);
         //dialogueEvent.AddListener((int i) => { Debug.Log("Event triggered index of: " + i); });
     }
 

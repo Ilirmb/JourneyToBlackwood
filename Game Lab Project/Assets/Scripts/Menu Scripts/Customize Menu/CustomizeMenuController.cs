@@ -1,7 +1,10 @@
-﻿using System.Collections;
+﻿ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+
+//Temporary
+using UnityEngine.SceneManagement;
 
 public class CustomizeMenuController : MonoBehaviour {
 
@@ -13,6 +16,12 @@ public class CustomizeMenuController : MonoBehaviour {
 	void Start () {
 		
 	}
+
+
+    public void StartGame()
+    {
+        SceneManager.LoadScene(3);
+    }
 
 
     public void ChangeSkinColor()

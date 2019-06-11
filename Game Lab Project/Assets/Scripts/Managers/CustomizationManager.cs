@@ -8,6 +8,12 @@ public class CustomizationManager : MonoBehaviour {
     // Static singleton instance that allows customization data to be accessed from any script.
     public static CustomizationManager instance = null;
 
+    // Min and max ranges of color the material should target.
+    [SerializeField]
+    private float HSVRangeMin = 0.04f;
+    [SerializeField]
+    private float HSVRangeMax = 0.08f;
+
     // Current selected skin tone saturation
     private float skinToneSat = 0.0f;
 
@@ -272,5 +278,25 @@ public class CustomizationManager : MonoBehaviour {
             currentFaceIndex = 0;
 
         SetCurrentFace(currentFaceIndex);
+    }
+
+
+    /// <summary>
+    /// GetHSVRangeMin
+    /// </summary>
+    /// <returns></returns>
+    public float GetHSVRangeMin()
+    {
+        return HSVRangeMin;
+    }
+
+
+    /// <summary>
+    /// GetHSVRangeMax
+    /// </summary>
+    /// <returns></returns>
+    public float GetHSVRangeMax()
+    {
+        return HSVRangeMax;
     }
 }
