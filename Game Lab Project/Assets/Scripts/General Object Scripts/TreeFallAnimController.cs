@@ -11,6 +11,8 @@ public class TreeFallAnimController : MonoBehaviour {
 	void Start () {
         anim = this.GetComponentInChildren<Animator>();
         hasFallen = false;
+
+        GameManager.instance.OnPlayerDeath.AddListener(Reset);
 	}
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -22,5 +24,14 @@ public class TreeFallAnimController : MonoBehaviour {
                 hasFallen = true;
             }
         }
+    }
+
+
+    private void Reset()
+    {
+        anim.ResetTrigger("TreeFall");
+        anim.Play("Idle tree 1");
+
+        hasFallen = false;
     }
 }

@@ -1,11 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+//using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
-public class PlayerStatistics : MonoBehaviour {
-
+public class PlayerStatistics : MonoBehaviour
+{
     private StamLossTextManager textSpawn;
     public Checkpoint checkpoint;
     
@@ -38,6 +38,8 @@ public class PlayerStatistics : MonoBehaviour {
     {
         stamina = newStamina;
         if (stamina > maxStamina) stamina = maxStamina;
+        
+        CheckIfDead();
     }
    public void increaseMaxStamina(float maxStamIncrease)
     {
@@ -88,7 +90,11 @@ public class PlayerStatistics : MonoBehaviour {
             stamina -= damage;
             textSpawn.spawnText(string.Format("{0:0.##}", damage), new Color(255, 0, 0));
         }
+
+        CheckIfDead();
     }
+
+
     /// <summary>
     /// The player takes stamina damage and an invulnerability timer is activated, where the player can't take damage
     /// </summary>
@@ -103,7 +109,8 @@ public class PlayerStatistics : MonoBehaviour {
             textSpawn.spawnText(string.Format("{0:0.##}", damage), new Color(255, 0, 0));
             invulnTimer = invuln;
         }
-        
+
+        CheckIfDead();
     }
     /// <summary>
     /// This damage is immune from the effects of the invulnerability timer
@@ -121,7 +128,10 @@ public class PlayerStatistics : MonoBehaviour {
         {
             invulnTimer = invuln;
         }
+
+        CheckIfDead();
     }
+
 
     //No one outside of programmers should need to use these and they're pretty self explanitory, so I didn't summarize them
     public void damageFromMoving(float damage)
@@ -136,12 +146,18 @@ public class PlayerStatistics : MonoBehaviour {
             //textFrameTimer = 0;
             damageOverTime = 0;
         }
+
+        CheckIfDead();
     }
+
+
     public void damageFromJump(float damage)
     {
         damage = reduceDamageByFrustration(damage);
         stamina -= damage;
         textSpawn.spawnText(string.Format("{0:0.##}", damage), new Color(255, 255, 0));
+
+        CheckIfDead();
     }
     public void lastCheckpoint(Checkpoint newCheckpoint)
     {
@@ -157,6 +173,33 @@ public class PlayerStatistics : MonoBehaviour {
     }
 
 
+    /// <summary>
+    /// CheckIfDead
+    /// Checks if the player is out of stamina
+    /// </summary>
+    private void CheckIfDead()
+    {
+        if (stamina <= 0)
+        {
+            //if Checkpoint is null, just reload the scene
+            if (checkpoint == null)
+            {
+                // Restart if stamina is equal to or less than 0
+                // Pretty blunt way of reloading, literally reloads the first scene
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            }
+            //Otherwise go to Checkpoint
+            else
+            {
+                gameObject.GetComponent<Rigidbody2D>().MovePosition(checkpoint.transform.position);
+                stamina = 100f;
+                //We set the invulnerability timer to allow the player to reorient themselves at the Checkpoint
+                invulnTimer = 1.5f;
+            }
+
+            GameManager.instance.OnPlayerDeath.Invoke();
+        }
+    }
 
 
     // Use this for initialization
@@ -189,24 +232,8 @@ public class PlayerStatistics : MonoBehaviour {
             }
         }*/
 
-        if (stamina <= 0) // I should really only check this only every time stamina is updated, but that happens basically every frame if you're moving anyway so it shouldn't make too big of a difference.
-        {
-            //if Checkpoint is null, just reload the scene
-            if (checkpoint == null)
-            {
-                // Restart if stamina is equal to or less than 0
-                // Pretty blunt way of reloading, literally reloads the first scene
-                SceneManager.LoadScene(SceneManager.GetSceneAt(0).name);
-            }
-            //Otherwise go to Checkpoint
-            else
-            {
-                gameObject.GetComponent<Rigidbody2D>().MovePosition(checkpoint.transform.position);
-                stamina = 100f;
-                //We set the invulnerability timer to allow the player to reorient themselves at the Checkpoint
-                invulnTimer = 1.5f;
-            }
-        }
+        //Remove?
+        //CheckIfDead();
 
         if (isMoving)
         {

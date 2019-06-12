@@ -301,6 +301,10 @@ public class CustomizationManager : MonoBehaviour {
     }
 
 
+    /// <summary>
+    /// GetPlayerEyes
+    /// </summary>
+    /// <returns>Returns the player's eyes as a sprite, used by the UI</returns>
     public Sprite GetPlayerEyes()
     {
         foreach (CostumePiece cp in currentHair.skinMeshes)
@@ -313,6 +317,10 @@ public class CustomizationManager : MonoBehaviour {
     }
 
 
+    /// <summary>
+    /// GetPlayerHair
+    /// </summary>
+    /// <returns>Returns the player's hair as a sprite, used by the UI</returns>
     public Sprite GetPlayerHair()
     {
         foreach (CostumePiece cp in currentHair.skinMeshes)
@@ -325,6 +333,10 @@ public class CustomizationManager : MonoBehaviour {
     }
 
 
+    /// <summary>
+    /// GetPlayerHairExtra
+    /// </summary>
+    /// <returns>Returns the player's hair2 (ponytail) as a sprite, used by the UI</returns>
     public Sprite GetPlayerHairExtra()
     {
         foreach (CostumePiece cp in currentHair.skinMeshes)
@@ -337,6 +349,10 @@ public class CustomizationManager : MonoBehaviour {
     }
 
 
+    /// <summary>
+    /// GetPlayerFace
+    /// </summary>
+    /// <returns>Returns the player's face as a sprite, used by the UI</returns>
     public Sprite GetPlayerFace()
     {
         foreach (CostumePiece cp in currentFace.skinMeshes)
