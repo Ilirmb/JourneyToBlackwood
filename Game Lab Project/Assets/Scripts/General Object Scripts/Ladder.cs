@@ -31,6 +31,7 @@ public class Ladder : MonoBehaviour
         }
     }
 
+
     void getOnLadder()
     {
         if (attachDowntime <= 0)
@@ -43,6 +44,8 @@ public class Ladder : MonoBehaviour
             player.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
         }
     }
+
+
     void getOffLadder()
     {
         onLadder = false;
@@ -51,6 +54,8 @@ public class Ladder : MonoBehaviour
         player.drag = 0;
         player.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
+
+
     void getOffLadder(float downtime)
     {
         onLadder = false;
@@ -61,6 +66,7 @@ public class Ladder : MonoBehaviour
         attachDowntime = downtime;
     }
 
+
     // Called similar to update function
     private void OnTriggerStay2D(Collider2D other)
     {
@@ -68,12 +74,12 @@ public class Ladder : MonoBehaviour
         {
             if (canHoldToAttach) //If it's the first time the player is entering the collider, they're allowed to attach to it by holding down the button.
             {
-                if ((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S)) && !onLadder) getOnLadder();
+                if (Input.GetAxisRaw("Vertical") > 0 && !onLadder) getOnLadder();
                 canHoldToAttach = false;
             }
             else
             {
-                if ((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.S)) && !onLadder) getOnLadder();
+                if (Input.GetAxisRaw("Vertical") > 0 && !onLadder) getOnLadder();
             }
 
             if (Input.GetKeyDown(KeyCode.Space) && onLadder)

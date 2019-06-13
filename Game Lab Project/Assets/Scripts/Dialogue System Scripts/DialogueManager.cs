@@ -19,11 +19,14 @@ public class dialogueTree
         string[] dialogueLines = fullDialogueText.Split('\n');
         string[] encoding = dialogueLines[0].Split('-');
         nodeTextLine currentParentNode;
+
         //Because of the extra encoding data line we offset the list by adding a blank constructor so the index of the object in the list is the same as the index of the line in the raw text file
         treeMember.Add(new nodeTextLine());
+
         //We also have to add the first real node because the code works by making the correct amount of children for each node and it needs a parent node to start on
         //We don't have to worry about creating it's children yet because it starts on this object and makes children from there
         treeMember.Add(new nodeTextLine(dialogueLines[currentChildIndex], currentChildIndex++, defaultSprite));
+
         //Encoding[0] is the encoded tree structure. First we take the layers
         foreach (string treeLayer in encoding[0].Split('|'))
         {

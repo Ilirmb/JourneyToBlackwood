@@ -16,16 +16,27 @@ public class DamageCollider : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "Player")
+        if (other.CompareTag("Player"))
         {
             triggered = true;
             //Debug.Log("triggered");
         }
     }
 
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            if (triggered)
+                playerStatistics.damageStamina(damageToDeal, invulnerabilityTime);
+        }
+    }
+
+
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.tag == "Player")
+        if (other.CompareTag("Player"))
         {
             triggered = false;
             //Debug.Log("untriggered");
@@ -36,12 +47,4 @@ public class DamageCollider : MonoBehaviour {
     void Start () {
         playerStatistics = GameObject.Find(GameConst.PLAYER_OBJECT_NAME).GetComponent<PlayerStatistics>();
     }
-	
-	// Update is called once per frame
-	void Update () {
-		if (triggered == true)
-        {
-            playerStatistics.damageStamina(damageToDeal, invulnerabilityTime);
-        }
-	}
 }

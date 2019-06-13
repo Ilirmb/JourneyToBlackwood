@@ -9,12 +9,20 @@ public class FallingPlatform : MonoBehaviour
 
     public float fallDelay;
 
+    private Vector3 initialPos;
+
+
     void Start()
     {
         myRigidBody = GetComponent<Rigidbody2D>();
         boxcollider = GetComponent<BoxCollider2D>();
 
+        initialPos = transform.position;
+
+        // Call Reset every time the player dies
+        GameManager.instance.OnPlayerDeath.AddListener(Reset);
     }
+
 
     void OnCollisionEnter2D(Collision2D col)
     {
@@ -24,6 +32,8 @@ public class FallingPlatform : MonoBehaviour
             Destroy(gameObject, 3f);
         }
     }
+
+
     IEnumerator Fall()
     {
         yield return new WaitForSeconds(fallDelay);
@@ -32,6 +42,15 @@ public class FallingPlatform : MonoBehaviour
 
 
         yield return 0;
+    }
+
+
+    private void Reset()
+    {
+        myRigidBody.isKinematic = true;
+        boxcollider.isTrigger = false;
+
+        transform.position = initialPos;
     }
 
 }

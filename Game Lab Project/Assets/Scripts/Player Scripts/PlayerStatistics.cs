@@ -1,8 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-//using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class PlayerStatistics : MonoBehaviour
 {
@@ -20,19 +18,27 @@ public class PlayerStatistics : MonoBehaviour
     private bool isMoving = false;
     private Vector2 positionLastFrame;
 
+    // The player's body. Some old behavior relating to invul flashing no longer works sense the player is no longer a single sprite
+    private GameObject playerBody;
+
+
     public float getStamina()
     {
         return stamina;
     }
 
+
     public float getFrustration()
     {
         return frustration;
     }
+
+
     public void moving(bool m)
     {
         isMoving = m;
     }
+
 
     public void setStamina(float newStamina)
     {
@@ -41,22 +47,30 @@ public class PlayerStatistics : MonoBehaviour
         
         CheckIfDead();
     }
+
+
    public void increaseMaxStamina(float maxStamIncrease)
     {
         maxStamina += maxStamIncrease;
         stamina += maxStamIncrease;
         textSpawn.spawnText(string.Format("+{0:0.##}", maxStamIncrease), new Color(0, 150, 255));
     }
+
+
     public void setFrustration(float newFrustration)
     {
         frustration = newFrustration;
     }
+
+
     //This function is called to translate the value of the slider into frustration
     public void onSliderValueChange(float sliderValue)
     {
         //Slider value is between 0 and 10 so we can multiply it by itself to get an exponential curve between 0 and 100
         frustration = (Mathf.Pow(sliderValue,2));
     }
+
+
 
     private float reduceDamageByFrustration(float damage)
     {
@@ -65,6 +79,8 @@ public class PlayerStatistics : MonoBehaviour
         // hopefully
         return (damage * ((100 - frustration) / 100));
     }
+
+
 
     public void recoverStamina(float recoveredStamina)
     {
@@ -112,6 +128,8 @@ public class PlayerStatistics : MonoBehaviour
 
         CheckIfDead();
     }
+
+
     /// <summary>
     /// This damage is immune from the effects of the invulnerability timer
     /// mostly useful for bottomless drops
@@ -159,6 +177,8 @@ public class PlayerStatistics : MonoBehaviour
 
         CheckIfDead();
     }
+
+
     public void lastCheckpoint(Checkpoint newCheckpoint)
     {
         if (checkpoint != newCheckpoint)
@@ -177,6 +197,7 @@ public class PlayerStatistics : MonoBehaviour
     /// CheckIfDead
     /// Checks if the player is out of stamina
     /// </summary>
+    // This function was made from code originally in the update function
     private void CheckIfDead()
     {
         if (stamina <= 0)
@@ -185,18 +206,24 @@ public class PlayerStatistics : MonoBehaviour
             if (checkpoint == null)
             {
                 // Restart if stamina is equal to or less than 0
-                // Pretty blunt way of reloading, literally reloads the first scene
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+                // Pretty blunt way of reloading, reloads the current scene
+                loadScene.ReloadCurrentScene();
             }
             //Otherwise go to Checkpoint
             else
             {
-                gameObject.GetComponent<Rigidbody2D>().MovePosition(checkpoint.transform.position);
+                // The commented line was originally used. While it does work, it feels odd sense the camera slides back to the player's position instead of warping to it
+                //gameObject.GetComponent<Rigidbody2D>().MovePosition(checkpoint.transform.position);
+                gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+                gameObject.transform.position = checkpoint.transform.position;
+
                 stamina = 100f;
+
                 //We set the invulnerability timer to allow the player to reorient themselves at the Checkpoint
                 invulnTimer = 1.5f;
             }
 
+            // Invokes the player death event
             GameManager.instance.OnPlayerDeath.Invoke();
         }
     }
@@ -204,11 +231,20 @@ public class PlayerStatistics : MonoBehaviour
 
     // Use this for initialization
     void Start () {
+
         textSpawn = GetComponentInChildren<StamLossTextManager>();
         //The idea here is to create a Checkpoint at the location of the player, but it's not working and doesn't need to because 
         //Checkpoint = new Checkpoint(gameObject.transform.position);
         positionLastFrame = transform.position;
+
+        for(int i=0; i<transform.childCount; i++)
+        {
+            // Gets the player's body by name. This is far from optimal sense the name may be different.
+            if (transform.GetChild(i).gameObject.name.Equals("MC Sprite"))
+                playerBody = transform.GetChild(i).transform.GetChild(1).gameObject;
+        }
 	}
+
 
     // Update is called once per frame
     void Update()
@@ -217,20 +253,21 @@ public class PlayerStatistics : MonoBehaviour
         if (invulnTimer > 0)
         {
             invulnTimer -= Time.deltaTime;
-        }/*
+            
             //Flickers sprite by turning the game renderer on and off every couple of frames
             if (Time.frameCount % 5 == 0)
             {
-                gameObject.GetComponent<SpriteRenderer>().enabled = !gameObject.GetComponent<SpriteRenderer>().enabled;
+                playerBody.SetActive(!playerBody.activeInHierarchy);// = !gameObject.GetComponent<SpriteRenderer>().enabled;
             }
             //If this is the last frame where the character has invulnerability, then the sprite should be set to rendered
             if (invulnTimer <= 0)
             {
-                gameObject.GetComponent<SpriteRenderer>().enabled = true;
+                playerBody.SetActive(true);
                 //For future math reasons we reset the timer to zero because time.delta time can make it less than that.
                 invulnTimer = 0;
             }
-        }*/
+            
+        }
 
         //Remove?
         //CheckIfDead();

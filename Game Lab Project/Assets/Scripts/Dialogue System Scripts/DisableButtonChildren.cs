@@ -4,10 +4,15 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class DisableButtonChildren : MonoBehaviour {
+
     int numChildren;
     private GameObject currentChild;
     private bool childrenDisabled = false;
 
+
+    /// <summary>
+    /// Toggles whether or not the children of this game object should be active or not
+    /// </summary>
     public void toggleChildren()
     {
         if (!childrenDisabled)
@@ -19,6 +24,11 @@ public class DisableButtonChildren : MonoBehaviour {
             enableChidlren();
         }
     }
+
+
+    /// <summary>
+    /// Disables all children of this game object
+    /// </summary>
     public void disableChildren()
     {
         for(int i = 0; i < numChildren; ++i)
@@ -30,6 +40,11 @@ public class DisableButtonChildren : MonoBehaviour {
             childrenDisabled = true;
         }
     }
+
+
+    /// <summary>
+    /// Enables all children of this game object
+    /// </summary>
     public void enableChidlren()
     {
         for (int i = 0; i < numChildren; ++i)
@@ -41,6 +56,8 @@ public class DisableButtonChildren : MonoBehaviour {
             childrenDisabled = false;
         }
     }
+
+
 	// Use this for initialization
 	void Start () {
 		numChildren = gameObject.transform.childCount;

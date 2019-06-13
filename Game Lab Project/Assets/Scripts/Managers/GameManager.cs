@@ -30,4 +30,26 @@ public class GameManager : MonoBehaviour {
         }
 
     }
+
+
+    /// <summary>
+    /// Called automatically whenever a scene is loaded
+    /// </summary>
+    void OnSceneLoaded(UnityEngine.SceneManagement.Scene scene, UnityEngine.SceneManagement.LoadSceneMode mode)
+    {
+        OnPlayerDeath.RemoveAllListeners();
+    }
+
+    
+    void OnEnable()
+    {
+        UnityEngine.SceneManagement.SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+
+    void OnDisable()
+    {
+        UnityEngine.SceneManagement.SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
 }

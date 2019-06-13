@@ -3,9 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-//Temporary
-using UnityEngine.SceneManagement;
-
 public class CustomizeMenuController : MonoBehaviour {
 
     [SerializeField]
@@ -20,7 +17,7 @@ public class CustomizeMenuController : MonoBehaviour {
 
     public void StartGame()
     {
-        SceneManager.LoadScene(3);
+        loadScene.LoadScene(3);
     }
 
 

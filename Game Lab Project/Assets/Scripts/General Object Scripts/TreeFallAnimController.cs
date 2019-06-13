@@ -12,8 +12,10 @@ public class TreeFallAnimController : MonoBehaviour {
         anim = this.GetComponentInChildren<Animator>();
         hasFallen = false;
 
+        // Call Reset every time the player dies
         GameManager.instance.OnPlayerDeath.AddListener(Reset);
 	}
+
 
     private void OnTriggerEnter2D(Collider2D other)
     {

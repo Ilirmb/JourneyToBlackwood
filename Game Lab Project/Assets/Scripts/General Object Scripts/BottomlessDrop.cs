@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Kills the player if they make contact with this game object
+/// </summary>
 public class BottomlessDrop : MonoBehaviour {
 
     private Transform respawnPoint;
@@ -9,13 +12,15 @@ public class BottomlessDrop : MonoBehaviour {
 
     private float tempInvuln;
 
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "Player")
         {
             //The PlayerStatistics script is attached to the player, so PlayerStatistics.gameObject.transform.position is the Vector3 position of the player
-            playerStatistics.gameObject.transform.position = respawnPoint.position;
             playerStatistics.gameObject.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
+            playerStatistics.gameObject.transform.position = respawnPoint.position;
+
             //The following line is probably better, however the above line is faster and allows the text to spawn at the respawn rather than where the player was at the killplane
             //PlayerStatistics.gameObject.GetComponent<Rigidbody2D>().MovePosition(respawnPoint.position);
 
@@ -28,6 +33,7 @@ public class BottomlessDrop : MonoBehaviour {
         }
     }
 
+
     // Use this for initialization
     void Start () {
         //There is only one child of BottomlessDrop, the respawn point.
@@ -35,6 +41,7 @@ public class BottomlessDrop : MonoBehaviour {
         playerStatistics = GameObject.Find(GameConst.PLAYER_OBJECT_NAME).GetComponent<PlayerStatistics>();
     }
 	
+
 	// Update is called once per frame
 	void Update () {
         tempInvuln -= Time.deltaTime;

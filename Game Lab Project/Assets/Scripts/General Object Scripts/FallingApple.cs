@@ -16,6 +16,7 @@ public class FallingApple : MonoBehaviour
     private SpriteRenderer sr;
     private Rigidbody2D rb;
     private CircleCollider2D cldr;
+    private CircleCollider2D hitbox;
 
     // Use this for initialization
     void Start()
@@ -23,6 +24,7 @@ public class FallingApple : MonoBehaviour
         sr = this.GetComponent<SpriteRenderer>();
         rb = this.GetComponent<Rigidbody2D>();
         cldr = this.GetComponent<CircleCollider2D>();
+
         StartCoroutine(WaitAndDrop(waitBeforeDrop)); //The coroutine waits for a bit after the apple is spawned before dropping it
         startFlashing = false;
     }

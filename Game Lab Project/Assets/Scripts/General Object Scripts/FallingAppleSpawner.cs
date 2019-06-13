@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class FallingAppleSpawner : MonoBehaviour {
 
-    public GameObject applePrefab;
+    private GameObject applePrefab;
     public bool isOnScreen;
 
     public float timeBetweenSpawns = 2f;
