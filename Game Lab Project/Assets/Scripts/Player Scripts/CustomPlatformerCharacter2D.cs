@@ -19,6 +19,7 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
     private Animator m_Anim;            // Reference to the player's animator component.
     private Rigidbody2D m_Rigidbody2D;
     private bool m_FacingRight = true;  // For determining which way the player is currently facing.
+    private bool m_Running = false;
     public bool ableToMove = false;
     public float vspeed;
     public float hspeed;
@@ -70,6 +71,8 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
                 crouch = true;
             }
         }*/
+
+        m_Running = run;
 
         // Set whether or not the character is crouching in the animator
         //m_Anim.SetBool("Crouch", crouch);
@@ -149,6 +152,17 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
     public int GetDirection()
     {
         return m_FacingRight ? 1 : -1;
+    }
+
+
+    /// <summary>
+    /// GetIsRunning
+    /// Returns true if the player is running
+    /// </summary>
+    /// <returns>If the player is running</returns>
+    public bool GetIsRunning()
+    {
+        return m_Running;
     }
 }
 

@@ -77,7 +77,8 @@ public class CamFollow : MonoBehaviour {
             Debug.Log(offset + " " + horizontalDeadZoneCenter);
 
             Vector3 newPos = new Vector3(player.position.x + offset, transform.position.y, -10f);
-            float speed = movementSpeed;
+
+            float speed = playerMov.GetIsRunning() ? movementSpeed / 1.5f : movementSpeed;
 
             // Track player y position if the player is not jumping.
             if (playerMov.GetIsGrounded())

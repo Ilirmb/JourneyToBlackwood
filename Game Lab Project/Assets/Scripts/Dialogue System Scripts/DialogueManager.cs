@@ -95,6 +95,7 @@ public class nodeTextLine
         name = temp[0];
         temp.RemoveAt(0);
         line = string.Join("|", temp.ToArray()); //Parse the rest of the List<string> as a single string, replacing the delimiter that was removed with the first 'split' call
+        Debug.Log(line);
         treeIndex = index;
         triggeredEvent = null;
         spriteToDisplay = defaultSprite;
