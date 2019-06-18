@@ -12,6 +12,9 @@ public class GameManager : MonoBehaviour {
     [HideInInspector]
     public UnityEvent OnPlayerDeath;
 
+    private Quest activeQuest;
+
+
     // Use this for initialization
     void Awake ()
     {
@@ -31,6 +34,8 @@ public class GameManager : MonoBehaviour {
 
     }
 
+
+    #region Scene Management
 
     /// <summary>
     /// Called automatically whenever a scene is loaded
@@ -52,4 +57,36 @@ public class GameManager : MonoBehaviour {
         UnityEngine.SceneManagement.SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
+    #endregion
+
+
+    #region Quest Management
+
+    /// <summary>
+    /// SetCurrentQuest
+    /// Sets the current quest
+    /// </summary>
+    /// <param name="newQuest">The quest to set</param>
+    public void SetCurrentQuest(Quest newQuest)
+    {
+        activeQuest = newQuest;
+    }
+
+
+    /// <summary>
+    /// ResetQuest
+    /// Resets the current quest to null
+    /// </summary>
+    public void ResetQuest()
+    {
+        SetCurrentQuest(null);
+    }
+
+
+    public Quest GetActiveQuest()
+    {
+        return activeQuest;
+    }
+
+    #endregion
 }

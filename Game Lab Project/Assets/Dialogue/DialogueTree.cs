@@ -6,7 +6,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewTree", menuName = "Dialogue/Dialogue Tree", order = 2)]
 public class DialogueTree : ScriptableObject {
 
-    public DialogueNode parent;
+    public List <DialogueNode> dialogue;
 
     private void OnEnable()
     {
@@ -29,8 +29,17 @@ public class DialogueNode
     public string dialogueText;
     public Sprite dialogueSprite;
 
-    public List<int> childNodeIDs;
+    public List<DialogueBranchCondition> childNodeIDs;
 
     public void OnActivate() { }
     public NodeType GetNodeType() { return dialogueNodeType; }
+}
+
+
+[System.Serializable]
+public class DialogueBranchCondition
+{
+    public enum Condition { none, cleared, failed };
+    public Condition condition;
+    public int targetID;
 }

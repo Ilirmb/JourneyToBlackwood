@@ -62,6 +62,7 @@ public class wizardQuestApple : MonoBehaviour
         }
     }
 
+
     private void OnMouseDown()
     {
         //Debug.Log("wizard clicked");

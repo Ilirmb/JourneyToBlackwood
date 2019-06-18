@@ -216,6 +216,7 @@ public class nodeEvent : UnityEvent<int> { }
 /// </summary>
 public class DialogueManager : MonoBehaviour
 {
+    public static DialogueManager instance;
 
     public dialogueTree dialogueTree;
     public TextAsset dialogueTextAsset;
@@ -429,6 +430,8 @@ public class DialogueManager : MonoBehaviour
         gameObject.GetComponent<Canvas>().enabled = false;
         gameObject.GetComponent<GraphicRaycaster>().enabled = false;
         NPCFaceRenderer = GameObject.Find("NPC Face").GetComponent<Image>();
+
+        instance = this;
     }
 
   
