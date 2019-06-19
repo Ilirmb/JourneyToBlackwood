@@ -88,5 +88,26 @@ public class GameManager : MonoBehaviour {
         return activeQuest;
     }
 
+
+    public void ToggleQuestInteractivity()
+    {
+        if(activeQuest != null)
+            activeQuest.ToggleInteractivity();
+    }
+
+
+    public void ToggleQuestInteractivity(bool status)
+    {
+        if (activeQuest != null)
+            activeQuest.ToggleInteractivity(status);
+    }
+
+
+    public void EndQuestFirstEncounter()
+    {
+        if(activeQuest != null)
+            activeQuest.EndFirstEncounter();
+    }
+
     #endregion
 }

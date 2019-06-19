@@ -9,32 +9,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 78a6427c4260bc64790aa6bd03ac8d5e, type: 3}
-  m_Name: TestTree
+  m_Name: AppleGetTest
   m_EditorClassIdentifier: 
   dialogue:
   - dialogueNodeType: 0
     dialogueSpeaker: 
-    dialogueText: It's the freak phone
+    dialogueText: Eat this shit?
     dialogueSprite: {fileID: 0}
     childNodeIDs:
     - condition: 0
       targetID: 1
-    actions: []
-  - dialogueNodeType: 0
-    dialogueSpeaker: 
-    dialogueText: And here's the party freak
-    dialogueSprite: {fileID: 0}
-    childNodeIDs:
-    - condition: 0
-      targetID: 2
-    actions: []
-  - dialogueNodeType: 0
-    dialogueSpeaker: 
-    dialogueText: FREDDIE FREAKER
-    dialogueSprite: {fileID: 0}
-    childNodeIDs:
-    - condition: 0
-      targetID: 3
     actions: []
   - dialogueNodeType: 1
     dialogueSpeaker: 
@@ -42,55 +26,39 @@ MonoBehaviour:
     dialogueSprite: {fileID: 0}
     childNodeIDs:
     - condition: 0
+      targetID: 2
+    - condition: 0
       targetID: 4
-    - condition: 0
-      targetID: 5
-    - condition: 0
-      targetID: 6
     actions: []
   - dialogueNodeType: 0
     dialogueSpeaker: 
-    dialogueText: Dancin' new sensation
+    dialogueText: Yeah!
     dialogueSprite: {fileID: 0}
     childNodeIDs:
     - condition: 0
-      targetID: 9
+      targetID: 3
     actions: []
   - dialogueNodeType: 0
     dialogueSpeaker: 
-    dialogueText: Grabbin' the nation
-    dialogueSprite: {fileID: 0}
-    childNodeIDs:
-    - condition: 0
-      targetID: 7
-    actions: []
-  - dialogueNodeType: 0
-    dialogueSpeaker: 
-    dialogueText: Doin' the freak
-    dialogueSprite: {fileID: 0}
-    childNodeIDs:
-    - condition: 0
-      targetID: 8
-    actions: []
-  - dialogueNodeType: 0
-    dialogueSpeaker: 
-    dialogueText: CALL NOW!
-    dialogueSprite: {fileID: 0}
-    childNodeIDs: []
-    actions: []
-  - dialogueNodeType: 0
-    dialogueSpeaker: 
-    dialogueText: $2 A CALL!
-    dialogueSprite: {fileID: 0}
-    childNodeIDs: []
-    actions: []
-  - dialogueNodeType: 0
-    dialogueSpeaker: 
-    dialogueText: Rude!
+    dialogueText: You ate the apple.
     dialogueSprite: {fileID: 0}
     childNodeIDs: []
     actions:
-    - action: 0
+    - action: 4
       param: 
-    - action: 5
-      param: -2
+  - dialogueNodeType: 0
+    dialogueSpeaker: 
+    dialogueText: Nope, but I will take it.
+    dialogueSprite: {fileID: 0}
+    childNodeIDs:
+    - condition: 0
+      targetID: 5
+    actions: []
+  - dialogueNodeType: 0
+    dialogueSpeaker: 
+    dialogueText: You took the apple.
+    dialogueSprite: {fileID: 0}
+    childNodeIDs: []
+    actions:
+    - action: 3
+      param: 

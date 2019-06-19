@@ -31,6 +31,8 @@ public class DialogueNode
 
     public List<DialogueBranchCondition> childNodeIDs;
 
+    public List<DialogueAction> actions;
+
     public void OnActivate() { }
     public NodeType GetNodeType() { return dialogueNodeType; }
 }
@@ -42,4 +44,13 @@ public class DialogueBranchCondition
     public enum Condition { none, cleared, failed };
     public Condition condition;
     public int targetID;
+}
+
+
+[System.Serializable]
+public class DialogueAction
+{
+    public enum Action { rejectQuest, acceptQuest, completeQuest, collectQuestItem, destroyQuestItem, affectFriendship };
+    public Action action;
+    public string param;
 }
