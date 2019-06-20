@@ -27,6 +27,7 @@ public class Quest : MonoBehaviour {
     private int numberOfItems = 0;
 
     private bool firstEncounter = true;
+    private bool rejected = false;
     private bool clicked = false;
 
     // Dialogue assets
@@ -64,7 +65,7 @@ public class Quest : MonoBehaviour {
 
     public void StartQuest()
     {
-        currentState = QuestState.active;
+        currentState = currentState.Equals(QuestState.inactive) ? QuestState.active : currentState;
         ToggleInteractivity();
 
         DialogueProcessor.instance.StartDialogue(questIntro);
@@ -72,7 +73,7 @@ public class Quest : MonoBehaviour {
 
 
     // If the target is interacted with in any capacity
-    private void OnMouseDown()
+    private void OnMouseUp()
     {
         if (!clicked)
         {
@@ -93,7 +94,7 @@ public class Quest : MonoBehaviour {
         {
             case QuestState.active:
                 ToggleInteractivity();
-                DialogueProcessor.instance.StartDialogue(rejectedDialogue);
+                DialogueProcessor.instance.StartDialogue(activeDialogue);
                 break;
 
             case QuestState.rejected:
@@ -103,18 +104,32 @@ public class Quest : MonoBehaviour {
 
             case QuestState.failed:
                 ToggleInteractivity();
-                DialogueProcessor.instance.StartDialogue(rejectedDialogue);
+
+                if(rejected)
+                    DialogueProcessor.instance.StartDialogue(rejectedDialogue);
+                else
+                    DialogueProcessor.instance.StartDialogue(failedDialogue);
                 break;
 
             case QuestState.completed:
                 ToggleInteractivity();
-                DialogueProcessor.instance.StartDialogue(rejectedDialogue);
+
+                if (rejected)
+                    DialogueProcessor.instance.StartDialogue(rejectedDialogue);
+                else
+                    DialogueProcessor.instance.StartDialogue(completedDialogue);
                 break;
 
             case QuestState.finished:
                 ToggleInteractivity();
-                DialogueProcessor.instance.StartDialogue(rejectedDialogue);
+                DialogueProcessor.instance.StartDialogue(finishedDialogue);
                 break;
+
+            default:
+                ToggleInteractivity();
+                DialogueProcessor.instance.StartDialogue(questIntro);
+                break;
+
         }
     }
 
@@ -153,12 +168,20 @@ public class Quest : MonoBehaviour {
     public void RejectQuest()
     {
         currentState = QuestState.rejected;
+        rejected = true;
     }
 
 
     public void CompleteQuest()
     {
         currentState = QuestState.completed;
+    }
+
+
+    public void FinishQuest()
+    {
+        Debug.Log(friendship);
+        currentState = QuestState.finished;
     }
 
 

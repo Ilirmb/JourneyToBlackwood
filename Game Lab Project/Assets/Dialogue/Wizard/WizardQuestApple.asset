@@ -1,0 +1,76 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78a6427c4260bc64790aa6bd03ac8d5e, type: 3}
+  m_Name: WizardQuestApple
+  m_EditorClassIdentifier: 
+  dialogue:
+  - dialogueNodeType: 0
+    dialogueSpeaker: 
+    dialogueText: It's an apple.
+    dialogueSprite: {fileID: 0}
+    childNodeIDs:
+    - condition: 3
+      targetID: 1
+    - condition: 0
+      targetID: 2
+    actions: []
+  - dialogueNodeType: 0
+    dialogueSpeaker: 
+    dialogueText: I think the Wizard wanted this.
+    dialogueSprite: {fileID: 0}
+    childNodeIDs:
+    - condition: 0
+      targetID: 2
+    actions: []
+  - dialogueNodeType: 1
+    dialogueSpeaker: 
+    dialogueText: 
+    dialogueSprite: {fileID: 0}
+    childNodeIDs:
+    - condition: 0
+      targetID: 3
+    - condition: 0
+      targetID: 4
+    actions: []
+  - dialogueNodeType: 0
+    dialogueSpeaker: 
+    dialogueText: Yum!
+    dialogueSprite: {fileID: 0}
+    childNodeIDs:
+    - condition: 0
+      targetID: 5
+    actions: []
+  - dialogueNodeType: 0
+    dialogueSpeaker: 
+    dialogueText: I'll take it with me.
+    dialogueSprite: {fileID: 0}
+    childNodeIDs:
+    - condition: 0
+      targetID: 6
+    actions: []
+  - dialogueNodeType: 0
+    dialogueSpeaker: 
+    dialogueText: It tastes a little funny...
+    dialogueSprite: {fileID: 0}
+    childNodeIDs: []
+    actions:
+    - action: 4
+      param: 
+    - action: 6
+      param: 5
+  - dialogueNodeType: 0
+    dialogueSpeaker: 
+    dialogueText: You pocket the apple.
+    dialogueSprite: {fileID: 0}
+    childNodeIDs: []
+    actions:
+    - action: 3
+      param: 

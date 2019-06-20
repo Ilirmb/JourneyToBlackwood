@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78a6427c4260bc64790aa6bd03ac8d5e, type: 3}
+  m_Name: WizardQuestFailed
+  m_EditorClassIdentifier: 
+  dialogue:
+  - dialogueNodeType: 0
+    dialogueSpeaker: 
+    dialogueText: Hi there! Have we met before?
+    dialogueSprite: {fileID: 0}
+    childNodeIDs:
+    - condition: 0
+      targetID: 1
+    actions: []
+  - dialogueNodeType: 0
+    dialogueSpeaker: 
+    dialogueText: Oh, was there an apple while you were up there?
+    dialogueSprite: {fileID: 0}
+    childNodeIDs:
+    - condition: 2
+      targetID: 2
+    actions: []
+  - dialogueNodeType: 1
+    dialogueSpeaker: 
+    dialogueText: 
+    dialogueSprite: {fileID: 0}
+    childNodeIDs:
+    - condition: 0
+      targetID: 3
+    actions: []
+  - dialogueNodeType: 0
+    dialogueSpeaker: 
+    dialogueText: Well...
+    dialogueSprite: {fileID: 0}
+    childNodeIDs:
+    - condition: 0
+      targetID: 4
+    actions: []
+  - dialogueNodeType: 0
+    dialogueSpeaker: 
+    dialogueText: Wait, did you eat it?
+    dialogueSprite: {fileID: 0}
+    childNodeIDs:
+    - condition: 0
+      targetID: 5
+    actions: []
+  - dialogueNodeType: 0
+    dialogueSpeaker: 
+    dialogueText: You can't just eat everything you find! It was filled with pooooison!
+      You could've been hurt! Be more careful in the future!
+    dialogueSprite: {fileID: 0}
+    childNodeIDs: []
+    actions:
+    - action: 7
+      param: 

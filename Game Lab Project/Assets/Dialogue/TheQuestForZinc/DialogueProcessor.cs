@@ -14,6 +14,10 @@ public class DialogueProcessor : MonoBehaviour {
 
     [SerializeField]
     private Text textBox;
+    [SerializeField]
+    private Text speakerName;
+    [SerializeField]
+    private Image face;
 
     [SerializeField]
     private Button advanceButton;
@@ -57,6 +61,7 @@ public class DialogueProcessor : MonoBehaviour {
 
         ProcessCurrentNode();
         dialogueUI.SetActive(true);
+        GameManager.instance.DisablePlayerMovement();
     }
 
 
@@ -67,6 +72,10 @@ public class DialogueProcessor : MonoBehaviour {
             case DialogueNode.NodeType.single:
 
                 textBox.text = currentNode.dialogueText;
+                speakerName.text = currentNode.dialogueSpeaker;
+
+                HandleNPCFace(currentNode.dialogueSprite);
+
                 advanceButton.gameObject.SetActive(true);
                 HandleDialogueFunctions();
 
@@ -92,6 +101,18 @@ public class DialogueProcessor : MonoBehaviour {
     } 
 
 
+    private void HandleNPCFace(Sprite s)
+    {
+        if(s == null)
+            face.transform.parent.gameObject.SetActive(false);
+        else
+        {
+            face.transform.parent.gameObject.SetActive(true);
+            face.sprite = s;
+        }
+    }
+
+
     private void HandleDialogueFunctions()
     {
         Quest q = GameManager.instance.GetActiveQuest();
@@ -108,6 +129,14 @@ public class DialogueProcessor : MonoBehaviour {
                     q.AcceptQuest();
                     break;
 
+                case DialogueAction.Action.completeQuest:
+                    q.CompleteQuest();
+                    break;
+
+                case DialogueAction.Action.finishQuest:
+                    q.FinishQuest();
+                    break;
+
                 case DialogueAction.Action.affectFriendship:
                     q.AffectFriendship(int.Parse(action.param));
                     break;
@@ -118,6 +147,10 @@ public class DialogueProcessor : MonoBehaviour {
 
                 case DialogueAction.Action.destroyQuestItem:
                     q.DestroyQuestItem();
+                    break;
+
+                case DialogueAction.Action.increaseStamina:
+                    GameManager.instance.IncreasePlayerStamina(float.Parse(action.param));
                     break;
             }
         }
@@ -130,6 +163,7 @@ public class DialogueProcessor : MonoBehaviour {
         if ((CountNumActiveChildren() == 0 && !firstLine) || currentNode == null)
         {
             dialogueUI.SetActive(false);
+            GameManager.instance.EnablePlayerMovement();
             GameManager.instance.EndQuestFirstEncounter();
             GameManager.instance.ToggleQuestInteractivity(true);
             return;
@@ -146,14 +180,22 @@ public class DialogueProcessor : MonoBehaviour {
             if (dbc.condition.Equals(DialogueBranchCondition.Condition.cleared) && state.Equals(Quest.QuestState.completed))
             {
                 currentNode = currentTree.dialogue[dbc.targetID];
+                break;
             }
             else if (dbc.condition.Equals(DialogueBranchCondition.Condition.failed) && state.Equals(Quest.QuestState.failed))
             {
                 currentNode = currentTree.dialogue[dbc.targetID];
+                break;
+            }
+            else if (dbc.condition.Equals(DialogueBranchCondition.Condition.active) && state.Equals(Quest.QuestState.active))
+            {
+                currentNode = currentTree.dialogue[dbc.targetID];
+                break;
             }
             else if (dbc.condition.Equals(DialogueBranchCondition.Condition.none))
             {
                 currentNode = currentTree.dialogue[dbc.targetID];
+                break;
             }
         }
 

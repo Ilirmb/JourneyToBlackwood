@@ -41,7 +41,7 @@ public class DialogueNode
 [System.Serializable]
 public class DialogueBranchCondition
 {
-    public enum Condition { none, cleared, failed };
+    public enum Condition { none, cleared, failed, active };
     public Condition condition;
     public int targetID;
 }
@@ -50,7 +50,7 @@ public class DialogueBranchCondition
 [System.Serializable]
 public class DialogueAction
 {
-    public enum Action { rejectQuest, acceptQuest, completeQuest, collectQuestItem, destroyQuestItem, affectFriendship };
+    public enum Action { rejectQuest, acceptQuest, completeQuest, collectQuestItem, destroyQuestItem, affectFriendship, increaseStamina, finishQuest };
     public Action action;
     public string param;
 }
