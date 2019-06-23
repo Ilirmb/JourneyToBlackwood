@@ -93,26 +93,38 @@ public class GameManager : MonoBehaviour {
     }
 
 
+	/// <summary>
+	/// Gets the current active quest
+	/// </summary>
     public Quest GetActiveQuest()
     {
         return activeQuest;
     }
 
-
+	
+	/// <summary>
+	/// Toggles the interactable state of the active quest
+	/// </summary>
     public void ToggleQuestInteractivity()
     {
         if(activeQuest != null)
             activeQuest.ToggleInteractivity();
     }
 
-
+	
+	/// <summary>
+	/// Sets the interactable state of the active quest to the given status
+	/// </summary>
     public void ToggleQuestInteractivity(bool status)
     {
         if (activeQuest != null)
             activeQuest.ToggleInteractivity(status);
     }
 
-
+	
+	/// <summary>
+	/// Sets the first encounter flags of the active quest
+	/// </summary>
     public void EndQuestFirstEncounter()
     {
         if(activeQuest != null)
@@ -121,13 +133,19 @@ public class GameManager : MonoBehaviour {
 
     #endregion
 
-
+	
+	/// <summary>
+	/// Increases the player's max stamina
+	/// </summary>
     public void IncreasePlayerStamina(float amt)
     {
         player.increaseMaxStamina(amt);
     }
 
 
+	/// <summary>
+	/// Prevents the player from moving
+	/// </summary>
     public void DisablePlayerMovement()
     {
         playerMov.canControl = false;
@@ -136,6 +154,9 @@ public class GameManager : MonoBehaviour {
     }
 
 
+	/// <summary>
+	/// Reinstates player movement
+	/// </summary>
     public void EnablePlayerMovement()
     {
         playerMov.canControl = true;
