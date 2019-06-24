@@ -118,10 +118,10 @@ public class DialogueProcessor : MonoBehaviour {
                 HandleDialogueFunctions();
 
 				// Set the buttons to each child node of the branch
-                for (int i=0; i<currentNode.childNodeIDs.Count; i++)
+                for (int i=0; i<currentNode.childNodes.Count; i++)
                 {
                     dialogueOptions[i].gameObject.SetActive(true);
-                    dialogueOptionText[i].text = currentTree.dialogue[currentNode.childNodeIDs[i].targetID].dialogueText;
+                    dialogueOptionText[i].text = currentTree.dialogue[currentNode.childNodes[i].targetID].dialogueText;
                 }
 
                 break;
@@ -174,7 +174,7 @@ public class DialogueProcessor : MonoBehaviour {
                     break;
 
 				// Increases friendship of the quest giver.
-				// This value isn't saved yet, but THERE'S A REALLY COOL WAY TO DO IT THAT WE CAN DO SO DON'T SWEAT IT
+				// This value isn't saved yet, but THERE'S A REALLY COOL WAY TO DO IT SO DON'T SWEAT IT
                 case DialogueAction.Action.affectFriendship:
                     q.AffectFriendship(int.Parse(action.param));
                     break;
@@ -188,9 +188,9 @@ public class DialogueProcessor : MonoBehaviour {
                 case DialogueAction.Action.destroyQuestItem:
 					
 					if(action.param.Equals(""))
-						q.DestroyQuestItem(int.Parse(action.param));
-					else
 						q.DestroyQuestItem();
+					else
+						q.DestroyQuestItem(int.Parse(action.param));
 					
                     break;
 
@@ -200,6 +200,7 @@ public class DialogueProcessor : MonoBehaviour {
 
 				// Increases the maximum stamina of the player
                 case DialogueAction.Action.increaseStamina:
+                    Debug.Log(action.param);
                     GameManager.instance.IncreasePlayerStamina(float.Parse(action.param));
                     break;
             }
@@ -231,31 +232,31 @@ public class DialogueProcessor : MonoBehaviour {
             state = currentQuest.GetCurrentState();
 
 		// Which child do we advance to?
-        foreach (DialogueBranchCondition dbc in currentNode.childNodeIDs)
+        foreach (DialogueNode.DialogueBranchCondition dbc in currentNode.childNodes)
         {
 			// If the quest is cleared, use the child with that condition
-            if (dbc.condition.Equals(DialogueBranchCondition.Condition.cleared) && state.Equals(Quest.QuestState.completed))
+            if (dbc.condition.Equals(DialogueNode.DialogueBranchCondition.Condition.cleared) && state.Equals(Quest.QuestState.completed))
             {
                 currentNode = currentTree.dialogue[dbc.targetID];
                 break;
             }
 			
 			// If the quest is failed, use the child with that condition
-            else if (dbc.condition.Equals(DialogueBranchCondition.Condition.failed) && state.Equals(Quest.QuestState.failed))
+            else if (dbc.condition.Equals(DialogueNode.DialogueBranchCondition.Condition.failed) && state.Equals(Quest.QuestState.failed))
             {
                 currentNode = currentTree.dialogue[dbc.targetID];
                 break;
             }
 			
 			// If the quest is active, use the child with that condition
-            else if (dbc.condition.Equals(DialogueBranchCondition.Condition.active) && state.Equals(Quest.QuestState.active))
+            else if (dbc.condition.Equals(DialogueNode.DialogueBranchCondition.Condition.active) && state.Equals(Quest.QuestState.active))
             {
                 currentNode = currentTree.dialogue[dbc.targetID];
                 break;
             }
 			
 			// Otherwise, just use the default condition. This one must always be last.
-            else if (dbc.condition.Equals(DialogueBranchCondition.Condition.none))
+            else if (dbc.condition.Equals(DialogueNode.DialogueBranchCondition.Condition.none))
             {
                 currentNode = currentTree.dialogue[dbc.targetID];
                 break;
@@ -283,13 +284,13 @@ public class DialogueProcessor : MonoBehaviour {
         if (currentQuest != null)
             state = currentQuest.GetCurrentState();
 
-        foreach (DialogueBranchCondition dbc in currentNode.childNodeIDs)
+        foreach (DialogueNode.DialogueBranchCondition dbc in currentNode.childNodes)
         {
 			// If the condition matches the current quest state, then it is a possible condition
-            if ((dbc.condition.Equals(DialogueBranchCondition.Condition.cleared) && state.Equals(Quest.QuestState.completed)) ||
-                (dbc.condition.Equals(DialogueBranchCondition.Condition.failed) && state.Equals(Quest.QuestState.failed))  ||
-                (dbc.condition.Equals(DialogueBranchCondition.Condition.active) && state.Equals(Quest.QuestState.active)) ||
-                dbc.condition.Equals(DialogueBranchCondition.Condition.none))
+            if ((dbc.condition.Equals(DialogueNode.DialogueBranchCondition.Condition.cleared) && state.Equals(Quest.QuestState.completed)) ||
+                (dbc.condition.Equals(DialogueNode.DialogueBranchCondition.Condition.failed) && state.Equals(Quest.QuestState.failed))  ||
+                (dbc.condition.Equals(DialogueNode.DialogueBranchCondition.Condition.active) && state.Equals(Quest.QuestState.active)) ||
+                dbc.condition.Equals(DialogueNode.DialogueBranchCondition.Condition.none))
                 children++;
         }
 
@@ -301,7 +302,7 @@ public class DialogueProcessor : MonoBehaviour {
 	/// </summary>
     public void OptionSelected(int button)
     {
-        currentNode = currentTree.dialogue[currentNode.childNodeIDs[button].targetID];
+        currentNode = currentTree.dialogue[currentNode.childNodes[button].targetID];
 
         Next();
     }
