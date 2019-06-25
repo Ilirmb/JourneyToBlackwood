@@ -237,6 +237,7 @@ public class Quest : MonoBehaviour {
     public void AffectFriendship(int amount)
     {
         friendship += amount;
+        Debug.Log(friendship);
     }
 
 

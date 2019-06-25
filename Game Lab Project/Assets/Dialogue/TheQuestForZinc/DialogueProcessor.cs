@@ -68,7 +68,7 @@ public class DialogueProcessor : MonoBehaviour {
     public void StartDialogue(DialogueTree tree)
     {
         currentTree = tree;
-        currentNode = tree.dialogue[0];
+        currentNode = tree.GetFirstNode();
 
         firstLine = true;
 
@@ -121,7 +121,8 @@ public class DialogueProcessor : MonoBehaviour {
                 for (int i=0; i<currentNode.childNodes.Count; i++)
                 {
                     dialogueOptions[i].gameObject.SetActive(true);
-                    dialogueOptionText[i].text = currentTree.dialogue[currentNode.childNodes[i].targetID].dialogueText;
+                    dialogueOptionText[i].text = currentTree.GetNode(currentNode.childNodes[i].targetID).dialogueText;
+                        //.dialogue[currentNode.childNodes[i].targetID].dialogueText;
                 }
 
                 break;
@@ -237,28 +238,28 @@ public class DialogueProcessor : MonoBehaviour {
 			// If the quest is cleared, use the child with that condition
             if (dbc.condition.Equals(DialogueNode.DialogueBranchCondition.Condition.cleared) && state.Equals(Quest.QuestState.completed))
             {
-                currentNode = currentTree.dialogue[dbc.targetID];
+                currentNode = currentTree.GetNode(dbc.targetID);
                 break;
             }
 			
 			// If the quest is failed, use the child with that condition
             else if (dbc.condition.Equals(DialogueNode.DialogueBranchCondition.Condition.failed) && state.Equals(Quest.QuestState.failed))
             {
-                currentNode = currentTree.dialogue[dbc.targetID];
+                currentNode = currentTree.GetNode(dbc.targetID);
                 break;
             }
 			
 			// If the quest is active, use the child with that condition
             else if (dbc.condition.Equals(DialogueNode.DialogueBranchCondition.Condition.active) && state.Equals(Quest.QuestState.active))
             {
-                currentNode = currentTree.dialogue[dbc.targetID];
+                currentNode = currentTree.GetNode(dbc.targetID);
                 break;
             }
 			
 			// Otherwise, just use the default condition. This one must always be last.
             else if (dbc.condition.Equals(DialogueNode.DialogueBranchCondition.Condition.none))
             {
-                currentNode = currentTree.dialogue[dbc.targetID];
+                currentNode = currentTree.GetNode(dbc.targetID);
                 break;
             }
         }
@@ -302,7 +303,7 @@ public class DialogueProcessor : MonoBehaviour {
 	/// </summary>
     public void OptionSelected(int button)
     {
-        currentNode = currentTree.dialogue[currentNode.childNodes[button].targetID];
+        currentNode = currentTree.GetNode(currentNode.childNodes[button].targetID);
 
         Next();
     }
