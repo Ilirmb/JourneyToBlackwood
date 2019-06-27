@@ -27,14 +27,23 @@ public class DialogueTree : NodeGraph {
     [SerializeField]
     private DialogueNode firstNode;
 
+    /// <summary>
+    /// Deletes all nodes and resets the first node.
+    /// </summary>
     public override void Clear()
     {
         dialogue.Clear();
+        firstNode = null;
 
         base.Clear();
     }
 
 
+    /// <summary>
+    /// Adds a node to the graph
+    /// </summary>
+    /// <param name="type">The type of node that is added</param>
+    /// <returns>The node that is added</returns>
     public override Node AddNode(Type type)
     {
         CleanList();
@@ -50,6 +59,11 @@ public class DialogueTree : NodeGraph {
     }
 
 
+    /// <summary>
+    /// Creates a copy of the given node
+    /// </summary>
+    /// <param name="original">The node that is to be copied</param>
+    /// <returns>The node that is added</returns>
     public override Node CopyNode(Node original)
     {
         ((DialogueNode)original).SetID(dialogue.Count);
@@ -59,6 +73,10 @@ public class DialogueTree : NodeGraph {
     }
 
 
+    /// <summary>
+    /// Removes the given node from the graph
+    /// </summary>
+    /// <param name="node">The node to be removed</param>
     public override void RemoveNode(Node node)
     {
         int index = dialogue.IndexOf((DialogueNode)node);
@@ -68,26 +86,16 @@ public class DialogueTree : NodeGraph {
 
         dialogue.Remove((DialogueNode)node);
 
-        foreach(DialogueNode dn in dialogue)
-        {
-            if (dn.GetID() >= index)
-                dn.SetID(dn.GetID() - 1);
-
-            foreach(DialogueNode.DialogueBranchCondition dbc in dn.childNodes)
-            {
-                if (dbc.targetID == index)
-                    dbc.condition = DialogueNode.DialogueBranchCondition.Condition.error;
-                else if (dbc.targetID > index)
-                    dbc.targetID = dbc.targetID - 1;
-            }
-        }
-
         CheckFirstNode();
 
         base.RemoveNode(node);
     }
 
 
+
+    /// <summary>
+    /// Removes all null nodes from the list
+    /// </summary>
     private void CleanList()
     {
         for(int i=0; i<dialogue.Count; i++)
@@ -101,12 +109,18 @@ public class DialogueTree : NodeGraph {
     }
 
 
+    /// <summary>
+    /// We need to make sure the list of dialogue nodes are accessible
+    /// </summary>
     private void OnEnable()
     {
         UpdateList();
     }
 
 
+    /// <summary>
+    /// Populates dialogue with the nodes.
+    /// </summary>
     private void UpdateList()
     {
         dialogue = new List<DialogueNode>();
@@ -119,15 +133,13 @@ public class DialogueTree : NodeGraph {
             dialogue.Add((DialogueNode)n);
         }
 
-        /*for (int i = 0; i < dialogue.Count; i++)
-        {
-            dialogue[i].SetID(i);
-        }*/
-
         CheckFirstNode();
     }
 
 
+    /// <summary>
+    /// Sets the first node in the list to the first node for dialogue
+    /// </summary>
     private void CheckFirstNode()
     {
         if (firstNode == null && dialogue.Count > 0)
@@ -135,6 +147,10 @@ public class DialogueTree : NodeGraph {
     }
 
 
+    /// <summary>
+    /// Sets the first node of the tree
+    /// </summary>
+    /// <param name="dn">The new first node</param>
     public void SetFirstNode(DialogueNode dn)
     {
         firstNode.SetFirstNode(false);
@@ -144,12 +160,21 @@ public class DialogueTree : NodeGraph {
     }
 
 
+    /// <summary>
+    /// Returns the first node of the tree
+    /// </summary>
+    /// <returns></returns>
     public DialogueNode GetFirstNode()
     {
         return firstNode;
     }
 
 
+    /// <summary>
+    /// Returns a node by its ID
+    /// </summary>
+    /// <param name="ID">ID of the node to return</param>
+    /// <returns></returns>
     public DialogueNode GetNode(int ID)
     {
         DialogueNode result = dialogue.Find(d => d.GetID() == ID);

@@ -69,6 +69,11 @@ public class DialogueNode : Node
     }
 
 
+    /// <summary>
+    /// Handles the internal behavior for when a node is connected to another node.
+    /// </summary>
+    /// <param name="from">Start of connection</param>
+    /// <param name="to">End of connection</param>
     public override void OnCreateConnection(NodePort from, NodePort to)
     {
         if (from.ConnectionCount > 1)
@@ -88,6 +93,9 @@ public class DialogueNode : Node
     }
 
 
+    /// <summary>
+    /// Sets the first node in the graph to this node.
+    /// </summary>
     public void SetFirstNode()
     {
         ((DialogueTree)graph).SetFirstNode(this);
@@ -97,6 +105,10 @@ public class DialogueNode : Node
     public void SetFirstNode(bool first) { isFirstNode = first; }
 
 
+    /// <summary>
+    /// Returns whether or not this node is the first node
+    /// </summary>
+    /// <returns></returns>
     public bool GetFirstNode() { return isFirstNode; }
 }
 

@@ -72,6 +72,7 @@ public class Quest : MonoBehaviour {
 		
 		// This will eventually need to check if this quest should be active.
 		// Ex: Rogue quests are disabled if the first rogue quest is not completed. This will check the saved friendship value for the quest giver
+        // Friendship saving isn't in yet, so for now, quests are active 100% of the time.
 
 	}
 
@@ -95,7 +96,16 @@ public class Quest : MonoBehaviour {
 	// We use OnMouseUp to avoid conflicts with the "next node" button on the UI
     private void OnMouseUp()
     {
-		// Failsafe. First encounter flags can be set by quest item interaction, so we use an additional check.
+        ProcessClick();
+    }
+
+
+    /// <summary>
+    /// Handles what should happen when the quest giver is clicked on.
+    /// </summary>
+    public void ProcessClick()
+    {
+        // Failsafe. First encounter flags can be set by quest item interaction, so we use an additional check.
         if (!clicked)
         {
             firstEncounter = true;
@@ -104,7 +114,7 @@ public class Quest : MonoBehaviour {
 
         GameManager.instance.SetCurrentQuest(this);
 
-		// If the player has not been interacted, we just need to start the quest
+        // If the player has not been interacted, we just need to start the quest
         if (firstEncounter)
         {
             StartQuest();
@@ -127,8 +137,8 @@ public class Quest : MonoBehaviour {
             case QuestState.failed:
                 ToggleInteractivity();
 
-				// If the quest was ever rejected, we want to start off the dialogue differently. Plan around this.
-                if(rejected)
+                // If the quest was ever rejected, we want to start off the dialogue differently. Plan around this.
+                if (rejected)
                     DialogueProcessor.instance.StartDialogue(rejectedDialogue);
                 else
                     DialogueProcessor.instance.StartDialogue(failedDialogue);
@@ -137,7 +147,7 @@ public class Quest : MonoBehaviour {
             case QuestState.completed:
                 ToggleInteractivity();
 
-				// If the quest was ever rejected, we want to start off the dialogue differently. Plan around this.
+                // If the quest was ever rejected, we want to start off the dialogue differently. Plan around this.
                 if (rejected)
                     DialogueProcessor.instance.StartDialogue(rejectedDialogue);
                 else
