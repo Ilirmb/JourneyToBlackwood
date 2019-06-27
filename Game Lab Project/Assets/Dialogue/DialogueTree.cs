@@ -141,7 +141,6 @@ public class DialogueTree : NodeGraph {
         dn.SetFirstNode(true);
 
         firstNode = dn;
-        Debug.Log(firstNode.dialogueText);
     }
 
 

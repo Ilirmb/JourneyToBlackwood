@@ -95,6 +95,9 @@ public class DialogueNode : Node
 
 
     public void SetFirstNode(bool first) { isFirstNode = first; }
+
+
+    public bool GetFirstNode() { return isFirstNode; }
 }
 
 

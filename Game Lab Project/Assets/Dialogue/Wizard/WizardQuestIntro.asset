@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Name: WizardQuestIntro
   m_EditorClassIdentifier: 
   nodes:
+  - {fileID: 114047337263021750}
   - {fileID: 114523097523649700}
   - {fileID: 114360214898561754}
   - {fileID: 114640444803186420}
@@ -38,6 +39,7 @@ MonoBehaviour:
   - {fileID: 114736024267761380}
   - {fileID: 114768933848092216}
   dialogue:
+  - {fileID: 114047337263021750}
   - {fileID: 114523097523649700}
   - {fileID: 114360214898561754}
   - {fileID: 114640444803186420}
@@ -144,6 +146,89 @@ MonoBehaviour:
   - condition: 0
     targetID: 5
   actions: []
+--- !u!114 &114047337263021750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ac085fae4e799c44ab966161326a142, type: 3}
+  m_Name: Dialogue
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -136, y: 232}
+  ports:
+    keys:
+    - previous
+    - childNodes
+    - childNodes 0
+    - childNodes 1
+    values:
+    - _fieldName: previous
+      _node: {fileID: 114047337263021750}
+      _typeQualifiedName: DialogueNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: childNodes 1
+        node: {fileID: 114662656962946788}
+        reroutePoints: []
+      - fieldName: childNodes 0
+        node: {fileID: 114662656962946788}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: childNodes
+      _node: {fileID: 114047337263021750}
+      _typeQualifiedName: System.Collections.Generic.List`1[[DialogueNode+DialogueBranchCondition,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: childNodes 0
+      _node: {fileID: 114047337263021750}
+      _typeQualifiedName: System.Collections.Generic.List`1[[DialogueNode+DialogueBranchCondition,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: previous
+        node: {fileID: 114577100411296828}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: childNodes 1
+      _node: {fileID: 114047337263021750}
+      _typeQualifiedName: System.Collections.Generic.List`1[[DialogueNode+DialogueBranchCondition,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: previous
+        node: {fileID: 114582061227700214}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+  ID: 25
+  previous: {fileID: 0}
+  dialogueNodeType: 0
+  dialogueSpeaker: Wizard
+  dialogueText: There's an apple up in that tree. Could you get it for me?
+  dialogueSprite: {fileID: 21300000, guid: a10d6e1636f6ae64e9282e1bd31018b8, type: 3}
+  childNodes:
+  - condition: 1
+    targetID: 12
+  - condition: 0
+    targetID: 11
+  actions: []
 --- !u!114 &114105591692775124
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -204,7 +289,7 @@ MonoBehaviour:
   dialogueSpeaker: Wizard
   dialogueText: There's an apple up there above us, but I'm too low on magic to teleport
     up there and get it myself. Could you get it for me?
-  dialogueSprite: {fileID: 0}
+  dialogueSprite: {fileID: 21300000, guid: a10d6e1636f6ae64e9282e1bd31018b8, type: 3}
   childNodes:
   - condition: 0
     targetID: 8
@@ -268,7 +353,7 @@ MonoBehaviour:
   dialogueNodeType: 0
   dialogueSpeaker: Wizard
   dialogueText: Wait, you already ate the apple?!
-  dialogueSprite: {fileID: 0}
+  dialogueSprite: {fileID: 21300000, guid: a10d6e1636f6ae64e9282e1bd31018b8, type: 3}
   childNodes:
   - condition: 0
     targetID: 16
@@ -383,7 +468,7 @@ MonoBehaviour:
   dialogueSpeaker: Wizard
   dialogueText: You really shouldn't eat things you find like that! That apple had
     bad magic in it, it could've hurt you!
-  dialogueSprite: {fileID: 0}
+  dialogueSprite: {fileID: 21300000, guid: a10d6e1636f6ae64e9282e1bd31018b8, type: 3}
   childNodes: []
   actions:
   - action: 7
@@ -708,7 +793,7 @@ MonoBehaviour:
   dialogueNodeType: 0
   dialogueSpeaker: Wizard
   dialogueText: Well, that's too bad...
-  dialogueSprite: {fileID: 0}
+  dialogueSprite: {fileID: 21300000, guid: a10d6e1636f6ae64e9282e1bd31018b8, type: 3}
   childNodes: []
   actions:
   - action: 0
@@ -838,7 +923,7 @@ MonoBehaviour:
   dialogueNodeType: 0
   dialogueSpeaker: Wizard
   dialogueText: 'Here''s a hint: You can talk to people by tapping (clicking) on them!'
-  dialogueSprite: {fileID: 0}
+  dialogueSprite: {fileID: 21300000, guid: a10d6e1636f6ae64e9282e1bd31018b8, type: 3}
   childNodes:
   - condition: 0
     targetID: 2
@@ -899,7 +984,7 @@ MonoBehaviour:
   dialogueNodeType: 0
   dialogueSpeaker: Wizard
   dialogueText: Hey, stop for a second!
-  dialogueSprite: {fileID: 0}
+  dialogueSprite: {fileID: 21300000, guid: a10d6e1636f6ae64e9282e1bd31018b8, type: 3}
   childNodes:
   - condition: 0
     targetID: 1
@@ -949,7 +1034,7 @@ MonoBehaviour:
   dialogueNodeType: 0
   dialogueSpeaker: Wizard
   dialogueText: Oh, thank you!
-  dialogueSprite: {fileID: 0}
+  dialogueSprite: {fileID: 21300000, guid: a10d6e1636f6ae64e9282e1bd31018b8, type: 3}
   childNodes: []
   actions:
   - action: 1
@@ -966,7 +1051,7 @@ MonoBehaviour:
   m_Name: Dialogue
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -376, y: 328}
+  position: {x: -440, y: 472}
   ports:
     keys:
     - previous
@@ -978,8 +1063,8 @@ MonoBehaviour:
       _typeQualifiedName: DialogueNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
       connections:
-      - fieldName: childNodes 1
-        node: {fileID: 114662656962946788}
+      - fieldName: childNodes 0
+        node: {fileID: 114047337263021750}
         reroutePoints: []
       _direction: 0
       _connectionType: 0
@@ -1042,8 +1127,8 @@ MonoBehaviour:
       _typeQualifiedName: DialogueNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
       connections:
-      - fieldName: childNodes 0
-        node: {fileID: 114662656962946788}
+      - fieldName: childNodes 1
+        node: {fileID: 114047337263021750}
         reroutePoints: []
       _direction: 0
       _connectionType: 0
@@ -1276,7 +1361,7 @@ MonoBehaviour:
         mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: previous
-        node: {fileID: 114582061227700214}
+        node: {fileID: 114047337263021750}
         reroutePoints: []
       _direction: 1
       _connectionType: 0
@@ -1289,7 +1374,7 @@ MonoBehaviour:
         mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: previous
-        node: {fileID: 114577100411296828}
+        node: {fileID: 114047337263021750}
         reroutePoints: []
       _direction: 1
       _connectionType: 0
@@ -1313,12 +1398,12 @@ MonoBehaviour:
   dialogueNodeType: 0
   dialogueSpeaker: Wizard
   dialogueText: So I helped you, will you help me?
-  dialogueSprite: {fileID: 0}
+  dialogueSprite: {fileID: 21300000, guid: a10d6e1636f6ae64e9282e1bd31018b8, type: 3}
   childNodes:
-  - condition: 2
-    targetID: 11
   - condition: 1
-    targetID: 12
+    targetID: 25
+  - condition: 2
+    targetID: 25
   - condition: 0
     targetID: 3
   actions: []
@@ -1382,7 +1467,7 @@ MonoBehaviour:
   dialogueSpeaker: Wizard
   dialogueText: Oh, sure! You can get to him by continuing on forwards the way you
     were headed.
-  dialogueSprite: {fileID: 0}
+  dialogueSprite: {fileID: 21300000, guid: a10d6e1636f6ae64e9282e1bd31018b8, type: 3}
   childNodes:
   - condition: 0
     targetID: 24
@@ -1433,7 +1518,7 @@ MonoBehaviour:
   dialogueSpeaker: Wizard
   dialogueText: Take this apple with you, it'll give you energy! You'll need it if
     you're going to confront Logolio.
-  dialogueSprite: {fileID: 0}
+  dialogueSprite: {fileID: 21300000, guid: a10d6e1636f6ae64e9282e1bd31018b8, type: 3}
   childNodes: []
   actions:
   - action: 6
@@ -1502,7 +1587,7 @@ MonoBehaviour:
   dialogueSpeaker: Wizard
   dialogueText: Huh? You have it already?! That's amazing! Here, gimme a second to
     clean this up
-  dialogueSprite: {fileID: 0}
+  dialogueSprite: {fileID: 21300000, guid: a10d6e1636f6ae64e9282e1bd31018b8, type: 3}
   childNodes:
   - condition: 0
     targetID: 18
@@ -1680,7 +1765,7 @@ MonoBehaviour:
   dialogueNodeType: 0
   dialogueSpeaker: Wizard
   dialogueText: Wait, you should take this! It's all clean now.
-  dialogueSprite: {fileID: 0}
+  dialogueSprite: {fileID: 21300000, guid: a10d6e1636f6ae64e9282e1bd31018b8, type: 3}
   childNodes: []
   actions:
   - action: 6
