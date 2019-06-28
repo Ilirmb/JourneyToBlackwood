@@ -91,8 +91,8 @@ public class DialogueProcessor : MonoBehaviour {
             case DialogueNode.NodeType.single:
 
 				// Update the textbox , name, and face
-                textBox.text = currentNode.dialogueText;
-                speakerName.text = currentNode.dialogueSpeaker;
+                textBox.text = currentNode.dialogueText.Replace("[PLAYER]", "name");
+                speakerName.text = currentNode.dialogueSpeaker.Replace("[PLAYER]", "name");
 
                 HandleNPCFace(currentNode.dialogueSprite);
 
@@ -121,8 +121,7 @@ public class DialogueProcessor : MonoBehaviour {
                 for (int i=0; i<currentNode.childNodes.Count; i++)
                 {
                     dialogueOptions[i].gameObject.SetActive(true);
-                    dialogueOptionText[i].text = currentTree.GetNode(currentNode.childNodes[i].targetID).dialogueText;
-                        //.dialogue[currentNode.childNodes[i].targetID].dialogueText;
+                    dialogueOptionText[i].text = currentTree.GetNode(currentNode.childNodes[i].targetID).dialogueText.Replace("[PLAYER]", "name");
                 }
 
                 break;
