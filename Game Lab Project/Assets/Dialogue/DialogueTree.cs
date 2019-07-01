@@ -49,7 +49,7 @@ public class DialogueTree : NodeGraph {
         CleanList();
 
         DialogueNode newNode = (DialogueNode)base.AddNode(type);
-        newNode.SetID(dialogue.Count);
+        newNode.SetID(GenerateID());
 
         dialogue.Add(newNode);
 
@@ -66,10 +66,13 @@ public class DialogueTree : NodeGraph {
     /// <returns>The node that is added</returns>
     public override Node CopyNode(Node original)
     {
-        ((DialogueNode)original).SetID(dialogue.Count);
-        dialogue.Add((DialogueNode)original);
+        DialogueNode copy = (DialogueNode)(base.CopyNode(original));
+        copy.SetID(GenerateID());
 
-        return base.CopyNode(original);
+        if (copy.GetFirstNode())
+            copy.SetFirstNode(false);
+
+        return copy;
     }
 
 
@@ -180,5 +183,31 @@ public class DialogueTree : NodeGraph {
         DialogueNode result = dialogue.Find(d => d.GetID() == ID);
 
         return result;
+    }
+
+
+    /// <summary>
+    /// Returns a new unique ID for this node.
+    /// </summary>
+    /// <returns>A new ID</returns>
+    private int GenerateID()
+    {
+        if (dialogue.Count == 0)
+            return 0;
+
+        List<int> idsInUse = new List<int>();
+
+        foreach(DialogueNode dn in dialogue)
+            idsInUse.Add(dn.GetID());
+
+        idsInUse.Sort();
+
+        for(int i=0; i<idsInUse.Count; i++)
+        {
+            if (!idsInUse.Contains(i))
+                return i;
+        }
+
+        return idsInUse[idsInUse.Count - 1] + 1;
     }
 }
