@@ -3,6 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using XNode;
 
+/// <IMPORTANT>
+/// If additional values are added to any enum in any of these classes, DO NOT, I repeat:
+/// DO. NOT. put the new value ANYWHERE except at the END of the enum.
+/// If the order of the values is EVER changed outside of appending new values to the end
+/// ALL EXISTING DIALOGUE TREES WILL BREAK.
+/// PLEASE DO NOT DO THIS.
+/// https://www.youtube.com/watch?v=nEffPICj7kM
+/// </IMPORTANT>
+
 
 /// <summary>
 /// Represents a node in a dialogue tree. This could be either a series of options, or standard text 
