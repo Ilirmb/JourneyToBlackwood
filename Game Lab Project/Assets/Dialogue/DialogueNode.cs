@@ -119,6 +119,55 @@ public class DialogueNode : Node
     /// </summary>
     /// <returns></returns>
     public bool GetFirstNode() { return isFirstNode; }
+
+
+    public void OnValidate()
+    {
+        if (dialogueNodeType.Equals(NodeType.branch))
+        {
+            // If the branch node has text, remove it.
+            if(!dialogueText.Equals(""))
+                dialogueText = "";
+
+            // If the number of child nodes is greater than four, we have a problem.
+            if (childNodes.Count > 4)
+            {
+                dialogueNodeType = NodeType.error;
+                return;
+            }
+            else
+            {
+                // If the children do not have the proper condition (none), we have a problem.
+                foreach(DialogueBranchCondition dbc in childNodes)
+                {
+                    if (!dbc.condition.Equals(DialogueBranchCondition.Condition.none))
+                    {
+                        dialogueNodeType = NodeType.error;
+                        return;
+                    }
+                }
+            }
+        }
+        else if (dialogueNodeType.Equals(NodeType.single))
+        {
+            // If the children use the same condition more than once, we have a problem.
+            List<DialogueBranchCondition.Condition> conditions = new List<DialogueBranchCondition.Condition>();
+
+            foreach (DialogueBranchCondition dbc in childNodes)
+            {
+                if (!conditions.Contains(dbc.condition))
+                    conditions.Add(dbc.condition);
+                else
+                {
+                    dialogueNodeType = NodeType.error;
+                    return;
+                }
+            }
+        }
+
+        // Check to make sure there are no invalid IDs in the child nodes.
+        ((DialogueTree)graph).ValidateNode(this);
+    }
 }
 
 

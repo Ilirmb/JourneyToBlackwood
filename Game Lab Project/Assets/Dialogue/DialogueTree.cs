@@ -24,6 +24,8 @@ public class DialogueTree : NodeGraph {
     [HideInInspector]
     public List<DialogueNode> dialogue = new List<DialogueNode>();
 
+    private List<int> idsInUse = new List<int>();
+
     [SerializeField]
     private DialogueNode firstNode;
 
@@ -52,6 +54,7 @@ public class DialogueTree : NodeGraph {
         newNode.SetID(GenerateID());
 
         dialogue.Add(newNode);
+        idsInUse.Add(newNode.GetID());
 
         CheckFirstNode();
 
@@ -82,11 +85,10 @@ public class DialogueTree : NodeGraph {
     /// <param name="node">The node to be removed</param>
     public override void RemoveNode(Node node)
     {
-        int index = dialogue.IndexOf((DialogueNode)node);
-
         if (firstNode == ((DialogueNode)node))
             firstNode = null;
 
+        idsInUse.Remove(((DialogueNode)node).GetID());
         dialogue.Remove((DialogueNode)node);
 
         CheckFirstNode();
@@ -122,11 +124,12 @@ public class DialogueTree : NodeGraph {
 
 
     /// <summary>
-    /// Populates dialogue with the nodes.
+    /// Populates dialogue list with the nodes.
     /// </summary>
     private void UpdateList()
     {
         dialogue = new List<DialogueNode>();
+        idsInUse = new List<int>();
 
         List<Node> reverse = nodes;
         reverse.Reverse();
@@ -134,9 +137,38 @@ public class DialogueTree : NodeGraph {
         foreach (Node n in reverse)
         {
             dialogue.Add((DialogueNode)n);
+            idsInUse.Add(((DialogueNode)n).GetID());
         }
 
         CheckFirstNode();
+    }
+
+
+    public void ValidateNode(DialogueNode dn)
+    {
+        if (idsInUse.Count < nodes.Count)
+            return;
+
+        int numIDs = 0;
+
+        foreach (DialogueNode.DialogueBranchCondition dbc in dn.childNodes)
+        {
+            if (!idsInUse.Contains(dbc.targetID))
+            {
+                dn.dialogueNodeType = DialogueNode.NodeType.error;
+                break;
+            }
+
+            numIDs++;
+        }
+
+        if (numIDs == dn.childNodes.Count && dn.dialogueNodeType.Equals(DialogueNode.NodeType.error))
+        {
+            if (dn.dialogueText.Equals(""))
+                dn.dialogueNodeType = DialogueNode.NodeType.branch;
+            else
+                dn.dialogueNodeType = DialogueNode.NodeType.single;
+        }
     }
 
 
@@ -195,19 +227,16 @@ public class DialogueTree : NodeGraph {
         if (dialogue.Count == 0)
             return 0;
 
-        List<int> idsInUse = new List<int>();
+        List<int> idsSorted = idsInUse;
 
-        foreach(DialogueNode dn in dialogue)
-            idsInUse.Add(dn.GetID());
+        idsSorted.Sort();
 
-        idsInUse.Sort();
-
-        for(int i=0; i<idsInUse.Count; i++)
+        for(int i=0; i<idsSorted.Count; i++)
         {
-            if (!idsInUse.Contains(i))
+            if (!idsSorted.Contains(i))
                 return i;
         }
 
-        return idsInUse[idsInUse.Count - 1] + 1;
+        return idsSorted[idsSorted.Count - 1] + 1;
     }
 }
