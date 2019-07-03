@@ -161,4 +161,13 @@ public class GameManager : MonoBehaviour {
     {
         playerMov.canControl = true;
     }
+
+
+    /// <summary>
+    /// Returns the player statistics.
+    /// </summary>
+    public PlayerStatistics GetPlayerStatistics()
+    {
+        return player;
+    }
 }
