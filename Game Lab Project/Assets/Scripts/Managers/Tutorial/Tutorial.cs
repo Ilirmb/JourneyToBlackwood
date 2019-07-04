@@ -23,6 +23,16 @@ public class Tutorial : MonoBehaviour {
     private bool frustration = false;
     private bool staminaDrain = false;
 
+    [Header("Text displays")]
+    [SerializeField]
+    private string hpLowText = "HP is low";
+    [SerializeField]
+    private string hpRecoverText = "HP recovers";
+    [SerializeField]
+    private string frustrationText = "Use slider to adjust difficulty";
+    [SerializeField]
+    private string staminaDrainText = "HP drains as you move";
+
 
     void Start()
     {
@@ -37,25 +47,31 @@ public class Tutorial : MonoBehaviour {
         if(!hpLow && player.stamina <= 20.0f)
         {
             hpLow = true;
-            DisplayText = TutorialTextDisplay("You're dying!");
+            DisplayText = TutorialTextDisplay(hpLowText);
             StartCoroutine(DisplayText);
         }
 
         if (!staminaDrain && player.stamina <= 95.0f)
         {
             staminaDrain = true;
-            DisplayText = TutorialTextDisplay("Stamina drains as you move");
+            DisplayText = TutorialTextDisplay(staminaDrainText);
             StartCoroutine(DisplayText);
         }
 
         if(!hpRecover && player.checkpoint == initialCheckpoint)
         {
             hpRecover = true;
-            DisplayText = TutorialTextDisplay("Recover at checkpoints");
+            DisplayText = TutorialTextDisplay(hpRecoverText);
             StartCoroutine(DisplayText);
         }
 
         // We need to introduce frustration. Should this be done if they touch the bar, if they die X times, or both?
+        if (!frustration && PlayerStatistics.numPlayerDeaths > 1)
+        {
+            frustration = true;
+            DisplayText = TutorialTextDisplay(frustrationText);
+            StartCoroutine(DisplayText);
+        }
 
     }
 
