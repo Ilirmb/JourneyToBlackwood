@@ -16,8 +16,9 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
 
     private Transform m_GroundCheck;    // A position marking where to check if the player is grounded.
     private float m_TrueSpeed;
-    const float k_GroundedRadius = .15f; // Radius of the overlap circle to determine if grounded
+    const float k_GroundedRadius = .25f; // Radius of the overlap circle to determine if grounded
     public bool m_Grounded;            // Whether or not the player is grounded.
+    private bool m_PrevGrounded;
     private bool m_CanCheckGrounded = true;
     private Transform m_CeilingCheck;   // A position marking where to check for ceilings
     const float k_CeilingRadius = .01f; // Radius of the overlap circle to determine if the player can stand up
@@ -32,6 +33,7 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
     private bool m_RunLock = false;
 
     private PlayerStatistics playerStatistics;
+    private Vector3 velocity = Vector3.zero;
 
     private void Awake()
     {
@@ -55,18 +57,40 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
         // This can be done using layers instead but Sample Assets will not overwrite your project settings.
         if (m_CanCheckGrounded)
         {
-            Collider2D[] colliders = Physics2D.OverlapCircleAll(m_GroundCheck.position, k_GroundedRadius, m_WhatIsGround);
+            RaycastHit2D hit = Physics2D.Raycast(m_GroundCheck.transform.position, -Vector2.up, k_GroundedRadius, m_WhatIsGround);
+
+            if(hit.collider != null && ((m_GroundCheck.transform.position.y > hit.point.y) || (hit.collider.CompareTag("Ladder"))))
+            {
+                Debug.Log(hit.collider.name);
+                m_Grounded = true;
+                m_RunLock = false;
+
+                if (!m_PrevGrounded)
+                    Debug.Log("Landed");
+            }
+
+            // original ground check code.
+
+            /*Collider2D[] colliders = Physics2D.OverlapCircleAll(m_GroundCheck.position, k_GroundedRadius, m_WhatIsGround);
             for (int i = 0; i < colliders.Length; i++)
             {
+                Debug.Log(colliders[i].gameObject.name);
                 if (colliders[i].gameObject != gameObject)
                 {
+                    Debug.Log(colliders[i].enabled);
                     m_Grounded = true;
                     m_RunLock = false;
+
+                    if (!m_PrevGrounded)
+                    {
+                        Debug.Log("Landed");
+                    }
                 }
-            }
+            }*/
         }
 
-        if(m_GravityOnGround || (!m_GravityOnGround && !m_Grounded))
+
+        if (m_GravityOnGround || (!m_GravityOnGround && !m_Grounded))
             m_Rigidbody2D.AddForce(Physics2D.gravity * m_GravityScale);
 
         m_Anim.SetBool("Grounded", m_Grounded);
@@ -74,6 +98,8 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
         // Set the vertical animation
         vspeed = m_Rigidbody2D.velocity.y;
         m_Anim.SetFloat("vSpeed", vspeed);
+
+        m_PrevGrounded = m_Grounded;
     }
 
 
@@ -206,6 +232,18 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
 
         m_CanCheckGrounded = true;
+    }
+
+
+    public void SetGravityScale(float amt)
+    {
+        m_GravityScale = amt;
+    }
+
+
+    public float GetGravityScale()
+    {
+        return m_GravityScale;
     }
 }
 

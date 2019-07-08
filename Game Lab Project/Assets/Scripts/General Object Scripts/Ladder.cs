@@ -7,7 +7,8 @@ public class Ladder : MonoBehaviour
     public bool onLadder;
     public float climbSpeed = 400;
     public float drag = 1;
-    private Rigidbody2D player;
+    private CustomPlatformerCharacter2D player;
+    private Rigidbody2D playerRigidbody;
     private float gravity;
     private float attachDowntime;
     private bool canHoldToAttach;
@@ -16,8 +17,9 @@ public class Ladder : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody2D>();
-        gravity = player.gravityScale; //Save this so we can go between no gravity and full gravity
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<CustomPlatformerCharacter2D>();
+        playerRigidbody = GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody2D>();
+        gravity = player.GetGravityScale(); //Save this so we can go between no gravity and full gravity
         canHoldToAttach = true;
     }
 
@@ -38,10 +40,11 @@ public class Ladder : MonoBehaviour
         {
             onLadder = true;
             this.gameObject.layer = 8; //8 is ground
-            player.gravityScale = 0;
-            player.drag = drag;
-            player.transform.position = new Vector2(this.gameObject.transform.position.x, player.transform.position.y);
-            player.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
+            player.SetGravityScale(0);
+            playerRigidbody.gravityScale = 0;
+            playerRigidbody.drag = drag;
+            playerRigidbody.transform.position = new Vector2(this.gameObject.transform.position.x, playerRigidbody.transform.position.y);
+            playerRigidbody.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
         }
     }
 
@@ -50,9 +53,10 @@ public class Ladder : MonoBehaviour
     {
         onLadder = false;
         this.gameObject.layer = 0; //0 is default
-        player.gravityScale = gravity;
-        player.drag = 0;
-        player.constraints = RigidbodyConstraints2D.FreezeRotation;
+        player.SetGravityScale(gravity);
+        playerRigidbody.gravityScale = gravity;
+        playerRigidbody.drag = 0;
+        playerRigidbody.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
 
 
@@ -60,9 +64,9 @@ public class Ladder : MonoBehaviour
     {
         onLadder = false;
         this.gameObject.layer = 0; //0 is default
-        player.gravityScale = gravity;
-        player.drag = 0;
-        player.constraints = RigidbodyConstraints2D.FreezeRotation;
+        playerRigidbody.gravityScale = gravity;
+        playerRigidbody.drag = 0;
+        playerRigidbody.constraints = RigidbodyConstraints2D.FreezeRotation;
         attachDowntime = downtime;
     }
 
@@ -94,7 +98,7 @@ public class Ladder : MonoBehaviour
     {
         if (onLadder)
         {
-            player.velocity = new Vector2(player.velocity.x, Input.GetAxis("Vertical") * climbSpeed * Time.deltaTime);
+            playerRigidbody.velocity = new Vector2(playerRigidbody.velocity.x, Input.GetAxis("Vertical") * climbSpeed * Time.deltaTime);
         }
     }
 
