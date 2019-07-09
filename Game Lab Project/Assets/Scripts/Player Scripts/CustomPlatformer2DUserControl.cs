@@ -28,6 +28,11 @@ public class CustomPlatformer2DUserControl : MonoBehaviour
             // Read the jump input in Update so button presses aren't missed.
             m_Jump = CrossPlatformInputManager.GetButtonDown("Jump");
         }
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            GameManager.instance.SaveProgress();
+        }
     }
 
 

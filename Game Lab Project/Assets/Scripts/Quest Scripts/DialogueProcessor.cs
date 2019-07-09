@@ -194,14 +194,32 @@ public class DialogueProcessor : MonoBehaviour {
 					
                     break;
 
+                // Destroys all quest items
                 case DialogueAction.Action.destroyAllQuestItems:
                     q.DestroyAllQuestItems();
                     break;
 
 				// Increases the maximum stamina of the player
                 case DialogueAction.Action.increaseStamina:
-                    Debug.Log(action.param);
                     GameManager.instance.IncreasePlayerStamina(float.Parse(action.param));
+                    break;
+
+                // Affect a social value
+                case DialogueAction.Action.affectSocialValue:
+
+                    string[] temp = action.param.Split(',');
+
+                    // Check if there is an appropriate number of arguments
+                    if (temp.Length == 2)
+                    {
+                        int val = int.Parse(temp[1]);
+                        // The biggest problem right now is that there is no validation for SVs.
+                        // This would work, but it runs the risk of people using slightly different names and throwing saving off.
+                        // I'll probably add some kind of validation here which would remove social, scrub all non-letters, etc.
+                        GameManager.instance.AffectSocialValue(temp[0], val);
+                    }
+                    else
+                        Debug.LogError("Param Error: too many or few parameters!");
                     break;
             }
         }
