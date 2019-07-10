@@ -186,6 +186,9 @@ public class GameManager : MonoBehaviour {
     /// </summary>
     public void AffectSocialValue(string s, int i)
     {
+        s = SocialValueValidation.ValidateName(s, GetSocialValueKeys());
+        Debug.Log(s);
+
         if (socialValues.ContainsKey(s))
             socialValues[s] = ((int)socialValues[s]) + i;
         else
@@ -202,6 +205,19 @@ public class GameManager : MonoBehaviour {
     }
 
 
+    public List<string> GetSocialValueKeys()
+    {
+        List<string> names = new List<string>();
+
+        foreach(object o in socialValues.Keys)
+        {
+            names.Add(((string)o));
+        }
+
+        return names;
+    }
+
+
 
     #region Save Function
 
@@ -214,7 +230,7 @@ public class GameManager : MonoBehaviour {
 
         BinaryFormatter bf = new BinaryFormatter();
         FileStream stream = new FileStream(path, FileMode.Create);
-
+        
         SaveData saveData = new SaveData();
         saveData.socialValues = socialValues;
 

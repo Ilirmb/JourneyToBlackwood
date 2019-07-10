@@ -187,6 +187,7 @@ public class DialogueAction
     // increaseStamina increases the player's max stamina by the amount given as a param
     // finishQuest finishes the quest and prevents it from being interacted with again. Call this for the last node in quest success or failed trees.
     // destroyAllQuestItems removes all quest items related to a current quest from the field.
+    // affectSocialValue affects a specific social value.
     public enum Action
     { rejectQuest, acceptQuest, completeQuest, collectQuestItem, destroyQuestItem,
         affectFriendship, increaseStamina, finishQuest, destroyAllQuestItems, affectSocialValue };

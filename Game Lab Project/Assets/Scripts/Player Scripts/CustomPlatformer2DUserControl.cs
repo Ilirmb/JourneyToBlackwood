@@ -29,9 +29,18 @@ public class CustomPlatformer2DUserControl : MonoBehaviour
             m_Jump = CrossPlatformInputManager.GetButtonDown("Jump");
         }
 
+        // placeholder
         if (Input.GetKeyDown(KeyCode.E))
         {
-            GameManager.instance.SaveProgress();
+            GameManager.instance.AffectSocialValue("strang", -278);
+            GameManager.instance.AffectSocialValue("straeng", -278);
+            GameManager.instance.AffectSocialValue("strang_rg&^&^&^nerkjgbeb", -278);
+            GameManager.instance.AffectSocialValue("socialstrang", -278);
+            GameManager.instance.AffectSocialValue("social_strang", -278);
+            GameManager.instance.AffectSocialValue("social_strung", -278);
+            GameManager.instance.AffectSocialValue("socialStrang", -278);
+            GameManager.instance.AffectSocialValue("socialResponsibility", -278);
+            GameManager.instance.AffectSocialValue("socialRecoGnition", -278);
         }
     }
 
