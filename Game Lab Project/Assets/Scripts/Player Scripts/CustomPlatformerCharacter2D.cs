@@ -30,6 +30,7 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
     public float vspeed;
     public float hspeed;
 
+    private bool m_OnLadder = false;
     private bool m_RunLock = false;
 
     private PlayerStatistics playerStatistics;
@@ -59,7 +60,7 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
         {
             RaycastHit2D hit = Physics2D.Raycast(m_GroundCheck.transform.position, -Vector2.up, k_GroundedRadius, m_WhatIsGround);
 
-            if(hit.collider != null && ((m_GroundCheck.transform.position.y > hit.point.y) || (hit.collider.CompareTag("Ladder"))))
+            if(hit.collider != null && ((m_GroundCheck.transform.position.y > hit.point.y) || m_OnLadder))
             {
                 Debug.Log(hit.collider.name);
                 m_Grounded = true;
@@ -144,7 +145,7 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
             // Move the character
             m_TrueSpeed = (m_Running ? m_MaxSpeed * 1.5f : m_MaxSpeed);
 
-            float m_yVelocity = m_Grounded ? 0.0f: m_Rigidbody2D.velocity.y;
+            float m_yVelocity = m_Grounded && !m_OnLadder ? 0.0f: m_Rigidbody2D.velocity.y;
             m_Rigidbody2D.velocity = new Vector2(move * m_TrueSpeed, m_yVelocity);
             m_Anim.SetFloat("Speed", Mathf.Abs(m_Rigidbody2D.velocity.x),.3f, Time.deltaTime);
 
@@ -158,7 +159,7 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
             m_Rigidbody2D.AddForce(Physics2D.gravity * m_GravityScale);*/
 
         // If the player should jump...
-        if (m_Grounded && jump)
+        if ((m_Grounded || m_OnLadder) && jump)
         {
             // Add a vertical force to the player.
             m_Grounded = false;
@@ -173,6 +174,9 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
             m_RunLock = m_Running;
 
             playerStatistics.damageFromJump(GameConst.STAMINA_TO_JUMP);
+
+            if (m_OnLadder)
+                m_OnLadder = false;
         }
     }
 
@@ -244,6 +248,18 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
     public float GetGravityScale()
     {
         return m_GravityScale;
+    }
+
+
+    public void SetOnLadder(bool state)
+    {
+        m_OnLadder = state;
+    }
+
+
+    public bool GetOnLadder()
+    {
+        return m_OnLadder;
     }
 }
 

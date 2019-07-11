@@ -7,8 +7,8 @@ public class Ladder : MonoBehaviour
     public bool onLadder;
     public float climbSpeed = 400;
     public float drag = 1;
-    private CustomPlatformerCharacter2D player;
-    private Rigidbody2D playerRigidbody;
+    private static CustomPlatformerCharacter2D player;
+    private static Rigidbody2D playerRigidbody;
     private float gravity;
     private float attachDowntime;
     private bool canHoldToAttach;
@@ -17,8 +17,12 @@ public class Ladder : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<CustomPlatformerCharacter2D>();
-        playerRigidbody = GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody2D>();
+        if(player == null)
+        {
+            player = GameObject.FindGameObjectWithTag("Player").GetComponent<CustomPlatformerCharacter2D>();
+            playerRigidbody = GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody2D>();
+        }
+
         gravity = player.GetGravityScale(); //Save this so we can go between no gravity and full gravity
         canHoldToAttach = true;
     }
@@ -39,9 +43,10 @@ public class Ladder : MonoBehaviour
         if (attachDowntime <= 0)
         {
             onLadder = true;
+            player.SetOnLadder(onLadder);
+
             this.gameObject.layer = 8; //8 is ground
             player.SetGravityScale(0);
-            playerRigidbody.gravityScale = 0;
             playerRigidbody.drag = drag;
             playerRigidbody.transform.position = new Vector2(this.gameObject.transform.position.x, playerRigidbody.transform.position.y);
             playerRigidbody.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
@@ -52,9 +57,9 @@ public class Ladder : MonoBehaviour
     void getOffLadder()
     {
         onLadder = false;
+
         this.gameObject.layer = 0; //0 is default
         player.SetGravityScale(gravity);
-        playerRigidbody.gravityScale = gravity;
         playerRigidbody.drag = 0;
         playerRigidbody.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
@@ -62,12 +67,12 @@ public class Ladder : MonoBehaviour
 
     void getOffLadder(float downtime)
     {
-        onLadder = false;
-        this.gameObject.layer = 0; //0 is default
-        playerRigidbody.gravityScale = gravity;
-        playerRigidbody.drag = 0;
-        playerRigidbody.constraints = RigidbodyConstraints2D.FreezeRotation;
+        getOffLadder();
+
         attachDowntime = downtime;
+
+        if ((player.vspeed < -0.5f && playerRigidbody.velocity.y == 0.0f && onLadder))
+            player.SetOnLadder(false);
     }
 
 
@@ -86,8 +91,9 @@ public class Ladder : MonoBehaviour
                 if (Input.GetAxisRaw("Vertical") > 0 && !onLadder) getOnLadder();
             }
 
-            if (Input.GetKeyDown(KeyCode.Space) && onLadder)
+            if ((!player.GetOnLadder() && onLadder) || (player.vspeed < -0.5f && playerRigidbody.velocity.y == 0.0f && onLadder))
             {
+                Debug.Log("Glitch");
                 getOffLadder(.5f);
             }
         }
