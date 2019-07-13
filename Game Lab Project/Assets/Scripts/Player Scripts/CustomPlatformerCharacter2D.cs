@@ -67,7 +67,9 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
                 m_RunLock = false;
 
                 if (!m_PrevGrounded)
+                {
                     Debug.Log("Landed");
+                }
             }
 
             // original ground check code.
@@ -91,7 +93,7 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
         }
 
 
-        if (m_GravityOnGround || (!m_GravityOnGround && !m_Grounded) || (m_Grounded && Mathf.Abs(m_Rigidbody2D.velocity.y) > 0.5f))
+        if (m_GravityOnGround || (!m_GravityOnGround && !m_Grounded))
             m_Rigidbody2D.AddForce(Physics2D.gravity * m_GravityScale);
 
         m_Anim.SetBool("Grounded", m_Grounded);
