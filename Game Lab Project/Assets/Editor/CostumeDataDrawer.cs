@@ -7,6 +7,9 @@ public class CostumeDataDrawer : Editor
 {
     Rect buttonRect;
 
+    private static CustomizationManager cm;
+    private CostumeData value;
+
     public class NewCostumePopup : PopupWindowContent
     {
         CostumeDataDrawer parent;
@@ -28,7 +31,7 @@ public class CostumeDataDrawer : Editor
 
         public override Vector2 GetWindowSize()
         {
-            return new Vector2(400, 150);
+            return new Vector2(300, 100);
         }
 
         public override void OnGUI(Rect rect)
@@ -36,8 +39,14 @@ public class CostumeDataDrawer : Editor
             GUILayout.Label("New Costume Piece", EditorStyles.boldLabel);
 
             target = EditorGUILayout.TextField("Bone Target", target);
-            //sprite = (SpriteMesh)EditorGUI.ObjectField(new Rect(150, 0, 200, 200), "Mesh:", sprite, typeof(SpriteMesh));
+            /*EditorGUI.PrefixLabel(
+                new Rect(rect.x, rect.y, rect.width * 0.6f, rect.height), 0, new GUIContent("Mesh"));*/
+            sprite = EditorGUILayout.ObjectField("Sprite Mesh", sprite, typeof(SpriteMesh), false) as SpriteMesh;
+            /*sprite = 
+                (SpriteMesh)EditorGUI.ObjectField(new Rect(150, 0, 20, 20), "Mesh:", sprite, typeof(SpriteMesh), false);*/
             isSkin = EditorGUILayout.Toggle("Is Skin?", isSkin);
+
+            EditorGUI.BeginDisabledGroup(sprite == null);
 
             if (GUILayout.Button("Confirm"))
             {
@@ -57,8 +66,7 @@ public class CostumeDataDrawer : Editor
                     var current = childEnum.Current as SerializedProperty;
 
                     if (current.name == "mesh")
-                    {
-                    }
+                        current.objectReferenceValue = sprite;
 
                     if (current.name == "skinTarget")
                         current.stringValue = target;
@@ -69,7 +77,10 @@ public class CostumeDataDrawer : Editor
 
 
                 parent.serializedObject.ApplyModifiedProperties();
+                editorWindow.Close();
             }
+
+            EditorGUI.EndDisabledGroup();
         }
     }
 
@@ -79,10 +90,41 @@ public class CostumeDataDrawer : Editor
     {
         base.OnInspectorGUI();
 
+        if(cm == null)
+            cm = (AssetDatabase.LoadAssetAtPath
+                ("Assets/PreFabs/Managers/CustomizationManager.prefab", typeof(GameObject)) as GameObject).GetComponent<CustomizationManager>();
+
+        if (value == null)
+            value = serializedObject.targetObject as CostumeData;
+
+
         if (GUILayout.Button("Add New Piece"))
         {
             PopupWindow.Show(buttonRect, new NewCostumePopup(this));
         }
+
+
+        EditorGUILayout.Space();
+        EditorGUI.BeginDisabledGroup(value.IsSelectable(cm));
+
+        if(GUILayout.Button("Add To Customization Manager"))
+        {
+            value.MakeSelectable(cm);
+            EditorUtility.SetDirty(cm.gameObject);
+        }
+
+        EditorGUI.EndDisabledGroup();
+
+
+        EditorGUI.BeginDisabledGroup(!value.IsSelectable(cm));
+
+        if (GUILayout.Button("Remove From Customization Manager"))
+        {
+            value.MakeUnselectable(cm);
+            EditorUtility.SetDirty(cm.gameObject);
+        }
+
+        EditorGUI.EndDisabledGroup();
 
         if (Event.current.type == EventType.Repaint) buttonRect = GUILayoutUtility.GetLastRect();
     }

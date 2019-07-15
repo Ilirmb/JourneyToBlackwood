@@ -76,7 +76,7 @@ public class CostumePieceDrawer : PropertyDrawer {
                 // Very hacky solution. Not a big fan, but my research has not turned up a good way to get an array index
                 int index = int.Parse(property.displayName.Replace("Element ", ""));
 
-                if(EditorUtility.DisplayDialog("Delete Costume Piece",
+                if (EditorUtility.DisplayDialog("Delete Costume Piece",
                     "Are you sure you want to delete this costume piece?", "Yes", "No"))
                 {
                     list.DeleteArrayElementAtIndex(index);

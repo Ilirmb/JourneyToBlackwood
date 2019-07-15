@@ -356,81 +356,6 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 207190363}
   m_CullTransparentMesh: 0
---- !u!1 &236030831
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 236030832}
-  - component: {fileID: 236030833}
-  m_Layer: 0
-  m_Name: CustomizationManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &236030832
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 236030831}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &236030833
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 236030831}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 128f161417b106c44841b666ef198377, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  HSVRangeMin: 0.04
-  HSVRangeMax: 0.08
-  skinToneMinSaturation: 0
-  skinToneMaxSaturation: 0.2
-  skinToneMinValue: -0.3
-  skinToneMaxValue: 0.2
-  costumeList:
-  - {fileID: 11400000, guid: 596624aece07cd9488f2b4afb8c72f73, type: 2}
-  - {fileID: 11400000, guid: 4380a1731c3fb96468ffb38b6b69d4a1, type: 2}
-  hairList:
-  - {fileID: 11400000, guid: ad41f58012b3dda40adc04519f2f186c, type: 2}
-  - {fileID: 11400000, guid: ddcd0db8f7de9844f8f081646f12f5b1, type: 2}
-  faceList:
-  - {fileID: 11400000, guid: ea7cd3debe2411e4387317fe470f0241, type: 2}
-  - {fileID: 11400000, guid: bfda448f3bbeab94a89c8ab921eae2db, type: 2}
-  OnSkinChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  OnCostumeChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  OnHairStyleChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  OnFaceChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!1001 &274971357
 Prefab:
   m_ObjectHideFlags: 0
@@ -1680,6 +1605,48 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 864434204}
   m_CullTransparentMesh: 0
+--- !u!1001 &961003031
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4772852543529888, guid: 551a488ce8c1ccb4cb2f54e215e0c28b, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4772852543529888, guid: 551a488ce8c1ccb4cb2f54e215e0c28b, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4772852543529888, guid: 551a488ce8c1ccb4cb2f54e215e0c28b, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4772852543529888, guid: 551a488ce8c1ccb4cb2f54e215e0c28b, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4772852543529888, guid: 551a488ce8c1ccb4cb2f54e215e0c28b, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4772852543529888, guid: 551a488ce8c1ccb4cb2f54e215e0c28b, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4772852543529888, guid: 551a488ce8c1ccb4cb2f54e215e0c28b, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4772852543529888, guid: 551a488ce8c1ccb4cb2f54e215e0c28b, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 551a488ce8c1ccb4cb2f54e215e0c28b, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1 &986616472
 GameObject:
   m_ObjectHideFlags: 0

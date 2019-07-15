@@ -7,6 +7,10 @@ using Anima2D;
 [CreateAssetMenu(fileName = "NewCostume", menuName = "Customization/Costume", order = 1)]
 public class CostumeData : ScriptableObject {
 
+    public enum CostumeType { outfit, hair, face };
+
+    public CostumeType costumeType;
+
     // List of all meshes in this costume.
     public List<CostumePiece> skinMeshes;
 
@@ -29,6 +33,61 @@ public class CostumeData : ScriptableObject {
         return skinTargets;
     }
 
+
+    public bool IsSelectable(CustomizationManager cm)
+    {
+        switch (costumeType)
+        {
+            case CostumeType.outfit:
+                return cm.IsCostumeIncluded(this);
+
+            case CostumeType.hair:
+                return cm.IsHairStyleIncluded(this);
+
+            case CostumeType.face:
+                return cm.IsFaceIncluded(this);
+        }
+
+        return false;
+    }
+
+
+    public void MakeSelectable(CustomizationManager cm)
+    {
+        switch (costumeType)
+        {
+            case CostumeType.outfit:
+                cm.AddCostume(this);
+                break;
+
+            case CostumeType.hair:
+                cm.AddHairStyle(this);
+                break;
+
+            case CostumeType.face:
+                cm.AddFace(this);
+                break;
+        }
+    }
+
+    
+    public void MakeUnselectable(CustomizationManager cm)
+    {
+        switch (costumeType)
+        {
+            case CostumeType.outfit:
+                cm.RemoveCostume(this);
+                break;
+
+            case CostumeType.hair:
+                cm.RemoveHairStyle(this);
+                break;
+
+            case CostumeType.face:
+                cm.RemoveFace(this);
+                break;
+        }
+    }
 }
 
 
