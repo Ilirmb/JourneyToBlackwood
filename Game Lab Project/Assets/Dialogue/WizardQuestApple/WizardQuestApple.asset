@@ -12,21 +12,21 @@ MonoBehaviour:
   m_Name: WizardQuestApple
   m_EditorClassIdentifier: 
   nodes:
-  - {fileID: 114820166994926618}
-  - {fileID: 114782618103667006}
-  - {fileID: 114595558138378648}
-  - {fileID: 114593576023903768}
-  - {fileID: 114610878717290252}
-  - {fileID: 114953510403998800}
   - {fileID: 114340284675149890}
+  - {fileID: 114953510403998800}
+  - {fileID: 114610878717290252}
+  - {fileID: 114593576023903768}
+  - {fileID: 114595558138378648}
+  - {fileID: 114782618103667006}
+  - {fileID: 114820166994926618}
   dialogue:
-  - {fileID: 114820166994926618}
-  - {fileID: 114782618103667006}
-  - {fileID: 114595558138378648}
-  - {fileID: 114593576023903768}
-  - {fileID: 114610878717290252}
-  - {fileID: 114953510403998800}
   - {fileID: 114340284675149890}
+  - {fileID: 114953510403998800}
+  - {fileID: 114610878717290252}
+  - {fileID: 114593576023903768}
+  - {fileID: 114595558138378648}
+  - {fileID: 114782618103667006}
+  - {fileID: 114820166994926618}
   firstNode: {fileID: 114820166994926618}
 --- !u!114 &114340284675149890
 MonoBehaviour:
@@ -62,7 +62,7 @@ MonoBehaviour:
       _node: {fileID: 114340284675149890}
       _typeQualifiedName: System.Collections.Generic.List`1[[DialogueNode+DialogueBranchCondition,
         Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
-        mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
       connections: []
       _direction: 1
       _connectionType: 0
@@ -78,6 +78,10 @@ MonoBehaviour:
   actions:
   - action: 3
     param: 
+  auto:
+    isAuto: 0
+    autoSpeed: 0
+    pauseBeforeNext: 0
 --- !u!114 &114593576023903768
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -113,7 +117,7 @@ MonoBehaviour:
       _node: {fileID: 114593576023903768}
       _typeQualifiedName: System.Collections.Generic.List`1[[DialogueNode+DialogueBranchCondition,
         Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
-        mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
       connections: []
       _direction: 1
       _connectionType: 0
@@ -142,6 +146,10 @@ MonoBehaviour:
   - condition: 0
     targetID: 5
   actions: []
+  auto:
+    isAuto: 0
+    autoSpeed: 0
+    pauseBeforeNext: 0
 --- !u!114 &114595558138378648
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -181,7 +189,7 @@ MonoBehaviour:
       _node: {fileID: 114595558138378648}
       _typeQualifiedName: System.Collections.Generic.List`1[[DialogueNode+DialogueBranchCondition,
         Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
-        mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
       connections: []
       _direction: 1
       _connectionType: 0
@@ -225,6 +233,10 @@ MonoBehaviour:
   - condition: 0
     targetID: 4
   actions: []
+  auto:
+    isAuto: 0
+    autoSpeed: 0
+    pauseBeforeNext: 0
 --- !u!114 &114610878717290252
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -260,7 +272,7 @@ MonoBehaviour:
       _node: {fileID: 114610878717290252}
       _typeQualifiedName: System.Collections.Generic.List`1[[DialogueNode+DialogueBranchCondition,
         Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
-        mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
       connections: []
       _direction: 1
       _connectionType: 0
@@ -289,6 +301,10 @@ MonoBehaviour:
   - condition: 0
     targetID: 6
   actions: []
+  auto:
+    isAuto: 0
+    autoSpeed: 0
+    pauseBeforeNext: 0
 --- !u!114 &114782618103667006
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -324,7 +340,7 @@ MonoBehaviour:
       _node: {fileID: 114782618103667006}
       _typeQualifiedName: System.Collections.Generic.List`1[[DialogueNode+DialogueBranchCondition,
         Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
-        mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
       connections: []
       _direction: 1
       _connectionType: 0
@@ -353,6 +369,10 @@ MonoBehaviour:
   - condition: 0
     targetID: 2
   actions: []
+  auto:
+    isAuto: 0
+    autoSpeed: 0
+    pauseBeforeNext: 0
 --- !u!114 &114820166994926618
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -386,7 +406,7 @@ MonoBehaviour:
       _node: {fileID: 114820166994926618}
       _typeQualifiedName: System.Collections.Generic.List`1[[DialogueNode+DialogueBranchCondition,
         Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
-        mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
       connections: []
       _direction: 1
       _connectionType: 0
@@ -430,6 +450,10 @@ MonoBehaviour:
   - condition: 0
     targetID: 2
   actions: []
+  auto:
+    isAuto: 0
+    autoSpeed: 0
+    pauseBeforeNext: 0
 --- !u!114 &114953510403998800
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -464,7 +488,7 @@ MonoBehaviour:
       _node: {fileID: 114953510403998800}
       _typeQualifiedName: System.Collections.Generic.List`1[[DialogueNode+DialogueBranchCondition,
         Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
-        mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
       connections: []
       _direction: 1
       _connectionType: 0
@@ -482,3 +506,7 @@ MonoBehaviour:
     param: 
   - action: 6
     param: 5
+  auto:
+    isAuto: 0
+    autoSpeed: 0
+    pauseBeforeNext: 0

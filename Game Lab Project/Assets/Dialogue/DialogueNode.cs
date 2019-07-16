@@ -40,6 +40,18 @@ public class DialogueNode : Node
         public int targetID = -1;
     }
 
+
+    [System.Serializable]
+    public class AutomaticTextParams
+    {
+        public bool isAuto = false;
+        [Range(0, 1)]
+        public float autoSpeed;
+        [Range(0, 10)]
+        public float pauseBeforeNext;
+    }
+
+
     [SerializeField]
     private int ID = -1;
     private bool isFirstNode = false;
@@ -65,6 +77,10 @@ public class DialogueNode : Node
 
     // List of functions to call when the this dialogue node displays.
     public List<DialogueAction> actions = new List<DialogueAction>();
+
+    public AutomaticTextParams auto = new AutomaticTextParams();
+
+
     public NodeType GetNodeType() { return dialogueNodeType; }
 
 

@@ -35,6 +35,17 @@ public class DialogueProcessor : MonoBehaviour {
 	// If the current line of dialogue is the first line in a given tree
     private bool firstLine = true;
 
+    [Header("Automatic Text Params")]
+    private IEnumerator textPrint;
+    private bool isPrinting = false;
+    private string textToDisplay = "";
+
+    [SerializeField]
+    private float characterDelay = 0.001f;
+    private float currentDelay;
+
+    private bool forceNext = false;
+
     
     void Start()
     {
@@ -91,8 +102,17 @@ public class DialogueProcessor : MonoBehaviour {
             case DialogueNode.NodeType.single:
 
 				// Update the textbox , name, and face
-                textBox.text = currentNode.dialogueText.Replace("[PLAYER]", "name");
+                textToDisplay = currentNode.dialogueText.Replace("[PLAYER]", "name");
                 speakerName.text = currentNode.dialogueSpeaker.Replace("[PLAYER]", "name");
+
+                if (currentNode.auto.isAuto)
+                    currentDelay = currentNode.auto.autoSpeed;
+                else
+                    currentDelay = characterDelay;
+
+                textPrint = PrintText();
+                StartCoroutine(textPrint);
+
 
                 HandleNPCFace(currentNode.dialogueSprite);
 
@@ -231,6 +251,19 @@ public class DialogueProcessor : MonoBehaviour {
 	/// </summary>
     public void Next()
     {
+        // This button does nothing if the text is automatically being displayed.
+        if (currentNode.auto.isAuto && !forceNext)
+            return;
+
+        // If the player attempts to advance while text is printing, abort the printing and return.
+        if (isPrinting)
+        {
+            textBox.text = currentNode.dialogueText.Replace("[PLAYER]", "name");
+            StopCoroutine(textPrint);
+            isPrinting = false;
+            return;
+        }
+
         // Last one in the list
         if ((CountNumActiveChildren() == 0 && !firstLine) || currentNode == null)
         {
@@ -285,6 +318,8 @@ public class DialogueProcessor : MonoBehaviour {
 
 		// Processes the node
         ProcessCurrentNode();
+
+        forceNext = false;
     }
 
 
@@ -322,6 +357,35 @@ public class DialogueProcessor : MonoBehaviour {
     {
         currentNode = currentTree.GetNode(currentNode.childNodes[button].targetID);
 
+        Next();
+    }
+
+
+
+    private IEnumerator PrintText()
+    {
+        isPrinting = true;
+        textBox.text = "";
+
+        for(int i=0; i<textToDisplay.Length; i++)
+        {
+            textBox.text += textToDisplay[i];
+            yield return new WaitForSeconds(currentDelay);
+        }
+
+        isPrinting = false;
+
+        if (currentNode.auto.isAuto)
+            StartCoroutine(NextAfterDelay());
+    }
+
+
+
+    private IEnumerator NextAfterDelay()
+    {
+        yield return new WaitForSeconds(currentNode.auto.pauseBeforeNext);
+
+        forceNext = true;
         Next();
     }
 }
