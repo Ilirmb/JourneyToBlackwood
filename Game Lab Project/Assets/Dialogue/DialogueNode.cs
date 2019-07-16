@@ -3,6 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using XNode;
 
+/// <IMPORTANT>
+/// If additional values are added to any enum in any of these classes, DO NOT, I repeat:
+/// DO. NOT. put the new value ANYWHERE except at the END of the enum.
+/// If the order of the values is EVER changed outside of appending new values to the end
+/// ALL EXISTING DIALOGUE TREES WILL BREAK.
+/// PLEASE DO NOT DO THIS.
+/// https://www.youtube.com/watch?v=nEffPICj7kM
+/// </IMPORTANT>
+
 
 /// <summary>
 /// Represents a node in a dialogue tree. This could be either a series of options, or standard text 
@@ -31,6 +40,18 @@ public class DialogueNode : Node
         public int targetID = -1;
     }
 
+
+    [System.Serializable]
+    public class AutomaticTextParams
+    {
+        public bool isAuto = false;
+        [Range(0, 1)]
+        public float autoSpeed;
+        [Range(0, 10)]
+        public float pauseBeforeNext;
+    }
+
+
     [SerializeField]
     private int ID = -1;
     private bool isFirstNode = false;
@@ -56,6 +77,10 @@ public class DialogueNode : Node
 
     // List of functions to call when the this dialogue node displays.
     public List<DialogueAction> actions = new List<DialogueAction>();
+
+    public AutomaticTextParams auto = new AutomaticTextParams();
+
+
     public NodeType GetNodeType() { return dialogueNodeType; }
 
 
@@ -110,6 +135,55 @@ public class DialogueNode : Node
     /// </summary>
     /// <returns></returns>
     public bool GetFirstNode() { return isFirstNode; }
+
+
+    public void OnValidate()
+    {
+        if (dialogueNodeType.Equals(NodeType.branch))
+        {
+            // If the branch node has text, remove it.
+            if(!dialogueText.Equals(""))
+                dialogueText = "";
+
+            // If the number of child nodes is greater than four, we have a problem.
+            if (childNodes.Count > 4)
+            {
+                dialogueNodeType = NodeType.error;
+                return;
+            }
+            else
+            {
+                // If the children do not have the proper condition (none), we have a problem.
+                foreach(DialogueBranchCondition dbc in childNodes)
+                {
+                    if (!dbc.condition.Equals(DialogueBranchCondition.Condition.none))
+                    {
+                        dialogueNodeType = NodeType.error;
+                        return;
+                    }
+                }
+            }
+        }
+        else if (dialogueNodeType.Equals(NodeType.single))
+        {
+            // If the children use the same condition more than once, we have a problem.
+            List<DialogueBranchCondition.Condition> conditions = new List<DialogueBranchCondition.Condition>();
+
+            foreach (DialogueBranchCondition dbc in childNodes)
+            {
+                if (!conditions.Contains(dbc.condition))
+                    conditions.Add(dbc.condition);
+                else
+                {
+                    dialogueNodeType = NodeType.error;
+                    return;
+                }
+            }
+        }
+
+        // Check to make sure there are no invalid IDs in the child nodes.
+        ((DialogueTree)graph).ValidateNode(this);
+    }
 }
 
 
@@ -129,7 +203,10 @@ public class DialogueAction
     // increaseStamina increases the player's max stamina by the amount given as a param
     // finishQuest finishes the quest and prevents it from being interacted with again. Call this for the last node in quest success or failed trees.
     // destroyAllQuestItems removes all quest items related to a current quest from the field.
-    public enum Action { rejectQuest, acceptQuest, completeQuest, collectQuestItem, destroyQuestItem, affectFriendship, increaseStamina, finishQuest, destroyAllQuestItems };
+    // affectSocialValue affects a specific social value.
+    public enum Action
+    { rejectQuest, acceptQuest, completeQuest, collectQuestItem, destroyQuestItem,
+        affectFriendship, increaseStamina, finishQuest, destroyAllQuestItems, affectSocialValue };
     public Action action;
 
     // Parameter of the function. This is optional in most cases, but is required for a few functions.

@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System.IO;
+using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -18,6 +20,9 @@ public class GameManager : MonoBehaviour {
     private CustomPlatformer2DUserControl playerMov;
     private Animator playerAnim;
     private Rigidbody2D playerRb2d;
+    
+    private Hashtable socialValues = new Hashtable();
+    private string path;
 
 
     // Use this for initialization
@@ -29,6 +34,10 @@ public class GameManager : MonoBehaviour {
             // If no, this object is our instance
             instance = this;
             DontDestroyOnLoad(gameObject);
+
+            // Loads saved progress
+            path = Application.persistentDataPath + "/progress.sav";
+            LoadProgress();
         }
         else
         {
@@ -161,4 +170,99 @@ public class GameManager : MonoBehaviour {
     {
         playerMov.canControl = true;
     }
+
+
+    /// <summary>
+    /// Returns the player statistics.
+    /// </summary>
+    public PlayerStatistics GetPlayerStatistics()
+    {
+        return player;
+    }
+
+
+    /// <summary>
+    /// Increases or decreases the value of the given social value.
+    /// </summary>
+    public void AffectSocialValue(string s, int i)
+    {
+        s = SocialValueValidation.ValidateName(s, GetSocialValueKeys());
+        Debug.Log(s);
+
+        if (socialValues.ContainsKey(s))
+            socialValues[s] = ((int)socialValues[s]) + i;
+        else
+            socialValues.Add(s, i);
+    }
+
+
+    /// <summary>
+    /// Gets the value relating to the given social value name
+    /// </summary>
+    public int GetSocialValue(string s)
+    {
+        return (int)socialValues[s];
+    }
+
+
+    public List<string> GetSocialValueKeys()
+    {
+        List<string> names = new List<string>();
+
+        foreach(object o in socialValues.Keys)
+        {
+            names.Add(((string)o));
+        }
+
+        return names;
+    }
+
+
+
+    #region Save Function
+
+    /// <summary>
+    /// Saves saved progress.
+    /// </summary>
+    public void SaveProgress()
+    {
+        Debug.Log("Saving...");
+
+        BinaryFormatter bf = new BinaryFormatter();
+        FileStream stream = new FileStream(path, FileMode.Create);
+        
+        SaveData saveData = new SaveData();
+        saveData.socialValues = socialValues;
+
+        bf.Serialize(stream, saveData);
+        stream.Close();
+    }
+
+
+    /// <summary>
+    /// Loads saved progress.
+    /// </summary>
+    public void LoadProgress()
+    {
+        Debug.Log("Attempting load...");
+        if (File.Exists(Application.persistentDataPath + "/progress.sav"))
+        {
+            // DOOP
+            Debug.Log("Load success");
+
+            // Opens the file and deserializes the data
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream stream = new FileStream(Application.persistentDataPath + "/progress.sav", FileMode.Open);
+
+            SaveData saveData = bf.Deserialize(stream) as SaveData;
+            socialValues = saveData.socialValues;
+
+            if(socialValues.ContainsKey("test"))
+                Debug.Log(socialValues["test"]);
+
+            stream.Close();
+        }
+    }
+
+    #endregion
 }

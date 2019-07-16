@@ -68,13 +68,15 @@ public class CamFollow : MonoBehaviour {
             playerPos.y < (verticalDeadZoneCenter - verticalDeadZoneLength / 2.0f))
         {
             // Adjusts camera to display more of the level in the player's direction, SMW style
-            if (playerPos.x > (horizontalDeadZoneCenter + horizontalDeadZoneLength / 2.0f))
+            if (playerMov.GetDirection() == 1)//((playerPos.x > (horizontalDeadZoneCenter + (horizontalDeadZoneLength / 2.0f))) || 
+                //(playerMov.GetDirection() == 1 && playerMov.GetIsRunning()))
                 horizontalDeadZoneCenter = hdzc;
-            if (playerPos.x < (horizontalDeadZoneCenter - horizontalDeadZoneLength / 2.0f))
+            else if (playerMov.GetDirection() == -1)//((playerPos.x < (horizontalDeadZoneCenter - (horizontalDeadZoneLength / 2.0f))) ||
+                //(playerMov.GetDirection() == -1 && playerMov.GetIsRunning()))
                 horizontalDeadZoneCenter = 1 - hdzc;
 
             float offset = 5.0f * hdzc * playerMov.GetDirection();
-            Debug.Log(offset + " " + horizontalDeadZoneCenter);
+            Debug.Log(horizontalDeadZoneCenter);
 
             Vector3 newPos = new Vector3(player.position.x + offset, transform.position.y, -10f);
 

@@ -363,4 +363,70 @@ public class CustomizationManager : MonoBehaviour {
 
         return null;
     }
+
+
+    #region Costume Inclusion Check
+
+    public bool IsCostumeIncluded(CostumeData cd)
+    {
+        return costumeList.Contains(cd);
+    }
+
+
+
+    public bool IsHairStyleIncluded(CostumeData cd)
+    {
+        return hairList.Contains(cd);
+    }
+
+
+
+    public bool IsFaceIncluded(CostumeData cd)
+    {
+        return faceList.Contains(cd);
+    }
+
+
+
+    public void AddCostume(CostumeData cd)
+    {
+        costumeList.Add(cd);
+    }
+
+
+
+    public void AddHairStyle(CostumeData cd)
+    {
+        hairList.Add(cd);
+    }
+
+
+
+    public void AddFace(CostumeData cd)
+    {
+        faceList.Add(cd);
+    }
+
+
+
+    public void RemoveCostume(CostumeData cd)
+    {
+        costumeList.Remove(cd);
+    }
+
+
+
+    public void RemoveHairStyle(CostumeData cd)
+    {
+        hairList.Remove(cd);
+    }
+
+
+
+    public void RemoveFace(CostumeData cd)
+    {
+        faceList.Remove(cd);
+    }
+
+    #endregion
 }

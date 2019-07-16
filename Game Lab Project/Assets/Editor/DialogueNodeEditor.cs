@@ -43,7 +43,6 @@ public class DialogueNodeEditor : NodeEditor {
                 break;
         }
 
-
         base.OnBodyGUI();
 
 

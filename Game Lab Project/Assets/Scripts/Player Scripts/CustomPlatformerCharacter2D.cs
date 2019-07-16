@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 
@@ -9,11 +10,16 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
     [Range(0, 1)] [SerializeField] private float m_CrouchSpeed = .36f;  // Amount of maxSpeed applied to crouching movement. 1 = 100%
     [SerializeField] private bool m_AirControl = false;                 // Whether or not a player can steer while jumping;
     [SerializeField] private LayerMask m_WhatIsGround;                  // A mask determining what is ground to the character
+    [SerializeField] private float m_RunMultiplier = 1.5f;
+    [SerializeField] private float m_GravityScale = 3.0f;
+    [SerializeField] private bool m_GravityOnGround = true;
 
     private Transform m_GroundCheck;    // A position marking where to check if the player is grounded.
     private float m_TrueSpeed;
-    const float k_GroundedRadius = .15f; // Radius of the overlap circle to determine if grounded
+    const float k_GroundedRadius = .25f; // Radius of the overlap circle to determine if grounded
     public bool m_Grounded;            // Whether or not the player is grounded.
+    private bool m_PrevGrounded;
+    private bool m_CanCheckGrounded = true;
     private Transform m_CeilingCheck;   // A position marking where to check for ceilings
     const float k_CeilingRadius = .01f; // Radius of the overlap circle to determine if the player can stand up
     private Animator m_Anim;            // Reference to the player's animator component.
@@ -24,7 +30,11 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
     public float vspeed;
     public float hspeed;
 
+    private bool m_OnLadder = false;
+    private bool m_RunLock = false;
+
     private PlayerStatistics playerStatistics;
+    private Vector3 velocity = Vector3.zero;
 
     private void Awake()
     {
@@ -33,6 +43,7 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
         m_CeilingCheck = transform.Find("CeilingCheck");
         m_Anim = GetComponentInChildren<Animator>();
         m_Rigidbody2D = GetComponent<Rigidbody2D>();
+        m_Rigidbody2D.gravityScale = 0.0f;
 
         playerStatistics = GetComponent<PlayerStatistics>();
         ableToMove = false;
@@ -45,18 +56,53 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
 
         // The player is grounded if a circlecast to the groundcheck position hits anything designated as ground
         // This can be done using layers instead but Sample Assets will not overwrite your project settings.
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(m_GroundCheck.position, k_GroundedRadius, m_WhatIsGround);
-        for (int i = 0; i < colliders.Length; i++)
+        if (m_CanCheckGrounded)
         {
-            if (colliders[i].gameObject != gameObject)
+            RaycastHit2D hit = Physics2D.Raycast(m_GroundCheck.transform.position, -Vector2.up, k_GroundedRadius, m_WhatIsGround);
+
+            if(hit.collider != null && ((m_GroundCheck.transform.position.y > hit.point.y) || m_OnLadder))
+            {
+                Debug.Log(hit.collider.name);
                 m_Grounded = true;
+                m_RunLock = false;
+
+                if (!m_PrevGrounded)
+                {
+                    Debug.Log("Landed");
+                }
+            }
+
+            // original ground check code.
+
+            /*Collider2D[] colliders = Physics2D.OverlapCircleAll(m_GroundCheck.position, k_GroundedRadius, m_WhatIsGround);
+            for (int i = 0; i < colliders.Length; i++)
+            {
+                Debug.Log(colliders[i].gameObject.name);
+                if (colliders[i].gameObject != gameObject)
+                {
+                    Debug.Log(colliders[i].enabled);
+                    m_Grounded = true;
+                    m_RunLock = false;
+
+                    if (!m_PrevGrounded)
+                    {
+                        Debug.Log("Landed");
+                    }
+                }
+            }*/
         }
+
+
+        if (m_GravityOnGround || (!m_GravityOnGround && !m_Grounded))
+            m_Rigidbody2D.AddForce(Physics2D.gravity * m_GravityScale);
 
         m_Anim.SetBool("Grounded", m_Grounded);
 
         // Set the vertical animation
         vspeed = m_Rigidbody2D.velocity.y;
         m_Anim.SetFloat("vSpeed", vspeed);
+
+        m_PrevGrounded = m_Grounded;
     }
 
 
@@ -72,7 +118,7 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
             }
         }*/
 
-        m_Running = run;
+        m_Running = (run && m_Grounded && Mathf.Abs(move) > 0.85f) || (m_RunLock && Mathf.Abs(move) > 0.85f);
 
         // Set whether or not the character is crouching in the animator
         //m_Anim.SetBool("Crouch", crouch);
@@ -84,16 +130,6 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
             move = (crouch ? move * m_CrouchSpeed : move);
 
             // The Speed animator parameter is set to the absolute value of the horizontal input.
-
-            // Move the character
-            m_TrueSpeed = (run ? m_MaxSpeed * 1.5f : m_MaxSpeed);
-            m_Rigidbody2D.velocity = new Vector2(move * m_TrueSpeed, m_Rigidbody2D.velocity.y);
-            m_Anim.SetFloat("Speed", Mathf.Abs(m_Rigidbody2D.velocity.x),.3f, Time.deltaTime);
-
-            //Tells the player object if it's moving or not
-            //I've decided to only allow the player to be considered moving under their own will if they are grounded, in case something else decides to move the player while they're in the air. Essentially, stamina will only be added while on the ground.
-            //There are tentative plans to move this system to a local velocity based system by calculating valocity without taking into account other
-            playerStatistics.moving(move != 0 && (m_Grounded || ableToMove));
 
             // If the input is moving the player right and the player is facing left...
             if (move > 0 && !m_FacingRight)
@@ -107,16 +143,42 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
                 // ... flip the player.
                 Flip();
             }
+
+            // Move the character
+            m_TrueSpeed = (m_Running ? m_MaxSpeed * 1.5f : m_MaxSpeed);
+
+            float m_yVelocity = m_Grounded && !m_OnLadder ? 0.0f: m_Rigidbody2D.velocity.y;
+            m_Rigidbody2D.velocity = new Vector2(move * m_TrueSpeed, m_yVelocity);
+            m_Anim.SetFloat("Speed", Mathf.Abs(m_Rigidbody2D.velocity.x),.3f, Time.deltaTime);
+
+            //Tells the player object if it's moving or not
+            //I've decided to only allow the player to be considered moving under their own will if they are grounded, in case something else decides to move the player while they're in the air. Essentially, stamina will only be added while on the ground.
+            //There are tentative plans to move this system to a local velocity based system by calculating valocity without taking into account other
+            playerStatistics.moving(move != 0 && (m_Grounded || ableToMove));
         }
+
+        /*if (!m_Grounded)
+            m_Rigidbody2D.AddForce(Physics2D.gravity * m_GravityScale);*/
+
         // If the player should jump...
-        if (m_Grounded && jump && m_Anim.GetBool("Grounded"))
+        if ((m_Grounded || m_OnLadder) && jump)
         {
             // Add a vertical force to the player.
             m_Grounded = false;
             m_Anim.SetBool("Grounded", false);
+            m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x, 0.0f);
             m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
 
+            // Prevents an issue that occasionally stops the player from jumping due to oddities with the ground check.
+            StartCoroutine(DisableGroundCheck());
+
+            // Set a flag that says the player was running if they were
+            m_RunLock = m_Running;
+
             playerStatistics.damageFromJump(GameConst.STAMINA_TO_JUMP);
+
+            if (m_OnLadder)
+                m_OnLadder = false;
         }
     }
 
@@ -125,6 +187,9 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
     {
         // Switch the way the player is labelled as facing.
         m_FacingRight = !m_FacingRight;
+
+        // If the player changes direction in midair, cancel momentum
+        m_RunLock = false;
 
         // Multiply the player's x local scale by -1.
         Vector3 theScale = transform.localScale;
@@ -163,6 +228,40 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
     public bool GetIsRunning()
     {
         return m_Running;
+    }
+    
+
+    private IEnumerator DisableGroundCheck()
+    {
+        m_CanCheckGrounded = false;
+
+        yield return new WaitForSeconds(0.1f);
+
+        m_CanCheckGrounded = true;
+    }
+
+
+    public void SetGravityScale(float amt)
+    {
+        m_GravityScale = amt;
+    }
+
+
+    public float GetGravityScale()
+    {
+        return m_GravityScale;
+    }
+
+
+    public void SetOnLadder(bool state)
+    {
+        m_OnLadder = state;
+    }
+
+
+    public bool GetOnLadder()
+    {
+        return m_OnLadder;
     }
 }
 
