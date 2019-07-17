@@ -241,6 +241,11 @@ public class DialogueProcessor : MonoBehaviour {
                     else
                         Debug.LogError("Param Error: too many or few parameters!");
                     break;
+
+                // Display a hint
+                case DialogueAction.Action.showHint:
+                    GameManager.instance.ShowHint();
+                    break;
             }
         }
     }
@@ -265,7 +270,7 @@ public class DialogueProcessor : MonoBehaviour {
         }
 
         // Last one in the list
-        if ((CountNumActiveChildren() == 0 && !firstLine) || currentNode == null)
+        if ((CountNumActiveChildren() == 0) || currentNode == null)
         {
 			// Enables the player's movement, and allows the quest giver to be interacted with again
             dialogueUI.SetActive(false);

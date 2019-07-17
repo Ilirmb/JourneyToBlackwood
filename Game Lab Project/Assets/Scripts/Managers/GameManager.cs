@@ -24,6 +24,12 @@ public class GameManager : MonoBehaviour {
     private Hashtable socialValues = new Hashtable();
     private string path;
 
+    [SerializeField]
+    private DialogueTree hintOffer;
+    private List<DialogueTree> hints = new List<DialogueTree>();
+    [SerializeField]
+    private List<DialogueTree> healthTips = new List<DialogueTree>();
+
 
     // Use this for initialization
     void Awake ()
@@ -261,6 +267,48 @@ public class GameManager : MonoBehaviour {
                 Debug.Log(socialValues["test"]);
 
             stream.Close();
+        }
+    }
+
+    #endregion
+
+
+    #region Hint Functions
+
+    /// <summary>
+    /// Update the list of available hints
+    /// </summary>
+    public void UpdateHintList(List<DialogueTree> newHints)
+    {
+        hints = newHints;
+    }
+
+
+    /// <summary>
+    /// Show a randomized hint from the list of hints
+    /// </summary>
+    public void ShowHint()
+    {
+        if(hints.Count > 0)
+        {
+            int index = Random.Range(0, hints.Count);
+            DialogueProcessor.instance.StartDialogue(hints[index]);
+        }
+    }
+
+
+    public void OfferHint()
+    {
+        DialogueProcessor.instance.StartDialogue(hintOffer);
+    }
+
+
+    public void ShowHealthTip()
+    {
+        if (healthTips.Count > 0)
+        {
+            int index = Random.Range(0, healthTips.Count);
+            DialogueProcessor.instance.StartDialogue(healthTips[index]);
         }
     }
 

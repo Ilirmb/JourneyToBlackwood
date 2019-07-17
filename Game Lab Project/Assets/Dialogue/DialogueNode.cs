@@ -206,7 +206,7 @@ public class DialogueAction
     // affectSocialValue affects a specific social value.
     public enum Action
     { rejectQuest, acceptQuest, completeQuest, collectQuestItem, destroyQuestItem,
-        affectFriendship, increaseStamina, finishQuest, destroyAllQuestItems, affectSocialValue };
+        affectFriendship, increaseStamina, finishQuest, destroyAllQuestItems, affectSocialValue, showHint };
     public Action action;
 
     // Parameter of the function. This is optional in most cases, but is required for a few functions.

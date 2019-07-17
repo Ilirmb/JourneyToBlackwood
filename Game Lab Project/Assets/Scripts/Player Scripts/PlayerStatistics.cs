@@ -75,6 +75,21 @@ public class PlayerStatistics : MonoBehaviour
     {
         //Slider value is between 0 and 10 so we can multiply it by itself to get an exponential curve between 0 and 100
         frustration = (Mathf.Pow(sliderValue,2));
+
+        Debug.Log(frustration);
+
+        if(frustration >= 70.0f)
+        {
+            frustrationCount++;
+
+            if (frustrationCount > 3)
+            {
+                GameManager.instance.ShowHealthTip();
+                frustrationCount = 0;
+            }
+            else
+                GameManager.instance.OfferHint();
+        }
     }
 
 
@@ -277,7 +292,7 @@ public class PlayerStatistics : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (frustration >= 70f && timeLeft > 0f)
+        /*if (frustration >= 70f && timeLeft > 0f)
         {
             highFrustration = true;
             timeLeft -= Time.deltaTime;
@@ -300,7 +315,7 @@ public class PlayerStatistics : MonoBehaviour
         {
             //StartCoroutine(BreakTimer());
             frustrationCount = 0;
-        }
+        }*/
 
 
         if (invulnTimer > 0)
