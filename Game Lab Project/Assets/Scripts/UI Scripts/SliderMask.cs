@@ -9,16 +9,22 @@ public class SliderMask : MonoBehaviour {
     private PlayerStatistics playerStatistics;
     private FrustrationFace frustrationFace;
 
-    private float startingY = 225f;
-    private float endingY = -45f;
+    private float startingY = 300f;
+    private float endingY = 80f;
+    [SerializeField]
     private float animTotalFrames = 30;
     public float animCurrentFrame = 1;
     public float animTargetFrame = 1;
     private float distancePerFrame = 0;
-    
+
+
+
+    private Image handle;
+
 
     public void onClick()
     {
+        handle.color = new Color(handle.color.r, handle.color.g, handle.color.b, 1f);
         animTargetFrame = animTotalFrames;
         frustrationFace.toggleDragging(true);
     }
@@ -31,19 +37,26 @@ public class SliderMask : MonoBehaviour {
         //We now move the large slider handle back to the top so it can be clicked on again
         //If we want to this can also trigger it leaving a temporary copy of itself in place so it doesn't appear to teleport back to the top as it should now
         slider.value = 0;
+
+        handle.color = new Color(handle.color.r, handle.color.g, handle.color.b, 0f);
     }
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         slider = GetComponentInChildren<Slider>();
         playerStatistics = GameObject.Find(GameConst.PLAYER_OBJECT_NAME).GetComponent<PlayerStatistics>();
         frustrationFace = transform.parent.GetComponentInChildren<FrustrationFace>();
 
+        handle = gameObject.transform.GetChild(0).GetChild(2).GetChild(0).GetComponent<Image>();
+        handle.color = new Color(handle.color.r, handle.color.g, handle.color.b, 0f);
+
         distancePerFrame = (endingY - startingY) / animTotalFrames;
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update()
+    {
         if (animCurrentFrame < animTargetFrame)
         {
             // utter jank here. to keep the position of the slider constant we detatch the slider before moving the mask, then reattach it before the frame has ended
@@ -75,3 +88,4 @@ public class SliderMask : MonoBehaviour {
         }
     }
 }
+
