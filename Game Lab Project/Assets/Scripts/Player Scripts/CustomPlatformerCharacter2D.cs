@@ -35,6 +35,7 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
 
     private PlayerStatistics playerStatistics;
     private Vector3 velocity = Vector3.zero;
+    private Vector2 normal;
 
     private void Awake()
     {
@@ -60,9 +61,13 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
         {
             RaycastHit2D hit = Physics2D.Raycast(m_GroundCheck.transform.position, -Vector2.up, k_GroundedRadius, m_WhatIsGround);
 
-            if(hit.collider != null && ((m_GroundCheck.transform.position.y > hit.point.y) || m_OnLadder))
+            if (hit.collider != null && ((m_GroundCheck.transform.position.y > hit.point.y) || m_OnLadder))
             {
-                Debug.Log(hit.collider.name);
+                normal = hit.normal;
+                // The normal gets whether or not this is a slope if inverted (y,x).
+                // Abs the normal, and it's a multiplier. The big problem now is that DIRECTION is not taken into account.
+                // Direction of motion is either 1 or -1. Going up a slope = 0.7, 0.7. Going down = 0.7, -0.7
+                Debug.Log(normal.y + ", " + (-normal.x));
                 m_Grounded = true;
                 m_RunLock = false;
 
@@ -71,6 +76,8 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
                     Debug.Log("Landed");
                 }
             }
+            else
+                normal = Vector2.up;
 
             // original ground check code.
 
@@ -93,7 +100,7 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
         }
 
 
-        if (m_GravityOnGround || (!m_GravityOnGround && !m_Grounded))
+        if ((m_GravityOnGround && normal.y == 1.0f) || (!m_GravityOnGround && !m_Grounded))
             m_Rigidbody2D.AddForce(Physics2D.gravity * m_GravityScale);
 
         m_Anim.SetBool("Grounded", m_Grounded);
@@ -148,7 +155,16 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
             m_TrueSpeed = (m_Running ? m_MaxSpeed * 1.5f : m_MaxSpeed);
 
             float m_yVelocity = m_Grounded && !m_OnLadder ? 0.0f: m_Rigidbody2D.velocity.y;
-            m_Rigidbody2D.velocity = new Vector2(move * m_TrueSpeed, m_yVelocity);
+
+            /*m_Rigidbody2D.velocity = m_Grounded && -normal.x <= 0 ? new Vector2(move * m_TrueSpeed * normal.y, m_yVelocity + (move * m_TrueSpeed * -normal.x)) 
+                : new Vector2(move * m_TrueSpeed, m_yVelocity);*/
+            if(m_Grounded && ((-normal.x * move) < 0))
+                m_Rigidbody2D.velocity = new Vector2((move * normal.y) * m_TrueSpeed, ((move * -normal.x) * m_TrueSpeed) + m_yVelocity);
+            else
+                m_Rigidbody2D.velocity = new Vector2(move * m_TrueSpeed, m_yVelocity);
+            //m_Rigidbody2D.velocity = new Vector2((move * normal.y) * m_TrueSpeed, ((move * -normal.x) * m_TrueSpeed) + m_yVelocity);
+
+
             m_Anim.SetFloat("Speed", Mathf.Abs(m_Rigidbody2D.velocity.x),.3f, Time.deltaTime);
 
             //Tells the player object if it's moving or not

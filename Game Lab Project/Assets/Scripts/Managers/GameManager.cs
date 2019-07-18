@@ -24,9 +24,14 @@ public class GameManager : MonoBehaviour {
     private Hashtable socialValues = new Hashtable();
     private string path;
 
+    // Dialogue Tree for hint offer
     [SerializeField]
     private DialogueTree hintOffer;
+
+    // List of current available hints
     private List<DialogueTree> hints = new List<DialogueTree>();
+
+    // List of health tips
     [SerializeField]
     private List<DialogueTree> healthTips = new List<DialogueTree>();
 
@@ -297,12 +302,18 @@ public class GameManager : MonoBehaviour {
     }
 
 
+    /// <summary>
+    /// Offers a hint to the player
+    /// </summary>
     public void OfferHint()
     {
         DialogueProcessor.instance.StartDialogue(hintOffer);
     }
 
 
+    /// <summary>
+    /// Shows a health tip to the player.
+    /// </summary>
     public void ShowHealthTip()
     {
         if (healthTips.Count > 0)

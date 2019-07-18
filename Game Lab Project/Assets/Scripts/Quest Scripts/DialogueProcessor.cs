@@ -34,7 +34,7 @@ public class DialogueProcessor : MonoBehaviour {
 
 	// If the current line of dialogue is the first line in a given tree
     private bool firstLine = true;
-
+    
     [Header("Automatic Text Params")]
     private IEnumerator textPrint;
     private bool isPrinting = false;
@@ -109,6 +109,9 @@ public class DialogueProcessor : MonoBehaviour {
                     currentDelay = currentNode.auto.autoSpeed;
                 else
                     currentDelay = characterDelay;
+
+                if (textPrint != null)
+                    StopCoroutine(textPrint);
 
                 textPrint = PrintText();
                 StartCoroutine(textPrint);
@@ -366,7 +369,9 @@ public class DialogueProcessor : MonoBehaviour {
     }
 
 
-
+    /// <summary>
+    /// Prints each character in the text string after a delay
+    /// </summary>
     private IEnumerator PrintText()
     {
         isPrinting = true;
@@ -386,6 +391,9 @@ public class DialogueProcessor : MonoBehaviour {
 
 
 
+    /// <summary>
+    /// Advances to the next dialogue node after a delay.
+    /// </summary>
     private IEnumerator NextAfterDelay()
     {
         yield return new WaitForSeconds(currentNode.auto.pauseBeforeNext);

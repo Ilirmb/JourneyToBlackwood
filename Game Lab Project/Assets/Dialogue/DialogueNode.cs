@@ -41,6 +41,9 @@ public class DialogueNode : Node
     }
 
 
+    /// <summary>
+    /// Parameters for automatic text printing
+    /// </summary>
     [System.Serializable]
     public class AutomaticTextParams
     {

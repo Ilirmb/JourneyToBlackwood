@@ -8,11 +8,14 @@ using UnityEngine;
 [RequireComponent(typeof(Collider2D))]
 public class HintArea : MonoBehaviour {
 
+    // List of hints
     [SerializeField]
     private List<DialogueTree> hints = new List<DialogueTree>();
 
+
     private void OnTriggerEnter2D(Collider2D other)
     {
+        // Change hint list
         if (other.CompareTag("Player"))
             GameManager.instance.UpdateHintList(hints);
     }
@@ -20,6 +23,7 @@ public class HintArea : MonoBehaviour {
 
     private void OnTriggerExit2D(Collider2D other)
     {
+        // Remove hint list
         if (other.CompareTag("Player"))
             GameManager.instance.UpdateHintList(new List<DialogueTree>());
     }
