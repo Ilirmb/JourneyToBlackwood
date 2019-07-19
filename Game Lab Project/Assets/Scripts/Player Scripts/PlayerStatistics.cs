@@ -259,9 +259,8 @@ public class PlayerStatistics : MonoBehaviour
     }
 
 
-    IEnumerator BreakTimer()
+    /*IEnumerator BreakTimer()
     {
-        Debug.Log("thth");
         Time.timeScale = 0.0f;
         yield return WaitForUnscaledSeconds(5f);
         Time.timeScale = 1.0f;
@@ -275,7 +274,7 @@ public class PlayerStatistics : MonoBehaviour
             yield return null;
             cur += Time.unscaledDeltaTime;
         }
-    }
+    }*/
 
 
     // Use this for initialization

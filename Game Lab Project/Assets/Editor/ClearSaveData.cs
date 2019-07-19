@@ -31,14 +31,17 @@ public class ClearSaveData : EditorWindow
 
     void OnGUI()
     {
+        // Label
         EditorGUILayout.LabelField("Delete all saved data?", EditorStyles.wordWrappedLabel);
         GUILayout.Space(30);
 
         GUILayout.BeginHorizontal();
 
+        // Do not delete. Close the window.
         if (GUILayout.Button("No"))
             this.Close();
 
+        // Delete and close.
         if (GUILayout.Button("Yes"))
         {
             ClearData();
@@ -47,6 +50,7 @@ public class ClearSaveData : EditorWindow
 
         GUILayout.EndHorizontal();
 
+        // Display this as a warning if no file exists
         if(!File.Exists(Application.persistentDataPath + "/progress.sav"))
             EditorGUILayout.LabelField("No save data found.", EditorStyles.wordWrappedLabel);
     }

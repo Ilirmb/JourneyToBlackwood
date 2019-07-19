@@ -41,6 +41,7 @@ public class DialogueProcessor : MonoBehaviour {
     private string textToDisplay = "";
 
     [SerializeField]
+    // Amount of time to wait before printing a character.
     private float characterDelay = 0.001f;
     private float currentDelay;
 
@@ -105,6 +106,7 @@ public class DialogueProcessor : MonoBehaviour {
                 textToDisplay = currentNode.dialogueText.Replace("[PLAYER]", "name");
                 speakerName.text = currentNode.dialogueSpeaker.Replace("[PLAYER]", "name");
 
+                // If the node is auto, use the delay in its auto params
                 if (currentNode.auto.isAuto)
                     currentDelay = currentNode.auto.autoSpeed;
                 else
@@ -152,6 +154,9 @@ public class DialogueProcessor : MonoBehaviour {
     } 
 
 
+    /// <summary>
+    /// Sets the NPC Face to either the node's NPC face, or disables it.
+    /// </summary>
     private void HandleNPCFace(Sprite s)
     {
         if(s == null)
@@ -377,6 +382,7 @@ public class DialogueProcessor : MonoBehaviour {
         isPrinting = true;
         textBox.text = "";
 
+        // Prints a character, then pauses for X seconds
         for(int i=0; i<textToDisplay.Length; i++)
         {
             textBox.text += textToDisplay[i];
@@ -385,6 +391,7 @@ public class DialogueProcessor : MonoBehaviour {
 
         isPrinting = false;
 
+        // If this is an auto node, jump to the next node after a delay
         if (currentNode.auto.isAuto)
             StartCoroutine(NextAfterDelay());
     }

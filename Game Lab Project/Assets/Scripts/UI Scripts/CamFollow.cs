@@ -76,7 +76,6 @@ public class CamFollow : MonoBehaviour {
                 horizontalDeadZoneCenter = 1 - hdzc;
 
             float offset = 5.0f * hdzc * playerMov.GetDirection();
-            Debug.Log(horizontalDeadZoneCenter);
 
             Vector3 newPos = new Vector3(player.position.x + offset, transform.position.y, -10f);
 

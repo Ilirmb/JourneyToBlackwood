@@ -64,10 +64,6 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
             if (hit.collider != null && ((m_GroundCheck.transform.position.y > hit.point.y) || m_OnLadder))
             {
                 normal = hit.normal;
-                // The normal gets whether or not this is a slope if inverted (y,x).
-                // Abs the normal, and it's a multiplier. The big problem now is that DIRECTION is not taken into account.
-                // Direction of motion is either 1 or -1. Going up a slope = 0.7, 0.7. Going down = 0.7, -0.7
-                Debug.Log(normal.y + ", " + (-normal.x));
                 m_Grounded = true;
                 m_RunLock = false;
 

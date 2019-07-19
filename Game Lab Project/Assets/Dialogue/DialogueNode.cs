@@ -47,9 +47,14 @@ public class DialogueNode : Node
     [System.Serializable]
     public class AutomaticTextParams
     {
+        // Whether or not node is automatic.
         public bool isAuto = false;
+
+        // Delay between each character.
         [Range(0, 1)]
         public float autoSpeed;
+
+        // Delay between this node completing and the next one starting.
         [Range(0, 10)]
         public float pauseBeforeNext;
     }
@@ -207,6 +212,7 @@ public class DialogueAction
     // finishQuest finishes the quest and prevents it from being interacted with again. Call this for the last node in quest success or failed trees.
     // destroyAllQuestItems removes all quest items related to a current quest from the field.
     // affectSocialValue affects a specific social value.
+    // showHint attempts to show a hint. 
     public enum Action
     { rejectQuest, acceptQuest, completeQuest, collectQuestItem, destroyQuestItem,
         affectFriendship, increaseStamina, finishQuest, destroyAllQuestItems, affectSocialValue, showHint };
