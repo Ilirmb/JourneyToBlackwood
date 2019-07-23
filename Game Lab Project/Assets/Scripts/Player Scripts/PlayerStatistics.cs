@@ -11,7 +11,13 @@ public class PlayerStatistics : MonoBehaviour
     private float damageOverTime = 0;
     public float stamina = 100;
     public float maxStamina = 100;
+    
+    // Frustration variables
     public float frustration = 0;
+    private bool highFrustration;
+    private int frustrationCount;
+    private int highFrustrationCount;
+    private float timeLeft = 15f;
 
     [Tooltip("The distance a player has to walk before they take one 'GameConst.STAMINA_DRAIN_PER_DISTANCE_WALKED' worth of stamina damage")]
     public float walkDistanceToDamageStam = 4.0f;
@@ -70,6 +76,26 @@ public class PlayerStatistics : MonoBehaviour
     {
         //Slider value is between 0 and 10 so we can multiply it by itself to get an exponential curve between 0 and 100
         frustration = (Mathf.Pow(sliderValue,2));
+
+        // Player has felt frustrated.
+        if ((Mathf.Pow(sliderValue, 2)) > frustration)
+            frustrationCount++;
+        
+        // High frustration
+        if(frustration >= 70.0f)
+        {
+            // Number of times player has been at high frustration.
+            highFrustrationCount++;
+
+            // Show a health tip if the player has been at high frustration too many times
+            if (highFrustrationCount > 3)
+            {
+                GameManager.instance.ShowHealthTip();
+                highFrustrationCount = 0;
+            }
+            else
+                GameManager.instance.OfferHint();
+        }
     }
 
 
@@ -233,6 +259,24 @@ public class PlayerStatistics : MonoBehaviour
     }
 
 
+    /*IEnumerator BreakTimer()
+    {
+        Time.timeScale = 0.0f;
+        yield return WaitForUnscaledSeconds(5f);
+        Time.timeScale = 1.0f;
+    }
+
+    IEnumerator WaitForUnscaledSeconds(float dur)
+    {
+        var cur = 0f;
+        while (cur < dur)
+        {
+            yield return null;
+            cur += Time.unscaledDeltaTime;
+        }
+    }*/
+
+
     // Use this for initialization
     void Start () {
 
@@ -253,6 +297,31 @@ public class PlayerStatistics : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /*if (frustration >= 70f && timeLeft > 0f)
+        {
+            highFrustration = true;
+            timeLeft -= Time.deltaTime;
+        }
+        if (frustration < 70f)
+        {
+            highFrustration = false;
+            timeLeft = 15f;
+        }
+        if (timeLeft <= 0)
+        {
+            //hint here
+            Debug.Log("Frustration High");
+            frustrationCount++;
+            timeLeft = 15f;
+        }
+
+        // Pause the game
+        if (frustrationCount >= 3)
+        {
+            //StartCoroutine(BreakTimer());
+            frustrationCount = 0;
+        }*/
+
 
         if (invulnTimer > 0)
         {

@@ -34,13 +34,14 @@ public class DialogueProcessor : MonoBehaviour {
 
 	// If the current line of dialogue is the first line in a given tree
     private bool firstLine = true;
-
+    
     [Header("Automatic Text Params")]
     private IEnumerator textPrint;
     private bool isPrinting = false;
     private string textToDisplay = "";
 
     [SerializeField]
+    // Amount of time to wait before printing a character.
     private float characterDelay = 0.001f;
     private float currentDelay;
 
@@ -105,10 +106,14 @@ public class DialogueProcessor : MonoBehaviour {
                 textToDisplay = currentNode.dialogueText.Replace("[PLAYER]", "name");
                 speakerName.text = currentNode.dialogueSpeaker.Replace("[PLAYER]", "name");
 
+                // If the node is auto, use the delay in its auto params
                 if (currentNode.auto.isAuto)
                     currentDelay = currentNode.auto.autoSpeed;
                 else
                     currentDelay = characterDelay;
+
+                if (textPrint != null)
+                    StopCoroutine(textPrint);
 
                 textPrint = PrintText();
                 StartCoroutine(textPrint);
@@ -149,6 +154,9 @@ public class DialogueProcessor : MonoBehaviour {
     } 
 
 
+    /// <summary>
+    /// Sets the NPC Face to either the node's NPC face, or disables it.
+    /// </summary>
     private void HandleNPCFace(Sprite s)
     {
         if(s == null)
@@ -241,6 +249,11 @@ public class DialogueProcessor : MonoBehaviour {
                     else
                         Debug.LogError("Param Error: too many or few parameters!");
                     break;
+
+                // Display a hint
+                case DialogueAction.Action.showHint:
+                    GameManager.instance.ShowHint();
+                    break;
             }
         }
     }
@@ -265,7 +278,7 @@ public class DialogueProcessor : MonoBehaviour {
         }
 
         // Last one in the list
-        if ((CountNumActiveChildren() == 0 && !firstLine) || currentNode == null)
+        if ((CountNumActiveChildren() == 0) || currentNode == null)
         {
 			// Enables the player's movement, and allows the quest giver to be interacted with again
             dialogueUI.SetActive(false);
@@ -361,12 +374,15 @@ public class DialogueProcessor : MonoBehaviour {
     }
 
 
-
+    /// <summary>
+    /// Prints each character in the text string after a delay
+    /// </summary>
     private IEnumerator PrintText()
     {
         isPrinting = true;
         textBox.text = "";
 
+        // Prints a character, then pauses for X seconds
         for(int i=0; i<textToDisplay.Length; i++)
         {
             textBox.text += textToDisplay[i];
@@ -375,12 +391,16 @@ public class DialogueProcessor : MonoBehaviour {
 
         isPrinting = false;
 
+        // If this is an auto node, jump to the next node after a delay
         if (currentNode.auto.isAuto)
             StartCoroutine(NextAfterDelay());
     }
 
 
 
+    /// <summary>
+    /// Advances to the next dialogue node after a delay.
+    /// </summary>
     private IEnumerator NextAfterDelay()
     {
         yield return new WaitForSeconds(currentNode.auto.pauseBeforeNext);
