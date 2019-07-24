@@ -179,10 +179,12 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
             m_Grounded = false;
             m_Anim.SetBool("Grounded", false);
             m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x, 0.0f);
-            m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
+
+            m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce * normal.y));
+
 
             // Prevents an issue that occasionally stops the player from jumping due to oddities with the ground check.
-            StartCoroutine(DisableGroundCheck());
+            StartCoroutine(DisableGroundCheck(0.1f));
 
             // Set a flag that says the player was running if they were
             m_RunLock = m_Running;
@@ -243,11 +245,11 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
     }
     
 
-    private IEnumerator DisableGroundCheck()
+    private IEnumerator DisableGroundCheck(float time)
     {
         m_CanCheckGrounded = false;
 
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(time);
 
         m_CanCheckGrounded = true;
     }
