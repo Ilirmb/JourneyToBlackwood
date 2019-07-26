@@ -52,4 +52,10 @@ public class loadScene : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
+
+
+    public static int GetCurrentSceneIndex()
+    {
+        return SceneManager.GetActiveScene().buildIndex;
+    }
 }

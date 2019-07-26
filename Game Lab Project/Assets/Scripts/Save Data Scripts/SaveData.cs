@@ -6,5 +6,7 @@ using UnityEngine;
 public class SaveData {
     
     public Hashtable socialValues;
+    public Hashtable friendshipValues;
+    public List<QuestData> questData;
 
 }

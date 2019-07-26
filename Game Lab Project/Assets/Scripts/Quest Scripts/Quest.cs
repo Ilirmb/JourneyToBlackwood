@@ -55,8 +55,13 @@ public class Quest : MonoBehaviour {
 
     // This will be saved and loaded
     private int friendship = 0;
+    [SerializeField]
+    private int friendshipThresholdForActivation = 0;
 
     private Collider2D col;
+
+    [SerializeField]
+    private bool removeItemsIfInactive = false;
 
 
     // Use this for initialization
@@ -69,10 +74,25 @@ public class Quest : MonoBehaviour {
         {
             qi.SetOwner(this);
         }
-		
-		// This will eventually need to check if this quest should be active.
-		// Ex: Rogue quests are disabled if the first rogue quest is not completed. This will check the saved friendship value for the quest giver
-        // Friendship saving isn't in yet, so for now, quests are active 100% of the time.
+
+        // This will eventually need to check if this quest should be active.
+        // Ex: Rogue quests are disabled if the first rogue quest is not completed. This will check the saved friendship value for the quest giver
+
+        if (friendship < friendshipThresholdForActivation)
+        {
+            if (removeItemsIfInactive)
+            {
+                foreach (QuestItem item in questItems)
+                    item.gameObject.SetActive(false);
+            }
+
+            transform.gameObject.SetActive(false);
+            return;
+        }
+
+        // Yes, this is actually needed to fix issues.
+        col.enabled = false;
+        col.enabled = true;
 
 	}
 
@@ -308,4 +328,51 @@ public class Quest : MonoBehaviour {
     {
         activeItem = qi;
     }
+
+
+    public void LoadQuestState(QuestData data)
+    {
+        // Eventually, this will be called from the GameManager
+
+        if (data.cleared)
+        {
+            clicked = true;
+            cleared = true;
+            firstEncounter = false;
+            currentState = QuestState.finished;
+        }
+
+        friendship = data.friendship;
+
+        Debug.Log("Loaded: " + data.cleared);
+    }
+
+
+    public QuestData SaveQuestData()
+    {
+        QuestData data = new QuestData();
+
+        // Unless someone isn't paying attention, this will be unique for all quests.
+        data.questHash = characterName + questIntro.name + rejectedDialogue.name + activeDialogue.name + failedDialogue.name + finishedDialogue.name;
+
+        data.owner = characterName;
+        data.friendship = friendship;
+        data.cleared = cleared;
+
+        return data;
+    }
+}
+
+
+/// <summary>
+/// Serialized representation of a Quest.
+/// </summary>
+[System.Serializable]
+public class QuestData
+{
+    public string questHash;
+
+    public string owner;
+    public int friendship;
+    public bool cleared;
 }

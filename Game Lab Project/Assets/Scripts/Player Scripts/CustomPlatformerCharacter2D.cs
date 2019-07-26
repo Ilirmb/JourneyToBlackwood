@@ -96,8 +96,13 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
         }
 
 
-        if ((m_GravityOnGround && normal.y == 1.0f) || (!m_GravityOnGround && !m_Grounded))
+        if ((m_GravityOnGround) || (!m_GravityOnGround && !m_Grounded))
+        {
             m_Rigidbody2D.AddForce(Physics2D.gravity * m_GravityScale);
+
+            if (m_GravityOnGround && m_Grounded)
+                m_Rigidbody2D.AddForce(-Physics2D.gravity * m_GravityScale);
+        }
 
         m_Anim.SetBool("Grounded", m_Grounded);
 
@@ -180,7 +185,8 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
             m_Anim.SetBool("Grounded", false);
             m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x, 0.0f);
 
-            m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce * normal.y));
+            Debug.Log(normal.y);
+            m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce), ForceMode2D.Force);
 
 
             // Prevents an issue that occasionally stops the player from jumping due to oddities with the ground check.

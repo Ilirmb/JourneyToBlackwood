@@ -22,6 +22,8 @@ public class GameManager : MonoBehaviour {
     private Rigidbody2D playerRb2d;
     
     private Hashtable socialValues = new Hashtable();
+    private Hashtable friendshipValues = new Hashtable();
+    private List<QuestData> questData = new List<QuestData>();
     private string path;
 
     // Dialogue Tree for hint offer
@@ -239,11 +241,16 @@ public class GameManager : MonoBehaviour {
     {
         Debug.Log("Saving...");
 
+        GatherQuestData();
+
         BinaryFormatter bf = new BinaryFormatter();
         FileStream stream = new FileStream(path, FileMode.Create);
         
         SaveData saveData = new SaveData();
+
         saveData.socialValues = socialValues;
+        saveData.friendshipValues = friendshipValues;
+        saveData.questData = questData;
 
         bf.Serialize(stream, saveData);
         stream.Close();
@@ -266,12 +273,66 @@ public class GameManager : MonoBehaviour {
             FileStream stream = new FileStream(Application.persistentDataPath + "/progress.sav", FileMode.Open);
 
             SaveData saveData = bf.Deserialize(stream) as SaveData;
-            socialValues = saveData.socialValues;
 
-            if(socialValues.ContainsKey("test"))
-                Debug.Log(socialValues["test"]);
+            socialValues = saveData.socialValues;
+            friendshipValues = saveData.friendshipValues;
+            questData = saveData.questData;
 
             stream.Close();
+
+            LoadQuestData();
+        }
+    }
+
+
+    /// <summary>
+    /// Gathers all quests in the scene, serializes them, and saves everything.
+    /// </summary>
+    private void GatherQuestData()
+    {
+        Quest[] questsInScene = FindObjectsOfType<Quest>();
+
+        foreach (Quest q in questsInScene)
+        {
+            QuestData qd = q.SaveQuestData();
+
+            if (friendshipValues.ContainsKey(qd.owner))
+                friendshipValues[qd.owner] = (qd.friendship + (int)friendshipValues[qd.owner]);
+            else
+                friendshipValues.Add(qd.owner, qd.friendship);
+
+            QuestData savedData = questData.Find(d => d.questHash.Equals(qd.questHash));
+
+            if (savedData != null)
+                questData.Remove(savedData);
+
+            questData.Add(qd);
+
+            // Needs testing badly.
+        }
+    }
+
+
+    /// <summary>
+    /// Loads the quest data
+    /// </summary>
+    private void LoadQuestData()
+    {
+        Quest[] questsInScene = FindObjectsOfType<Quest>();
+
+        foreach (Quest q in questsInScene)
+        {
+            QuestData qd = q.SaveQuestData();
+
+            if (friendshipValues.ContainsKey(qd.owner))
+                qd.friendship = ((int)friendshipValues[qd.owner]);
+
+            QuestData savedData = questData.Find(d => d.questHash.Equals(qd.questHash));
+
+            if (savedData != null)
+                qd.cleared = savedData.cleared;
+
+            q.LoadQuestState(qd);
         }
     }
 
