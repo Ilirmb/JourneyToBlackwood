@@ -307,8 +307,6 @@ public class GameManager : MonoBehaviour {
                 questData.Remove(savedData);
 
             questData.Add(qd);
-
-            // Needs testing badly.
         }
     }
 
@@ -330,10 +328,19 @@ public class GameManager : MonoBehaviour {
             QuestData savedData = questData.Find(d => d.questHash.Equals(qd.questHash));
 
             if (savedData != null)
+            {
                 qd.cleared = savedData.cleared;
+                qd.failed = savedData.failed;
+            }
 
             q.LoadQuestState(qd);
         }
+    }
+
+
+    public QuestData LoadSpecificQuest(string questName)
+    {
+        return questData.Find(d => d.questHash.Equals(questName));
     }
 
     #endregion
