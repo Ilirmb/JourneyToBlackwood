@@ -200,6 +200,9 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
             if (m_OnLadder)
                 m_OnLadder = false;
         }
+
+        if(m_OnLadder && Mathf.Abs(move) > 0.75f)
+            m_OnLadder = false;
     }
 
 

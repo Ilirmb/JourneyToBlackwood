@@ -8,8 +8,8 @@ public class Tutorial : MonoBehaviour {
     [SerializeField]
     private Text tutorialText;
 
-    [SerializeField]
-    private float displayTime = 5.0f;
+    /*[SerializeField]
+    private float displayTime = 5.0f;*/
 
     [SerializeField]
     private Checkpoint initialCheckpoint;
@@ -24,14 +24,10 @@ public class Tutorial : MonoBehaviour {
     private bool staminaDrain = false;
 
     [Header("Text displays")]
-    [SerializeField]
-    private string hpLowText = "HP is low";
-    [SerializeField]
-    private string hpRecoverText = "HP recovers";
-    [SerializeField]
-    private string frustrationText = "Use slider to adjust difficulty";
-    [SerializeField]
-    private string staminaDrainText = "HP drains as you move";
+    public DialogueTree hpLowText;
+    public DialogueTree hpRecoverText;
+    public DialogueTree frustrationText;
+    public DialogueTree staminaDrainText;
 
 
     void Start()
@@ -47,21 +43,21 @@ public class Tutorial : MonoBehaviour {
         if(!hpLow && player.stamina <= 20.0f)
         {
             hpLow = true;
-            DisplayText = TutorialTextDisplay(hpLowText);
+            DialogueProcessor.instance.StartDialogue(hpLowText, true);
             StartCoroutine(DisplayText);
         }
 
         if (!staminaDrain && player.stamina <= 95.0f)
         {
             staminaDrain = true;
-            DisplayText = TutorialTextDisplay(staminaDrainText);
+            DialogueProcessor.instance.StartDialogue(staminaDrainText, true);
             StartCoroutine(DisplayText);
         }
 
         if(!hpRecover && player.checkpoint == initialCheckpoint)
         {
             hpRecover = true;
-            DisplayText = TutorialTextDisplay(hpRecoverText);
+            DialogueProcessor.instance.StartDialogue(hpRecoverText, true);
             StartCoroutine(DisplayText);
         }
 
@@ -69,24 +65,26 @@ public class Tutorial : MonoBehaviour {
         if (!frustration && PlayerStatistics.numPlayerDeaths > 1)
         {
             frustration = true;
-            DisplayText = TutorialTextDisplay(frustrationText);
-            StartCoroutine(DisplayText);
+            DialogueProcessor.instance.StartDialogue(frustrationText, true);
         }
 
     }
 
 
-    private IEnumerator TutorialTextDisplay(string n)
+    /*private IEnumerator TutorialTextDisplay(DialogueTree dt)
     {
         displayingText = true;
 
-        tutorialText.text = n;
+        //tutorialText.text = n;
         tutorialText.CrossFadeAlpha(1.0f, 1.0f, false);
+
+        DialogueProcessor.instance.StartDialogue(dt, true);
+        
 
         yield return new WaitForSeconds(displayTime);
 
         tutorialText.CrossFadeAlpha(0.0f, 1.0f, false);
 
         displayingText = false;
-    }
+    }*/
 }
