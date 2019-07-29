@@ -50,6 +50,8 @@ public class CustomPlatformer2DUserControl : MonoBehaviour
 
             previousFrame = CrossPlatformInputManager.GetAxis("Horizontal");
         }
+        else
+            m_Character.Move(0, false, false, false);
     }
 
 

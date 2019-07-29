@@ -17,12 +17,15 @@ public class QuestTrigger : MonoBehaviour {
 
         if (!GetComponent<Collider2D>().isTrigger)
             GetComponent<Collider2D>().isTrigger = true;
+
+        if (quest.GetCurrentState().Equals(Quest.QuestState.finished))
+            gameObject.SetActive(false);
     }
 
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag("Player") && !quest.GetCurrentState().Equals(Quest.QuestState.finished))
         {
             // Runs the quest and disables the trigger.
             quest.ProcessClick();

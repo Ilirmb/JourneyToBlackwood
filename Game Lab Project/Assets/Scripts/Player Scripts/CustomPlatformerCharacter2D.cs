@@ -13,6 +13,7 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
     [SerializeField] private float m_RunMultiplier = 1.5f;
     [SerializeField] private float m_GravityScale = 3.0f;
     [SerializeField] private bool m_GravityOnGround = true;
+    [SerializeField] private bool m_SlideDownSlope = false;
 
     private Transform m_GroundCheck;    // A position marking where to check if the player is grounded.
     private float m_TrueSpeed;
@@ -96,8 +97,13 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
         }
 
 
-        if ((m_GravityOnGround && normal.y == 1.0f) || (!m_GravityOnGround && !m_Grounded))
+        if ((m_GravityOnGround) || (!m_GravityOnGround && !m_Grounded))
+        {
             m_Rigidbody2D.AddForce(Physics2D.gravity * m_GravityScale);
+        }
+
+        if(!m_SlideDownSlope && m_Grounded && normal.y != 1.0f)
+            m_Rigidbody2D.AddForce(-Physics2D.gravity * m_GravityScale);
 
         m_Anim.SetBool("Grounded", m_Grounded);
 
@@ -179,10 +185,12 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
             m_Grounded = false;
             m_Anim.SetBool("Grounded", false);
             m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x, 0.0f);
-            m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
+
+            m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce), ForceMode2D.Force);
+
 
             // Prevents an issue that occasionally stops the player from jumping due to oddities with the ground check.
-            StartCoroutine(DisableGroundCheck());
+            StartCoroutine(DisableGroundCheck(0.1f));
 
             // Set a flag that says the player was running if they were
             m_RunLock = m_Running;
@@ -243,11 +251,11 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
     }
     
 
-    private IEnumerator DisableGroundCheck()
+    private IEnumerator DisableGroundCheck(float time)
     {
         m_CanCheckGrounded = false;
 
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(time);
 
         m_CanCheckGrounded = true;
     }

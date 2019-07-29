@@ -17,7 +17,10 @@ public class Quest : MonoBehaviour {
     public enum QuestState { inactive, start, active, rejected, completed, failed, finished };
 
     private QuestState currentState = QuestState.inactive;
-    
+
+    [SerializeField]
+    private string questName;
+
     [SerializeField]
     // The name of the character who gives the quest
     private string characterName;
@@ -38,6 +41,7 @@ public class Quest : MonoBehaviour {
     private bool rejected = false;
     private bool clicked = false;
 	private bool cleared = false;
+    private bool failed = false;
 
     // Dialogue assets
     [SerializeField]
@@ -53,10 +57,18 @@ public class Quest : MonoBehaviour {
     [SerializeField]
     private DialogueTree finishedDialogue;
 
+    [Header("Conditions to Activate")]
+    public int friendshipThreshold = 0;
+    [SerializeField]
+    private List<string> questsRequired = new List<string>();
+
     // This will be saved and loaded
     private int friendship = 0;
 
     private Collider2D col;
+
+    [SerializeField]
+    private bool removeItemsIfInactive = false;
 
 
     // Use this for initialization
@@ -69,12 +81,54 @@ public class Quest : MonoBehaviour {
         {
             qi.SetOwner(this);
         }
-		
-		// This will eventually need to check if this quest should be active.
-		// Ex: Rogue quests are disabled if the first rogue quest is not completed. This will check the saved friendship value for the quest giver
-        // Friendship saving isn't in yet, so for now, quests are active 100% of the time.
+
+        // This checks if the quest should be active.
+        // Ex: Rogue quests are disabled if the first rogue quest is not completed.
+        // This will check the saved friendship value for the quest giver and a list of quest names.
+
+        if (friendship < friendshipThreshold || failed)
+        {
+            DisableQuest();
+            return;
+        }
+
+        foreach (string name in questsRequired)
+        {
+            QuestData qd = GameManager.instance.LoadSpecificQuest(name);
+
+            if(qd != null && (!qd.cleared || qd.failed))
+            {
+                DisableQuest();
+                return;
+            }
+        }
+
+        if (cleared)
+        {
+            foreach (QuestItem item in questItems)
+                item.gameObject.SetActive(false);
+        }
+
+        // Yes, this is actually needed to fix issues.
+        col.enabled = false;
+        col.enabled = true;
 
 	}
+
+
+    /// <summary>
+    /// Disables a quest. This should only be called if the quest preconditions are not met.
+    /// </summary>
+    public void DisableQuest()
+    {
+        if (removeItemsIfInactive)
+        {
+            foreach (QuestItem item in questItems)
+                item.gameObject.SetActive(false);
+        }
+
+        transform.gameObject.SetActive(false);
+    }
 
 	
 	/// <summary>
@@ -237,6 +291,8 @@ public class Quest : MonoBehaviour {
     public void FailQuest()
     {
         currentState = QuestState.failed;
+        failed = true;
+        Debug.Log("Failed");
     }
 	#endregion
 
@@ -308,4 +364,54 @@ public class Quest : MonoBehaviour {
     {
         activeItem = qi;
     }
+
+
+    public void LoadQuestState(QuestData data)
+    {
+        // Eventually, this will be called from the GameManager
+
+        if (data.cleared)
+        {
+            clicked = true;
+            cleared = true;
+            firstEncounter = false;
+            currentState = QuestState.finished;
+        }
+
+        friendship = data.friendship;
+        failed = data.failed;
+    }
+
+
+    public QuestData SaveQuestData()
+    {
+        QuestData data = new QuestData();
+
+        // Unless someone isn't paying attention, this will be unique for all quests.
+        // If the quest is unnamed, it will default to a gross combination of strings to ensure it's unique.
+        data.questHash = !questName.Equals("") ? questName :
+            characterName + questIntro.name + rejectedDialogue.name + activeDialogue.name + failedDialogue.name + finishedDialogue.name;
+
+        data.owner = characterName;
+        data.friendship = friendship;
+        data.cleared = cleared;
+        data.failed = failed;
+
+        return data;
+    }
+}
+
+
+/// <summary>
+/// Serialized representation of a Quest.
+/// </summary>
+[System.Serializable]
+public class QuestData
+{
+    public string questHash;
+
+    public string owner;
+    public int friendship;
+    public bool cleared;
+    public bool failed;
 }
