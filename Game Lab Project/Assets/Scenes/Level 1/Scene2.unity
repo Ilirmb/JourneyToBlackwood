@@ -27770,55 +27770,6 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 224995394879705160, guid: 894dc8164b13b4343aeaceb9f27fcf03,
-        type: 2}
-      propertyPath: m_AnchoredPosition.x
-      value: 110
-      objectReference: {fileID: 0}
-    - target: {fileID: 224995394879705160, guid: 894dc8164b13b4343aeaceb9f27fcf03,
-        type: 2}
-      propertyPath: m_AnchoredPosition.y
-      value: -62.89682
-      objectReference: {fileID: 0}
-    - target: {fileID: 224682575152365032, guid: 894dc8164b13b4343aeaceb9f27fcf03,
-        type: 2}
-      propertyPath: m_AnchoredPosition.x
-      value: 110
-      objectReference: {fileID: 0}
-    - target: {fileID: 224682575152365032, guid: 894dc8164b13b4343aeaceb9f27fcf03,
-        type: 2}
-      propertyPath: m_AnchoredPosition.y
-      value: -192.89682
-      objectReference: {fileID: 0}
-    - target: {fileID: 224818020377189542, guid: 894dc8164b13b4343aeaceb9f27fcf03,
-        type: 2}
-      propertyPath: m_AnchoredPosition.x
-      value: 295
-      objectReference: {fileID: 0}
-    - target: {fileID: 224818020377189542, guid: 894dc8164b13b4343aeaceb9f27fcf03,
-        type: 2}
-      propertyPath: m_AnchoredPosition.y
-      value: -62.89682
-      objectReference: {fileID: 0}
-    - target: {fileID: 224781240955330650, guid: 894dc8164b13b4343aeaceb9f27fcf03,
-        type: 2}
-      propertyPath: m_AnchoredPosition.x
-      value: 295
-      objectReference: {fileID: 0}
-    - target: {fileID: 224781240955330650, guid: 894dc8164b13b4343aeaceb9f27fcf03,
-        type: 2}
-      propertyPath: m_AnchoredPosition.y
-      value: -192.89682
-      objectReference: {fileID: 0}
-    - target: {fileID: 1281726053617300, guid: 894dc8164b13b4343aeaceb9f27fcf03, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114671303020468612, guid: 894dc8164b13b4343aeaceb9f27fcf03,
-        type: 2}
-      propertyPath: m_FontData.m_Alignment
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 894dc8164b13b4343aeaceb9f27fcf03, type: 2}
   m_IsPrefabAsset: 0
@@ -28048,7 +27999,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1782651026
 RectTransform:
   m_ObjectHideFlags: 0
@@ -28521,12 +28472,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tutorialText: {fileID: 1782651027}
-  displayTime: 5
   initialCheckpoint: {fileID: 1514813854}
-  hpLowText: HP is low
-  hpRecoverText: HP recovers
-  frustrationText: Use slider to adjust difficulty
-  staminaDrainText: HP drains as you move
+  hpLowText: {fileID: 11400000, guid: a669df9b663fb044fa4464bb1f36c042, type: 2}
+  hpRecoverText: {fileID: 11400000, guid: 4bd248aaca5493945b4cc1cd1c09e608, type: 2}
+  frustrationText: {fileID: 11400000, guid: 38ece0f8cc906c94ea80b78e803ccb10, type: 2}
+  staminaDrainText: {fileID: 11400000, guid: d6692cfc8074cab448a80c9248b6ba73, type: 2}
 --- !u!1 &2021565834
 GameObject:
   m_ObjectHideFlags: 0

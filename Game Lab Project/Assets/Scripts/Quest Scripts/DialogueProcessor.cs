@@ -21,7 +21,11 @@ public class DialogueProcessor : MonoBehaviour {
     [SerializeField]
     private Text textBox;
     [SerializeField]
+    private Text topTextBox;
+    [SerializeField]
     private Text speakerName;
+    [SerializeField]
+    private Text topSpeakerName;
     [SerializeField]
     private Image face;
 
@@ -46,6 +50,7 @@ public class DialogueProcessor : MonoBehaviour {
     private float currentDelay;
 
     private bool forceNext = false;
+    private bool useTopTextBox = false;
 
     
     void Start()
@@ -83,6 +88,7 @@ public class DialogueProcessor : MonoBehaviour {
         currentNode = tree.GetFirstNode();
 
         firstLine = true;
+        useTopTextBox = false;
 
         ProcessCurrentNode();
         dialogueUI.SetActive(true);
@@ -92,9 +98,28 @@ public class DialogueProcessor : MonoBehaviour {
     }
 
 
-	/// <summary>
-	/// Processes the current selected node
-	/// </summary>
+    /// <summary>
+    /// Begins a dialogue.
+    /// </summary>
+    public void StartDialogue(DialogueTree tree, bool allowMovement)
+    {
+        currentTree = tree;
+        currentNode = tree.GetFirstNode();
+
+        firstLine = true;
+        useTopTextBox = allowMovement;
+
+        ProcessCurrentNode();
+        dialogueUI.SetActive(true);
+
+        if(!allowMovement)
+            GameManager.instance.DisablePlayerMovement();
+    }
+
+
+    /// <summary>
+    /// Processes the current selected node
+    /// </summary>
     private void ProcessCurrentNode()
     {
         switch (currentNode.dialogueNodeType)
@@ -105,6 +130,7 @@ public class DialogueProcessor : MonoBehaviour {
 				// Update the textbox , name, and face
                 textToDisplay = currentNode.dialogueText.Replace("[PLAYER]", "name");
                 speakerName.text = currentNode.dialogueSpeaker.Replace("[PLAYER]", "name");
+                topSpeakerName.text = speakerName.text;
 
                 // If the node is auto, use the delay in its auto params
                 if (currentNode.auto.isAuto)
@@ -115,11 +141,23 @@ public class DialogueProcessor : MonoBehaviour {
                 if (textPrint != null)
                     StopCoroutine(textPrint);
 
-                textPrint = PrintText();
+                Text target = useTopTextBox ? topTextBox : textBox;
+
+                textPrint = PrintText(target);
                 StartCoroutine(textPrint);
 
-
-                HandleNPCFace(currentNode.dialogueSprite);
+                if (useTopTextBox)
+                {
+                    HandleNPCFace(null);
+                    textBox.transform.parent.gameObject.SetActive(false);
+                    topTextBox.transform.parent.gameObject.SetActive(true);
+                }
+                else
+                {
+                    HandleNPCFace(currentNode.dialogueSprite);
+                    textBox.transform.parent.gameObject.SetActive(true);
+                    topTextBox.transform.parent.gameObject.SetActive(false);
+                }
 
 				// Enable the advance button so the dialogue can be advanced
                 advanceButton.gameObject.SetActive(true);
@@ -377,15 +415,15 @@ public class DialogueProcessor : MonoBehaviour {
     /// <summary>
     /// Prints each character in the text string after a delay
     /// </summary>
-    private IEnumerator PrintText()
+    private IEnumerator PrintText(Text target)
     {
         isPrinting = true;
-        textBox.text = "";
+        target.text = "";
 
         // Prints a character, then pauses for X seconds
         for(int i=0; i<textToDisplay.Length; i++)
         {
-            textBox.text += textToDisplay[i];
+            target.text += textToDisplay[i];
             yield return new WaitForSeconds(currentDelay);
         }
 

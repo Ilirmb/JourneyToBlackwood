@@ -93,7 +93,6 @@ public class Ladder : MonoBehaviour
 
             if ((!player.GetOnLadder() && onLadder) || (player.vspeed < -0.5f && playerRigidbody.velocity.y == 0.0f && onLadder))
             {
-                Debug.Log("Glitch");
                 getOffLadder(.5f);
             }
         }
