@@ -383,6 +383,9 @@ public class Quest : MonoBehaviour {
     }
 
 
+    /// <summary>
+    /// Returns a QuestData object that represents a quest. This data can then be saved to an external file.
+    /// </summary>
     public QuestData SaveQuestData()
     {
         QuestData data = new QuestData();

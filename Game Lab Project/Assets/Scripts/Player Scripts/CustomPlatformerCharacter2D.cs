@@ -38,6 +38,14 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
     private Vector3 velocity = Vector3.zero;
     private Vector2 normal;
 
+
+    #region Gameplay Ref
+
+    private Ladder ladderRef;
+
+    #endregion
+
+
     private void Awake()
     {
         // Setting up references.
@@ -201,7 +209,7 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
                 m_OnLadder = false;
         }
 
-        if(m_OnLadder && Mathf.Abs(move) > 0.75f)
+        if(m_OnLadder && Mathf.Abs(move) > 0.75f && ladderRef.GetOnTime() <= 0.0f)
             m_OnLadder = false;
     }
 
@@ -276,9 +284,10 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
     }
 
 
-    public void SetOnLadder(bool state)
+    public void SetOnLadder(bool state, Ladder l)
     {
         m_OnLadder = state;
+        ladderRef = l;
     }
 
 

@@ -10,6 +10,7 @@ public class Ladder : MonoBehaviour
     private static CustomPlatformerCharacter2D player;
     private static Rigidbody2D playerRigidbody;
     private float gravity;
+    private float onTime;
     private float attachDowntime;
     private bool canHoldToAttach;
 
@@ -43,7 +44,8 @@ public class Ladder : MonoBehaviour
         if (attachDowntime <= 0)
         {
             onLadder = true;
-            player.SetOnLadder(onLadder);
+            onTime = 0.25f;
+            player.SetOnLadder(onLadder, this);
 
             this.gameObject.layer = 8; //8 is ground
             player.SetGravityScale(0);
@@ -51,6 +53,12 @@ public class Ladder : MonoBehaviour
             playerRigidbody.transform.position = new Vector2(this.gameObject.transform.position.x, playerRigidbody.transform.position.y);
             playerRigidbody.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
         }
+    }
+
+
+    public float GetOnTime()
+    {
+        return onTime;
     }
 
 
@@ -72,7 +80,7 @@ public class Ladder : MonoBehaviour
         attachDowntime = downtime;
 
         if ((player.vspeed < -0.5f && playerRigidbody.velocity.y == 0.0f && onLadder))
-            player.SetOnLadder(false);
+            player.SetOnLadder(false, null);
     }
 
 
@@ -111,5 +119,8 @@ public class Ladder : MonoBehaviour
     {
         if (attachDowntime > 0)
             attachDowntime -= Time.deltaTime;
+
+        if(onTime > 0)
+            onTime -= Time.deltaTime;
     }
 }

@@ -290,54 +290,70 @@ public class GameManager : MonoBehaviour {
     /// </summary>
     private void GatherQuestData()
     {
+        // Get all quests in the scene
         Quest[] questsInScene = FindObjectsOfType<Quest>();
 
+        // For each quest in the scene
         foreach (Quest q in questsInScene)
         {
+            // Get its data
             QuestData qd = q.SaveQuestData();
 
+            // If the player has interacted with the quest giver before, increment their friendship. Otherwise, add that quest giver to the list.
             if (friendshipValues.ContainsKey(qd.owner))
                 friendshipValues[qd.owner] = (qd.friendship + (int)friendshipValues[qd.owner]);
             else
                 friendshipValues.Add(qd.owner, qd.friendship);
 
+            // Check if quest exists in data. If it does, clear it.
             QuestData savedData = questData.Find(d => d.questHash.Equals(qd.questHash));
 
             if (savedData != null)
                 questData.Remove(savedData);
 
+            // Add the quest data
             questData.Add(qd);
         }
     }
 
 
     /// <summary>
-    /// Loads the quest data
+    /// Loads the quest data for all quests in the scene
     /// </summary>
     private void LoadQuestData()
     {
+        // Find all quests in the scene
         Quest[] questsInScene = FindObjectsOfType<Quest>();
 
+        // For each quest in the scene
         foreach (Quest q in questsInScene)
         {
+            // Get the quest's saved data
             QuestData qd = q.SaveQuestData();
 
+            // If the player has interacted with the quest giver before, adjust friendship
             if (friendshipValues.ContainsKey(qd.owner))
                 qd.friendship = ((int)friendshipValues[qd.owner]);
 
+            // Check if quest exists in data already
             QuestData savedData = questData.Find(d => d.questHash.Equals(qd.questHash));
 
+            // If it does, set its win and lose state
             if (savedData != null)
             {
                 qd.cleared = savedData.cleared;
                 qd.failed = savedData.failed;
             }
 
+            // Load the quest state
             q.LoadQuestState(qd);
         }
     }
 
 
+    /// <summary>
+    /// Attempts to load the data of a quest with a given name. Returns null if it doesn't exist.
+    /// </summary>
     public QuestData LoadSpecificQuest(string questName)
     {
         return questData.Find(d => d.questHash.Equals(questName));

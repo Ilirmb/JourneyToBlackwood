@@ -54,6 +54,9 @@ public class loadScene : MonoBehaviour
     }
 
 
+    /// <summary>
+    /// Gets the index of the current active scene.
+    /// </summary>
     public static int GetCurrentSceneIndex()
     {
         return SceneManager.GetActiveScene().buildIndex;

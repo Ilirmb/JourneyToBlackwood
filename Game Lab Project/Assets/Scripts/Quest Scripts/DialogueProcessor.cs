@@ -107,6 +107,7 @@ public class DialogueProcessor : MonoBehaviour {
         currentNode = tree.GetFirstNode();
 
         firstLine = true;
+        // If the player should move, use the top text box to avoid obstructing their vision
         useTopTextBox = allowMovement;
 
         ProcessCurrentNode();

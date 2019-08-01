@@ -13,9 +13,6 @@ public class Tutorial : MonoBehaviour {
 
     [SerializeField]
     private Checkpoint initialCheckpoint;
-
-    private bool displayingText = false;
-    private IEnumerator DisplayText;
     private PlayerStatistics player;
 
     private bool hpLow = false;
@@ -44,21 +41,18 @@ public class Tutorial : MonoBehaviour {
         {
             hpLow = true;
             DialogueProcessor.instance.StartDialogue(hpLowText, true);
-            StartCoroutine(DisplayText);
         }
 
         if (!staminaDrain && player.stamina <= 95.0f)
         {
             staminaDrain = true;
             DialogueProcessor.instance.StartDialogue(staminaDrainText, true);
-            StartCoroutine(DisplayText);
         }
 
         if(!hpRecover && player.checkpoint == initialCheckpoint)
         {
             hpRecover = true;
             DialogueProcessor.instance.StartDialogue(hpRecoverText, true);
-            StartCoroutine(DisplayText);
         }
 
         // We need to introduce frustration. Should this be done if they touch the bar, if they die X times, or both?
