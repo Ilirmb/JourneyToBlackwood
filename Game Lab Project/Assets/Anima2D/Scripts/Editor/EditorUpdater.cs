@@ -23,7 +23,11 @@ namespace Anima2D
 		static EditorCallbacks()
 		{
 			EditorApplication.update += () => { update(); };
+#if UNITY_2019_1_OR_NEWER
+			SceneView.duringSceneGui += (sv) => { onSceneGUIDelegate(sv); };
+#else
 			SceneView.onSceneGUIDelegate += (sv) => { onSceneGUIDelegate(sv); };
+#endif
 #if UNITY_2018_1_OR_NEWER
 			EditorApplication.hierarchyChanged += () => { hierarchyChanged(); };
 #else
