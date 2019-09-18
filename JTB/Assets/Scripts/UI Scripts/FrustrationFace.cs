@@ -54,7 +54,7 @@ public class FrustrationFace : MonoBehaviour
 
     // Update is called once per frame
     void Update () {
-        if(isDragging == true)
+       if(isDragging == true)
         {
             if (slider.value <= 3.33)
             {
@@ -69,5 +69,6 @@ public class FrustrationFace : MonoBehaviour
                 face.sprite = frustratedSprite;
             }
         }
+       
     }
 }

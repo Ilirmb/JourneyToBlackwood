@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class StamLossText : MonoBehaviour {
 
     private float timer = 0;
-    private float killTime = 2f;
+    private float killTime = 1f;
     public StamLossTextManager destroyer;
 
     public void init(StamLossTextManager creator, string Text, Color color)
@@ -28,7 +28,7 @@ public class StamLossText : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         timer += Time.deltaTime;
-        if(Time.frameCount % 10 == 0)
+        if(Time.frameCount %2  == 0)
         {
             transform.position += new Vector3(0, .1f);
         }
