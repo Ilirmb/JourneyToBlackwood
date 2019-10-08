@@ -1,3 +1,4 @@
+
 using System;
 using System.Collections;
 using UnityEngine;
@@ -9,7 +10,7 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
     [SerializeField] private float m_JumpForce = 400f;                  // Amount of force added when the player jumps.
     [Range(0, 1)] [SerializeField] private float m_CrouchSpeed = .36f;  // Amount of maxSpeed applied to crouching movement. 1 = 100%
     [SerializeField] private bool m_AirControl = false;                 // Whether or not a player can steer while jumping;
-    [SerializeField] private LayerMask m_WhatIsGround;                  // A mask determining what is ground to the character
+    [SerializeField] public LayerMask m_WhatIsGround;                  // A mask determining what is ground to the character
     [SerializeField] private float m_RunMultiplier = 1.5f;
     [SerializeField] private float m_GravityScale = 3.0f;
     [SerializeField] private bool m_GravityOnGround = true;
@@ -31,6 +32,7 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
     public float vspeed;
     public float hspeed;
 
+
     private bool m_OnLadder = false;
     private bool m_RunLock = false;
 
@@ -38,7 +40,7 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
     private Vector3 velocity = Vector3.zero;
     private Vector2 normal;
 
-
+    public bool canJump;
     #region Gameplay Ref
 
     private Ladder ladderRef;
@@ -57,11 +59,41 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
 
         playerStatistics = GetComponent<PlayerStatistics>();
         ableToMove = false;
+
+        canJump = false;
+
     }
+    private void Update()
+    {
+        if (canJump==true && Input.GetKeyDown(KeyCode.Space))
+        {
+            m_Anim.SetBool("Grounded", true);
+            playerStatistics.damageFromJump(GameConst.STAMINA_TO_JUMP);
+            Debug.Log("JumpingOnLog");
+            m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce), ForceMode2D.Force);
+        }
 
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag == "RiverLog")
+        {
+            m_Anim.SetBool("Grounded", false);
 
+            canJump = true;
+        }
+    }
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "RiverLog")
+        {
+            canJump = false;
+        }
+    }
     private void FixedUpdate()
     {
+
+
         m_Grounded = false;
 
         // The player is grounded if a circlecast to the groundcheck position hits anything designated as ground
@@ -83,6 +115,9 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
             }
             else
                 normal = Vector2.up;
+            
+           
+
 
             // original ground check code.
 
@@ -107,7 +142,7 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
 
         if ((m_GravityOnGround) || (!m_GravityOnGround && !m_Grounded))
         {
-            m_Rigidbody2D.AddForce(Physics2D.gravity * m_GravityScale);
+           m_Rigidbody2D.AddForce(Physics2D.gravity * m_GravityScale);
         }
 
         if(!m_SlideDownSlope && m_Grounded && normal.y != 1.0f)
@@ -182,6 +217,7 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
             //There are tentative plans to move this system to a local velocity based system by calculating valocity without taking into account other
             playerStatistics.moving(move != 0 && (m_Grounded || ableToMove));
         }
+       // else if (inWater) { }
 
         /*if (!m_Grounded)
             m_Rigidbody2D.AddForce(Physics2D.gravity * m_GravityScale);*/
