@@ -1,1 +1,0 @@
-You could safely remove this folder to get rid of deprecated functionality.
