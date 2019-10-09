@@ -66,35 +66,17 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
     private void Update()
     {
         if (canJump==true && Input.GetKeyDown(KeyCode.Space))
-        {
-            m_Anim.SetBool("Grounded", true);
+        {          
             playerStatistics.damageFromJump(GameConst.STAMINA_TO_JUMP);
-            Debug.Log("JumpingOnLog");
-            m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce), ForceMode2D.Force);
+            Debug.Log("JumpingOnLog");          
         }
+    }
 
-    }
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if(collision.gameObject.tag == "RiverLog")
-        {
-            m_Anim.SetBool("Grounded", false);
-
-            canJump = true;
-        }
-    }
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "RiverLog")
-        {
-            canJump = false;
-        }
-    }
     private void FixedUpdate()
     {
 
 
-        m_Grounded = false;
+        //m_Grounded = false;
 
         // The player is grounded if a circlecast to the groundcheck position hits anything designated as ground
         // This can be done using layers instead but Sample Assets will not overwrite your project settings.
