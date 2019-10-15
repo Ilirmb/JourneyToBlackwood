@@ -34,21 +34,21 @@ public class WaveManager : MonoBehaviour
             timer += Time.deltaTime;
             float offset_Y = waterScript.gameObject.GetComponent<BoxCollider2D>().offset.y;
 
-            waterScript.gameObject.GetComponent<BuoyancyEffector2D>().surfaceLevel = 4f;
+           // waterScript.gameObject.GetComponent<BuoyancyEffector2D>().surfaceLevel = 3f;
 
                 waterScript.gameObject.GetComponent<BoxCollider2D>().offset =
                 new Vector2(0, waterScript.gameObject.GetComponent<BoxCollider2D>().offset.y + 0.3f);
                 yield return new WaitForSeconds(.25f);
                 Debug.Log("increase");
 
-            waterScript.gameObject.GetComponent<BuoyancyEffector2D>().surfaceLevel = 3.5f;
+         //   waterScript.gameObject.GetComponent<BuoyancyEffector2D>().surfaceLevel = 2.5f;
 
                 waterScript.gameObject.GetComponent<BoxCollider2D>().offset =
                 new Vector2(0, waterScript.gameObject.GetComponent<BoxCollider2D>().offset.y - 0.6f);
                 yield return new WaitForSeconds(.25f);
                 Debug.Log("decrease");
 
-            waterScript.gameObject.GetComponent<BuoyancyEffector2D>().surfaceLevel = 3f;
+           // waterScript.gameObject.GetComponent<BuoyancyEffector2D>().surfaceLevel = 2f;
 
                 waterScript.gameObject.GetComponent<BoxCollider2D>().offset =
                 new Vector2(0, waterScript.gameObject.GetComponent<BoxCollider2D>().offset.y + 0.3f);
@@ -57,7 +57,7 @@ public class WaveManager : MonoBehaviour
 
 
         }
-        waterScript.gameObject.GetComponent<BuoyancyEffector2D>().surfaceLevel = 3.5f;
+        waterScript.gameObject.GetComponent<BuoyancyEffector2D>().surfaceLevel = 3f;
 
         rapidWaves = false;
         StopCoroutine(RoughWaters());
