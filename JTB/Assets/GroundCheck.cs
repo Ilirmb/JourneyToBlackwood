@@ -21,9 +21,9 @@ public class GroundCheck : MonoBehaviour
     {
         if (other.gameObject.tag == "RiverLog")
         {
-            transform.parent.GetComponent<CustomPlatformerCharacter2D>().m_Anim.SetBool("Grounded", true);
+            //transform.parent.GetComponent<CustomPlatformerCharacter2D>().m_Anim.SetBool("Grounded", true);
             transform.parent.GetComponent<CustomPlatformerCharacter2D>().m_Grounded = true;
-            Debug.Log("onlog");
+           
         }
 
         else if (other.gameObject.tag == "RoughWaters")
@@ -34,14 +34,14 @@ public class GroundCheck : MonoBehaviour
         }
         else if (other.gameObject.tag == "Log")
         {
-            transform.parent.GetComponent<CustomPlatformerCharacter2D>().m_Anim.SetBool("Grounded", true);
+          //  transform.parent.GetComponent<CustomPlatformerCharacter2D>().m_Anim.SetBool("Grounded", true);
             transform.parent.GetComponent<CustomPlatformerCharacter2D>().m_Grounded = true;
 
         }
         else if (other.gameObject.tag == "Ground")
         {
-            transform.parent.GetComponent<CustomPlatformerCharacter2D>().m_Anim.SetBool("Grounded", true);
-            transform.parent.GetComponent<CustomPlatformerCharacter2D>().m_Grounded = true;
+          //  transform.parent.GetComponent<CustomPlatformerCharacter2D>().m_Anim.SetBool("Grounded", true);
+           // transform.parent.GetComponent<CustomPlatformerCharacter2D>().m_Grounded = true;
         }
 
     }
@@ -49,23 +49,23 @@ public class GroundCheck : MonoBehaviour
     {
         if (other.gameObject.tag == "RiverLog")
         {
-            transform.parent.GetComponent<CustomPlatformerCharacter2D>().m_Anim.SetBool("Grounded", false);
+            // transform.parent.GetComponent<CustomPlatformerCharacter2D>().m_Anim.SetBool("Grounded", false);
 
             transform.parent.GetComponent<CustomPlatformerCharacter2D>().m_Grounded = false;
 
         }
         else if (other.gameObject.tag == "Log")
         {
-            transform.parent.GetComponent<CustomPlatformerCharacter2D>().m_Anim.SetBool("Grounded", false);
-
+        //    transform.parent.GetComponent<CustomPlatformerCharacter2D>().m_Anim.SetBool("Grounded", false);
+            
             transform.parent.GetComponent<CustomPlatformerCharacter2D>().m_Grounded = false;
           
         }
         else if(other.gameObject.tag == "Ground")
         {
-            transform.parent.GetComponent<CustomPlatformerCharacter2D>().m_Anim.SetBool("Grounded", false);
+          //  transform.parent.GetComponent<CustomPlatformerCharacter2D>().m_Anim.SetBool("Grounded", false);
 
-            transform.parent.GetComponent<CustomPlatformerCharacter2D>().m_Grounded = false;
+            //transform.parent.GetComponent<CustomPlatformerCharacter2D>().m_Grounded = false;
         }
     }
     // Update is called once per fram

@@ -5,11 +5,13 @@ using UnityEngine;
 public class WaveManager : MonoBehaviour
 {
     Game2DWaterKit.Game2DWater waterScript;
+    GameObject Player;
     public bool rapidWaves;
    public float timer = 0;
     // Start is called before the first frame update
     void Start()
     {
+        Player = GameObject.FindWithTag("Player");
         waterScript = gameObject.GetComponent<Game2DWaterKit.Game2DWater>();
 
     }
@@ -18,7 +20,11 @@ public class WaveManager : MonoBehaviour
     {
         if (rapidWaves)
         {
+          //  if (onRiverLog) { Player.GetComponent<CustomPlatformerCharacter2D>().m_MaxSpeed = 3f; }
+              
+
             waterScript.ConstantRipplesModule.Disturbance = 1.5f;
+
         }else if (!rapidWaves)
         {
             waterScript.ConstantRipplesModule.Disturbance = 0.1f;
