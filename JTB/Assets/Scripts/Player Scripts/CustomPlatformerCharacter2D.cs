@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 
 public class CustomPlatformerCharacter2D : MonoBehaviour
 {
@@ -20,7 +20,7 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
     private float m_GroundedSpeed = 10;
     private float m_SlidingSpeed = 55;
     private float m_SlidingDrag = 1.5f;
-    const float k_GroundedRadius = .5f; // Radius of the overlap circle to determine if grounded
+    private float k_GroundedRadius = .5f; // Radius of the overlap circle to determine if grounded
     public bool m_Grounded;            // Whether or not the player is grounded.
     private bool m_PrevGrounded;
     private bool m_CanCheckGrounded = true;
@@ -63,6 +63,12 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
         ableToMove = false;
         m_AirControl = true;
         StopSliding();// temporary- remove once you reset the values from the sliding testing values. Function returns the values to their 'normal' state.
+        Scene activeScene = SceneManager.GetActiveScene();
+        if (activeScene.name == "Segment2")
+        {
+            k_GroundedRadius = 0.5f;
+            m_JumpForce = 500f;
+        }
     }
 
 
