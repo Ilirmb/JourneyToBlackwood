@@ -17,6 +17,8 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
 
     private Transform m_GroundCheck;    // A position marking where to check if the player is grounded.
     private float m_TrueSpeed;
+    private float m_SlidingSpeed = 55;
+    private float m_SlidingDrag = 1.5f;
     const float k_GroundedRadius = .25f; // Radius of the overlap circle to determine if grounded
     public bool m_Grounded;            // Whether or not the player is grounded.
     private bool m_PrevGrounded;
@@ -165,7 +167,8 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
             }
 
             // Move the character
-            m_TrueSpeed = (m_Running ? m_MaxSpeed * 1.5f : m_MaxSpeed);
+            float tempSpeed = (m_Sliding && m_Grounded ? m_SlidingSpeed : m_MaxSpeed);
+            m_TrueSpeed = (m_Running ? tempSpeed * 1.5f : tempSpeed);
 
             float _yVelocity = m_Grounded && !m_OnLadder ? 0.0f: m_Rigidbody2D.velocity.y;
 
@@ -287,17 +290,15 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
         m_CanCheckGrounded = true;
     }
 
-    public void StartSliding() // I know it's not great programming to have these all here but it was quick
+    public void StartSliding()
     {
         m_Sliding = true;
-        m_Rigidbody2D.drag = 1.5f;
-        m_MaxSpeed = 55;
+        m_Rigidbody2D.drag = m_SlidingDrag;
     }
     public void StopSliding() 
     {
         m_Sliding = false;
-        m_Rigidbody2D.drag = 0;
-        m_MaxSpeed = 10;
+        m_Rigidbody2D.drag = 0f;
     }
 
     public void SetGravityScale(float amt)
