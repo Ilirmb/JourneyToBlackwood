@@ -67,6 +67,7 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
         if (activeScene.name == "Segment2")
         {
             k_GroundedRadius = 0.5f;
+            m_JumpForce = 500f;
         }
     }
 

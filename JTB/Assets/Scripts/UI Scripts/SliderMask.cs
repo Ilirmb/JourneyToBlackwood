@@ -11,11 +11,7 @@ public class SliderMask : MonoBehaviour {
 
     //private float startingY = 300f;
     //private float endingY = 80f;
-    [SerializeField]
-    private float animTotalFrames = 30;
-    public float animCurrentFrame = 1;
-    public float animTargetFrame = 1;
-    private float distancePerFrame = 0;
+
 
 
     private RectTransform backgroundTransform;
@@ -46,8 +42,6 @@ public class SliderMask : MonoBehaviour {
         //if the background bar isnt at full length
         for (float i = 0; i < 1; i += animationDistPerFrame)
         {
-            Debug.Log("callingCoroutine");
-
             if (backgroundTransform.localScale.y < 1.0f)
             {
                 scaleY += animationDistPerFrame;
@@ -90,6 +84,7 @@ public class SliderMask : MonoBehaviour {
     }
     public void onClick()
     {
+        Debug.Log("cli ked");
         //animate the slider by calling the coroutine
         StartCoroutine(animateSliderDOWN());
         //make visable using alpha channel
@@ -109,60 +104,6 @@ public class SliderMask : MonoBehaviour {
         slider.value = 0;
 
         handle.color = new Color(handle.color.r, handle.color.g, handle.color.b, 0f);
-    }
-
-
-
-    // Update is called once per frame
-    void Update()
-    {
-      // sliderMaskTransform.position.y = sliderMaskY;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        if (animCurrentFrame < animTargetFrame)
-        {
-            // utter jank here. to keep the position of the slider constant we detatch the slider before moving the mask, then reattach it before the frame has ended
-            //transform.DetachChildren();
-            //transform.localPosition = new Vector3(transform.localPosition.x, startingY + (animCurrentFrame * distancePerFrame), transform.localPosition.z);
-            //slider.transform.SetParent(gameObject.transform);
-
-            animCurrentFrame++;
-        }
-        else if (animCurrentFrame > animTargetFrame)
-        {
-            //transform.DetachChildren();
-            //transform.localPosition = new Vector3(transform.localPosition.x, startingY + (animCurrentFrame * distancePerFrame), transform.localPosition.z);
-            //slider.transform.SetParent(gameObject.transform);
-
-            animCurrentFrame--;
-        }
-        else if (animCurrentFrame == 1)
-        {
-            //transform.DetachChildren();
-            //transform.localPosition = new Vector3(transform.localPosition.x, startingY, transform.localPosition.z);
-            //slider.transform.SetParent(gameObject.transform);
-        }
-        else
-        {
-           // transform.DetachChildren();
-          //  transform.localPosition = new Vector3(transform.localPosition.x, endingY, transform.localPosition.z);
-            //slider.transform.SetParent(gameObject.transform);
-     }
-     
     }
     
 }
