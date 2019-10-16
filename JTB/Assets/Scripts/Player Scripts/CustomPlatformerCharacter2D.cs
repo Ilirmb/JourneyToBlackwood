@@ -42,6 +42,7 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
     private Vector3 velocity = Vector3.zero;
     private Vector2 normal;
 
+    public bool OnRiverLog = false;
 
     #region Gameplay Ref
 
@@ -74,7 +75,7 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
 
     private void FixedUpdate()
     {
-        //m_Grounded = false;
+        m_Grounded = false;
 
         // The player is grounded if a circlecast to the groundcheck position hits anything designated as ground
         // This can be done using layers instead but Sample Assets will not overwrite your project settings.
