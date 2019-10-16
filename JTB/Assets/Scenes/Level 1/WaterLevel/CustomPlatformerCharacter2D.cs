@@ -1,4 +1,3 @@
-
 using System;
 using System.Collections;
 using UnityEngine;
@@ -6,32 +5,35 @@ using UnityEngine;
 
 public class CustomPlatformerCharacter2D : MonoBehaviour
 {
-    [SerializeField] public float m_MaxSpeed = 10f;                    // The fastest the player can travel in the x axis.
-    [SerializeField] private float m_JumpForce = 400f;                  // Amount of force added when the player jumps.
+    public float m_MaxSpeed = 10f;                    // The fastest the player can travel in the x axis. Unserialized to change with code
+    public float m_JumpForce = 400f;                  // Amount of force added when the player jumps. Unaerialized to change with code
     [Range(0, 1)] [SerializeField] private float m_CrouchSpeed = .36f;  // Amount of maxSpeed applied to crouching movement. 1 = 100%
     [SerializeField] private bool m_AirControl = false;                 // Whether or not a player can steer while jumping;
-    [SerializeField] public LayerMask m_WhatIsGround;                  // A mask determining what is ground to the character
+    [SerializeField] private LayerMask m_WhatIsGround;                  // A mask determining what is ground to the character
     [SerializeField] private float m_RunMultiplier = 1.5f;
-    [SerializeField] private float m_GravityScale = 3.0f;
+    private float m_GravityScale = 3.0f;
     [SerializeField] private bool m_GravityOnGround = true;
     [SerializeField] private bool m_SlideDownSlope = false;
 
     private Transform m_GroundCheck;    // A position marking where to check if the player is grounded.
     private float m_TrueSpeed;
-    const float k_GroundedRadius = .25f; // Radius of the overlap circle to determine if grounded
+    private float m_GroundedSpeed = 10;
+    private float m_SlidingSpeed = 55;
+    private float m_SlidingDrag = 1.5f;
+    const float k_GroundedRadius = .5f; // Radius of the overlap circle to determine if grounded
     public bool m_Grounded;            // Whether or not the player is grounded.
     private bool m_PrevGrounded;
     private bool m_CanCheckGrounded = true;
     private Transform m_CeilingCheck;   // A position marking where to check for ceilings
     const float k_CeilingRadius = .01f; // Radius of the overlap circle to determine if the player can stand up
     private Animator m_Anim;            // Reference to the player's animator component.
-    private Rigidbody2D m_Rigidbody2D;
+    public Rigidbody2D m_Rigidbody2D;
     private bool m_FacingRight = true;  // For determining which way the player is currently facing.
     private bool m_Running = false;
-    public bool ableToMove = false;
+    public bool ableToMove = false; //Specifically for cases when grounded is false but the character should still move as if grounded (quicksand, possibly water)
+    public bool m_Sliding = false;
     public float vspeed;
     public float hspeed;
-
 
     private bool m_OnLadder = false;
     private bool m_RunLock = false;
@@ -40,7 +42,7 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
     private Vector3 velocity = Vector3.zero;
     private Vector2 normal;
 
-    public bool canJump;
+
     #region Gameplay Ref
 
     private Ladder ladderRef;
@@ -55,46 +57,18 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
         m_CeilingCheck = transform.Find("CeilingCheck");
         m_Anim = GetComponentInChildren<Animator>();
         m_Rigidbody2D = GetComponent<Rigidbody2D>();
-        m_Rigidbody2D.gravityScale = 0.0f;
+        //m_Rigidbody2D.gravityScale = 0.0f;
 
         playerStatistics = GetComponent<PlayerStatistics>();
         ableToMove = false;
-
-        canJump = false;
-
+        m_AirControl = true;
+        StopSliding();// temporary- remove once you reset the values from the sliding testing values. Function returns the values to their 'normal' state.
     }
-    private void Update()
-    {
-        if (canJump==true && Input.GetKeyDown(KeyCode.Space))
-        {
-            m_Anim.SetBool("Grounded", true);
-            playerStatistics.damageFromJump(GameConst.STAMINA_TO_JUMP);
-            Debug.Log("JumpingOnLog");
-            m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce), ForceMode2D.Force);
-        }
 
-    }
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if(collision.gameObject.tag == "RiverLog")
-        {
-            m_Anim.SetBool("Grounded", false);
 
-            canJump = true;
-        }
-    }
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "RiverLog")
-        {
-            canJump = false;
-        }
-    }
     private void FixedUpdate()
     {
-
-
-        m_Grounded = false;
+        //m_Grounded = false;
 
         // The player is grounded if a circlecast to the groundcheck position hits anything designated as ground
         // This can be done using layers instead but Sample Assets will not overwrite your project settings.
@@ -102,7 +76,7 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
         {
             RaycastHit2D hit = Physics2D.Raycast(m_GroundCheck.transform.position, -Vector2.up, k_GroundedRadius, m_WhatIsGround);
 
-            if (hit.collider != null && ((m_GroundCheck.transform.position.y > hit.point.y) || m_OnLadder))
+            if (hit.collider != null && ((m_GroundCheck.transform.position.y +10> hit.point.y) || m_OnLadder))
             {
                 normal = hit.normal;
                 m_Grounded = true;
@@ -115,9 +89,6 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
             }
             else
                 normal = Vector2.up;
-            
-           
-
 
             // original ground check code.
 
@@ -139,15 +110,15 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
             }*/
         }
 
-
+        /* Gravity code. Interferes with sliding mud physics. Default rigidbody physics were used instead
         if ((m_GravityOnGround) || (!m_GravityOnGround && !m_Grounded))
         {
-           m_Rigidbody2D.AddForce(Physics2D.gravity * m_GravityScale);
+            m_Rigidbody2D.AddForce(Physics2D.gravity * m_GravityScale);
         }
-
+        
         if(!m_SlideDownSlope && m_Grounded && normal.y != 1.0f)
             m_Rigidbody2D.AddForce(-Physics2D.gravity * m_GravityScale);
-
+        */
         m_Anim.SetBool("Grounded", m_Grounded);
 
         // Set the vertical animation
@@ -199,15 +170,27 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
             // Move the character
             m_TrueSpeed = (m_Running ? m_MaxSpeed * 1.5f : m_MaxSpeed);
 
-            float m_yVelocity = m_Grounded && !m_OnLadder ? 0.0f: m_Rigidbody2D.velocity.y;
+            float _yVelocity = m_Grounded && !m_OnLadder ? 0.0f: m_Rigidbody2D.velocity.y;
 
             /*m_Rigidbody2D.velocity = m_Grounded && -normal.x <= 0 ? new Vector2(move * m_TrueSpeed * normal.y, m_yVelocity + (move * m_TrueSpeed * -normal.x)) 
                 : new Vector2(move * m_TrueSpeed, m_yVelocity);*/
-            if(m_Grounded && ((-normal.x * move) < 0))
-                m_Rigidbody2D.velocity = new Vector2((move * normal.y) * m_TrueSpeed, ((move * -normal.x) * m_TrueSpeed) + m_yVelocity);
-            else
-                m_Rigidbody2D.velocity = new Vector2(move * m_TrueSpeed, m_yVelocity);
-            //m_Rigidbody2D.velocity = new Vector2((move * normal.y) * m_TrueSpeed, ((move * -normal.x) * m_TrueSpeed) + m_yVelocity);
+
+            m_Rigidbody2D.AddForce(new Vector2(move * m_TrueSpeed, 0f));
+
+            
+            if (m_Grounded && ((-normal.x * move) < 0) && !m_Sliding) // If grounded
+            {
+                m_Rigidbody2D.velocity = new Vector2((move * normal.y) * m_TrueSpeed, ((move * -normal.x) * m_TrueSpeed) + _yVelocity);
+            }
+            else if(!m_Sliding) // If airborn
+            {
+                m_Rigidbody2D.velocity = new Vector2(move * m_TrueSpeed, _yVelocity);
+            }
+            else // If sliding
+            {
+                m_Rigidbody2D.AddForce(new Vector2(move * (m_TrueSpeed/2), 0f));
+            }
+            //m_Rigidbody2D = new Vector2((move * normal.y) * m_TrueSpeed, ((move * -normal.x) * m_TrueSpeed) + m_yVelocity);
 
 
             m_Anim.SetFloat("Speed", Mathf.Abs(m_Rigidbody2D.velocity.x),.3f, Time.deltaTime);
@@ -217,7 +200,6 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
             //There are tentative plans to move this system to a local velocity based system by calculating valocity without taking into account other
             playerStatistics.moving(move != 0 && (m_Grounded || ableToMove));
         }
-       // else if (inWater) { }
 
         /*if (!m_Grounded)
             m_Rigidbody2D.AddForce(Physics2D.gravity * m_GravityScale);*/
@@ -228,7 +210,8 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
             // Add a vertical force to the player.
             m_Grounded = false;
             m_Anim.SetBool("Grounded", false);
-            m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x, 0.0f);
+            Vector2 vel = new Vector2(m_Rigidbody2D.velocity.x, 0.0f);
+            m_Rigidbody2D.AddForce(vel, ForceMode2D.Force);
 
             m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce), ForceMode2D.Force);
 
@@ -307,6 +290,18 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
         m_CanCheckGrounded = true;
     }
 
+    public void StartSliding()
+    {
+        m_Sliding = true;
+        m_Rigidbody2D.drag = m_SlidingDrag;
+        m_MaxSpeed = m_SlidingSpeed;
+    }
+    public void StopSliding() 
+    {
+        m_Sliding = false;
+        m_Rigidbody2D.drag = 0f;
+        m_MaxSpeed = m_GroundedSpeed;
+    }
 
     public void SetGravityScale(float amt)
     {
