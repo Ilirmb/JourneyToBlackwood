@@ -56,7 +56,7 @@ public class Tutorial : MonoBehaviour {
         }
 
         // We need to introduce frustration. Should this be done if they touch the bar, if they die X times, or both?
-        if (!frustration && PlayerStatistics.numPlayerDeaths > 1)
+        if (!frustration && player.numPlayerDeaths > 1)
         {
             frustration = true;
             DialogueProcessor.instance.StartDialogue(frustrationText, true);

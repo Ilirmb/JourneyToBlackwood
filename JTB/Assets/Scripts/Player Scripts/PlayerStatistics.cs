@@ -27,7 +27,7 @@ public class PlayerStatistics : MonoBehaviour
     // The player's body. Some old behavior relating to invul flashing no longer works sense the player is no longer a single sprite
     private GameObject playerBody;
 
-    public static int numPlayerDeaths = 0;
+    public int numPlayerDeaths = 0;
 
 
     public float getStamina()
