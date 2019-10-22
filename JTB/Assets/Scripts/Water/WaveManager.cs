@@ -63,9 +63,10 @@ public class WaveManager : MonoBehaviour
 
 
         }
-        waterScript.gameObject.GetComponent<BuoyancyEffector2D>().surfaceLevel = 3f;
+        waterScript.gameObject.GetComponent<BuoyancyEffector2D>().surfaceLevel = 3.5f;
 
         rapidWaves = false;
+        timer = 0;
         StopCoroutine(RoughWaters());
         yield return null;
     }
