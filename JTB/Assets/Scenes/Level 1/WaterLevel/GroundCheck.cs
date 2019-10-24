@@ -17,7 +17,7 @@ public class GroundCheck : MonoBehaviour
        
 
     }
-    public void OnTriggerStay2D(Collider other)
+    public void OnTriggerStay2D(Collider2D other)
     {
         if (other.gameObject.tag == "RiverLog")
         {
