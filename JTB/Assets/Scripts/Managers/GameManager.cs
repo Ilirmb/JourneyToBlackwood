@@ -30,6 +30,10 @@ public class GameManager : MonoBehaviour {
     [SerializeField]
     private DialogueTree hintOffer;
 
+    // Dialogue Tree for wave wardning
+    [SerializeField]
+    private DialogueTree waveWarning;
+
     // List of current available hints
     private List<DialogueTree> hints = new List<DialogueTree>();
 
@@ -405,6 +409,12 @@ public class GameManager : MonoBehaviour {
             int index = Random.Range(0, healthTips.Count);
             DialogueProcessor.instance.StartDialogue(healthTips[index]);
         }
+    }
+    public void ShowWaveTip()
+    {
+ 
+           DialogueProcessor.instance.StartDialogue(waveWarning);
+        
     }
 
     #endregion
