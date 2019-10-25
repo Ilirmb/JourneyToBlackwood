@@ -16,7 +16,7 @@ public class DialogueProcessor : MonoBehaviour {
     private DialogueTree currentTree;
     private DialogueNode currentNode;
 
-    private GameObject dialogueUI;
+    [HideInInspector] public GameObject dialogueUI;
 
     [SerializeField]
     private Text textBox;
