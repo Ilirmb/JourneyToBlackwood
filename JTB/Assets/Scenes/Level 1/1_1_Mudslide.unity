@@ -1647,6 +1647,31 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1523427118063040015, guid: 0b34f959d1e416c488f0547173c9959c,
+        type: 3}
+      propertyPath: maxStamina
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 1523427118063040015, guid: 0b34f959d1e416c488f0547173c9959c,
+        type: 3}
+      propertyPath: stamina
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 1523490772684065029, guid: 0b34f959d1e416c488f0547173c9959c,
+        type: 3}
+      propertyPath: m_SlideDownSlope
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1523490772684065029, guid: 0b34f959d1e416c488f0547173c9959c,
+        type: 3}
+      propertyPath: m_JumpForce
+      value: 1800
+      objectReference: {fileID: 0}
+    - target: {fileID: 1523490772684065029, guid: 0b34f959d1e416c488f0547173c9959c,
+        type: 3}
+      propertyPath: m_MaxSpeed
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 1491189035772560313, guid: 0b34f959d1e416c488f0547173c9959c,
         type: 3}
       propertyPath: m_AngularDrag
@@ -1661,6 +1686,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Mass
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1461832100044115807, guid: 0b34f959d1e416c488f0547173c9959c,
+        type: 3}
+      propertyPath: m_Material
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 1538318448010049021, guid: 0b34f959d1e416c488f0547173c9959c,
         type: 3}
@@ -1772,37 +1802,8 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 1523490772684065029, guid: 0b34f959d1e416c488f0547173c9959c,
-        type: 3}
-      propertyPath: m_SlideDownSlope
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1523490772684065029, guid: 0b34f959d1e416c488f0547173c9959c,
-        type: 3}
-      propertyPath: m_JumpForce
-      value: 1800
-      objectReference: {fileID: 0}
-    - target: {fileID: 1523490772684065029, guid: 0b34f959d1e416c488f0547173c9959c,
-        type: 3}
-      propertyPath: m_MaxSpeed
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 1461832100044115807, guid: 0b34f959d1e416c488f0547173c9959c,
-        type: 3}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1523427118063040015, guid: 0b34f959d1e416c488f0547173c9959c,
-        type: 3}
-      propertyPath: maxStamina
-      value: 1000
-      objectReference: {fileID: 0}
-    - target: {fileID: 1523427118063040015, guid: 0b34f959d1e416c488f0547173c9959c,
-        type: 3}
-      propertyPath: stamina
-      value: 1000
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1523490772684065029, guid: 0b34f959d1e416c488f0547173c9959c, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 0b34f959d1e416c488f0547173c9959c, type: 3}
 --- !u!1 &534237385
 GameObject:
@@ -3711,6 +3712,41 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 27
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &962060282 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1491189035776052827, guid: 0b34f959d1e416c488f0547173c9959c,
+    type: 3}
+  m_PrefabInstance: {fileID: 524803454}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &962060283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 962060282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d69b371d11a9ee449bc182fc20c4830, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_MaxSpeed: 10
+  m_JumpForce: 400
+  m_CrouchSpeed: 0.36
+  m_AirControl: 0
+  m_WhatIsGround:
+    serializedVersion: 2
+    m_Bits: 0
+  m_RunMultiplier: 1.5
+  m_GravityOnGround: 1
+  m_SlideDownSlope: 0
+  m_Grounded: 0
+  m_Rigidbody2D: {fileID: 0}
+  ableToMove: 0
+  m_Sliding: 0
+  vspeed: 0
+  hspeed: 0
+  OnRiverLog: 0
 --- !u!1 &965910391
 GameObject:
   m_ObjectHideFlags: 0
@@ -7748,10 +7784,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1558798290221922, guid: c789248bd38d848429e718e9382cfa40, type: 3}
-      propertyPath: m_Name
-      value: GameManager
-      objectReference: {fileID: 0}
     - target: {fileID: 4231440626502188, guid: c789248bd38d848429e718e9382cfa40, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -7795,6 +7827,10 @@ PrefabInstance:
     - target: {fileID: 4231440626502188, guid: c789248bd38d848429e718e9382cfa40, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1558798290221922, guid: c789248bd38d848429e718e9382cfa40, type: 3}
+      propertyPath: m_Name
+      value: GameManager
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c789248bd38d848429e718e9382cfa40, type: 3}

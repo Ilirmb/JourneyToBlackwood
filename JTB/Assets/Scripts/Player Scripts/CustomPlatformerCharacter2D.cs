@@ -17,16 +17,13 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
 
     private Transform m_GroundCheck;    // A position marking where to check if the player is grounded.
     private float m_TrueSpeed;
-<<<<<<< HEAD
+
     private float m_SlidingSpeed = 55;
     private float m_SlidingDrag = 1.5f;
-    const float k_GroundedRadius = .25f; // Radius of the overlap circle to determine if grounded
-=======
+
     private float m_GroundedSpeed = 10;
-    private float m_SlidingSpeed = 55;
-    private float m_SlidingDrag = 1.5f;
     private float k_GroundedRadius = .5f; // Radius of the overlap circle to determine if grounded
->>>>>>> master
+
     public bool m_Grounded;            // Whether or not the player is grounded.
     private bool m_PrevGrounded;
     private bool m_CanCheckGrounded = true;
@@ -68,10 +65,7 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
 
         playerStatistics = GetComponent<PlayerStatistics>();
         ableToMove = false;
-<<<<<<< HEAD
 
-        StopSliding();// temporary- remove once you reset the values from the sliding testing values. Function returns the values to their 'normal' state.
-=======
         m_AirControl = true;
         StopSliding();// temporary- remove once you reset the values from the sliding testing values. Function returns the values to their 'normal' state.
         Scene activeScene = SceneManager.GetActiveScene();
@@ -80,7 +74,7 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
             k_GroundedRadius = 0.5f;
             m_JumpForce = 500f;
         }
->>>>>>> master
+
     }
 
 
@@ -313,19 +307,15 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
     {
         m_Sliding = true;
         m_Rigidbody2D.drag = m_SlidingDrag;
-<<<<<<< HEAD
-=======
+
         m_MaxSpeed = m_SlidingSpeed;
->>>>>>> master
     }
     public void StopSliding() 
     {
         m_Sliding = false;
         m_Rigidbody2D.drag = 0f;
-<<<<<<< HEAD
-=======
+
         m_MaxSpeed = m_GroundedSpeed;
->>>>>>> master
     }
 
     public void SetGravityScale(float amt)
