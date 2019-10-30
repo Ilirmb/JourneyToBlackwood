@@ -15,7 +15,7 @@ public class Ferr2DTestScript : MonoBehaviour
 
     void checkGround(Ferr2DT_SegmentDescription s)
     {
-        if(s == muddySegment)
+        //if(s == muddySegment)
         {
 
         }

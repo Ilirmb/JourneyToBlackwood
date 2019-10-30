@@ -89,6 +89,7 @@ MonoBehaviour:
   maxStamina: 100
   frustration: 0
   walkDistanceToDamageStam: 4
+  numPlayerDeaths: 0
 --- !u!114 &1524065183359430369
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -112,24 +113,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 1491189035776052827}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4383308227bab3045ad5810c77779c84, type: 3}
+  m_Script: {fileID: 11500000, guid: 8d69b371d11a9ee449bc182fc20c4830, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_MaxSpeed: 10
-  m_JumpForce: 675
+  m_JumpForce: 400
   m_CrouchSpeed: 0.36
-  m_AirControl: 1
+  m_AirControl: 0
   m_WhatIsGround:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 0
   m_RunMultiplier: 1.5
-  m_GravityScale: 3.25
   m_GravityOnGround: 1
   m_SlideDownSlope: 0
   m_Grounded: 0
+  m_Rigidbody2D: {fileID: 0}
   ableToMove: 0
+  m_Sliding: 0
   vspeed: 0
   hspeed: 0
+  OnRiverLog: 0
 --- !u!50 &1491189035772560313
 Rigidbody2D:
   serializedVersion: 4
