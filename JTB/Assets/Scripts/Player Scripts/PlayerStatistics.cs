@@ -27,6 +27,9 @@ public class PlayerStatistics : MonoBehaviour
     // The player's body. Some old behavior relating to invul flashing no longer works sense the player is no longer a single sprite
     private GameObject playerBody;
 
+    //resets require knowing the loadscene object
+    public loadScene ls;
+
     public int numPlayerDeaths = 0;
 
 
@@ -235,7 +238,7 @@ public class PlayerStatistics : MonoBehaviour
             {
                 // Restart if stamina is equal to or less than 0
                 // Pretty blunt way of reloading, reloads the current scene
-                loadScene.ReloadCurrentScene();
+                ls.ReloadCurrentScene();
             }
             //Otherwise go to Checkpoint
             else
@@ -352,5 +355,10 @@ public class PlayerStatistics : MonoBehaviour
         }
 
         positionLastFrame = new Vector2(transform.position.x, transform.position.y);
+    }
+
+    public void ReloadCurrentScene()
+    {
+        ls.ReloadCurrentScene();
     }
 }

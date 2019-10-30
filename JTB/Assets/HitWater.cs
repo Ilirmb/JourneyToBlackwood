@@ -16,7 +16,7 @@ public class HitWater : MonoBehaviour
         {
             if (playerStatsScript.checkpoint == null)
             {
-                loadScene.ReloadCurrentScene();
+                playerStatsScript.ReloadCurrentScene();
             }
             else
             {
