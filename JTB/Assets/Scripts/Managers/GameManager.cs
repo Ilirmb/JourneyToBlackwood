@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
 
@@ -41,7 +42,6 @@ public class GameManager : MonoBehaviour {
     [SerializeField]
     private List<DialogueTree> healthTips = new List<DialogueTree>();
 
-
     // Use this for initialization
     void Awake ()
     {
@@ -62,7 +62,6 @@ public class GameManager : MonoBehaviour {
             Destroy(gameObject);
             return;
         }
-
     }
 
 

@@ -5,6 +5,18 @@ using UnityEngine.SceneManagement;
 
 public class loadScene : MonoBehaviour
 {
+    private List<Scene> scenes;
+
+    private void Start()
+    {
+        scenes = new List<Scene>();
+        scenes.Add(SceneManager.GetActiveScene());
+        for(int i = scenes[0].buildIndex + 1; i < scenes[0].buildIndex + SceneManager.sceneCount; ++i)
+        {
+            scenes.Add(SceneManager.GetSceneAt(i));
+        }
+    }
+
     /// <summary>
     /// Loads a scene by its name
     /// </summary>
@@ -24,6 +36,11 @@ public class loadScene : MonoBehaviour
         SceneManager.LoadScene(i);
     }
 
+
+    public void LoadAdd(int i)
+    {
+        SceneManager.LoadScene(i, LoadSceneMode.Additive);
+    }
 
     /// <summary>
     /// Loads a scene by its name
@@ -45,12 +62,24 @@ public class loadScene : MonoBehaviour
     }
 
 
+    public static void LoadSceneAdd(int i)
+    {
+        SceneManager.LoadScene(i, LoadSceneMode.Additive);
+    }
+
     /// <summary>
     /// Reloads the current loaded scene
     /// </summary>
-    public static void ReloadCurrentScene()
+    public void ReloadCurrentScene()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        var cur = SceneManager.GetActiveScene();
+        foreach(var s in scenes)
+        {
+             if (s == cur)
+                SceneManager.LoadScene(s.buildIndex);
+             else
+                SceneManager.LoadScene(s.buildIndex, LoadSceneMode.Additive);
+        }
     }
 
 
