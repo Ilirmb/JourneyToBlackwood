@@ -91,7 +91,7 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
 
                 if (!m_PrevGrounded)
                 {
-                    Debug.Log("Landed");
+                    //Debug.Log("Landed");
                 }
             }
             else
