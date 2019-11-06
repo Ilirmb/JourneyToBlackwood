@@ -66,6 +66,76 @@ MonoBehaviour:
     isAuto: 0
     autoSpeed: 0
     pauseBeforeNext: 0
+--- !u!114 &-7640360881192079114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ac085fae4e799c44ab966161326a142, type: 3}
+  m_Name: Dialogue
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 1608, y: 24}
+  ports:
+    keys:
+    - previous
+    - childNodes
+    - childNodes 0
+    values:
+    - _fieldName: previous
+      _node: {fileID: -7640360881192079114}
+      _typeQualifiedName: DialogueNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: childNodes 0
+        node: {fileID: -1791243421919272124}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: childNodes
+      _node: {fileID: -7640360881192079114}
+      _typeQualifiedName: System.Collections.Generic.List`1[[DialogueNode+DialogueBranchCondition,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: childNodes 0
+      _node: {fileID: -7640360881192079114}
+      _typeQualifiedName: System.Collections.Generic.List`1[[DialogueNode+DialogueBranchCondition,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: previous
+        node: {fileID: -6875757722865079054}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+  ID: 21
+  previous: {fileID: 0}
+  dialogueNodeType: 0
+  dialogueSpeaker: Farmer
+  dialogueText: The frustration meter is the face in the upper left corner, it represents
+    your current frustration
+  dialogueSprite: {fileID: 0}
+  childNodes:
+  - condition: 0
+    targetID: 22
+  actions: []
+  auto:
+    isAuto: 0
+    autoSpeed: 0
+    pauseBeforeNext: 0
 --- !u!114 &-7522164082418640073
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -79,7 +149,7 @@ MonoBehaviour:
   m_Name: Dialogue
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 728, y: 264}
+  position: {x: 744, y: 552}
   ports:
     keys:
     - previous
@@ -224,6 +294,76 @@ MonoBehaviour:
     isAuto: 0
     autoSpeed: 0
     pauseBeforeNext: 0
+--- !u!114 &-6875757722865079054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ac085fae4e799c44ab966161326a142, type: 3}
+  m_Name: Dialogue
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 1848, y: 24}
+  ports:
+    keys:
+    - previous
+    - childNodes
+    - childNodes 0
+    values:
+    - _fieldName: previous
+      _node: {fileID: -6875757722865079054}
+      _typeQualifiedName: DialogueNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: childNodes 0
+        node: {fileID: -7640360881192079114}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: childNodes
+      _node: {fileID: -6875757722865079054}
+      _typeQualifiedName: System.Collections.Generic.List`1[[DialogueNode+DialogueBranchCondition,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: childNodes 0
+      _node: {fileID: -6875757722865079054}
+      _typeQualifiedName: System.Collections.Generic.List`1[[DialogueNode+DialogueBranchCondition,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: previous
+        node: {fileID: -3802461013188841844}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+  ID: 22
+  previous: {fileID: 0}
+  dialogueNodeType: 0
+  dialogueSpeaker: Farmer
+  dialogueText: You can change your frustration at any time by clicking on the face.
+    The lower you drag it, the more frustrated you are with the game.
+  dialogueSprite: {fileID: 0}
+  childNodes:
+  - condition: 0
+    targetID: 23
+  actions: []
+  auto:
+    isAuto: 0
+    autoSpeed: 0
+    pauseBeforeNext: 0
 --- !u!114 &-6418349514840146945
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -306,7 +446,7 @@ MonoBehaviour:
   m_Name: Dialogue
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1960, y: -840}
+  position: {x: 1848, y: -840}
   ports:
     keys:
     - previous
@@ -376,7 +516,7 @@ MonoBehaviour:
   m_Name: Dialogue
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 984, y: 264}
+  position: {x: 1000, y: 552}
   ports:
     keys:
     - previous
@@ -445,7 +585,7 @@ MonoBehaviour:
   m_Name: Dialogue
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1784, y: -360}
+  position: {x: 1848, y: -408}
   ports:
     keys:
     - previous
@@ -514,7 +654,7 @@ MonoBehaviour:
   m_Name: Dialogue
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1112, y: -72}
+  position: {x: 920, y: 88}
   ports:
     keys:
     - previous
@@ -526,7 +666,7 @@ MonoBehaviour:
       _typeQualifiedName: DialogueNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
       connections:
-      - fieldName: childNodes 2
+      - fieldName: childNodes 3
         node: {fileID: 34770374666815988}
         reroutePoints: []
       _direction: 0
@@ -583,7 +723,7 @@ MonoBehaviour:
   m_Name: Dialogue
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 2264, y: -360}
+  position: {x: 2328, y: -408}
   ports:
     keys:
     - previous
@@ -640,6 +780,76 @@ MonoBehaviour:
     isAuto: 0
     autoSpeed: 0
     pauseBeforeNext: 0
+--- !u!114 &-3802461013188841844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ac085fae4e799c44ab966161326a142, type: 3}
+  m_Name: Dialogue
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 2088, y: 24}
+  ports:
+    keys:
+    - previous
+    - childNodes
+    - childNodes 0
+    values:
+    - _fieldName: previous
+      _node: {fileID: -3802461013188841844}
+      _typeQualifiedName: DialogueNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: childNodes 0
+        node: {fileID: -6875757722865079054}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: childNodes
+      _node: {fileID: -3802461013188841844}
+      _typeQualifiedName: System.Collections.Generic.List`1[[DialogueNode+DialogueBranchCondition,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: childNodes 0
+      _node: {fileID: -3802461013188841844}
+      _typeQualifiedName: System.Collections.Generic.List`1[[DialogueNode+DialogueBranchCondition,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: previous
+        node: {fileID: -3792716787482963620}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+  ID: 23
+  previous: {fileID: 0}
+  dialogueNodeType: 0
+  dialogueSpeaker: Farmer
+  dialogueText: If you get frustrated, that's OK! It's normal! Just make sure you
+    let us know by using the slider, and maybe we can help you out.
+  dialogueSprite: {fileID: 0}
+  childNodes:
+  - condition: 0
+    targetID: 15
+  actions: []
+  auto:
+    isAuto: 0
+    autoSpeed: 0
+    pauseBeforeNext: 0
 --- !u!114 &-3792716787482963620
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -653,7 +863,7 @@ MonoBehaviour:
   m_Name: Dialogue
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 2360, y: -744}
+  position: {x: 2760, y: -840}
   ports:
     keys:
     - previous
@@ -670,6 +880,9 @@ MonoBehaviour:
         reroutePoints: []
       - fieldName: childNodes 0
         node: {fileID: -3889886938215121693}
+        reroutePoints: []
+      - fieldName: childNodes 0
+        node: {fileID: -3802461013188841844}
         reroutePoints: []
       _direction: 0
       _connectionType: 0
@@ -712,6 +925,75 @@ MonoBehaviour:
     isAuto: 0
     autoSpeed: 0
     pauseBeforeNext: 0
+--- !u!114 &-1791243421919272124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ac085fae4e799c44ab966161326a142, type: 3}
+  m_Name: Dialogue
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 1320, y: 24}
+  ports:
+    keys:
+    - previous
+    - childNodes
+    - childNodes 0
+    values:
+    - _fieldName: previous
+      _node: {fileID: -1791243421919272124}
+      _typeQualifiedName: DialogueNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: childNodes 2
+        node: {fileID: 34770374666815988}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: childNodes
+      _node: {fileID: -1791243421919272124}
+      _typeQualifiedName: System.Collections.Generic.List`1[[DialogueNode+DialogueBranchCondition,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: childNodes 0
+      _node: {fileID: -1791243421919272124}
+      _typeQualifiedName: System.Collections.Generic.List`1[[DialogueNode+DialogueBranchCondition,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: previous
+        node: {fileID: -7640360881192079114}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+  ID: 20
+  previous: {fileID: 0}
+  dialogueNodeType: 0
+  dialogueSpeaker: 
+  dialogueText: What is the Frustration Meter?
+  dialogueSprite: {fileID: 0}
+  childNodes:
+  - condition: 0
+    targetID: 21
+  actions: []
+  auto:
+    isAuto: 0
+    autoSpeed: 0
+    pauseBeforeNext: 0
 --- !u!114 &-1160938026183682847
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -725,7 +1007,7 @@ MonoBehaviour:
   m_Name: Dialogue
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 2024, y: -360}
+  position: {x: 2088, y: -408}
   ports:
     keys:
     - previous
@@ -795,7 +1077,7 @@ MonoBehaviour:
   m_Name: Dialogue
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1528, y: -360}
+  position: {x: 1608, y: -408}
   ports:
     keys:
     - previous
@@ -911,7 +1193,8 @@ MonoBehaviour:
   dialogueNodeType: 0
   dialogueSpeaker: Farmer
   dialogueText: Ok, do you need to know about movement? Or would you like me to explain
-    the stamina system?
+    the stamina system? Or are you curious about the face in the corner of your screen
+    and the Frustration system?
   dialogueSprite: {fileID: 0}
   childNodes:
   - condition: 0
@@ -934,7 +1217,7 @@ MonoBehaviour:
   m_Name: Dialogue
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1240, y: 264}
+  position: {x: 1256, y: 552}
   ports:
     keys:
     - previous
@@ -987,6 +1270,10 @@ MonoBehaviour:
   m_Name: FarmerIntro
   m_EditorClassIdentifier: 
   nodes:
+  - {fileID: -3802461013188841844}
+  - {fileID: -6875757722865079054}
+  - {fileID: -7640360881192079114}
+  - {fileID: -1791243421919272124}
   - {fileID: -8633930281700029686}
   - {fileID: 2373327044817695072}
   - {fileID: -245961750722197872}
@@ -1008,6 +1295,10 @@ MonoBehaviour:
   - {fileID: -1160938026183682847}
   - {fileID: -3889886938215121693}
   dialogue:
+  - {fileID: -3802461013188841844}
+  - {fileID: -6875757722865079054}
+  - {fileID: -7640360881192079114}
+  - {fileID: -1791243421919272124}
   - {fileID: -8633930281700029686}
   - {fileID: 2373327044817695072}
   - {fileID: -245961750722197872}
@@ -1042,7 +1333,7 @@ MonoBehaviour:
   m_Name: Dialogue
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 888, y: -392}
+  position: {x: 920, y: -408}
   ports:
     keys:
     - previous
@@ -1050,6 +1341,7 @@ MonoBehaviour:
     - childNodes 0
     - childNodes 1
     - childNodes 2
+    - childNodes 3
     values:
     - _fieldName: previous
       _node: {fileID: 34770374666815988}
@@ -1109,6 +1401,19 @@ MonoBehaviour:
         mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: previous
+        node: {fileID: -1791243421919272124}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: childNodes 3
+      _node: {fileID: 34770374666815988}
+      _typeQualifiedName: System.Collections.Generic.List`1[[DialogueNode+DialogueBranchCondition,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: previous
         node: {fileID: -3968123798224844484}
         reroutePoints: []
       _direction: 1
@@ -1126,6 +1431,8 @@ MonoBehaviour:
     targetID: 10
   - condition: 0
     targetID: 11
+  - condition: 0
+    targetID: 20
   - condition: 0
     targetID: 12
   actions: []
@@ -1192,7 +1499,7 @@ MonoBehaviour:
   previous: {fileID: 0}
   dialogueNodeType: 0
   dialogueSpeaker: Farmer
-  dialogueText: Do you need help with the controls?
+  dialogueText: Do you need help with the controls or any of the game mechanics??
   dialogueSprite: {fileID: 0}
   childNodes:
   - condition: 0
@@ -1215,7 +1522,7 @@ MonoBehaviour:
   m_Name: Dialogue
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1288, y: -840}
+  position: {x: 1320, y: -840}
   ports:
     keys:
     - previous
@@ -1284,7 +1591,7 @@ MonoBehaviour:
   m_Name: Dialogue
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1288, y: -360}
+  position: {x: 1320, y: -408}
   ports:
     keys:
     - previous
@@ -1422,7 +1729,7 @@ MonoBehaviour:
   m_Name: Dialogue
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1624, y: -840}
+  position: {x: 1608, y: -840}
   ports:
     keys:
     - previous
