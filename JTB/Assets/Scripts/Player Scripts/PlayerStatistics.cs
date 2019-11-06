@@ -9,7 +9,7 @@ public class PlayerStatistics : MonoBehaviour
     
     public float invulnTimer = 0;
     private float damageOverTime = 0;
-    public float stamina = 100;
+    public float stamina;
     public float maxStamina = 100;
     
     // Frustration variables
@@ -282,7 +282,6 @@ public class PlayerStatistics : MonoBehaviour
 
     // Use this for initialization
     void Start () {
-
         textSpawn = GetComponentInChildren<StamLossTextManager>();
         //The idea here is to create a Checkpoint at the location of the player, but it's not working and doesn't need to because 
         //Checkpoint = new Checkpoint(gameObject.transform.position);
@@ -294,7 +293,9 @@ public class PlayerStatistics : MonoBehaviour
             if (transform.GetChild(i).gameObject.name.Equals("MC Sprite"))
                 playerBody = transform.GetChild(i).transform.GetChild(1).gameObject;
         }
-	}
+
+        stamina = 100;
+    }
 
 
     // Update is called once per frame
