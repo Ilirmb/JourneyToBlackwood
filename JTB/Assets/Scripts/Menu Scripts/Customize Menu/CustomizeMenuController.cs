@@ -7,7 +7,7 @@ public class CustomizeMenuController : MonoBehaviour {
 
     [SerializeField]
     private Slider skinColorSlider;
-
+    public int startLevelID;
 
 	// Use this for initialization
 	void Start () {
@@ -17,7 +17,7 @@ public class CustomizeMenuController : MonoBehaviour {
 
     public void StartGame()
     {
-        loadScene.LoadScene(3);
+        loadScene.LoadScene(startLevelID);
     }
 
 
