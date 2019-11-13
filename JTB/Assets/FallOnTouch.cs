@@ -20,6 +20,8 @@ public class FallOnTouch : MonoBehaviour
             if (other.gameObject.CompareTag("Player"))
             {
                 rb.isKinematic = false;
+                this.GetComponent<Collider2D>().enabled = false;
+                Destroy(this.gameObject, 10f);
             }
         }
     }

@@ -4,7 +4,8 @@
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -14,13 +15,15 @@ MonoBehaviour:
   m_ApiVersion: 4
   m_Sprite: {fileID: 21300012, guid: ab8b5b197aa4f584a8f7b865080af698, type: 3}
   m_SharedMesh: {fileID: 43789292542150932}
+  m_SharedMaterials: []
 --- !u!43 &43789292542150932
 Mesh:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_Name: MC Sprite Sheet_6
-  serializedVersion: 9
+  serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
     firstByte: 0
@@ -72,6 +75,13 @@ Mesh:
     e33: 1
   m_BoneNameHashes: 
   m_RootBoneNameHash: 0
+  m_BonesAABB:
+  - m_Min: {x: -0.37135512, y: -0.3067249, z: 0}
+    m_Max: {x: 0.3424434, y: 0.4767258, z: 0}
+  - m_Min: {x: Infinity, y: Infinity, z: Infinity}
+    m_Max: {x: -Infinity, y: -Infinity, z: -Infinity}
+  m_VariableBoneCountWeights:
+    m_Data: 
   m_MeshCompression: 0
   m_IsReadable: 1
   m_KeepVertices: 1
@@ -79,7 +89,7 @@ Mesh:
   m_IndexFormat: 0
   m_IndexBuffer: 070006000500040005000600010005000400030001000400000001000300020001000000
   m_VertexData:
-    serializedVersion: 2
+    serializedVersion: 3
     m_VertexCount: 8
     m_Channels:
     - stream: 0
@@ -136,7 +146,7 @@ Mesh:
       dimension: 4
     - stream: 2
       offset: 16
-      format: 11
+      format: 10
       dimension: 4
     m_DataSize: 640
     _typelessdata: 3333b33e5c8f823e000000000000000000000000000080bf0000803f85f0feb500000000000080bfb81e853e290a97be000000000000000000000000000080bf0000803f7bef39b500000000000080bf3333b33e48e17abe000000000000000000000000000080bf0000803f51fa08b700000000000080bf1f856b3e3d0a973e000000000000000000000000000080bf0000803f648589b400000000000080bfcdcc4cbe3d0a973e000000000000000000000000000080bf0000803f4098b83200000000000080bf9a9999be290a97be000000000000000000000000000080bf0000803f225caf3300000000000080bf3333b3be52b81e3e000000000000000000000000000080bf0000803ff271b23400000000000080bf3333b3bec3f528be000000000000000000000000000080bf0000803f00400e3700000000000080bf471c583f40b3073f70f9563fe5c1003f471c583f7963013f7d98563f8334083feb2a513f8334083fc4e74f3fe5c1003f30464f3f1870063f30464f3fff65023f0000803f000000800000000000000000000000000100000000000000000000000000803f000000800000000000000000000000000100000000000000000000000000803f000000800000000000000000000000000100000000000000000000000000803f000000000000000000000000000000000100000000000000000000000000803f000000800000000000000000000000000100000000000000000000000000803f000000000000000000000000000000000100000000000000000000000000803f000000800000000000000000000000000100000000000000000000000000803f00000000000000000000000000000000010000000000000000000000
@@ -200,12 +210,17 @@ Mesh:
   m_BakedTriangleCollisionMesh: 
   m_MeshMetrics[0]: 1
   m_MeshMetrics[1]: 1
-  m_MeshOptimized: 0
+  m_MeshOptimizationFlags: -1
+  m_StreamData:
+    offset: 0
+    size: 0
+    path: 
 --- !u!114 &114387970205063234
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
