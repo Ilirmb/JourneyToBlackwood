@@ -17,8 +17,6 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
 
     private Transform m_GroundCheck;    // A position marking where to check if the player is grounded.
     private float m_TrueSpeed;
-    private float m_GroundedSpeed = 10;
-    private float m_SlidingSpeed = 55;
     private float m_SlidingDrag = 2f;
     private float k_GroundedRadius = .25f; // Radius of the overlap circle to determine if grounded
     public bool m_Grounded;            // Whether or not the player is grounded.
@@ -176,8 +174,7 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
             }
 
             // Move the character
-            float tempSpeed = (m_Sliding && m_Grounded ? m_SlidingSpeed : m_MaxSpeed);
-            m_TrueSpeed = (m_Running ? tempSpeed * 1.5f : tempSpeed);
+            m_TrueSpeed = (m_Running ? m_MaxSpeed * 1.5f : m_MaxSpeed);
 
             float _yVelocity = m_Grounded && !m_OnLadder ? 0.0f: m_Rigidbody2D.velocity.y;
 
@@ -197,7 +194,7 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
             }
             else // If sliding
             {
-                m_Rigidbody2D.AddForce(new Vector2(move * (m_TrueSpeed/2), 0f));
+                m_Rigidbody2D.AddForce(new Vector2(move * (m_TrueSpeed), 0f));
             }
             //m_Rigidbody2D = new Vector2((move * normal.y) * m_TrueSpeed, ((move * -normal.x) * m_TrueSpeed) + m_yVelocity);
 
@@ -303,13 +300,11 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
     {
         m_Sliding = true;
         m_Rigidbody2D.drag = m_SlidingDrag;
-        m_MaxSpeed = m_SlidingSpeed;
     }
     public void StopSliding() 
     {
         m_Sliding = false;
         m_Rigidbody2D.drag = 0f;
-        m_MaxSpeed = m_GroundedSpeed;
     }
 
     public void SetGravityScale(float amt)
