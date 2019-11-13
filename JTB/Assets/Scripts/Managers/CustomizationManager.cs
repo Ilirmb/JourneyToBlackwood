@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+
 public class CustomizationManager : MonoBehaviour {
 
     // Static singleton instance that allows customization data to be accessed from any script.
@@ -45,6 +46,7 @@ public class CustomizationManager : MonoBehaviour {
     [SerializeField]
     private List<CostumeData> faceList = new List<CostumeData>();
 
+
     // Current Selected costume
     private CostumeData currentCostume;
 
@@ -53,6 +55,8 @@ public class CustomizationManager : MonoBehaviour {
 
     // Current Selected costume
     private CostumeData currentFace;
+
+
 
     // Current costume index
     private int currentCostumeIndex, currentHairIndex, currentFaceIndex;
@@ -69,6 +73,7 @@ public class CustomizationManager : MonoBehaviour {
     // Event that is called whenever the hairstyle is changed
     [HideInInspector]
     public UnityEvent OnHairStyleChanged;
+
 
     // Event that is called whenever the face is changed
     [HideInInspector]
@@ -93,6 +98,8 @@ public class CustomizationManager : MonoBehaviour {
             return;
         }
 
+       
+
         // Set current costume to the first in the list if the list is not empty
         currentCostume = costumeList.Count > 0 ? costumeList[0] : null;
         currentCostumeIndex = costumeList.Count > 0 ? 0 : -1;
@@ -104,6 +111,8 @@ public class CustomizationManager : MonoBehaviour {
         // Set current face to the first in the list if the list is not empty
         currentFace = faceList.Count > 0 ? faceList[0] : null;
         currentFaceIndex = faceList.Count > 0 ? 0 : -1;
+
+       
     }
 
 
@@ -122,6 +131,7 @@ public class CustomizationManager : MonoBehaviour {
 
         OnSkinChanged.Invoke();
     }
+
 
 
     /// <summary>
@@ -241,7 +251,7 @@ public class CustomizationManager : MonoBehaviour {
 
         SetCurrentCostume(currentCostumeIndex);
     }
-
+  
 
     /// <summary>
     /// AdvanceCurrentHairStyle
@@ -314,7 +324,8 @@ public class CustomizationManager : MonoBehaviour {
         }
 
         return null;
-    }
+    } 
+
 
 
     /// <summary>

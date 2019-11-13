@@ -13,9 +13,9 @@ namespace Anima2D
 	{
 		[SerializeField]
 		SpriteMesh m_SpriteMesh;
-		
-		[SerializeField]
-		Color m_Color = Color.white;
+
+        [SerializeField]
+        Color m_Color;
 		
 		[SerializeField]
 		Material[] m_Materials;
@@ -51,6 +51,7 @@ namespace Anima2D
 			get { return m_Materials; }
 			set { m_Materials = value; }
 		}
+        
 		
 		public Color color {
 			get { return m_Color; }
@@ -146,11 +147,10 @@ namespace Anima2D
 		MaterialPropertyBlock m_MaterialPropertyBlock;
 		MaterialPropertyBlock materialPropertyBlock {
 			get {
-				if(m_MaterialPropertyBlock == null)
-				{
-					m_MaterialPropertyBlock = new MaterialPropertyBlock();
-				}
-				
+                if (m_MaterialPropertyBlock == null)
+                {
+                    m_MaterialPropertyBlock = new MaterialPropertyBlock();
+                }
 				return m_MaterialPropertyBlock;
 			}
 		}

@@ -41,7 +41,7 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
     private PlayerStatistics playerStatistics;
     private Vector3 velocity = Vector3.zero;
     private Vector2 normal;
-
+    private WaveManager waveManager;
     public bool OnRiverLog = false;
 
     #region Gameplay Ref
@@ -53,8 +53,9 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
 
     private void Awake()
     {
-        // Setting up references.
-        m_GroundCheck = transform.Find("GroundCheck");
+        waveManager = GameObject.FindGameObjectWithTag("Water").GetComponent<WaveManager>();
+       // Setting up references.
+       m_GroundCheck = transform.Find("GroundCheck");
         m_CeilingCheck = transform.Find("CeilingCheck");
         m_Anim = GetComponentInChildren<Animator>();
         m_Rigidbody2D = GetComponent<Rigidbody2D>();
@@ -71,7 +72,7 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
             m_JumpForce = 500f;
         }
     }
-
+   
 
     private void FixedUpdate()
     {
@@ -134,7 +135,7 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
 
         m_PrevGrounded = m_Grounded;
     }
- 
+
 
     public void Move(float move, bool crouch, bool jump, bool run)
     {
