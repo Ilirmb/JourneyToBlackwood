@@ -24,6 +24,7 @@ public class HintArea : MonoBehaviour {
     private void OnTriggerExit2D(Collider2D other)
     {
         // Remove hint list
+        Debug.Log("justincase");
         if (other.CompareTag("Player"))
             GameManager.instance.UpdateHintList(new List<DialogueTree>());
     }
