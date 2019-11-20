@@ -11,24 +11,24 @@ public class CustomizeMenuController : MonoBehaviour {
     //Anima2D script
     [HideInInspector]
     private SpriteMeshInstance eyeScript;
-   
+    private SpriteMeshInstance hairScript;
     // Use this for initialization
     void Start () {
         // Reference the mesh instance script that is on the eyes on the character sprite
-        if(eyeScript = GameObject.Find("MC Sprite").transform.GetChild(1).GetChild(4).GetChild(0).GetComponent<SpriteMeshInstance>())
-        {
+        eyeScript = GameObject.Find("MC Sprite").transform.GetChild(1).GetChild(4).GetChild(0).GetComponent<SpriteMeshInstance>();
+        hairScript = GameObject.Find("MC Sprite").transform.GetChild(1).GetChild(4).GetChild(2).GetComponent<SpriteMeshInstance>();
 
-        }
-        else
-        {
-            Debug.LogError("NotRefereced");
-        }
     }
 
 
     public void StartGame()
     {
         loadScene.LoadScene(startLevelID);
+        //set default hair and eye colors
+        Color yellowHue = new Color(1, .8f, 0, .75f);
+        eyeScript.color = yellowHue;
+        Color blueHue = new Color(0, .7f, 1, 1);
+        hairScript.color = blueHue;
     }
 
 
@@ -45,26 +45,51 @@ public class CustomizeMenuController : MonoBehaviour {
 
     public void SetYellowEyeColor()
     {
-        Color yellowHue = new Color(1, .8f, 0, 1);
+        Color yellowHue = new Color(1, .8f, 0, .75f);
         eyeScript.color = yellowHue;
         Debug.Log("Yellow: "+yellowHue);
         
     }
     public void SetPurpleEyeColor()
     {
-        Color yellowHue = new Color(.5f, 0, 1, 1);
+        Color yellowHue = new Color(.5f, 0, 1, .75f);
         eyeScript.color = yellowHue;
         Debug.Log("Yellow: " + yellowHue);
 
     }
+
     public void SetBlueEyeColor()
     {
-        Color blueHue = new Color(0, .7f, 1, 1);
+        Color blueHue = new Color(0, .7f, 1, .75f);
         eyeScript.color = blueHue;
         Debug.Log("Blue: "+ blueHue);
         
     }
 
+    public void SetYellowHairColor()
+    {
+        Color yellowHue = new Color(1, .8f, 0, 1);
+        hairScript.color = yellowHue;
+
+    }
+    public void SetPurpleHairColor()
+    {
+        Color yellowHue = new Color(.5f, 0, 1, 1);
+        hairScript.color = yellowHue;
+
+    }
+    public void SetPinkHairColor()
+    {
+        Color pinkHue = new Color(1, .45f, .98f, 1f);
+        hairScript.color = pinkHue;
+
+    }
+    public void SetBlueHairColor()
+    {
+        Color blueHue = new Color(0, .7f, 1, 1);
+        hairScript.color = blueHue;
+
+    }
     public void ChangeHairStyle(int dir)
     {
         CustomizationManager.instance.AdvanceCurrentHairStyle(dir);

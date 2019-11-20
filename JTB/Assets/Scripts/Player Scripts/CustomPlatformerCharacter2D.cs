@@ -18,7 +18,7 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
     private Transform m_GroundCheck;    // A position marking where to check if the player is grounded.
     private float m_TrueSpeed;
     private float m_GroundedSpeed = 10;
-    private float m_SlidingSpeed = 55;
+    private float m_SlidingSpeed = 15;
     private float m_SlidingDrag = 2f;
     private float k_GroundedRadius = .25f; // Radius of the overlap circle to determine if grounded
     public bool m_Grounded;            // Whether or not the player is grounded.
