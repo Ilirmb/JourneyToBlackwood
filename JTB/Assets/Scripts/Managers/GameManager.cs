@@ -392,7 +392,7 @@ public class GameManager : MonoBehaviour {
         else
         {
             Debug.Log("No hints found: Is your Hint Area correctly set?");
-            DialogueProcessor.instance.StartDialogue(defaultHint);
+            DialogueProcessor.instance.StartDialogue(defaultHint, true);
         }
     }
 
