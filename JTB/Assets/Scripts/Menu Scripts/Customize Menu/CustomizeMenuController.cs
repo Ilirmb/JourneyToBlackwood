@@ -25,7 +25,10 @@ public class CustomizeMenuController : MonoBehaviour {
     {
         loadScene.LoadScene(startLevelID);
         //set default hair and eye colors
-
+        Color yellowHue = new Color(1, .8f, 0, .75f);
+        eyeScript.color = yellowHue;
+        Color blueHue = new Color(0, .7f, 1, 1);
+        hairScript.color = blueHue;
     }
 
 
