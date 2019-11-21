@@ -255,6 +255,9 @@ public class GameManager : MonoBehaviour {
         saveData.socialValues = socialValues;
         saveData.friendshipValues = friendshipValues;
         saveData.questData = questData;
+        saveData.currentFace = CustomizationManager.instance.CurrentFaceIndex;
+        saveData.currentHair = CustomizationManager.instance.CurrentHairIndex;
+        saveData.currentCostume = CustomizationManager.instance.CurrentCostumeIndex;
 
         bf.Serialize(stream, saveData);
         stream.Close();

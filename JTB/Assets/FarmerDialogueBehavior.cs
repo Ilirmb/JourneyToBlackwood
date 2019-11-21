@@ -16,13 +16,10 @@ public class FarmerDialogueBehavior : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("Entered collider");
         if (other.CompareTag("Player"))
-            Debug.Log("and is player");
         {
             if (!hasTriggered)
             {
-                Debug.Log("and hasnt triggered");
                 hasTriggered = true;
                 dialogueProcesor.StartDialogue(dialogueTree);
             }
