@@ -57,6 +57,7 @@ public class CustomizeMenuController : MonoBehaviour {
         Debug.Log("Yellow: " + yellowHue);
 
     }
+
     public void SetBlueEyeColor()
     {
         Color blueHue = new Color(0, .7f, 1, .75f);
@@ -69,21 +70,24 @@ public class CustomizeMenuController : MonoBehaviour {
     {
         Color yellowHue = new Color(1, .8f, 0, 1);
         hairScript.color = yellowHue;
-        Debug.Log("Yellow: " + yellowHue);
 
     }
     public void SetPurpleHairColor()
     {
         Color yellowHue = new Color(.5f, 0, 1, 1);
         hairScript.color = yellowHue;
-        Debug.Log("Yellow: " + yellowHue);
+
+    }
+    public void SetPinkHairColor()
+    {
+        Color pinkHue = new Color(1, .45f, .98f, 1f);
+        hairScript.color = pinkHue;
 
     }
     public void SetBlueHairColor()
     {
         Color blueHue = new Color(0, .7f, 1, 1);
         hairScript.color = blueHue;
-        Debug.Log("Blue: " + blueHue);
 
     }
     public void ChangeHairStyle(int dir)
