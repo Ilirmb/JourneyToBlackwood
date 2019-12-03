@@ -1,6 +1,7 @@
-﻿ using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Anima2D;
 public class CustomizeMenuController : MonoBehaviour {
@@ -42,7 +43,10 @@ public class CustomizeMenuController : MonoBehaviour {
     {
         CustomizationManager.instance.AdvanceCurrentCostume(dir);
     }
-
+    public void BackButton()
+    {
+        SceneManager.LoadScene("Main Menu");
+    }
     public void SetYellowEyeColor()
     {
         Color yellowHue = new Color(1, .8f, 0, .75f);
@@ -82,13 +86,11 @@ public class CustomizeMenuController : MonoBehaviour {
     {
         Color pinkHue = new Color(1, .45f, .98f, 1f);
         hairScript.color = pinkHue;
-
     }
     public void SetBlueHairColor()
     {
         Color blueHue = new Color(0, .7f, 1, 1);
         hairScript.color = blueHue;
-
     }
     public void ChangeHairStyle(int dir)
     {
