@@ -20,7 +20,6 @@ public class WaveTrigger : MonoBehaviour
             waveManager.rapidWaves = true;
             waveManager.StartCoroutine("RoughWaters");
             waveManager.StartCoroutine("SpawnWaves");
-            Debug.Log("crouching true");
             other.GetComponent<CustomPlatformerCharacter2D>().isCrouching = true;
         }
     }
@@ -28,7 +27,6 @@ public class WaveTrigger : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            Debug.Log("turnoff");
             waveManager.StartCoroutine("DeleteWaves");
             other.GetComponent<CustomPlatformerCharacter2D>().isCrouching = false;
 
