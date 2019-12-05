@@ -30,7 +30,7 @@ public class HitWater : MonoBehaviour
 
                 //We set the invulnerability timer to allow the player to reorient themselves at the Checkpoint
                 playerStatsScript.invulnTimer = 1.5f;
-
+                waveManager.StartCoroutine("DeleteWaves");
                 waveManager.rapidWaves = false;
                 
             }

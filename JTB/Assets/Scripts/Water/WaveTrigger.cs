@@ -19,6 +19,16 @@ public class WaveTrigger : MonoBehaviour
             Debug.Log("TriggeringWaves");
             waveManager.rapidWaves = true;
             waveManager.StartCoroutine("RoughWaters");
+            waveManager.StartCoroutine("SpawnWaves");
+        }
+    }
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            Debug.Log("turnoff");
+            waveManager.StartCoroutine("DeleteWaves");
+            this.gameObject.SetActive(false);
         }
     }
 }
