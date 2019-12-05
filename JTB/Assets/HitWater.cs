@@ -6,9 +6,11 @@ public class HitWater : MonoBehaviour
 {
     PlayerStatistics playerStatsScript;
     WaveManager waveManager;
+    GameObject Player;
     // Start is called before the first frame update
     void Start()
     {
+        Player = GameObject.FindWithTag("Player");
         playerStatsScript = GameObject.FindWithTag("Player").GetComponent<PlayerStatistics>();
         waveManager = GameObject.Find("Segment2").transform.GetChild(0).GetChild(0).GetComponent<WaveManager>();
     }
@@ -27,9 +29,11 @@ public class HitWater : MonoBehaviour
                 playerStatsScript.gameObject.transform.position = playerStatsScript.checkpoint.transform.position;
 
                 playerStatsScript.stamina = 100f;
+                Player.GetComponent<CustomPlatformerCharacter2D>().isCrouching = false;
 
                 //We set the invulnerability timer to allow the player to reorient themselves at the Checkpoint
                 playerStatsScript.invulnTimer = 1.5f;
+
                 waveManager.StartCoroutine("DeleteWaves");
                 waveManager.rapidWaves = false;
                 

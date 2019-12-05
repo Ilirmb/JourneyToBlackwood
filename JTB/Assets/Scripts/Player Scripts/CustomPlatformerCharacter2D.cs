@@ -43,7 +43,7 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
     private Vector2 normal;
     private WaveManager waveManager;
     public bool OnRiverLog = false;
-
+    public bool isCrouching = false;
     #region Gameplay Ref
 
     private Ladder ladderRef;
@@ -53,7 +53,7 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
 
     private void Awake()
     {
-        waveManager = GameObject.FindGameObjectWithTag("Water").GetComponent<WaveManager>();
+    
        // Setting up references.
        m_GroundCheck = transform.Find("GroundCheck");
         m_CeilingCheck = transform.Find("CeilingCheck");
@@ -77,6 +77,10 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
     private void FixedUpdate()
     {
         m_Grounded = false;
+
+        //Change values if crouching
+        m_MaxSpeed = isCrouching ? m_MaxSpeed = 6 : 10;
+        m_JumpForce = isCrouching ? m_JumpForce = 600 : 1000;
 
         // The player is grounded if a circlecast to the groundcheck position hits anything designated as ground
         // This can be done using layers instead but Sample Assets will not overwrite your project settings.

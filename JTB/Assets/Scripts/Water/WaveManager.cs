@@ -32,16 +32,17 @@ public class WaveManager : MonoBehaviour
     {
         if (rapidWaves)
         {
-         
-            Player.GetComponent<CustomPlatformerCharacter2D>().m_MaxSpeed = 6;
-            Player.GetComponent<CustomPlatformerCharacter2D>().m_JumpForce = 600;
-            waterScript.ConstantRipplesModule.Disturbance = 1f;
+           // Player.GetComponent<CustomPlatformerCharacter2D>().isCrouching = true;
+            //Player.GetComponent<CustomPlatformerCharacter2D>().m_MaxSpeed = 6;
+            //Player.GetComponent<CustomPlatformerCharacter2D>().m_JumpForce = 600;
+            waterScript.ConstantRipplesModule.Disturbance = 1.2f;
 
         }else if (!rapidWaves)
         {
+           // Player.GetComponent<CustomPlatformerCharacter2D>().isCrouching = false;
             waterScript.ConstantRipplesModule.Disturbance = 0.1f;
-            Player.GetComponent<CustomPlatformerCharacter2D>().m_MaxSpeed = 10;
-            Player.GetComponent<CustomPlatformerCharacter2D>().m_JumpForce = 1000;
+           // Player.GetComponent<CustomPlatformerCharacter2D>().m_MaxSpeed = 10;
+           // Player.GetComponent<CustomPlatformerCharacter2D>().m_JumpForce = 1000;
         }
     }
   
@@ -73,6 +74,7 @@ public class WaveManager : MonoBehaviour
         }
        // waterScript.gameObject.GetComponent<BuoyancyEffector2D>().surfaceLevel = 3.5f;
         StartCoroutine(DeleteWaves());
+        Player.GetComponent<CustomPlatformerCharacter2D>().isCrouching = false;
         rapidWaves = false;
         timer = 0;
         StopCoroutine(RoughWaters());
