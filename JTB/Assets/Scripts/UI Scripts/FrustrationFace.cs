@@ -50,6 +50,8 @@ public class FrustrationFace : MonoBehaviour
         hairBack.sprite = CustomizationManager.instance.GetPlayerHairExtra();
         eyes.sprite = CustomizationManager.instance.GetPlayerEyes();
         face.sprite = CustomizationManager.instance.GetPlayerFace();
+        hair.color = GlobalColor.Instance.hairColor;
+        eyes.color = GlobalColor.Instance.eyeColor;
     }
 
     // Update is called once per frame

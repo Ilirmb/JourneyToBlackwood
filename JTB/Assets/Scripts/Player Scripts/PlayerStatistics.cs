@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Anima2D;
 public class PlayerStatistics : MonoBehaviour
 {
     private StamLossTextManager textSpawn;
@@ -32,6 +32,98 @@ public class PlayerStatistics : MonoBehaviour
 
     public int numPlayerDeaths = 0;
 
+    private SpriteMeshInstance eyeScript;
+    private SpriteMeshInstance hairScript;
+
+    // Use this for initialization
+    void Start()
+    {
+
+        eyeScript = GameObject.Find("MC Sprite").transform.GetChild(1).GetChild(4).GetChild(0).GetComponent<SpriteMeshInstance>();
+        hairScript = GameObject.Find("MC Sprite").transform.GetChild(1).GetChild(4).GetChild(2).GetComponent<SpriteMeshInstance>();
+        eyeScript.color = GlobalColor.Instance.eyeColor;
+        hairScript.color = GlobalColor.Instance.hairColor;
+
+        textSpawn = GetComponentInChildren<StamLossTextManager>();
+        //The idea here is to create a Checkpoint at the location of the player, but it's not working and doesn't need to because 
+        //Checkpoint = new Checkpoint(gameObject.transform.position);
+        positionLastFrame = transform.position;
+
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            // Gets the player's body by name. This is far from optimal sense the name may be different.
+            if (transform.GetChild(i).gameObject.name.Equals("MC Sprite"))
+                playerBody = transform.GetChild(i).transform.GetChild(1).gameObject;
+        }
+
+        stamina = 100;
+    }
+
+
+    // Update is called once per frame
+    void Update()
+    {
+        /*if (frustration >= 70f && timeLeft > 0f)
+        {
+            highFrustration = true;
+            timeLeft -= Time.deltaTime;
+        }
+        if (frustration < 70f)
+        {
+            highFrustration = false;
+            timeLeft = 15f;
+        }
+        if (timeLeft <= 0)
+        {
+            //hint here
+            Debug.Log("Frustration High");
+            frustrationCount++;
+            timeLeft = 15f;
+        }
+
+        // Pause the game
+        if (frustrationCount >= 3)
+        {
+            //StartCoroutine(BreakTimer());
+            frustrationCount = 0;
+        }*/
+
+
+        if (invulnTimer > 0)
+        {
+            invulnTimer -= Time.deltaTime;
+
+            //Flickers sprite by turning the game renderer on and off every couple of frames
+            if (Time.frameCount % 5 == 0)
+            {
+                playerBody.SetActive(!playerBody.activeInHierarchy);// = !gameObject.GetComponent<SpriteRenderer>().enabled;
+            }
+            //If this is the last frame where the character has invulnerability, then the sprite should be set to rendered
+            if (invulnTimer <= 0)
+            {
+                playerBody.SetActive(true);
+                //For future math reasons we reset the timer to zero because time.delta time can make it less than that.
+                invulnTimer = 0;
+            }
+
+        }
+
+        //Remove?
+        //CheckIfDead();
+
+        if (isMoving)
+        {
+            float distanceSinceLastFrame = Mathf.Abs((transform.position.x - positionLastFrame.x)); //In unity distance units
+            damageFromMoving(distanceSinceLastFrame * (GameConst.STAMINA_DRAIN_PER_DISTANCE_WALKED / walkDistanceToDamageStam));
+        }
+
+        positionLastFrame = new Vector2(transform.position.x, transform.position.y);
+    }
+
+    public void ReloadCurrentScene()
+    {
+        ls.ReloadCurrentScene();
+    }
 
     public float getStamina()
     {
@@ -280,86 +372,5 @@ public class PlayerStatistics : MonoBehaviour
     }*/
 
 
-    // Use this for initialization
-    void Start () {
-        textSpawn = GetComponentInChildren<StamLossTextManager>();
-        //The idea here is to create a Checkpoint at the location of the player, but it's not working and doesn't need to because 
-        //Checkpoint = new Checkpoint(gameObject.transform.position);
-        positionLastFrame = transform.position;
-
-        for(int i=0; i<transform.childCount; i++)
-        {
-            // Gets the player's body by name. This is far from optimal sense the name may be different.
-            if (transform.GetChild(i).gameObject.name.Equals("MC Sprite"))
-                playerBody = transform.GetChild(i).transform.GetChild(1).gameObject;
-        }
-
-        stamina = 100;
-    }
-
-
-    // Update is called once per frame
-    void Update()
-    {
-        /*if (frustration >= 70f && timeLeft > 0f)
-        {
-            highFrustration = true;
-            timeLeft -= Time.deltaTime;
-        }
-        if (frustration < 70f)
-        {
-            highFrustration = false;
-            timeLeft = 15f;
-        }
-        if (timeLeft <= 0)
-        {
-            //hint here
-            Debug.Log("Frustration High");
-            frustrationCount++;
-            timeLeft = 15f;
-        }
-
-        // Pause the game
-        if (frustrationCount >= 3)
-        {
-            //StartCoroutine(BreakTimer());
-            frustrationCount = 0;
-        }*/
-
-
-        if (invulnTimer > 0)
-        {
-            invulnTimer -= Time.deltaTime;
-            
-            //Flickers sprite by turning the game renderer on and off every couple of frames
-            if (Time.frameCount % 5 == 0)
-            {
-                playerBody.SetActive(!playerBody.activeInHierarchy);// = !gameObject.GetComponent<SpriteRenderer>().enabled;
-            }
-            //If this is the last frame where the character has invulnerability, then the sprite should be set to rendered
-            if (invulnTimer <= 0)
-            {
-                playerBody.SetActive(true);
-                //For future math reasons we reset the timer to zero because time.delta time can make it less than that.
-                invulnTimer = 0;
-            }
-            
-        }
-
-        //Remove?
-        //CheckIfDead();
-
-        if (isMoving)
-        {
-            float distanceSinceLastFrame = Mathf.Abs((transform.position.x - positionLastFrame.x)); //In unity distance units
-            damageFromMoving(distanceSinceLastFrame * (GameConst.STAMINA_DRAIN_PER_DISTANCE_WALKED / walkDistanceToDamageStam));
-        }
-
-        positionLastFrame = new Vector2(transform.position.x, transform.position.y);
-    }
-
-    public void ReloadCurrentScene()
-    {
-        ls.ReloadCurrentScene();
-    }
+ 
 }

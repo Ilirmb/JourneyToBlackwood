@@ -126,7 +126,7 @@ public class SkinToneAdjust : MonoBehaviour {
     /// </summary>
     private void CostumeChanged()
     {
-        //ResetSkinTargets();
+        ResetSkinTargets();
 
         // Determine the components that need to be recolored based on the costume.
         CostumeData costume = CustomizationManager.instance.GetCurrentCostume();

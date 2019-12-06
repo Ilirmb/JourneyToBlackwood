@@ -75,10 +75,12 @@ public class GameManager : MonoBehaviour {
     {
         OnPlayerDeath.RemoveAllListeners();
         player = FindObjectOfType<PlayerStatistics>();
-        
-        playerMov = player.transform.GetComponent<CustomPlatformer2DUserControl>();
-        playerAnim = player.transform.GetComponentInChildren<Animator>();
-        playerRb2d = player.transform.GetComponent<Rigidbody2D>();
+        if (player != null)
+        {
+            playerMov = player.transform.GetComponent<CustomPlatformer2DUserControl>();
+            playerAnim = player.transform.GetComponentInChildren<Animator>();
+            playerRb2d = player.transform.GetComponent<Rigidbody2D>();
+        }
     }
 
     

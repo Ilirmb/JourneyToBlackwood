@@ -24,12 +24,8 @@ public class CustomizeMenuController : MonoBehaviour {
 
     public void StartGame()
     {
+
         loadScene.LoadScene(startLevelID);
-        ////set default hair and eye colors
-        //Color yellowHue = new Color(1, .8f, 0, .75f);
-        //eyeScript.color = yellowHue;
-        //Color blueHue = new Color(0, .7f, 1, 1);
-        //hairScript.color = blueHue;
     }
 
 
@@ -47,50 +43,56 @@ public class CustomizeMenuController : MonoBehaviour {
     {
         SceneManager.LoadScene("Main Menu");
     }
+
     public void SetYellowEyeColor()
     {
         Color yellowHue = new Color(1, .8f, 0, .75f);
         eyeScript.color = yellowHue;
-        Debug.Log("Yellow: "+yellowHue);
-        
+        GlobalColor.Instance.eyeColor = yellowHue;
+
     }
     public void SetPurpleEyeColor()
     {
-        Color yellowHue = new Color(.5f, 0, 1, .75f);
-        eyeScript.color = yellowHue;
-        Debug.Log("Yellow: " + yellowHue);
-
+        Color purpleHue = new Color(.5f, 0, 1, .75f);
+        eyeScript.color = purpleHue;
+        GlobalColor.Instance.eyeColor = purpleHue;
     }
 
     public void SetBlueEyeColor()
     {
         Color blueHue = new Color(0, .7f, 1, .75f);
         eyeScript.color = blueHue;
-        Debug.Log("Blue: "+ blueHue);
-        
+        GlobalColor.Instance.eyeColor = blueHue;
+
     }
 
     public void SetYellowHairColor()
     {
         Color yellowHue = new Color(1, .8f, 0, 1);
         hairScript.color = yellowHue;
+        GlobalColor.Instance.hairColor = yellowHue;
 
     }
     public void SetPurpleHairColor()
     {
-        Color yellowHue = new Color(.5f, 0, 1, 1);
-        hairScript.color = yellowHue;
+        Color purpleHue = new Color(.5f, 0, 1, 1);
+        hairScript.color = purpleHue;
+        GlobalColor.Instance.hairColor = purpleHue;
 
     }
     public void SetPinkHairColor()
     {
         Color pinkHue = new Color(1, .45f, .98f, 1f);
         hairScript.color = pinkHue;
+        GlobalColor.Instance.hairColor = pinkHue;
+
     }
     public void SetBlueHairColor()
     {
         Color blueHue = new Color(0, .7f, 1, 1);
         hairScript.color = blueHue;
+        GlobalColor.Instance.hairColor = blueHue;
+
     }
     public void ChangeHairStyle(int dir)
     {
