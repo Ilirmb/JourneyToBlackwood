@@ -20,5 +20,8 @@ public class GlobalColor : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        eyeColor = new Color(1, 1, 1, 1);
+        hairColor = new Color(0, 86f/255f, 1, 1); //default bluish color
     }
 }

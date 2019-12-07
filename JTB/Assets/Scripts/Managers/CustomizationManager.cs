@@ -117,7 +117,7 @@ public class CustomizationManager : MonoBehaviour {
         currentFace = faceList.Count > 0 ? faceList[0] : null;
         currentFaceIndex = faceList.Count > 0 ? 0 : -1;
 
-       
+        
     }
 
 
