@@ -4079,7 +4079,7 @@ SpriteRenderer:
   m_Size: {x: 3.97, y: 1.34}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &3527284538980003991
@@ -4599,7 +4599,7 @@ SpriteRenderer:
   m_Size: {x: 3.04, y: 3.33}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &3527284539243223065
@@ -8606,7 +8606,9 @@ MonoBehaviour:
     - {x: 145.82889, y: 24.07388}
     - {x: 139.9521, y: 18.409086}
     - {x: 124.35968, y: 8.160442}
-    - {x: 97.94625, y: 9.019033}
+    - {x: 96.64911, y: 8.331667}
+    - {x: 95.37042, y: 8.396349}
+    - {x: 92.164856, y: 7.410052}
     - {x: 88.29369, y: 3.4232063}
     - {x: 76.36447, y: 0.11619568}
     - {x: 72.56046, y: 2.0620565}
@@ -8645,6 +8647,14 @@ MonoBehaviour:
     - {x: -131.86359, y: -60.857727}
     - {x: -80.55861, y: -62.562775}
     _pointControls:
+    - radius: 1
+      controlNext: {x: 0, y: 0}
+      controlPrev: {x: 0, y: 0}
+      type: 4
+    - radius: 1
+      controlNext: {x: 0, y: 0}
+      controlPrev: {x: 0, y: 0}
+      type: 4
     - radius: 1
       controlNext: {x: 0, y: 0}
       controlPrev: {x: 0, y: 0}
@@ -9131,7 +9141,13 @@ MonoBehaviour:
       scale: 1
     - directionOverride: 4
       cutOverrides: 
-      scale: 0.7309671
+      scale: 0.5586124
+    - directionOverride: 4
+      cutOverrides: 
+      scale: 1
+    - directionOverride: 4
+      cutOverrides: 
+      scale: 1
     - directionOverride: 4
       cutOverrides: 
       scale: 1
@@ -10388,7 +10404,7 @@ SpriteRenderer:
   m_Size: {x: 3.97, y: 1.34}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &3527284540544658388
@@ -10841,7 +10857,7 @@ SpriteRenderer:
   m_Size: {x: 3.04, y: 3.33}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &3527284540854187928
@@ -14315,10 +14331,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3527284540448140766}
     m_Modifications:
-    - target: {fileID: 1584327774282830, guid: c15ad9c31cfbb7047a96e967adfca707, type: 3}
-      propertyPath: m_Name
-      value: Checkpoint (2)
-      objectReference: {fileID: 0}
     - target: {fileID: 224181996065141488, guid: c15ad9c31cfbb7047a96e967adfca707,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -14439,6 +14451,10 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.013050374
       objectReference: {fileID: 0}
+    - target: {fileID: 1584327774282830, guid: c15ad9c31cfbb7047a96e967adfca707, type: 3}
+      propertyPath: m_Name
+      value: Checkpoint (2)
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c15ad9c31cfbb7047a96e967adfca707, type: 3}
 --- !u!224 &1161309679210413955 stripped
@@ -14454,10 +14470,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3527284540448140766}
     m_Modifications:
-    - target: {fileID: 1584327774282830, guid: c15ad9c31cfbb7047a96e967adfca707, type: 3}
-      propertyPath: m_Name
-      value: Checkpoint (1)
-      objectReference: {fileID: 0}
     - target: {fileID: 224181996065141488, guid: c15ad9c31cfbb7047a96e967adfca707,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -14578,6 +14590,10 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.013050374
       objectReference: {fileID: 0}
+    - target: {fileID: 1584327774282830, guid: c15ad9c31cfbb7047a96e967adfca707, type: 3}
+      propertyPath: m_Name
+      value: Checkpoint (1)
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c15ad9c31cfbb7047a96e967adfca707, type: 3}
 --- !u!224 &2126810807088167190 stripped
@@ -14593,10 +14609,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3527284540448140766}
     m_Modifications:
-    - target: {fileID: 1584327774282830, guid: c15ad9c31cfbb7047a96e967adfca707, type: 3}
-      propertyPath: m_Name
-      value: Checkpoint
-      objectReference: {fileID: 0}
     - target: {fileID: 224181996065141488, guid: c15ad9c31cfbb7047a96e967adfca707,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -14716,6 +14728,10 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.013050374
+      objectReference: {fileID: 0}
+    - target: {fileID: 1584327774282830, guid: c15ad9c31cfbb7047a96e967adfca707, type: 3}
+      propertyPath: m_Name
+      value: Checkpoint
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c15ad9c31cfbb7047a96e967adfca707, type: 3}
