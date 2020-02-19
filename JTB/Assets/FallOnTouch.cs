@@ -6,7 +6,6 @@ using UnityEngine;
 public class FallOnTouch : MonoBehaviour
 {
     Rigidbody2D rb;
-    public float delaySeconds = 1;
 
     private void Start()
     {
@@ -14,21 +13,14 @@ public class FallOnTouch : MonoBehaviour
         if (!rb.isKinematic)
             rb.isKinematic = true;
     }
-    private void OnColliderEnter2D(Collision2D other)
+    private void OnCollisionEnter2D(Collision2D other)
     {
-        Debug.Log("Collider hit");
         if (rb.isKinematic)
         {
             if (other.gameObject.CompareTag("Player"))
             {
-                StartCoroutine(kinematicEnabled());
+                rb.isKinematic = false;
             }
         }
-    }
-    private IEnumerator kinematicEnabled()
-    {
-        Debug.Log("Test");
-        yield return new WaitForSeconds(delaySeconds);
-        rb.isKinematic = true;
     }
 }
