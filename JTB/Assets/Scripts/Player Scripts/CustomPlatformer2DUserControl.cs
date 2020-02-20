@@ -1,11 +1,15 @@
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityStandardAssets.CrossPlatformInput;
 
 
 [RequireComponent(typeof(CustomPlatformerCharacter2D))]
 public class CustomPlatformer2DUserControl : MonoBehaviour
 {
+    public bool touchControls = false;
+    public Joystick joystick;
+
     private CustomPlatformerCharacter2D m_Character;
     private bool m_Jump;
     public bool canControl = true;
@@ -31,6 +35,14 @@ public class CustomPlatformer2DUserControl : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Called by the touchscreen button
+    /// </summary>
+    public void Jump()
+    {
+        if(touchControls)
+            m_Jump = true;
+    }
 
     private void FixedUpdate()
     {
@@ -41,15 +53,15 @@ public class CustomPlatformer2DUserControl : MonoBehaviour
             // Read the inputs.
             bool crouch = Input.GetKey(KeyCode.LeftControl);
             bool run = Input.GetKey(KeyCode.LeftShift);
-            move = CrossPlatformInputManager.GetAxis("Horizontal");
+            move = (touchControls ? joystick.Horizontal : CrossPlatformInputManager.GetAxis("Horizontal"));
             // Pass all parameters to the character control script.
             m_Character.Move(move, crouch, m_Jump, run);
             m_Jump = false;
 
-            if (previousFrame == 0 && CrossPlatformInputManager.GetAxis("Horizontal") != 0)
+            if (previousFrame == 0 && move != 0)
                 startedMoving = true;
 
-            previousFrame = CrossPlatformInputManager.GetAxis("Horizontal");
+            previousFrame = move;
         }
         else
             m_Character.Move(0, false, false, false);
