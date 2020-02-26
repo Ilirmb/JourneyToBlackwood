@@ -30,12 +30,12 @@ public class Parallax : MonoBehaviour{
         if (temp > startPosX + length) startPosX += length;
         else if (temp < startPosX - length) startPosX -= length;
 
-        if (limitsY != 0)
+        /*if (limitsY != 0)
         {
             if (transform.localPosition.y > limitsY)
                 transform.localPosition = new Vector3(transform.localPosition.x, limitsY, transform.localPosition.z);
             else if (transform.localPosition.y < -limitsY)
                 transform.localPosition = new Vector3(transform.localPosition.x, -limitsY, transform.localPosition.z);
-        }
+        }*/
     }
 }
