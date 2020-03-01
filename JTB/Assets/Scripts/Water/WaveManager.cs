@@ -10,6 +10,10 @@ public class WaveManager : MonoBehaviour
     public float timer = 0;
     private float maxSpeed;
     private float jumpForce;
+    
+    public Animator playerAnimator;
+    public CustomPlatformerCharacter2D playerController;
+
     public GameObject InvisWave;
     public GameObject InvisWave2;
 
@@ -22,8 +26,8 @@ public class WaveManager : MonoBehaviour
     {
         Player = GameObject.FindWithTag("Player");
         waterScript = gameObject.GetComponent<Game2DWaterKit.Game2DWater>();
-        maxSpeed = Player.GetComponent<CustomPlatformerCharacter2D>().m_MaxSpeed;
-        jumpForce = Player.GetComponent<CustomPlatformerCharacter2D>().m_JumpForce;
+        maxSpeed = playerController.m_MaxSpeed;
+        jumpForce = playerController.m_JumpForce;
         waves = new List<GameObject>();
         waterScript.GetComponent<BuoyancyEffector2D>().surfaceLevel = 3.15f;
     }
@@ -89,6 +93,7 @@ public class WaveManager : MonoBehaviour
         waves.Add(newWave2);
         yield return null;
     }
+
     public IEnumerator DeleteWaves()
     {
         foreach (GameObject wave in waves)
@@ -97,5 +102,28 @@ public class WaveManager : MonoBehaviour
         }
         waves.Clear();
         yield return null;
+    }
+
+    //A more generalized public version that essentially automatically starts the waves
+    public void startRoughWaves()
+    {
+        Debug.Log("TriggeringWaves");
+        rapidWaves = true;
+        StartCoroutine("RoughWaters");
+        StartCoroutine("SpawnWaves");
+        playerController.isCrouching = true;
+        //Yes we do have to have both a trigger and a bool, to prevent the Any State from looping the animation over and over again
+        playerAnimator.SetTrigger("Unstable");
+        playerAnimator.SetBool("Stable", false);
+    }
+
+    /// <summary>
+    /// DeleteWaves is automatically called by start Rough Waves with a delay. The use of stopWaves is mainly to get the player to stop wobbling and stop being slowed.
+    /// </summary>
+    public void stopWaves()
+    {
+        StartCoroutine("DeleteWaves");
+        playerController.isCrouching = false;
+        playerAnimator.SetBool("Stable", true);
     }
 }
