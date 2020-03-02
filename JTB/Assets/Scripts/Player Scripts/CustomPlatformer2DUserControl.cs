@@ -51,8 +51,9 @@ public class CustomPlatformer2DUserControl : MonoBehaviour
             startedMoving = false;
 
             // Read the inputs.
-            bool crouch = Input.GetKey(KeyCode.LeftControl);
-            bool run = Input.GetKey(KeyCode.LeftShift);
+            bool crouch = Input.GetKey(KeyCode.LeftControl); //<<currently not used in game
+            //This inefficiency WILL be replaced soon enough, once I fully figure out this CrossPlatformInputManager stuff
+            bool run = (touchControls ? Input.GetKey(KeyCode.LeftShift) : CrossPlatformInputManager.GetButton("Sprint"));
             move = (touchControls ? joystick.Horizontal : CrossPlatformInputManager.GetAxis("Horizontal"));
             // Pass all parameters to the character control script.
             m_Character.Move(move, crouch, m_Jump, run);
