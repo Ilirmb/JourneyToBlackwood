@@ -40,19 +40,27 @@ public class WaveManager : MonoBehaviour
             //Player.GetComponent<CustomPlatformerCharacter2D>().m_MaxSpeed = 6;
             //Player.GetComponent<CustomPlatformerCharacter2D>().m_JumpForce = 600;
             waterScript.ConstantRipplesModule.Disturbance = 1.2f;
+            //waterScript.ConstantRipplesModule.SmoothingFactor = .8f;
 
-        }else if (!rapidWaves)
+        }
+        else if (!rapidWaves)
         {
            // Player.GetComponent<CustomPlatformerCharacter2D>().isCrouching = false;
-            waterScript.ConstantRipplesModule.Disturbance = 0.1f;
+            waterScript.ConstantRipplesModule.Disturbance = 0.01f;
+            //waterScript.ConstantRipplesModule.SmoothingFactor = 1f;
            // Player.GetComponent<CustomPlatformerCharacter2D>().m_MaxSpeed = 10;
            // Player.GetComponent<CustomPlatformerCharacter2D>().m_JumpForce = 1000;
         }
     }
   
     public IEnumerator RoughWaters()
-    {
+    { 
+        yield return new WaitUntil(() => playerController.m_Grounded = true);
 
+        playerController.isCrouching = true;
+        //Yes we do have to have both a trigger and a bool, to prevent the Any State from looping the animation over and over again [depreciated]
+        playerAnimator.SetTrigger("Unstable");
+        playerAnimator.SetBool("Stable", false);
         while (timer <= 0.3f)
         {
             timer += Time.deltaTime;
@@ -82,11 +90,12 @@ public class WaveManager : MonoBehaviour
         rapidWaves = false;
         timer = 0;
         StopCoroutine(RoughWaters());
-        yield return null;
+        playerAnimator.SetBool("Stable", true);
     }
 
     public IEnumerator SpawnWaves()
     {
+        yield return new WaitUntil(() => playerController.m_Grounded = true);
         GameObject newWave = (GameObject)Instantiate(InvisWave, waveSpawnLoc.transform.position, waveSpawnLoc.transform.rotation);
         waves.Add(newWave);
         GameObject newWave2 = (GameObject)Instantiate(InvisWave2, waveSpawnLoc2.transform.position, waveSpawnLoc2.transform.rotation);
@@ -111,10 +120,6 @@ public class WaveManager : MonoBehaviour
         rapidWaves = true;
         StartCoroutine("RoughWaters");
         StartCoroutine("SpawnWaves");
-        playerController.isCrouching = true;
-        //Yes we do have to have both a trigger and a bool, to prevent the Any State from looping the animation over and over again
-        playerAnimator.SetTrigger("Unstable");
-        playerAnimator.SetBool("Stable", false);
     }
 
     /// <summary>
