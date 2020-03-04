@@ -17,9 +17,11 @@ public class CustomizationManager : MonoBehaviour {
 
     // Current selected skin tone saturation
     private float skinToneSat = 0.0f;
+    public float SkinToneSat { get; }
 
     // Current selected skin tone value
     private float skinToneVal = 0.0f;
+    public float SkinToneVal { get; }
 
     // Min and max values for skin tone saturation
     [SerializeField]
@@ -60,6 +62,9 @@ public class CustomizationManager : MonoBehaviour {
 
     // Current costume index
     private int currentCostumeIndex, currentHairIndex, currentFaceIndex;
+    public int CurrentCostumeIndex{ get; }
+    public int CurrentHairIndex { get; }
+    public int CurrentFaceIndex { get; }
 
 
     // Event that is called whenever the skin color is changed
@@ -112,7 +117,7 @@ public class CustomizationManager : MonoBehaviour {
         currentFace = faceList.Count > 0 ? faceList[0] : null;
         currentFaceIndex = faceList.Count > 0 ? 0 : -1;
 
-       
+        
     }
 
 

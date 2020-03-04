@@ -7,6 +7,7 @@ public class FallingAppleSpawner : MonoBehaviour {
 
     private GameObject applePrefab;
     public bool isOnScreen;
+    public bool willSpawnOffscreen = false;
 
     public float timeBetweenSpawns = 2f;
 
@@ -22,7 +23,7 @@ public class FallingAppleSpawner : MonoBehaviour {
 	private IEnumerator AppleSpawner(float waitTime)
     {
         isRunning = true;
-        while (isOnScreen)
+        while (isOnScreen || willSpawnOffscreen)
         {
             Instantiate(applePrefab, this.transform);
             yield return new WaitForSecondsRealtime(waitTime);

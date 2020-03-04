@@ -3,15 +3,16 @@
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3cfe511f5ae84c24e82fbf88db7e24ae, type: 3}
   m_Name: ForestTerrainMaterial
   m_EditorClassIdentifier: 
-  _fillMaterial: {fileID: 2100000, guid: b710a2ea9e8b19445a6f43ad32aed0ab, type: 2}
+  _fillMaterial: {fileID: 2100000, guid: e5afad30a0431324eae22110254db122, type: 2}
   _edgeMaterial: {fileID: 2100000, guid: 028bfaccc7c55a9438938eb3cf9d4c56, type: 2}
   _descriptors:
   - _applyTo: 0
@@ -343,9 +344,11 @@ MonoBehaviour:
       width: 0.125
       height: 0.375
     _leftCapWeights: []
-    _leftCapColliderSize: []
-    _leftCapColliderType: 
-    _leftCapOffset: []
+    _leftCapColliderSize:
+    - 1
+    _leftCapColliderType: 00000000
+    _leftCapOffset:
+    - 0
     _legacyInnerLeftCap:
       serializedVersion: 2
       x: 0
@@ -354,9 +357,11 @@ MonoBehaviour:
       height: 0
     _innerLeftCaps: []
     _innerLeftCapWeights: []
-    _innerLeftCapColliderSize: []
-    _innerLeftCapColliderType: 
-    _innerLeftCapOffset: []
+    _innerLeftCapColliderSize:
+    - 1
+    _innerLeftCapColliderType: 00000000
+    _innerLeftCapOffset:
+    - 0
     _legacyRightCap:
       serializedVersion: 2
       x: 0
@@ -370,9 +375,11 @@ MonoBehaviour:
       width: 0.125
       height: 0.375
     _rightCapWeights: []
-    _rightCapColliderSize: []
-    _rightCapColliderType: 
-    _rightCapOffset: []
+    _rightCapColliderSize:
+    - 1
+    _rightCapColliderType: 00000000
+    _rightCapOffset:
+    - 0
     _legacyInnerRightCap:
       serializedVersion: 2
       x: 0
@@ -381,9 +388,11 @@ MonoBehaviour:
       height: 0
     _innerRightCaps: []
     _innerRightCapWeights: []
-    _innerRightCapColliderSize: []
-    _innerRightCapColliderType: 
-    _innerRightCapOffset: []
+    _innerRightCapColliderSize:
+    - 1
+    _innerRightCapColliderType: 00000000
+    _innerRightCapOffset:
+    - 0
     _bodies:
     - serializedVersion: 2
       x: 0.125

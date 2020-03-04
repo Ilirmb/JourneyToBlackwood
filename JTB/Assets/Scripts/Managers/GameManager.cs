@@ -29,7 +29,8 @@ public class GameManager : MonoBehaviour {
 
     // Dialogue Tree for hint offer
     [SerializeField]
-    private DialogueTree hintOffer;
+    private DialogueTree defaultHint;
+    private int currentHint = 0;
 
     // Dialogue Tree for wave wardning
     [SerializeField]
@@ -74,10 +75,12 @@ public class GameManager : MonoBehaviour {
     {
         OnPlayerDeath.RemoveAllListeners();
         player = FindObjectOfType<PlayerStatistics>();
-        
-        playerMov = player.transform.GetComponent<CustomPlatformer2DUserControl>();
-        playerAnim = player.transform.GetComponentInChildren<Animator>();
-        playerRb2d = player.transform.GetComponent<Rigidbody2D>();
+        if (player != null)
+        {
+            playerMov = player.transform.GetComponent<CustomPlatformer2DUserControl>();
+            playerAnim = player.transform.GetComponentInChildren<Animator>();
+            playerRb2d = player.transform.GetComponent<Rigidbody2D>();
+        }
     }
 
     
@@ -254,6 +257,9 @@ public class GameManager : MonoBehaviour {
         saveData.socialValues = socialValues;
         saveData.friendshipValues = friendshipValues;
         saveData.questData = questData;
+        saveData.currentFace = CustomizationManager.instance.CurrentFaceIndex;
+        saveData.currentHair = CustomizationManager.instance.CurrentHairIndex;
+        saveData.currentCostume = CustomizationManager.instance.CurrentCostumeIndex;
 
         bf.Serialize(stream, saveData);
         stream.Close();
@@ -372,19 +378,26 @@ public class GameManager : MonoBehaviour {
     /// </summary>
     public void UpdateHintList(List<DialogueTree> newHints)
     {
+        currentHint = 0;
         hints = newHints;
     }
 
 
     /// <summary>
-    /// Show a randomized hint from the list of hints
+    /// Show hint from the list of hints in order
     /// </summary>
     public void ShowHint()
     {
-        if(hints.Count > 0)
+        if (hints.Count > 0)
         {
-            int index = Random.Range(0, hints.Count);
-            DialogueProcessor.instance.StartDialogue(hints[index]);
+            DialogueProcessor.instance.StartDialogue(hints[currentHint], true);
+            ++currentHint;
+            currentHint %= hints.Count;
+        }
+        else
+        {
+            Debug.Log("No hints found: Is your Hint Area correctly set?");
+            DialogueProcessor.instance.StartDialogue(defaultHint, true);
         }
     }
 
@@ -394,8 +407,9 @@ public class GameManager : MonoBehaviour {
     /// </summary>
     public void OfferHint()
     {
-        DialogueProcessor.instance.StartDialogue(hintOffer);
+        DialogueProcessor.instance.StartDialogue(defaultHint);
     }
+
 
 
     /// <summary>
