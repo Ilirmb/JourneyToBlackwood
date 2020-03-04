@@ -4,7 +4,7 @@ using UnityEngine;
 using Anima2D;
 public class PlayerStatistics : MonoBehaviour
 {
-    private StamLossTextManager textSpawn;
+    public StamLossTextManager textSpawn;
     public Checkpoint checkpoint;
     
     public float invulnTimer = 0;
@@ -43,8 +43,7 @@ public class PlayerStatistics : MonoBehaviour
         hairScript = GameObject.Find("MC Sprite").transform.GetChild(1).GetChild(4).GetChild(2).GetComponent<SpriteMeshInstance>();
         eyeScript.color = GlobalColor.Instance.eyeColor;
         hairScript.color = GlobalColor.Instance.hairColor;
-
-        textSpawn = GetComponentInChildren<StamLossTextManager>();
+        
         //The idea here is to create a Checkpoint at the location of the player, but it's not working and doesn't need to because 
         //Checkpoint = new Checkpoint(gameObject.transform.position);
         positionLastFrame = transform.position;
