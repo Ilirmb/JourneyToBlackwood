@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4972908527572611566}
   - component: {fileID: 4972908527572611565}
   - component: {fileID: 4972908527572611567}
+  - component: {fileID: 1490497102772967948}
   m_Layer: 0
   m_Name: Flashlight
   m_TagString: Flashlight
@@ -41,12 +42,12 @@ Light:
   m_GameObject: {fileID: 4972908527572611564}
   m_Enabled: 1
   serializedVersion: 9
-  m_Type: 1
+  m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 0
   m_Range: 4.5
-  m_SpotAngle: 30
-  m_InnerSpotAngle: 21.80208
+  m_SpotAngle: 90
+  m_InnerSpotAngle: 9
   m_CookieSize: 10
   m_Shadows:
     m_Type: 0
@@ -108,3 +109,21 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 4.5
+--- !u!114 &1490497102772967948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4972908527572611564}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5249e4dbcc271d24c938060d81e4dd2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minIntensity: 0
+  maxIntensity: 5
+  changePerTick: 0.1
+  lightLifetime: 3
+  userCooldown: 2
+  canUse: 1
