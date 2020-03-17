@@ -8,8 +8,8 @@ public static class GameConst
     //Stamina is by default 100
     public const float DAMAGE_FROM_FALL = 30.0f;
     public const float DAMAGE_FROM_HIT = 10.0f;
-    public const float STAMINA_DRAIN_PER_MOVING_FRAME = .05f;
+    public const float STAMINA_DRAIN_PER_MOVING_FRAME = .03f;
     public const float STAMINA_DRAIN_PER_DISTANCE_WALKED = 1.0f;
-    public const float STAMINA_TO_JUMP = 3f;
+    public const float STAMINA_TO_JUMP = 2f;
     //Other constants go down here
 }
