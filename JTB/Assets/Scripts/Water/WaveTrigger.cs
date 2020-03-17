@@ -6,6 +6,7 @@ public class WaveTrigger : MonoBehaviour
 {
     private WaveManager waveManager;
     public bool exitTrigger;
+    public WaveTrigger enterTriger; //If it's an exit, put the entrance trigger here so that it can deactivate it
     //A more robust code would include some sort of randomization variable. too bad
     public float timeBetweenWaves = 5f;
 
@@ -48,7 +49,7 @@ public class WaveTrigger : MonoBehaviour
             }
             else
             {
-                spawningWaves = false;
+                enterTriger.spawningWaves = false;
             }
         }
     }
