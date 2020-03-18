@@ -101,7 +101,7 @@ public class SliderMask : MonoBehaviour {
        // animTargetFrame = 1;
         //We now move the large slider handle back to the top so it can be clicked on again
         //If we want to this can also trigger it leaving a temporary copy of itself in place so it doesn't appear to teleport back to the top as it should now
-        slider.value = 0;
+        slider.value = 0.0f;
 
         handle.color = new Color(handle.color.r, handle.color.g, handle.color.b, 0f);
     }
