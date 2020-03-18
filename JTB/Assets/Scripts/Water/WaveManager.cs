@@ -7,6 +7,7 @@ public class WaveManager : MonoBehaviour
     Game2DWaterKit.Game2DWater waterScript;
     GameObject Player;
     public bool rapidWaves = false;
+    public bool isEffected = true;
     public float timer = 0;
     private float maxSpeed;
     private float jumpForce;
@@ -50,6 +51,18 @@ public class WaveManager : MonoBehaviour
             //waterScript.ConstantRipplesModule.SmoothingFactor = 1f;
            // Player.GetComponent<CustomPlatformerCharacter2D>().m_MaxSpeed = 10;
            // Player.GetComponent<CustomPlatformerCharacter2D>().m_JumpForce = 1000;
+        }
+        //Kind of sloppy but because of the multiple wave managers and not wanting to add too much to the player controller it's just easiest to check every frame despite the increased load
+        //a definite place for improvement if efficiency becomes a problem
+        if(rapidWaves && !isEffected)
+        {
+            playerController.isCrouching = false;
+            playerAnimator.SetBool("Stable", true);
+        }
+        else if(rapidWaves && isEffected)
+        { 
+            playerController.isCrouching = true;
+            playerAnimator.SetBool("Stable", false);
         }
     }
   
