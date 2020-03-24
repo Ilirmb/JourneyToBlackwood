@@ -55,22 +55,5 @@ public class PlatformMovement : MonoBehaviour
 
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-        if (other.gameObject.tag == "Player")
-        {
-            other.gameObject.layer = 6;
-            other.transform.SetParent(childTransform);
-
-
-
-        }
-
-    }
-
-    private void OnCollisionExit2D(Collision2D other)
-    {
-        other.transform.SetParent(null);
-    }
-
+ 
 }
