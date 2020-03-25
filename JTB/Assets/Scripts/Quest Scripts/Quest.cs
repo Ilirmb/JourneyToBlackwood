@@ -37,6 +37,8 @@ public class Quest : MonoBehaviour {
     // The number of items collected
     private int numberOfItems = 0;
 
+    [SerializeField]
+    private bool collisionStartsFirstEncounter = false;
     private bool firstEncounter = true;
     private bool rejected = false;
     private bool clicked = false;
@@ -151,6 +153,14 @@ public class Quest : MonoBehaviour {
     private void OnMouseUp()
     {
         ProcessClick();
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Player") && firstEncounter && collisionStartsFirstEncounter)
+        {
+            ProcessClick();
+        }
     }
 
 

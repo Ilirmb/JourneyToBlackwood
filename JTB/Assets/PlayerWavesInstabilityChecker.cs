@@ -6,7 +6,7 @@ public class PlayerWavesInstabilityChecker : MonoBehaviour
 {
     public float checkLength = 3f;
     public WaveManager currentWaveManager;
-    public LayerMask hittables;
+    public LayerMask hittables = LayerMask.NameToLayer("Ground");
 
     private void Update()
     {
