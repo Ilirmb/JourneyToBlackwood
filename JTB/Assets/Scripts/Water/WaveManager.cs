@@ -27,7 +27,7 @@ public class WaveManager : MonoBehaviour
     {
         Player = GameObject.FindWithTag("Player");
         waterScript = gameObject.GetComponent<Game2DWaterKit.Game2DWater>();
-        maxSpeed = playerController.m_MaxSpeed;
+        maxSpeed = playerController.m_GroundedSpeed;
         jumpForce = playerController.m_JumpForce;
         waves = new List<GameObject>();
         waterScript.GetComponent<BuoyancyEffector2D>().surfaceLevel = 3.15f;
