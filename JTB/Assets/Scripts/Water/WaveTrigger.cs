@@ -46,6 +46,7 @@ public class WaveTrigger : MonoBehaviour
             if (!exitTrigger)
             {
                 spawningWaves = true;
+                other.GetComponent<PlayerWavesInstabilityChecker>().currentWaveManager = waveManager;
             }
             else
             {

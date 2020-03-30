@@ -11,6 +11,11 @@ public class PlatformMovement : MonoBehaviour
     private Vector3 nexPos;
 
     [SerializeField]
+    private bool onlyMoveWithPlayer = false;
+    [HideInInspector]
+    public bool playerIsOnPlatform = false;
+
+    [SerializeField]
     private float speed;
 
     [SerializeField]
@@ -31,6 +36,14 @@ public class PlatformMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //If you only move with the player, and the player is on board, move towards destination. Otherwise, move towards origin
+        if(onlyMoveWithPlayer && playerIsOnPlatform)
+        {
+            nexPos = posB;
+        }else if (onlyMoveWithPlayer)
+        {
+            nexPos = posA;
+        }
 
         Move();
 
@@ -38,15 +51,18 @@ public class PlatformMovement : MonoBehaviour
 
     private void Move()
     {
-        childTransform.localPosition = Vector3.MoveTowards(childTransform.localPosition, nexPos, speed * Time.deltaTime);
+        if(!onlyMoveWithPlayer)
+            childTransform.localPosition = Vector3.MoveTowards(childTransform.localPosition, nexPos, speed * Time.deltaTime);
+        if(onlyMoveWithPlayer && !(Vector3.Distance(childTransform.localPosition, nexPos) <= 0.1))
+        {
+            childTransform.localPosition = Vector3.MoveTowards(childTransform.localPosition, nexPos, speed * Time.deltaTime);
+        }
         
-        if (Vector3.Distance(childTransform.localPosition,nexPos) <= 0.1)
+        if (!onlyMoveWithPlayer && Vector3.Distance(childTransform.localPosition,nexPos) <= 0.1)
         {
             ChangeDestination();
 
         }
-
-
     }
 
     private void ChangeDestination()
@@ -55,22 +71,5 @@ public class PlatformMovement : MonoBehaviour
 
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-        if (other.gameObject.tag == "Player")
-        {
-            other.gameObject.layer = 6;
-            other.transform.SetParent(childTransform);
-
-
-
-        }
-
-    }
-
-    private void OnCollisionExit2D(Collision2D other)
-    {
-        other.transform.SetParent(null);
-    }
-
+ 
 }
