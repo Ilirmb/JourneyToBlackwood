@@ -5,7 +5,29 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Parallax : MonoBehaviour{
 
-    float length, startPosX, startPosY;
+    private float length, startPos;
+    public GameObject cam;
+    public float pEffect; //how fast the bg moves
+
+    private void Start()
+    {
+        startPos = transform.position.x;
+        length = GetComponent<SpriteRenderer>().bounds.size.x;
+    }
+
+    private void Update()
+    {
+        float temp = (cam.transform.position.x * (1 - pEffect));
+        float dist = (cam.transform.position.x * pEffect);
+        transform.position = new Vector3(startPos + dist, transform.position.y, transform.position.z);
+
+        if (temp > startPos + length) startPos += length;
+        else if (temp < startPos - length) startPos -= length;
+    }
+
+
+
+    /*float length, startPosX, startPosY;
     Transform cam;
     Rigidbody2D rb;
     [SerializeField] float parallaxEffectX, parallaxEffectY, limitsY;
@@ -37,5 +59,5 @@ public class Parallax : MonoBehaviour{
             else if (transform.localPosition.y < -limitsY)
                 transform.localPosition = new Vector3(transform.localPosition.x, -limitsY, transform.localPosition.z);
         }
-    }
+    }*/
 }

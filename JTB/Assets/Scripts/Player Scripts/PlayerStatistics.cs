@@ -4,6 +4,7 @@ using UnityEngine;
 using Anima2D;
 public class PlayerStatistics : MonoBehaviour
 {
+    public CustomPlatformerCharacter2D playerCharacter;
     public StamLossTextManager textSpawn;
     public Checkpoint checkpoint;
     
@@ -349,6 +350,7 @@ public class PlayerStatistics : MonoBehaviour
             GameManager.instance.OnPlayerDeath.Invoke();
 
             numPlayerDeaths++;
+            playerCharacter.StopSliding();
         }
     }
 
