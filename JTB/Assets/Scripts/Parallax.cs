@@ -7,7 +7,7 @@ public class Parallax : MonoBehaviour{
 
     private float length, startPos;
     public GameObject cam;
-    public float pEffect; //how fast the bg moves
+    public float pEffect, pEffectY; //how fast the bg moves
 
     private void Start()
     {
