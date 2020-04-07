@@ -24,7 +24,7 @@ public class GrappleManager : MonoBehaviour
     private GrappleType type;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         distJoint = this.GetComponent<DistanceJoint2D>();
         distJoint.enabled = false;
@@ -115,7 +115,8 @@ public class GrappleManager : MonoBehaviour
         Gizmos.color = Color.white;
         Gizmos.DrawLine(this.transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition));
         Gizmos.color = Color.yellow;
-        Gizmos.DrawRay(this.transform.position, transform.InverseTransformDirection(rb.velocity));
+        if(rb != null)
+            Gizmos.DrawRay(this.transform.position, transform.InverseTransformDirection(rb.velocity));
     }
 }
 

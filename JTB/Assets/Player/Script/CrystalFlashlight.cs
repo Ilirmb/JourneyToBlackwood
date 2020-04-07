@@ -39,20 +39,29 @@ public class CrystalFlashlight : MonoBehaviour
     {
         while (true)
         {
-            while (flashlight.intensity <= maxIntensity)
+            //This check now needs to be made in case the crystallight is outside of the active zone
+            if (flashlight.enabled == true)
             {
-                flashlight.intensity += changePerTick;
-                yield return new WaitForEndOfFrame();
+                while (flashlight.intensity <= maxIntensity)
+                {
+                    flashlight.intensity += changePerTick;
+                    yield return new WaitForEndOfFrame();
+                }
+
+                yield return new WaitForSeconds(lightLifetime); //wait X amount of seconds
+
+                while (flashlight.intensity > minIntensity)
+                {
+                    flashlight.intensity -= changePerTick;
+                    yield return new WaitForEndOfFrame();
+                }
+                yield return new WaitForSeconds(lightCooldown); //wait till next blink
             }
-
-            yield return new WaitForSeconds(lightLifetime); //wait X amount of seconds
-
-            while (flashlight.intensity > minIntensity)
+            else
             {
-                flashlight.intensity -= changePerTick;
-                yield return new WaitForEndOfFrame();
+                //Because this is an enumerator, we can use a fancy little lambda expression to watch for a particular boolean expression to return true
+                yield return new WaitUntil(() => flashlight.enabled == true);
             }
-            yield return new WaitForSeconds(lightCooldown); //wait till next blink
         }
     }
 }
