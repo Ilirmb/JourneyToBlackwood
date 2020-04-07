@@ -21,15 +21,14 @@ public class LightZoneCollider : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            
             if (!ZoneB)
             {
-                manager.ActivateZoneA();
-                manager.DeactivateZoneB();
+                manager.ZoneAHit();
             }
             else
             {
-                manager.ActivateZoneB();
-                manager.DeactivateZoneA();
+                manager.ZoneBHit();
             }
         }
     }

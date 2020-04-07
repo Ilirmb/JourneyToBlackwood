@@ -10,6 +10,10 @@ public class LightGroup : MonoBehaviour
 {
     [SerializeField]
     private bool isActive;
+    [Header("Please try to limit the number of lights in each light group to under 10")]
+
+    //We could have the system search for each group's children, and then of those take the children with the 'light' component and add it to the list
+    //However this would come with the downside of being unable to do 'overlap' where lights exist in two groups and remain active through both to allow for smooth transitions
     public Light[] lights;
 
     // Start is called before the first frame update
@@ -28,23 +32,18 @@ public class LightGroup : MonoBehaviour
 
     public void ActivateLights()
     {
-        if (isActive == false)
+        isActive = true;
+        foreach (Light l in lights)
         {
-            isActive = true;
-            foreach (Light l in lights)
-            {
-                l.enabled = true;
-            }
+            l.enabled = true;
         }
     }
     public void DeactivateLights()
     {
-        if (isActive == true) {
-            isActive = false;
-            foreach (Light l in lights)
-            {
-                l.enabled = false;
-            }
+        isActive = false;
+        foreach (Light l in lights)
+        {
+            l.enabled = false;
         }
     }
 }

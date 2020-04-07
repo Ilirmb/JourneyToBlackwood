@@ -13,20 +13,34 @@ public class LightZoneManager : MonoBehaviour
     [SerializeField]
     private LightGroup lightsB;
 
-    public void ActivateZoneA()
+    //It is important that the zones are deactivated before the new zone is activated in case of any overlapping lights
+    public void ZoneAHit()
+    {
+        DeactivateZoneB();
+        ActivateZoneA();
+    }
+
+    public void ZoneBHit()
+    {
+        DeactivateZoneA();
+        ActivateZoneB();
+    }
+
+    //Making the code a bit simpler by having functions to reference the lights
+    private void ActivateZoneA()
     {
         lightsA.ActivateLights();
     }
-    public void DeactivateZoneA()
+    private void DeactivateZoneA()
     {
         lightsA.DeactivateLights();
     }
 
-    public void ActivateZoneB()
+    private void ActivateZoneB()
     {
         lightsB.ActivateLights();
     }
-    public void DeactivateZoneB()
+    private void DeactivateZoneB()
     {
         lightsB.DeactivateLights();
     }
