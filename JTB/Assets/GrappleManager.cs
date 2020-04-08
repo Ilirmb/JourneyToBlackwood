@@ -24,7 +24,7 @@ public class GrappleManager : MonoBehaviour
     private GrappleType type;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         distJoint = this.GetComponent<DistanceJoint2D>();
         distJoint.enabled = false;
@@ -41,7 +41,7 @@ public class GrappleManager : MonoBehaviour
     void Update()
     {
         //This code must go before the following block to prevent the attachment from deactivating it the same frame it's activated
-        if (isAttached && (Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.Space)))
+        if (isAttached && (Input.GetKeyDown(KeyCode.Space)))
         {
             deattach();
             if (Input.GetKeyDown(KeyCode.Space))
@@ -60,16 +60,19 @@ public class GrappleManager : MonoBehaviour
                 rb.velocity += velDir * jumpOffForce * Time.deltaTime;
             }
         }
-        if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.Mouse0))
+        //Here is where we raycast and test for attachment
+        if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             aimTarget = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
             RaycastHit2D hit = Physics2D.Raycast(this.transform.position, aimTarget - this.transform.position, maxHitDist, hittableLayer);
-
-            if (hit.collider != null)
+            
 
             if (hit.collider != null && hit.collider.gameObject.CompareTag("GrappleTarget")) //Because of tag object is guarenteed to be of type grappletarget
             {
+                var hitrb = hit.collider.GetComponent<Rigidbody2D>();
+                if (isAttached && hitrb != distJoint.attachedRigidbody)
+                    deattach();
                 attach(hit.collider.GetComponent<Rigidbody2D>());
             }
         }
@@ -85,7 +88,7 @@ public class GrappleManager : MonoBehaviour
 
     void attach(Rigidbody2D attachmentPoint)
     {
-        Debug.Log("Entered attach");
+        //Debug.Log("Entered attach");
         distJoint.enabled = true;
         isAttached = true;
         distJoint.connectedBody = attachmentPoint;
@@ -99,7 +102,7 @@ public class GrappleManager : MonoBehaviour
     }
     void deattach()
     {
-        Debug.Log("Entered deattach");
+        //Debug.Log("Entered deattach");
         isAttached = false;
         distJoint.connectedBody = null;
         cc.enabled = true;
@@ -112,7 +115,8 @@ public class GrappleManager : MonoBehaviour
         Gizmos.color = Color.white;
         Gizmos.DrawLine(this.transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition));
         Gizmos.color = Color.yellow;
-        Gizmos.DrawRay(this.transform.position, transform.InverseTransformDirection(rb.velocity));
+        if(rb != null)
+            Gizmos.DrawRay(this.transform.position, transform.InverseTransformDirection(rb.velocity));
     }
 }
 
