@@ -54,7 +54,7 @@ public class GrappleManager : MonoBehaviour
                 } else
                 if (type == GrappleType.GoToPoint)
                 {
-                    velDir = Vector2.up * 30f;
+                    velDir = Vector2.up * 20f;
                 }
 
                 rb.velocity += velDir * jumpOffForce * Time.deltaTime;
