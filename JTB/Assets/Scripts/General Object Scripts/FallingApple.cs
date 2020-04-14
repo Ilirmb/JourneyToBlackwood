@@ -11,6 +11,8 @@ public class FallingApple : MonoBehaviour
     public float randomAngularSpeed = 45f;
     public float popOffForce = 100f;
 
+    public AudioSource GroundImpact;
+
     private bool startFlashing = false;
 
     private SpriteRenderer sr;
@@ -61,6 +63,7 @@ public class FallingApple : MonoBehaviour
         else if (other.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
             //don't damage
+            GroundImpact.Play();
             StartCoroutine(WaitAndDespawn(waitBeforeDespawn));
         }
     }
