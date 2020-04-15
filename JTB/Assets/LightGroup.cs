@@ -10,15 +10,17 @@ public class LightGroup : MonoBehaviour
 {
     [SerializeField]
     private bool isActive;
-    [Header("Please try to limit the number of lights in each light group to under 10")]
-
-    //We could have the system search for each group's children, and then of those take the children with the 'light' component and add it to the list
-    //However this would come with the downside of being unable to do 'overlap' where lights exist in two groups and remain active through both to allow for smooth transitions
-    public Light[] lights;
+    [Header("Add only overlaps to this list, direct children of the group are added automatically")]
+    
+    //
+    public List<Light> lights;
 
     // Start is called before the first frame update
     void Start()
     {
+        Light[] childLights = this.transform.GetComponentsInChildren<Light>(true);
+        lights.AddRange(childLights);
+
         //This allows us to activate the first group of lights automatically, meaning the player character doesn't have to interact with a preliminary collider to activate them
         if (isActive)
         {
