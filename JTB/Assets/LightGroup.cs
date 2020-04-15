@@ -12,7 +12,6 @@ public class LightGroup : MonoBehaviour
     private bool isActive;
     [Header("Add only overlaps to this list, direct children of the group are added automatically")]
     
-    //
     public List<Light> lights;
 
     // Start is called before the first frame update
