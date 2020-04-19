@@ -215,7 +215,7 @@ public class DialogueAction
     // showHint attempts to show a hint. 
     public enum Action
     { rejectQuest, acceptQuest, completeQuest, collectQuestItem, destroyQuestItem,
-        affectFriendship, increaseStamina, finishQuest, destroyAllQuestItems, affectSocialValue, showHint };
+        affectFriendship, increaseStamina, finishQuest, destroyAllQuestItems, affectSocialValue, showHint, failQuest };
     public Action action;
 
     // Parameter of the function. This is optional in most cases, but is required for a few functions.

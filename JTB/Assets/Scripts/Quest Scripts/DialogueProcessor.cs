@@ -248,6 +248,10 @@ public class DialogueProcessor : MonoBehaviour {
                     q.AffectFriendship(int.Parse(action.param));
                     break;
 
+                case DialogueAction.Action.failQuest:
+                    q.FailQuest();
+                    break;
+
 				// Collects the current quest item
                 case DialogueAction.Action.collectQuestItem:
                     q.CollectQuestItem();
