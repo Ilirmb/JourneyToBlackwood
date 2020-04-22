@@ -17,6 +17,15 @@ public class LightGroup : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //If someone increases the size of lights and doesn't fill the array, we don't want the whole lights system to fall apart because of it
+        for(int i = 0; i < lights.Capacity; i++)
+        { 
+            if(lights[i] == null)
+            {
+                lights[i] = new Light();
+            }
+        }
+
         Light[] childLights = this.transform.GetComponentsInChildren<Light>(true);
         lights.AddRange(childLights);
 
