@@ -5,6 +5,15 @@ using UnityEngine;
 public class WaveTrigger : MonoBehaviour
 {
     private WaveManager waveManager;
+    public bool exitTrigger;
+    public WaveTrigger enterTriger; //If it's an exit, put the entrance trigger here so that it can deactivate it
+    //A more robust code would include some sort of randomization variable. too bad
+    public float timeBetweenWaves = 5f;
+
+    [SerializeField]
+    private bool spawningWaves = false;
+    private bool delayingAlready = false;
+
     private void Start()
     {
 
@@ -12,26 +21,37 @@ public class WaveTrigger : MonoBehaviour
 
       
     }
+
+    private void Update()
+    {
+        //Rapid waves basically says if the coroutine is running
+        if(spawningWaves && !waveManager.rapidWaves && !delayingAlready)
+        {
+            StartCoroutine(createWaveWithDelay());
+        }
+    }
+
+    IEnumerator createWaveWithDelay()
+    {
+        delayingAlready = true;
+        yield return new WaitForSeconds(timeBetweenWaves);
+        waveManager.startRoughWaves();
+        delayingAlready = false;
+    }
+
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "Player")
         {
-            Debug.Log("TriggeringWaves");
-            waveManager.rapidWaves = true;
-            waveManager.StartCoroutine("RoughWaters");
-            waveManager.StartCoroutine("SpawnWaves");
-            other.GetComponent<CustomPlatformerCharacter2D>().isCrouching = true;
-        }
-    }
-    void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.gameObject.tag == "Player")
-        {
-            waveManager.StartCoroutine("DeleteWaves");
-            other.GetComponent<CustomPlatformerCharacter2D>().isCrouching = false;
-
-            this.gameObject.SetActive(false);
-
+            if (!exitTrigger)
+            {
+                spawningWaves = true;
+                other.GetComponent<PlayerWavesInstabilityChecker>().currentWaveManager = waveManager;
+            }
+            else
+            {
+                enterTriger.spawningWaves = false;
+            }
         }
     }
 }

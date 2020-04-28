@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class GrappleManager : MonoBehaviour
 {
+    public enum GrappleType{
+        SwingingPoint, GoToPoint
+    };
+
     DistanceJoint2D distJoint;
     Vector3 aimTarget;
     public float swingSpeed = 1f;
@@ -17,9 +21,10 @@ public class GrappleManager : MonoBehaviour
     private bool isAttached;
     private CustomPlatformer2DUserControl cc;
     private Rigidbody2D rb;
+    private GrappleType type;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         distJoint = this.GetComponent<DistanceJoint2D>();
         distJoint.enabled = false;
@@ -36,24 +41,38 @@ public class GrappleManager : MonoBehaviour
     void Update()
     {
         //This code must go before the following block to prevent the attachment from deactivating it the same frame it's activated
-        if (isAttached && (Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.Space)))
+        if (isAttached && (Input.GetKeyDown(KeyCode.Space)))
         {
             deattach();
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                rb.AddForce(new Vector2(0f, jumpOffForce), ForceMode2D.Force);
+                Vector2 velDir = Vector2.zero;
+
+                if (type == GrappleType.SwingingPoint)
+                {
+                    velDir = transform.InverseTransformDirection(rb.velocity);
+                } else
+                if (type == GrappleType.GoToPoint)
+                {
+                    velDir = Vector2.up * 20f;
+                }
+
+                rb.velocity += velDir * jumpOffForce * Time.deltaTime;
             }
         }
-        if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.Mouse0))
+        //Here is where we raycast and test for attachment
+        if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             aimTarget = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
             RaycastHit2D hit = Physics2D.Raycast(this.transform.position, aimTarget - this.transform.position, maxHitDist, hittableLayer);
-
-            if (hit.collider != null)
+            
 
             if (hit.collider != null && hit.collider.gameObject.CompareTag("GrappleTarget")) //Because of tag object is guarenteed to be of type grappletarget
             {
+                var hitrb = hit.collider.GetComponent<Rigidbody2D>();
+                if (isAttached && hitrb != distJoint.attachedRigidbody)
+                    deattach();
                 attach(hit.collider.GetComponent<Rigidbody2D>());
             }
         }
@@ -61,7 +80,7 @@ public class GrappleManager : MonoBehaviour
         if (isAttached)
         {
             float f = Input.GetAxis("Horizontal");
-            rb.velocity += new Vector2(f*swingSpeed, 0);
+            rb.velocity += new Vector2(f*swingSpeed*Time.deltaTime, 0);
             GrappleLineRender.SetPosition(1, rb.transform.position + Vector3.forward*10); //Add forwards to put it behind the player and the target
         }
     }
@@ -69,11 +88,13 @@ public class GrappleManager : MonoBehaviour
 
     void attach(Rigidbody2D attachmentPoint)
     {
-        Debug.Log("Entered attach");
+        //Debug.Log("Entered attach");
         distJoint.enabled = true;
         isAttached = true;
         distJoint.connectedBody = attachmentPoint;
-        distJoint.distance = attachmentPoint.GetComponent<GrappleTarget>().maxGrappleDistance; //must use reference as target may change every attach() call
+        GrappleTarget hit = attachmentPoint.GetComponent<GrappleTarget>();
+        distJoint.distance = hit.maxGrappleDistance; //must use reference as target may change every attach() call
+        type = hit.GrappleType;
         cc.enabled = false;
 
         GrappleLineRender.enabled = true;
@@ -81,7 +102,7 @@ public class GrappleManager : MonoBehaviour
     }
     void deattach()
     {
-        Debug.Log("Entered deattach");
+        //Debug.Log("Entered deattach");
         isAttached = false;
         distJoint.connectedBody = null;
         cc.enabled = true;
@@ -91,7 +112,11 @@ public class GrappleManager : MonoBehaviour
 
     private void OnDrawGizmos()
     {
+        Gizmos.color = Color.white;
         Gizmos.DrawLine(this.transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition));
+        Gizmos.color = Color.yellow;
+        if(rb != null)
+            Gizmos.DrawRay(this.transform.position, transform.InverseTransformDirection(rb.velocity));
     }
 }
 
