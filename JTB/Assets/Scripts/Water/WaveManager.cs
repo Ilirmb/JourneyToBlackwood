@@ -30,7 +30,7 @@ public class WaveManager : MonoBehaviour
         maxSpeed = playerController.m_GroundedSpeed;
         jumpForce = playerController.m_JumpForce;
         waves = new List<GameObject>();
-        waterScript.GetComponent<BuoyancyEffector2D>().surfaceLevel = 3.15f;
+        waterScript.GetComponent<BuoyancyEffector2D>().surfaceLevel = 1.9f;
     }
     // Update is called once per frame
     void Update()
