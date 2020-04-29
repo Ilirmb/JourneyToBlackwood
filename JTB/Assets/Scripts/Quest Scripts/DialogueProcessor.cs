@@ -28,6 +28,8 @@ public class DialogueProcessor : MonoBehaviour {
     private Text topSpeakerName;
     [SerializeField]
     private Image face;
+    [SerializeField]
+    private AudioSource questAudio;
 
     [SerializeField]
     private Button advanceButton;
@@ -303,6 +305,7 @@ public class DialogueProcessor : MonoBehaviour {
 	/// </summary>
     public void Next()
     {
+        questAudio.Play();
         // This button does nothing if the text is automatically being displayed.
         if (currentNode.auto.isAuto && !forceNext)
             return;

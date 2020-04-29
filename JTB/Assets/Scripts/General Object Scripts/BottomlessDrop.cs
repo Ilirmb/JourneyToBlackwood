@@ -7,6 +7,8 @@ using UnityEngine;
 /// </summary>
 public class BottomlessDrop : MonoBehaviour {
 
+    public bool killPlayer = false;
+
     private Transform respawnPoint;
     private PlayerStatistics playerStatistics;
 
@@ -23,13 +25,19 @@ public class BottomlessDrop : MonoBehaviour {
 
             //The following line is probably better, however the above line is faster and allows the text to spawn at the respawn rather than where the player was at the killplane
             //PlayerStatistics.gameObject.GetComponent<Rigidbody2D>().MovePosition(respawnPoint.position);
-
+            float damage = (killPlayer ? playerStatistics.maxStamina : GameConst.DAMAGE_FROM_FALL);
             //OnTriggerEnter seems to be able to trigger more than once per frame, so we need to make sure that players don't take double damage from the killplane
             if (tempInvuln <= 0)
             {
-                playerStatistics.damageInvulnImmune(GameConst.DAMAGE_FROM_FALL, 3.0f);
+                playerStatistics.damageInvulnImmune(damage, 3.0f);
                 tempInvuln = .1f;
             }
+            //These following lines are a slightly less efficient way to do it, but with a different result
+            //else if (resetsStamina){
+            //    playerStatistics.setStamina(playerStatistics.maxStamina);
+            //    playerStatistics.damageInvulnImmune(0f, 3.0f);
+            //    tempInvuln = .1f;
+            //}
         }
     }
 

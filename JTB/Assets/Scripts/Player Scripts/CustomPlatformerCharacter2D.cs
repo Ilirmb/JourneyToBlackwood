@@ -5,8 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class CustomPlatformerCharacter2D : MonoBehaviour
 {
-    public float m_MaxSpeed = 10f;                    // The fastest the player can travel in the x axis. Unserialized to change with code
+    public float m_GroundedSpeed = 10f;
+    private float m_MaxSpeed = 10f;     // The fastest the player can travel in the x axis. Unserialized to change with code
+    private float MaxSpeed;  //Private field for actual value after modification
     public float m_JumpForce = 400f;                  // Amount of force added when the player jumps. Unaerialized to change with code
+    private float JumpForce; //Private field for actual value after modification
     [Range(0, 1)] [SerializeField] private float m_CrouchSpeed = .36f;  // Amount of maxSpeed applied to crouching movement. 1 = 100%
     [SerializeField] private bool m_AirControl = false;                 // Whether or not a player can steer while jumping;
     [SerializeField] private LayerMask m_WhatIsGround;                  // A mask determining what is ground to the character
@@ -17,8 +20,7 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
 
     private Transform m_GroundCheck;    // A position marking where to check if the player is grounded.
     private float m_TrueSpeed;
-    private float m_GroundedSpeed = 10;
-    private float m_SlidingSpeed = 15;
+    private float m_SlidingSpeed = 40;
     private float m_SlidingDrag = 2f;
     private float k_GroundedRadius = .25f; // Radius of the overlap circle to determine if grounded
     public bool m_Grounded;            // Whether or not the player is grounded.
@@ -64,12 +66,12 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
         playerStatistics = GetComponent<PlayerStatistics>();
         ableToMove = false;
         m_AirControl = true;
-        StopSliding();// temporary- remove once you reset the values from the sliding testing values. Function returns the values to their 'normal' state.
+        StopSliding(); //Resets a few values, namely setting m_MaxSpeed to be equal to m_GroundedSpeed
         Scene activeScene = SceneManager.GetActiveScene();
         if (activeScene.name == "Segment2")
         {
             k_GroundedRadius = 0.5f;
-            m_JumpForce = 500f;
+            JumpForce = 500f;
         }
     }
    
@@ -79,8 +81,8 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
         m_Grounded = false;
 
         //Change values if crouching
-        m_MaxSpeed = isCrouching ? m_MaxSpeed = 6 : 10;
-        m_JumpForce = isCrouching ? m_JumpForce = 600 : 1000;
+        MaxSpeed = isCrouching ? m_MaxSpeed*.6f : m_MaxSpeed;
+        JumpForce = isCrouching ? m_JumpForce*.6f : m_JumpForce;
 
         // The player is grounded if a circlecast to the groundcheck position hits anything designated as ground
         // This can be done using layers instead but Sample Assets will not overwrite your project settings.
@@ -180,24 +182,25 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
             }
 
             // Move the character
-            float tempSpeed = (m_Sliding && m_Grounded ? m_SlidingSpeed : m_MaxSpeed);
+            float tempSpeed = (m_Sliding && m_Grounded ? m_SlidingSpeed : MaxSpeed);
             m_TrueSpeed = (m_Running ? tempSpeed * 1.5f : tempSpeed);
 
             float _yVelocity = m_Grounded && !m_OnLadder ? 0.0f: m_Rigidbody2D.velocity.y;
+            float _xVelocity = m_Grounded && !m_OnLadder ? 0.0f : m_Rigidbody2D.velocity.x;
 
             /*m_Rigidbody2D.velocity = m_Grounded && -normal.x <= 0 ? new Vector2(move * m_TrueSpeed * normal.y, m_yVelocity + (move * m_TrueSpeed * -normal.x)) 
                 : new Vector2(move * m_TrueSpeed, m_yVelocity);*/
 
-            m_Rigidbody2D.AddForce(new Vector2(move * m_TrueSpeed, 0f));
+            //m_Rigidbody2D.AddForce(new Vector2(move * m_TrueSpeed, 0f));
 
-            
-            if (m_Grounded && ((-normal.x * move) < 0) && !m_Sliding) // If grounded
+
+            if (m_Grounded && ((-normal.x * move) < 0) && !m_Sliding) // If grounded/downslope
             {
-                m_Rigidbody2D.velocity = new Vector2((move * normal.y) * m_TrueSpeed, ((move * -normal.x) * m_TrueSpeed) + _yVelocity);
+                m_Rigidbody2D.velocity = new Vector2(((move * normal.y) * m_TrueSpeed), ((move * -normal.x) * m_TrueSpeed) + _yVelocity);
             }
-            else if(!m_Sliding) // If airborn
+            else if(!m_Sliding) // If airborn/upslope
             {
-                m_Rigidbody2D.velocity = new Vector2(move * m_TrueSpeed, _yVelocity);
+                m_Rigidbody2D.velocity = new Vector2(((move * normal.y) * m_TrueSpeed), _yVelocity);
             }
             else // If sliding
             {
@@ -223,10 +226,11 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
             // Add a vertical force to the player.
             m_Grounded = false;
             m_Anim.SetBool("Grounded", false);
-            Vector2 vel = new Vector2(m_Rigidbody2D.velocity.x, 0.0f);
-            m_Rigidbody2D.AddForce(vel, ForceMode2D.Force);
+            //Obselete code to maintain left/right movement
+            //Vector2 vel = new Vector2(m_Rigidbody2D.velocity.x, 0.0f);
+            //m_Rigidbody2D.velocity += vel;
 
-            m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce), ForceMode2D.Force);
+            m_Rigidbody2D.velocity += new Vector2(0f, JumpForce);
 
 
             // Prevents an issue that occasionally stops the player from jumping due to oddities with the ground check.
