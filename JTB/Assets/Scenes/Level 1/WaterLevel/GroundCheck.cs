@@ -25,12 +25,12 @@ public class GroundCheck : MonoBehaviour
             transform.parent.GetComponent<CustomPlatformerCharacter2D>().m_Grounded = true;
             if (waterObject.GetComponent<WaveManager>().rapidWaves == true)
             {
-                transform.parent.GetComponent<CustomPlatformerCharacter2D>().m_GroundedSpeed = 4;
+                transform.parent.GetComponent<CustomPlatformerCharacter2D>().m_MaxSpeed = 4;
                 transform.parent.GetComponent<CustomPlatformerCharacter2D>().m_JumpForce = 150;
             }
             else
             {
-                transform.parent.GetComponent<CustomPlatformerCharacter2D>().m_GroundedSpeed = 10;
+                transform.parent.GetComponent<CustomPlatformerCharacter2D>().m_MaxSpeed = 10;
                 transform.parent.GetComponent<CustomPlatformerCharacter2D>().m_JumpForce = 500;
             }
            
@@ -65,7 +65,7 @@ public class GroundCheck : MonoBehaviour
         if (other.gameObject.tag == "RiverLog")
         {
             // transform.parent.GetComponent<CustomPlatformerCharacter2D>().m_Anim.SetBool("Grounded", false);
-            transform.parent.GetComponent<CustomPlatformerCharacter2D>().m_GroundedSpeed = 10;
+            transform.parent.GetComponent<CustomPlatformerCharacter2D>().m_MaxSpeed = 10;
             transform.parent.GetComponent<CustomPlatformerCharacter2D>().m_JumpForce = 500;
             transform.parent.GetComponent<CustomPlatformerCharacter2D>().m_Grounded = false;
 

@@ -21,14 +21,7 @@ public class toggleSlip : MonoBehaviour
             {
                 player.StartSliding();
             }
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            if (enableSlip)
+            else
             {
                 player.StopSliding();
             }

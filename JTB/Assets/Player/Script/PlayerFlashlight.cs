@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class PlayerFlashlight : MonoBehaviour
 {
-    public Light flashlight;
+    private Light flashlight;
     [Header("Light Intensity Settings")]
     public float minIntensity = 0;
-    public float maxIntensity = 5; //min and max intensity for light (brightness)
+    public float maxIntensity = 1; //min and max intensity for light (brightness)
     [Header("Rate of Change")]
     [Tooltip("per frame, how much intensity is changed")]
-    public float changePerTick = 0.1f; //per frame, how much intensity is changed
+    public float changePerTick = 0.005f; //per frame, how much intensity is changed
     [Header("Delay Settings")]
     [Tooltip("How long the light stays at maximum intensity")]
     public float lightLifetime = 3;
@@ -31,17 +31,10 @@ public class PlayerFlashlight : MonoBehaviour
             StartCoroutine(ChangeLight());
     }
 
-    /*private void OnTriggerEnter2D(Collider other)
-    {
-        if (other.CompareTag("Crystal"))
-            cf.activateCrystal();
-    }*/
-
     private IEnumerator ChangeLight()
     {
-        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector3 mousePos2 = new Vector3(mousePos.x, mousePos.y, 0);
-        flashlight.transform.position = mousePos2;
+        //while (true) //infinite loop to just repeat forever yea
+        //{
         canUse = false;
             while (flashlight.intensity <= maxIntensity)
             {
@@ -49,17 +42,16 @@ public class PlayerFlashlight : MonoBehaviour
                 yield return new WaitForEndOfFrame();
             }
 
-            yield return new WaitForSeconds(lightLifetime); //wait X amount of seconds
+            yield return new WaitForSeconds(lightLifetime); // wait X amount of seconds
 
             while (flashlight.intensity > minIntensity)
             {
                 flashlight.intensity -= changePerTick;
                 yield return new WaitForEndOfFrame();
             }
-        flashlight.transform.position = new Vector3(0, 0, 0);
-        yield return new WaitForSeconds(userCooldown); //delay before the lights turn back on
+            yield return new WaitForSeconds(userCooldown); //delay before the lights turn back on
+        //}
         canUse = true;
-
     }
 }
 

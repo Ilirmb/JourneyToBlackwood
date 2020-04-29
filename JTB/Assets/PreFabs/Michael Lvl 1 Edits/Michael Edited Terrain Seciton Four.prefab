@@ -42,7 +42,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1706901746376755040}
-  m_Mesh: {fileID: 4300000, guid: e1bc6558a261a9f4785cc94160a5304f, type: 2}
+  m_Mesh: {fileID: 4300000, guid: 59ddfb29ab700fd4bae6d9116cc0a7b1, type: 2}
 --- !u!23 &1706901746376755046
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -74,7 +74,7 @@ MeshRenderer:
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
   m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 2
+  m_SelectedEditorRenderState: 0
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
@@ -835,7 +835,7 @@ MonoBehaviour:
       controlNext: {x: 0, y: 0}
       controlPrev: {x: 0, y: 0}
       type: 4
-    _closed: 1
+    _closed: 0
     _splitDistance: 1
     _data:
     - directionOverride: 100
@@ -1614,22 +1614,8 @@ PolygonCollider2D:
       - {x: 159.06883, y: -8.025464}
     - - {x: -163.33194, y: 2.5024006}
       - {x: -162.89552, y: -44.467533}
-      - {x: -162.89552, y: -44.467533}
-      - {x: -162.59653, y: -44.465897}
       - {x: -162.59653, y: -44.465897}
       - {x: -162.73395, y: 2.505673}
-    - - {x: -162.55804, y: -44.61719}
-      - {x: 2139.9958, y: -35.297256}
-      - {x: 2139.9958, y: -35.297256}
-      - {x: 2140.3894, y: -35.144268}
-      - {x: 2140.0903, y: -35.14567}
-      - {x: 2140.0898, y: -35.04474}
-      - {x: 2139.9946, y: -35.045128}
-      - {x: -162.55907, y: -44.365063}
-      - {x: -162.59709, y: -44.365215}
-      - {x: -162.59653, y: -44.465897}
-      - {x: -162.89552, y: -44.467533}
-      - {x: -162.55804, y: -44.61719}
 --- !u!60 &1706901746376755042
 PolygonCollider2D:
   m_ObjectHideFlags: 0

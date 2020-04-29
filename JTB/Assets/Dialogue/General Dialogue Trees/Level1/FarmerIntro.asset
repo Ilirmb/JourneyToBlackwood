@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Dialogue
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -1976, y: -72}
+  position: {x: -504, y: -56}
   ports:
     keys:
     - previous
@@ -46,7 +46,7 @@ MonoBehaviour:
         mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: previous
-        node: {fileID: -6521897526424150040}
+        node: {fileID: 2373327044817695072}
         reroutePoints: []
       _direction: 1
       _connectionType: 0
@@ -56,11 +56,11 @@ MonoBehaviour:
   previous: {fileID: 0}
   dialogueNodeType: 0
   dialogueSpeaker: Farmer
-  dialogueText: Careful now Hero! The area's Slick with mud.
-  dialogueSprite: {fileID: 21300000, guid: 03cd9f7351be1734a89f261111e5e8e1, type: 3}
+  dialogueText: Hey there! This is my WIP tutorial text!
+  dialogueSprite: {fileID: 0}
   childNodes:
   - condition: 0
-    targetID: 26
+    targetID: 1
   actions: []
   auto:
     isAuto: 0
@@ -127,7 +127,7 @@ MonoBehaviour:
   dialogueSpeaker: Farmer
   dialogueText: The frustration meter is the face in the upper left corner, it represents
     your current frustration
-  dialogueSprite: {fileID: 21300000, guid: 03cd9f7351be1734a89f261111e5e8e1, type: 3}
+  dialogueSprite: {fileID: 0}
   childNodes:
   - condition: 0
     targetID: 22
@@ -149,7 +149,7 @@ MonoBehaviour:
   m_Name: Dialogue
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 824, y: 600}
+  position: {x: 744, y: 552}
   ports:
     keys:
     - previous
@@ -188,7 +188,7 @@ MonoBehaviour:
         mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: previous
-        node: {fileID: -167557567022215285}
+        node: {fileID: -4270364528846973601}
         reroutePoints: []
       _direction: 1
       _connectionType: 0
@@ -198,12 +198,12 @@ MonoBehaviour:
   previous: {fileID: 0}
   dialogueNodeType: 0
   dialogueSpeaker: Farmer
-  dialogueText: Hmm? Weren't you after Logolio? He went deeper into the forest. Make
-    sure to becareful of the slippery mud!
-  dialogueSprite: {fileID: 21300000, guid: 03cd9f7351be1734a89f261111e5e8e1, type: 3}
+  dialogueText: Ok. Logolio is far past my farm. Just keep heading right and you should
+    reach a river eventually.
+  dialogueSprite: {fileID: 0}
   childNodes:
   - condition: 0
-    targetID: 6
+    targetID: 5
   actions: []
   auto:
     isAuto: 0
@@ -355,79 +355,10 @@ MonoBehaviour:
   dialogueSpeaker: Farmer
   dialogueText: You can change your frustration at any time by clicking on the face.
     The lower you drag it, the more frustrated you are with the game.
-  dialogueSprite: {fileID: 21300000, guid: 03cd9f7351be1734a89f261111e5e8e1, type: 3}
-  childNodes:
-  - condition: 0
-    targetID: 23
-  actions: []
-  auto:
-    isAuto: 0
-    autoSpeed: 0
-    pauseBeforeNext: 0
---- !u!114 &-6521897526424150040
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ac085fae4e799c44ab966161326a142, type: 3}
-  m_Name: Dialogue
-  m_EditorClassIdentifier: 
-  graph: {fileID: 11400000}
-  position: {x: -1672, y: -72}
-  ports:
-    keys:
-    - previous
-    - childNodes
-    - childNodes 0
-    values:
-    - _fieldName: previous
-      _node: {fileID: -6521897526424150040}
-      _typeQualifiedName: DialogueNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null
-      connections:
-      - fieldName: childNodes 0
-        node: {fileID: -8633930281700029686}
-        reroutePoints: []
-      _direction: 0
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-    - _fieldName: childNodes
-      _node: {fileID: -6521897526424150040}
-      _typeQualifiedName: System.Collections.Generic.List`1[[DialogueNode+DialogueBranchCondition,
-        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
-        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
-      connections: []
-      _direction: 1
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-    - _fieldName: childNodes 0
-      _node: {fileID: -6521897526424150040}
-      _typeQualifiedName: System.Collections.Generic.List`1[[DialogueNode+DialogueBranchCondition,
-        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
-        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: previous
-        node: {fileID: 683497278794982019}
-        reroutePoints: []
-      _direction: 1
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 1
-  ID: 26
-  previous: {fileID: 0}
-  dialogueNodeType: 1
-  dialogueSpeaker: Farmer
-  dialogueText: 
   dialogueSprite: {fileID: 0}
   childNodes:
   - condition: 0
-    targetID: 24
+    targetID: 23
   actions: []
   auto:
     isAuto: 0
@@ -502,77 +433,6 @@ MonoBehaviour:
     isAuto: 0
     autoSpeed: 0
     pauseBeforeNext: 0
---- !u!114 &-6174837251575818062
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ac085fae4e799c44ab966161326a142, type: 3}
-  m_Name: Dialogue
-  m_EditorClassIdentifier: 
-  graph: {fileID: 11400000}
-  position: {x: -1192, y: -72}
-  ports:
-    keys:
-    - previous
-    - childNodes
-    - childNodes 0
-    values:
-    - _fieldName: previous
-      _node: {fileID: -6174837251575818062}
-      _typeQualifiedName: DialogueNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null
-      connections:
-      - fieldName: childNodes 0
-        node: {fileID: 683497278794982019}
-        reroutePoints: []
-      _direction: 0
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-    - _fieldName: childNodes
-      _node: {fileID: -6174837251575818062}
-      _typeQualifiedName: System.Collections.Generic.List`1[[DialogueNode+DialogueBranchCondition,
-        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
-        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
-      connections: []
-      _direction: 1
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-    - _fieldName: childNodes 0
-      _node: {fileID: -6174837251575818062}
-      _typeQualifiedName: System.Collections.Generic.List`1[[DialogueNode+DialogueBranchCondition,
-        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
-        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: previous
-        node: {fileID: -4941867690309747349}
-        reroutePoints: []
-      _direction: 1
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 1
-  ID: 25
-  previous: {fileID: 0}
-  dialogueNodeType: 0
-  dialogueSpeaker: Farmer
-  dialogueText: A dark sorcerer came through these parts not but a few hours ago.
-    With him a whole mess of storm clouds followed. They drenched the land in a horrible
-    rain then disappeared.
-  dialogueSprite: {fileID: 21300000, guid: 03cd9f7351be1734a89f261111e5e8e1, type: 3}
-  childNodes:
-  - condition: 0
-    targetID: 27
-  actions: []
-  auto:
-    isAuto: 0
-    autoSpeed: 0
-    pauseBeforeNext: 0
 --- !u!114 &-5561210241889671371
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -634,7 +494,7 @@ MonoBehaviour:
   dialogueSpeaker: Farmer
   dialogueText: Space will jump and shift will let you run, although be careful about
     the increased stamina cost!
-  dialogueSprite: {fileID: 21300000, guid: 03cd9f7351be1734a89f261111e5e8e1, type: 3}
+  dialogueSprite: {fileID: 0}
   childNodes:
   - condition: 0
     targetID: 15
@@ -643,7 +503,7 @@ MonoBehaviour:
     isAuto: 0
     autoSpeed: 0
     pauseBeforeNext: 0
---- !u!114 &-4941867690309747349
+--- !u!114 &-4270364528846973601
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -656,7 +516,7 @@ MonoBehaviour:
   m_Name: Dialogue
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -936, y: -72}
+  position: {x: 1000, y: 552}
   ports:
     keys:
     - previous
@@ -664,19 +524,19 @@ MonoBehaviour:
     - childNodes 0
     values:
     - _fieldName: previous
-      _node: {fileID: -4941867690309747349}
+      _node: {fileID: -4270364528846973601}
       _typeQualifiedName: DialogueNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
       connections:
       - fieldName: childNodes 0
-        node: {fileID: -6174837251575818062}
+        node: {fileID: -7522164082418640073}
         reroutePoints: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
     - _fieldName: childNodes
-      _node: {fileID: -4941867690309747349}
+      _node: {fileID: -4270364528846973601}
       _typeQualifiedName: System.Collections.Generic.List`1[[DialogueNode+DialogueBranchCondition,
         Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
         mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
@@ -686,27 +546,27 @@ MonoBehaviour:
       _typeConstraint: 0
       _dynamic: 0
     - _fieldName: childNodes 0
-      _node: {fileID: -4941867690309747349}
+      _node: {fileID: -4270364528846973601}
       _typeQualifiedName: System.Collections.Generic.List`1[[DialogueNode+DialogueBranchCondition,
         Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
         mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: previous
-        node: {fileID: 2373327044817695072}
+        node: {fileID: -167557567022215285}
         reroutePoints: []
       _direction: 1
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 1
-  ID: 27
+  ID: 5
   previous: {fileID: 0}
   dialogueNodeType: 0
-  dialogueSpeaker: Riley
-  dialogueText: A sorcerer! That must be Logolio! Looks like we're on the right path.
-  dialogueSprite: {fileID: 21300000, guid: 58e5f829dcbc4bc4eba9c96f2a4780ac, type: 3}
+  dialogueSpeaker: Farmer
+  dialogueText: Just keep going right. Been good talking to you!
+  dialogueSprite: {fileID: 0}
   childNodes:
   - condition: 0
-    targetID: 1
+    targetID: 6
   actions: []
   auto:
     isAuto: 0
@@ -772,7 +632,7 @@ MonoBehaviour:
   dialogueNodeType: 0
   dialogueSpeaker: Farmer
   dialogueText: You use stamina for things like walking, running, and jumping
-  dialogueSprite: {fileID: 21300000, guid: 03cd9f7351be1734a89f261111e5e8e1, type: 3}
+  dialogueSprite: {fileID: 0}
   childNodes:
   - condition: 0
     targetID: 18
@@ -911,7 +771,7 @@ MonoBehaviour:
   dialogueSpeaker: Farmer
   dialogueText: As long as you keep an eye on your stamina meter in the upper right
     corner, you should be fine!
-  dialogueSprite: {fileID: 21300000, guid: 03cd9f7351be1734a89f261111e5e8e1, type: 3}
+  dialogueSprite: {fileID: 0}
   childNodes:
   - condition: 0
     targetID: 15
@@ -981,7 +841,7 @@ MonoBehaviour:
   dialogueSpeaker: Farmer
   dialogueText: If you get frustrated, that's OK! It's normal! Just make sure you
     let us know by using the slider, and maybe we can help you out.
-  dialogueSprite: {fileID: 21300000, guid: 03cd9f7351be1734a89f261111e5e8e1, type: 3}
+  dialogueSprite: {fileID: 0}
   childNodes:
   - condition: 0
     targetID: 15
@@ -1056,7 +916,7 @@ MonoBehaviour:
   dialogueNodeType: 0
   dialogueSpeaker: Farmer
   dialogueText: Any other questions?
-  dialogueSprite: {fileID: 21300000, guid: 03cd9f7351be1734a89f261111e5e8e1, type: 3}
+  dialogueSprite: {fileID: 0}
   childNodes:
   - condition: 0
     targetID: 9
@@ -1195,7 +1055,7 @@ MonoBehaviour:
   dialogueSpeaker: Farmer
   dialogueText: And if you run out, you have to take a break and you'll be taken back
     to your last checkpoint.
-  dialogueSprite: {fileID: 21300000, guid: 03cd9f7351be1734a89f261111e5e8e1, type: 3}
+  dialogueSprite: {fileID: 0}
   childNodes:
   - condition: 0
     targetID: 19
@@ -1264,7 +1124,7 @@ MonoBehaviour:
   dialogueNodeType: 0
   dialogueSpeaker: Farmer
   dialogueText: Well, it's pretty simple,
-  dialogueSprite: {fileID: 21300000, guid: 03cd9f7351be1734a89f261111e5e8e1, type: 3}
+  dialogueSprite: {fileID: 0}
   childNodes:
   - condition: 0
     targetID: 17
@@ -1335,7 +1195,7 @@ MonoBehaviour:
   dialogueText: Ok, do you need to know about movement? Or would you like me to explain
     the stamina system? Or are you curious about the face in the corner of your screen
     and the Frustration system?
-  dialogueSprite: {fileID: 21300000, guid: 03cd9f7351be1734a89f261111e5e8e1, type: 3}
+  dialogueSprite: {fileID: 0}
   childNodes:
   - condition: 0
     targetID: 9
@@ -1357,7 +1217,7 @@ MonoBehaviour:
   m_Name: Dialogue
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1112, y: 600}
+  position: {x: 1256, y: 552}
   ports:
     keys:
     - previous
@@ -1369,7 +1229,7 @@ MonoBehaviour:
         PublicKeyToken=null
       connections:
       - fieldName: childNodes 0
-        node: {fileID: -7522164082418640073}
+        node: {fileID: -4270364528846973601}
         reroutePoints: []
       _direction: 0
       _connectionType: 0
@@ -1389,8 +1249,8 @@ MonoBehaviour:
   previous: {fileID: 0}
   dialogueNodeType: 0
   dialogueSpeaker: Farmer
-  dialogueText: Good Luck!
-  dialogueSprite: {fileID: 21300000, guid: 03cd9f7351be1734a89f261111e5e8e1, type: 3}
+  dialogueText: Bye!
+  dialogueSprite: {fileID: 0}
   childNodes: []
   actions: []
   auto:
@@ -1410,61 +1270,55 @@ MonoBehaviour:
   m_Name: FarmerIntro
   m_EditorClassIdentifier: 
   nodes:
-  - {fileID: -6521897526424150040}
-  - {fileID: -6174837251575818062}
-  - {fileID: 683497278794982019}
-  - {fileID: -3889886938215121693}
-  - {fileID: -1160938026183682847}
-  - {fileID: -4080157389049433388}
-  - {fileID: -1131500331428906468}
-  - {fileID: -3792716787482963620}
-  - {fileID: -5561210241889671371}
-  - {fileID: 7425901460785803487}
-  - {fileID: -3968123798224844484}
-  - {fileID: 4738661425649039008}
-  - {fileID: 2918682926451175653}
-  - {fileID: 34770374666815988}
-  - {fileID: 5773895722051426305}
-  - {fileID: -6418349514840146945}
-  - {fileID: -167557567022215285}
-  - {fileID: -7522164082418640073}
-  - {fileID: -7483196897579993304}
-  - {fileID: -245961750722197872}
-  - {fileID: 2373327044817695072}
-  - {fileID: -8633930281700029686}
-  - {fileID: -1791243421919272124}
-  - {fileID: -7640360881192079114}
-  - {fileID: -6875757722865079054}
   - {fileID: -3802461013188841844}
-  - {fileID: -4941867690309747349}
+  - {fileID: -6875757722865079054}
+  - {fileID: -7640360881192079114}
+  - {fileID: -1791243421919272124}
+  - {fileID: -8633930281700029686}
+  - {fileID: 2373327044817695072}
+  - {fileID: -245961750722197872}
+  - {fileID: -7483196897579993304}
+  - {fileID: -7522164082418640073}
+  - {fileID: -4270364528846973601}
+  - {fileID: -167557567022215285}
+  - {fileID: -6418349514840146945}
+  - {fileID: 5773895722051426305}
+  - {fileID: 34770374666815988}
+  - {fileID: 2918682926451175653}
+  - {fileID: 4738661425649039008}
+  - {fileID: -3968123798224844484}
+  - {fileID: 7425901460785803487}
+  - {fileID: -5561210241889671371}
+  - {fileID: -3792716787482963620}
+  - {fileID: -1131500331428906468}
+  - {fileID: -4080157389049433388}
+  - {fileID: -1160938026183682847}
+  - {fileID: -3889886938215121693}
   dialogue:
-  - {fileID: -6521897526424150040}
-  - {fileID: -6174837251575818062}
-  - {fileID: 683497278794982019}
-  - {fileID: -3889886938215121693}
-  - {fileID: -1160938026183682847}
-  - {fileID: -4080157389049433388}
-  - {fileID: -1131500331428906468}
-  - {fileID: -3792716787482963620}
-  - {fileID: -5561210241889671371}
-  - {fileID: 7425901460785803487}
-  - {fileID: -3968123798224844484}
-  - {fileID: 4738661425649039008}
-  - {fileID: 2918682926451175653}
-  - {fileID: 34770374666815988}
-  - {fileID: 5773895722051426305}
-  - {fileID: -6418349514840146945}
-  - {fileID: -167557567022215285}
-  - {fileID: -7522164082418640073}
-  - {fileID: -7483196897579993304}
-  - {fileID: -245961750722197872}
-  - {fileID: 2373327044817695072}
-  - {fileID: -8633930281700029686}
-  - {fileID: -1791243421919272124}
-  - {fileID: -7640360881192079114}
-  - {fileID: -6875757722865079054}
   - {fileID: -3802461013188841844}
-  - {fileID: -4941867690309747349}
+  - {fileID: -6875757722865079054}
+  - {fileID: -7640360881192079114}
+  - {fileID: -1791243421919272124}
+  - {fileID: -8633930281700029686}
+  - {fileID: 2373327044817695072}
+  - {fileID: -245961750722197872}
+  - {fileID: -7483196897579993304}
+  - {fileID: -7522164082418640073}
+  - {fileID: -4270364528846973601}
+  - {fileID: -167557567022215285}
+  - {fileID: -6418349514840146945}
+  - {fileID: 5773895722051426305}
+  - {fileID: 34770374666815988}
+  - {fileID: 2918682926451175653}
+  - {fileID: 4738661425649039008}
+  - {fileID: -3968123798224844484}
+  - {fileID: 7425901460785803487}
+  - {fileID: -5561210241889671371}
+  - {fileID: -3792716787482963620}
+  - {fileID: -1131500331428906468}
+  - {fileID: -4080157389049433388}
+  - {fileID: -1160938026183682847}
+  - {fileID: -3889886938215121693}
   firstNode: {fileID: -8633930281700029686}
 --- !u!114 &34770374666815988
 MonoBehaviour:
@@ -1586,75 +1440,6 @@ MonoBehaviour:
     isAuto: 0
     autoSpeed: 0
     pauseBeforeNext: 0
---- !u!114 &683497278794982019
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ac085fae4e799c44ab966161326a142, type: 3}
-  m_Name: Dialogue
-  m_EditorClassIdentifier: 
-  graph: {fileID: 11400000}
-  position: {x: -1432, y: -72}
-  ports:
-    keys:
-    - previous
-    - childNodes
-    - childNodes 0
-    values:
-    - _fieldName: previous
-      _node: {fileID: 683497278794982019}
-      _typeQualifiedName: DialogueNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null
-      connections:
-      - fieldName: childNodes 0
-        node: {fileID: -6521897526424150040}
-        reroutePoints: []
-      _direction: 0
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-    - _fieldName: childNodes
-      _node: {fileID: 683497278794982019}
-      _typeQualifiedName: System.Collections.Generic.List`1[[DialogueNode+DialogueBranchCondition,
-        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
-        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
-      connections: []
-      _direction: 1
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-    - _fieldName: childNodes 0
-      _node: {fileID: 683497278794982019}
-      _typeQualifiedName: System.Collections.Generic.List`1[[DialogueNode+DialogueBranchCondition,
-        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
-        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: previous
-        node: {fileID: -6174837251575818062}
-        reroutePoints: []
-      _direction: 1
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 1
-  ID: 24
-  previous: {fileID: 0}
-  dialogueNodeType: 0
-  dialogueSpeaker: 
-  dialogueText: Oh why's that?
-  dialogueSprite: {fileID: 0}
-  childNodes:
-  - condition: 0
-    targetID: 25
-  actions: []
-  auto:
-    isAuto: 0
-    autoSpeed: 0
-    pauseBeforeNext: 0
 --- !u!114 &2373327044817695072
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1668,7 +1453,7 @@ MonoBehaviour:
   m_Name: Dialogue
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -296, y: -72}
+  position: {x: -248, y: -56}
   ports:
     keys:
     - previous
@@ -1681,7 +1466,7 @@ MonoBehaviour:
         PublicKeyToken=null
       connections:
       - fieldName: childNodes 0
-        node: {fileID: -4941867690309747349}
+        node: {fileID: -8633930281700029686}
         reroutePoints: []
       _direction: 0
       _connectionType: 0
@@ -1715,7 +1500,7 @@ MonoBehaviour:
   dialogueNodeType: 0
   dialogueSpeaker: Farmer
   dialogueText: Do you need help with the controls or any of the game mechanics??
-  dialogueSprite: {fileID: 21300000, guid: 03cd9f7351be1734a89f261111e5e8e1, type: 3}
+  dialogueSprite: {fileID: 0}
   childNodes:
   - condition: 0
     targetID: 2
@@ -1992,7 +1777,7 @@ MonoBehaviour:
   dialogueSpeaker: Farmer
   dialogueText: Use the arrow keys or A and D to move left and right. W and S will
     move up and down on climbable objects
-  dialogueSprite: {fileID: 21300000, guid: 03cd9f7351be1734a89f261111e5e8e1, type: 3}
+  dialogueSprite: {fileID: 0}
   childNodes:
   - condition: 0
     targetID: 14

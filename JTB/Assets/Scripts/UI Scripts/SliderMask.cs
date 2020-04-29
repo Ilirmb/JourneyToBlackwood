@@ -95,23 +95,15 @@ public class SliderMask : MonoBehaviour {
 
     public void onPointerUp()
     {
-        Debug.Log("onPointerUp Coroutine start + float temp = slider.value");
-        float temp = slider.value; //for some reason changing the slider value to zero without this variable will break the code and stop the coroutine from finishing.
-        Debug.Log("Slider Value = 0");
-        slider.value = 0;
-        Debug.Log("make the slider INVIS");
-        handle.color = new Color(handle.color.r, handle.color.g, handle.color.b, 0f);
         StartCoroutine(animateSliderUP());
-        Debug.Log("Allow Dragging");
         frustrationFace.toggleDragging(false);
-        Debug.Log("End of onPointerUp + SliderValueChange to Slider.Value (float temp)");
-        playerStatistics.onSliderValueChange(temp);
-        // animTargetFrame = 1;
+        playerStatistics.onSliderValueChange(slider.value);
+       // animTargetFrame = 1;
         //We now move the large slider handle back to the top so it can be clicked on again
         //If we want to this can also trigger it leaving a temporary copy of itself in place so it doesn't appear to teleport back to the top as it should now
-        
+        slider.value = 0;
 
-        
+        handle.color = new Color(handle.color.r, handle.color.g, handle.color.b, 0f);
     }
     
 }

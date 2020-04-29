@@ -17,7 +17,7 @@ public class Quicksand : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody2D>();
         gravity = player.gravityScale;
         respawnPoint = this.transform.GetChild(0).position; //The index 0 child of the quicksand should be it's respawn point
-        maxSpeed = player.GetComponent<CustomPlatformerCharacter2D>().m_GroundedSpeed;
+        maxSpeed = player.GetComponent<CustomPlatformerCharacter2D>().m_MaxSpeed;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -25,7 +25,7 @@ public class Quicksand : MonoBehaviour
         if (other.CompareTag("Player") && other.GetType() == typeof(CircleCollider2D))
         {
             player.gravityScale = 0;
-            player.GetComponent<CustomPlatformerCharacter2D>().m_GroundedSpeed = maxSpeed / 2f;
+            player.GetComponent<CustomPlatformerCharacter2D>().m_MaxSpeed = maxSpeed / 2f;
             player.velocity = new Vector2(player.velocity.x, 0f);
             player.GetComponent<CustomPlatformerCharacter2D>().ableToMove = true;
         }
@@ -36,7 +36,7 @@ public class Quicksand : MonoBehaviour
         if (other.CompareTag("Player") && other.GetType() == typeof(CircleCollider2D))
         {
             player.gravityScale = gravity;
-            player.GetComponent<CustomPlatformerCharacter2D>().m_GroundedSpeed = maxSpeed;
+            player.GetComponent<CustomPlatformerCharacter2D>().m_MaxSpeed = maxSpeed;
             player.GetComponent<CustomPlatformerCharacter2D>().ableToMove = true;
         }
         Debug.Log("Exit");
