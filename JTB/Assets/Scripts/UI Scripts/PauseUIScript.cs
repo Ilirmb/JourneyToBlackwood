@@ -26,6 +26,7 @@ public class PauseUIScript : MonoBehaviour
 		}
     }
 
+	//The UI calls to be resumed
 	public void Resume()
 	{
 		PauseMenuUI.SetActive(false);
@@ -33,6 +34,7 @@ public class PauseUIScript : MonoBehaviour
 		GameIsPaused = false;
 	}
 
+	//The UI calls to pause
 	public void Pause()
 	{
 		PauseMenuUI.SetActive(true);
@@ -40,12 +42,13 @@ public class PauseUIScript : MonoBehaviour
 		GameIsPaused = true;
 	}
 
+	//Resets the Player's current position and progress on a quest
 	public void Restart()
 	{
-		Time.timeScale = 1f;
 		
 	}
 
+	//Brings the Player back to the main menu
 	public void Quitgame()
 	{
 		Time.timeScale = 1f;
