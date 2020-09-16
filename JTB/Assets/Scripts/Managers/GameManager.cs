@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour {
 
     private Quest activeQuest;
 
+    private string playerName;
     private PlayerStatistics player;
     private CustomPlatformer2DUserControl playerMov;
     private Animator playerAnim;
@@ -161,10 +162,11 @@ public class GameManager : MonoBehaviour {
 
     #endregion
 
-	
-	/// <summary>
-	/// Increases the player's max stamina
-	/// </summary>
+
+    #region Player Management
+    /// <summary>
+    /// Increases the player's max stamina
+    /// </summary>
     public void IncreasePlayerStamina(float amt)
     {
         player.increaseMaxStamina(amt);
@@ -235,7 +237,7 @@ public class GameManager : MonoBehaviour {
 
         return names;
     }
-
+    #endregion
 
 
     #region Save Function
@@ -291,6 +293,18 @@ public class GameManager : MonoBehaviour {
 
             LoadQuestData();
         }
+    }
+
+    public void LoadSaveFiles()
+    {
+        List<BinaryFormatter> saveFiles;
+
+        string[] files = Directory.GetFiles(Application.persistentDataPath);
+        foreach(string s in files)
+        {
+            Debug.Log("File " + s);
+        }
+        FileStream[] streams = new FileStream[files.Length];
     }
 
 
