@@ -44,6 +44,7 @@ public class CustomizeMenuController : MonoBehaviour {
         SceneManager.LoadScene("Main Menu");
     }
 
+    //Eye
     public void SetYellowEyeColor()
     {
         Color yellowHue = new Color(1, .8f, 0, .75f);
@@ -52,12 +53,18 @@ public class CustomizeMenuController : MonoBehaviour {
 
     }
     public void SetPurpleEyeColor()
-    {
-        Color purpleHue = new Color(.5f, 0, 1, .75f);
+    {   
+        Color purpleHue = new Color(.58f, .1f, .9f, .75f);
         eyeScript.color = purpleHue;
         GlobalColor.Instance.eyeColor = purpleHue;
     }
+    public void SetPinkEyeColor()
+    {
+        Color pinkHue = new Color(1, .45f, .98f, .75f);
+        eyeScript.color = pinkHue;
+        GlobalColor.Instance.eyeColor = pinkHue;
 
+    }
     public void SetBlueEyeColor()
     {
         Color blueHue = new Color(0, .7f, 1, .75f);
@@ -65,17 +72,46 @@ public class CustomizeMenuController : MonoBehaviour {
         GlobalColor.Instance.eyeColor = blueHue;
 
     }
+    public void SetWhiteEyeColor()
+    {
+        Color whiteHue = new Color(1, 1, 1, .75f);
+        eyeScript.color = whiteHue;
+        GlobalColor.Instance.eyeColor = whiteHue;
 
+    }
+    public void SetGreenEyeColor()
+    {
+        Color greenHue = new Color(0, .9f, .15f, .75f);
+        eyeScript.color = greenHue;
+        GlobalColor.Instance.eyeColor = greenHue;
+
+    }
+    public void SetBrownEyeColor()
+    {
+        Color brownHue = new Color(.55f, .27f, .08f, .75f);
+        eyeScript.color = brownHue;
+        GlobalColor.Instance.eyeColor = brownHue;
+
+    }
+    public void SetNavyEyeColor()
+    {
+        Color navyHue = new Color(0, .34f, 1, .75f);
+        eyeScript.color = navyHue;
+        GlobalColor.Instance.eyeColor = navyHue;
+
+    }
+
+    //Hair
     public void SetYellowHairColor()
     {
-        Color yellowHue = new Color(1, .8f, 0, 1);
+        Color yellowHue = new Color(1, .72f, 0, 1);
         hairScript.color = yellowHue;
         GlobalColor.Instance.hairColor = yellowHue;
 
     }
     public void SetPurpleHairColor()
     {
-        Color purpleHue = new Color(.5f, 0, 1, 1);
+        Color purpleHue = new Color(.58f, .1f, .9f, 1);
         hairScript.color = purpleHue;
         GlobalColor.Instance.hairColor = purpleHue;
 
@@ -94,6 +130,49 @@ public class CustomizeMenuController : MonoBehaviour {
         GlobalColor.Instance.hairColor = blueHue;
 
     }
+    public void SetWhiteHairColor()
+    {
+        Color whiteHue = new Color(1, 1, 1, 1);
+        hairScript.color = whiteHue;
+        GlobalColor.Instance.hairColor = whiteHue;
+
+    }
+    public void SetBlackHairColor()
+    {
+        Color blackHue = new Color(.3f, .3f, .3f, 1);
+        hairScript.color = blackHue;
+        GlobalColor.Instance.hairColor = blackHue;
+
+    }
+    public void SetGreenHairColor()
+    {
+        Color greenHue = new Color(.1f, .82f, .20f, 1);
+        hairScript.color = greenHue;
+        GlobalColor.Instance.hairColor = greenHue;
+
+    }
+    public void SetRedHairColor()
+    {
+        Color redHue = new Color(1, .25f, 0, 1);
+        hairScript.color = redHue;
+        GlobalColor.Instance.hairColor = redHue;
+
+    }
+    public void SetBrownHairColor()
+    {
+        Color brownHue = new Color(.55f, .27f, .08f, 1);
+        hairScript.color = brownHue;
+        GlobalColor.Instance.hairColor = brownHue;
+
+    }
+    public void SetNavyHairColor()
+    {
+        Color navyHue = new Color(0, .34f, 1, 1);
+        hairScript.color = navyHue;
+        GlobalColor.Instance.hairColor = navyHue;
+
+    }
+
     public void ChangeHairStyle(int dir)
     {
         CustomizationManager.instance.AdvanceCurrentHairStyle(dir);
