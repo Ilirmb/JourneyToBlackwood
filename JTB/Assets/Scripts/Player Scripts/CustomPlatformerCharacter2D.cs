@@ -37,6 +37,10 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
     public float vspeed;
     public float hspeed;
 
+
+    private float MaxSlip = 300;
+    private bool ResetSlip = false;
+
     private bool m_OnLadder = false;
     private bool m_RunLock = false;
 
@@ -90,7 +94,7 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
         {
             RaycastHit2D hit = Physics2D.Raycast(m_GroundCheck.transform.position, -Vector2.up, k_GroundedRadius, m_WhatIsGround);
 
-            if (hit.collider != null && ((m_GroundCheck.transform.position.y +10> hit.point.y) || m_OnLadder))
+            if (hit.collider != null && ((m_GroundCheck.transform.position.y + 10 > hit.point.y) || m_OnLadder))
             {
                 normal = hit.normal;
                 m_Grounded = true;
@@ -155,6 +159,20 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
             }
         }*/
 
+        if (MaxSlip <= 0)
+        {
+            StopSliding();
+            ResetSlip = true;
+        }
+        else
+        {
+            if (m_Sliding == false && MaxSlip == 300 && ResetSlip == true && move != 0)
+            {
+                StartSliding();
+                ResetSlip = false;
+            }
+        }
+
         m_Running = (run && m_Grounded && Mathf.Abs(move) > 0.85f) || (m_RunLock && Mathf.Abs(move) > 0.85f);
 
         // Set whether or not the character is crouching in the animator
@@ -204,6 +222,7 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
             }
             else // If sliding
             {
+                MaxSlip--;
                 m_Rigidbody2D.AddForce(new Vector2(move * (m_TrueSpeed/2), 0f));
             }
             //m_Rigidbody2D = new Vector2((move * normal.y) * m_TrueSpeed, ((move * -normal.x) * m_TrueSpeed) + m_yVelocity);
@@ -309,12 +328,14 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
 
     public void StartSliding()
     {
+        MaxSlip = 300;
         m_Sliding = true;
         m_Rigidbody2D.drag = m_SlidingDrag;
         m_MaxSpeed = m_SlidingSpeed;
     }
     public void StopSliding() 
     {
+        //Debug.Log("Stop Sliding Now");
         m_Sliding = false;
         m_Rigidbody2D.drag = 0f;
         m_MaxSpeed = m_GroundedSpeed;
