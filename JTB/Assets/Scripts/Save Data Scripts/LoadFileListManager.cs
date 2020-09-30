@@ -40,7 +40,12 @@ public class LoadFileListManager : MonoBehaviour
             playermodel.UpdateColors();
 
             GameObject newData = Instantiate(SavePrefab);
-            newData.GetComponentInChildren<Text>().text = saveData.name;
+            //Yeah this is the only way I could find to get the name of a scene
+            string scenepath = UnityEngine.SceneManagement.SceneUtility.GetScenePathByBuildIndex(saveData.sceneID);
+            int lastslash = scenepath.LastIndexOf('/');
+            newData.GetComponentInChildren<Text>().text = saveData.name + '\n' +
+                scenepath.Substring(lastslash + 1, scenepath.LastIndexOf(".") - lastslash - 1) + '\n' +
+                "Checkpoint X = " + saveData.checkpoint[(int)vectorVal.x];
             FileObjects.Add(newData);
             newData.transform.SetParent(this.transform);
             Image profileImage = newData.transform.GetChild(0).GetComponent<Image>();
@@ -60,8 +65,8 @@ public class LoadFileListManager : MonoBehaviour
         {
             Image image = profilestateimage[state];
             //Give 2 frames to load image before taking picture
-            StartCoroutine(TakePhotoOnFrame(currentframe*2,image,state));
-            currentframe++;
+            StartCoroutine(TakePhotoOnFrame(currentframe,image,state));
+            currentframe += 2;
         }
     }
 
