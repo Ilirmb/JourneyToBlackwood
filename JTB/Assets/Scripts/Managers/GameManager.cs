@@ -1,6 +1,6 @@
-﻿using System.IO;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 using UnityEngine.Events;
@@ -16,16 +16,21 @@ public class GameManager : MonoBehaviour {
     public UnityEvent OnPlayerDeath;
 
     private Quest activeQuest;
-
+    [HideInInspector]
+    public string playerName = "Default_Profile";
     private PlayerStatistics player;
     private CustomPlatformer2DUserControl playerMov;
     private Animator playerAnim;
     private Rigidbody2D playerRb2d;
-    
+
+    private int sceneID;
+    private bool sceneLoaded;
+    private Checkpoint checkpoint = null;
     private Hashtable socialValues = new Hashtable();
     private Hashtable friendshipValues = new Hashtable();
     private List<QuestData> questData = new List<QuestData>();
-    private string path;
+    private string datapath;
+    private string saveextension = "_progress.sav";
 
     // Dialogue Tree for hint offer
     [SerializeField]
@@ -43,9 +48,15 @@ public class GameManager : MonoBehaviour {
     [SerializeField]
     private List<DialogueTree> healthTips = new List<DialogueTree>();
 
-    // Use this for initialization
     void Awake ()
     {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+        if(CustomizationManager.instance == null)
+        {
+            Debug.LogWarning("Uh oh, the customization manager is not loaded yet");
+        }
+
+
         // Check if a game manager instance exists
         if (instance == null)
         {
@@ -53,9 +64,35 @@ public class GameManager : MonoBehaviour {
             instance = this;
             DontDestroyOnLoad(gameObject);
 
-            // Loads saved progress
-            path = Application.persistentDataPath + "/progress.sav";
-            LoadProgress();
+            datapath = Application.persistentDataPath + "/Saves/";
+            
+            Debug.Log("Accessing save directory at " + datapath );
+            //This function will only create a directory if none is found. If there is one already there it does (almost) nothing
+            Directory.CreateDirectory(datapath);
+
+            Debug.Log("Attempting to load or create a default profile");
+
+            if (File.Exists(datapath + playerName + saveextension))
+            {
+                Debug.Log("Loading profile " + playerName);
+                //LoadProgress(playerName); Only for testing. Use Inspector GUI button to load default profile now
+            }
+            else
+            {
+                playerName = "Default_Profile";
+                if (File.Exists(datapath + playerName + saveextension))
+                {
+                    //LoadProgress(playerName);
+                }
+                else {
+                    CustomizationManager.instance.SetCurrentCostume(0);
+                    CustomizationManager.instance.SetCurrentFace(0);
+                    CustomizationManager.instance.SetCurrentHairStyle(0);
+                    sceneID = 0;
+                    //SaveProgress(); 
+                }
+            }
+
         }
         else
         {
@@ -77,10 +114,12 @@ public class GameManager : MonoBehaviour {
         player = FindObjectOfType<PlayerStatistics>();
         if (player != null)
         {
+            Debug.Log("Player found on scene load: setting");
             playerMov = player.transform.GetComponent<CustomPlatformer2DUserControl>();
             playerAnim = player.transform.GetComponentInChildren<Animator>();
             playerRb2d = player.transform.GetComponent<Rigidbody2D>();
         }
+        sceneLoaded = true;
     }
 
     
@@ -161,10 +200,11 @@ public class GameManager : MonoBehaviour {
 
     #endregion
 
-	
-	/// <summary>
-	/// Increases the player's max stamina
-	/// </summary>
+
+    #region Player Management
+    /// <summary>
+    /// Increases the player's max stamina
+    /// </summary>
     public void IncreasePlayerStamina(float amt)
     {
         player.increaseMaxStamina(amt);
@@ -236,6 +276,15 @@ public class GameManager : MonoBehaviour {
         return names;
     }
 
+    public void GetLastCheckpoint()
+    {
+        if (player.checkpoint != null)
+            checkpoint = player.checkpoint;
+        else
+            checkpoint = null;
+    }
+
+    #endregion
 
 
     #region Save Function
@@ -247,57 +296,142 @@ public class GameManager : MonoBehaviour {
     {
         Debug.Log("Saving...");
 
-        GatherQuestData();
+        //GatherQuestData();
 
         BinaryFormatter bf = new BinaryFormatter();
-        FileStream stream = new FileStream(path, FileMode.Create);
+        FileStream stream = new FileStream(datapath + playerName + saveextension, FileMode.Create);
         
         SaveData saveData = new SaveData();
 
+        saveData.sceneID = SceneManager.GetActiveScene().buildIndex;
+        saveData.name = playerName;
         saveData.socialValues = socialValues;
         saveData.friendshipValues = friendshipValues;
         saveData.questData = questData;
-        saveData.currentFace = CustomizationManager.instance.CurrentFaceIndex;
-        saveData.currentHair = CustomizationManager.instance.CurrentHairIndex;
-        saveData.currentCostume = CustomizationManager.instance.CurrentCostumeIndex;
+
+        GetLastCheckpoint();
+        if (checkpoint != null)
+        {
+            saveData.checkpoint = new float[3];
+            saveData.checkpoint[(int)vectorVal.x] = checkpoint.transform.position.x;
+            saveData.checkpoint[(int)vectorVal.y] = checkpoint.transform.position.y;
+            saveData.checkpoint[(int)vectorVal.z] = checkpoint.transform.position.z;
+        }
+        else //If no checkpoint is found just save the player's position
+        {
+            saveData.checkpoint = new float[3];
+            saveData.checkpoint[(int)vectorVal.x] = player.transform.position.x;
+            saveData.checkpoint[(int)vectorVal.y] = player.transform.position.y;
+            saveData.checkpoint[(int)vectorVal.z] = player.transform.position.z;
+        }
+
+        saveData.PlayerCustomization = CustomizationManager.instance.State();
 
         bf.Serialize(stream, saveData);
         stream.Close();
+
+        Debug.Log("Save Complete");
     }
 
 
     /// <summary>
     /// Loads saved progress.
     /// </summary>
-    public void LoadProgress()
+    public void LoadProgress(string playername)
     {
         Debug.Log("Attempting load...");
-        if (File.Exists(Application.persistentDataPath + "/progress.sav"))
+        if (File.Exists(datapath + playername + saveextension))
         {
             // DOOP
-            Debug.Log("Load success");
+            Debug.Log("File found, beginning load");
 
             // Opens the file and deserializes the data
             BinaryFormatter bf = new BinaryFormatter();
-            FileStream stream = new FileStream(Application.persistentDataPath + "/progress.sav", FileMode.Open);
+            FileStream stream = new FileStream(datapath + playername + saveextension, FileMode.Open);
 
             SaveData saveData = bf.Deserialize(stream) as SaveData;
 
+            playerName = saveData.name;
+            sceneID = saveData.sceneID;
             socialValues = saveData.socialValues;
             friendshipValues = saveData.friendshipValues;
-            questData = saveData.questData;
+            questData = saveData.questData; 
+            
+            if (sceneID != 0)
+            {
+                sceneLoaded = false;
+                SceneManager.LoadScene(sceneID);
+            }
+            StartCoroutine(LoadProgressWaitForSceneLoaded(saveData));
+            
 
             stream.Close();
 
-            LoadQuestData();
+            //LoadQuestData();
+
+            Debug.Log("Load completed");
         }
+        else
+            Debug.Log("Load failed: file not found");
+    }
+
+    public IEnumerator LoadProgressWaitForSceneLoaded(SaveData saveData)
+    {
+        yield return new WaitWhile(() => sceneLoaded == false);
+        Debug.Log("Post-Scene-loading loading beginning");
+        if (player == null)
+        {
+            Debug.Log("Player == null");
+        }
+        else
+        {
+            Debug.Log("Player != null");
+        }
+
+        if (checkpoint == null)
+        {
+            GameObject chgo = new GameObject("Load in Point");
+            checkpoint = chgo.gameObject.AddComponent<Checkpoint>();
+        }
+
+        checkpoint.transform.position = new Vector3(
+                saveData.checkpoint[(int)vectorVal.x],
+                saveData.checkpoint[(int)vectorVal.y],
+                saveData.checkpoint[(int)vectorVal.z]);
+        player.checkpoint = checkpoint;
+        player.ReloadAtCheckpoint();
+        Destroy(checkpoint); //It's ok to leave the game object for testing purposes, but the script will try to reference components that do not exist so we do not need it
+
+        if (CustomizationManager.instance != null)
+            CustomizationManager.instance.SetState(saveData.PlayerCustomization);
+        else
+            Debug.Log("Cannot set customize state: Customization Manager not loaded");
+
+        if (player != null)
+            player.UpdateColors();
+    }
+
+    public FileStream[] LoadSaveFiles()
+    {
+        Debug.Log("Retrieving all save files within direcctory " + datapath);
+
+        string[] files = Directory.GetFiles(datapath);
+        FileStream[] streams = new FileStream[files.Length];
+
+        for(int i = 0; i < files.Length; ++i)
+        {
+            Debug.Log("File " + files[i] + " detected in save file directory, adding to filestream list");
+            streams[i] = new FileStream(files[i], FileMode.Open);
+        }
+        return streams;
     }
 
 
     /// <summary>
     /// Gathers all quests in the scene, serializes them, and saves everything.
+    /// Disabled for now
     /// </summary>
-    private void GatherQuestData()
+ /*   private void GatherQuestData()
     {
         // Get all quests in the scene
         Quest[] questsInScene = FindObjectsOfType<Quest>();
@@ -323,7 +457,7 @@ public class GameManager : MonoBehaviour {
             // Add the quest data
             questData.Add(qd);
         }
-    }
+    }*/
 
 
     /// <summary>
@@ -357,6 +491,15 @@ public class GameManager : MonoBehaviour {
             // Load the quest state
             q.LoadQuestState(qd);
         }
+    }
+
+    public void GetAllValidSaves()
+    {
+    }
+
+    public bool DoesSaveExist(string s)
+    {
+        return false;
     }
 
 
