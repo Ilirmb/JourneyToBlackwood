@@ -15,7 +15,7 @@ public class SkinToneAdjust : MonoBehaviour {
     private List<SpriteMeshInstance> skeleton = new List<SpriteMeshInstance>();
 
     // List of meshes that will be affected by the shader.
-    private List<SpriteMeshInstance> skinBodyParts = new List<SpriteMeshInstance>(1);
+    private List<SpriteMeshInstance> skinBodyParts = new List<SpriteMeshInstance>();
 
     // An instance of the HSV material. Values will be changed at runtime to change skin color.
     private Material skinMaterial;
@@ -75,7 +75,7 @@ public class SkinToneAdjust : MonoBehaviour {
     /// </summary>
     private void ApplySkinColorToTargets()
     {
-        foreach(SpriteMeshInstance smi in skinBodyParts)
+        foreach (SpriteMeshInstance smi in skinBodyParts)
             smi.sharedMaterial = skinMaterial;
     }
 
@@ -87,7 +87,9 @@ public class SkinToneAdjust : MonoBehaviour {
     /// <param name="target">The name of the mesh to target.</param>
     private void AddSkinTarget(string target)
     {
-        skinBodyParts.Add(skeleton.Find(t => t.name == target));
+        SpriteMeshInstance inst = skeleton.Find(t => t.name == target);
+        if (inst != null)
+            skinBodyParts.Add(inst);
     }
 
 

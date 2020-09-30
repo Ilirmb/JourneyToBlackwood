@@ -5,12 +5,16 @@ using UnityEngine;
 public class TestModifyValues : MonoBehaviour
 {
 
+    public Color modifyColor;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
-            //Modify values
+            Debug.Log("Modifying Values");
+            GlobalColor.Instance.setHairColor(modifyColor);
+            GameManager.instance.SaveProgress();
+            GameObject.FindObjectOfType<PlayerStatistics>().UpdateColors();
         }
     }
 

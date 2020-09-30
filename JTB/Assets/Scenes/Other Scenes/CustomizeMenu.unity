@@ -499,6 +499,8 @@ GameObject:
   m_Component:
   - component: {fileID: 67063269}
   - component: {fileID: 67063268}
+  - component: {fileID: 67063270}
+  - component: {fileID: 67063271}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -523,6 +525,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  playerName: Default_Profile
   defaultHint: {fileID: 0}
   waveWarning: {fileID: 0}
   healthTips: []
@@ -540,6 +543,33 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &67063270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 67063267}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d5263a7cf53781409837a0b228d1250, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hairColor: {r: 1, g: 1, b: 1, a: 1}
+  eyeColor: {r: 1, g: 1, b: 1, a: 1}
+--- !u!114 &67063271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 67063267}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ca5e75ddca58ab4e87731eb8c60df89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inspectorsceneindex: 0
 --- !u!1 &71507207
 GameObject:
   m_ObjectHideFlags: 0
@@ -3434,6 +3464,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1312057818495066, guid: 551a488ce8c1ccb4cb2f54e215e0c28b, type: 3}
+      propertyPath: m_Name
+      value: CustomizationManager
+      objectReference: {fileID: 0}
     - target: {fileID: 4772852543529888, guid: 551a488ce8c1ccb4cb2f54e215e0c28b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -3466,97 +3500,18 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114958235845290548, guid: 551a488ce8c1ccb4cb2f54e215e0c28b,
-        type: 3}
-      propertyPath: hairList.Array.size
-      value: 7
+    - target: {fileID: 4772852543529888, guid: 551a488ce8c1ccb4cb2f54e215e0c28b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114958235845290548, guid: 551a488ce8c1ccb4cb2f54e215e0c28b,
-        type: 3}
-      propertyPath: eyeList.Array.size
-      value: 1
+    - target: {fileID: 4772852543529888, guid: 551a488ce8c1ccb4cb2f54e215e0c28b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114958235845290548, guid: 551a488ce8c1ccb4cb2f54e215e0c28b,
-        type: 3}
-      propertyPath: eyeColorList.Array.size
-      value: 1
+    - target: {fileID: 4772852543529888, guid: 551a488ce8c1ccb4cb2f54e215e0c28b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114958235845290548, guid: 551a488ce8c1ccb4cb2f54e215e0c28b,
-        type: 3}
-      propertyPath: costumeList.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 114958235845290548, guid: 551a488ce8c1ccb4cb2f54e215e0c28b,
-        type: 3}
-      propertyPath: hairList.Array.data[2]
-      value: 
-      objectReference: {fileID: 11400000, guid: 853ddd85494c22643b04022f4195e26f,
-        type: 2}
-    - target: {fileID: 114958235845290548, guid: 551a488ce8c1ccb4cb2f54e215e0c28b,
-        type: 3}
-      propertyPath: hairList.Array.data[3]
-      value: 
-      objectReference: {fileID: 11400000, guid: f8cdddc4c155eee4c9b4cc92af90143a,
-        type: 2}
-    - target: {fileID: 114958235845290548, guid: 551a488ce8c1ccb4cb2f54e215e0c28b,
-        type: 3}
-      propertyPath: hairList.Array.data[4]
-      value: 
-      objectReference: {fileID: 11400000, guid: 86afba6c03914ea4f9cd46221d51b1ee,
-        type: 2}
-    - target: {fileID: 114958235845290548, guid: 551a488ce8c1ccb4cb2f54e215e0c28b,
-        type: 3}
-      propertyPath: eyeColorList.Array.data[0]
-      value: 
-      objectReference: {fileID: 11400000, guid: bc9a091f5e29e1246821c5688335195c,
-        type: 2}
-    - target: {fileID: 114958235845290548, guid: 551a488ce8c1ccb4cb2f54e215e0c28b,
-        type: 3}
-      propertyPath: hairList.Array.data[1]
-      value: 
-      objectReference: {fileID: 11400000, guid: da3d5198f3ba07d4da30e23a023be435,
-        type: 2}
-    - target: {fileID: 114958235845290548, guid: 551a488ce8c1ccb4cb2f54e215e0c28b,
-        type: 3}
-      propertyPath: eyeColorList.Array.data[1]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114958235845290548, guid: 551a488ce8c1ccb4cb2f54e215e0c28b,
-        type: 3}
-      propertyPath: hairList.Array.data[5]
-      value: 
-      objectReference: {fileID: 11400000, guid: 5a1744913969522438ae4caa62d02da6,
-        type: 2}
-    - target: {fileID: 114958235845290548, guid: 551a488ce8c1ccb4cb2f54e215e0c28b,
-        type: 3}
-      propertyPath: hairList.Array.data[6]
-      value: 
-      objectReference: {fileID: 11400000, guid: 56286bd27701c5c42bb2d564dd08a151,
-        type: 2}
-    - target: {fileID: 114958235845290548, guid: 551a488ce8c1ccb4cb2f54e215e0c28b,
-        type: 3}
-      propertyPath: hairList.Array.data[7]
-      value: 
-      objectReference: {fileID: 11400000, guid: 56286bd27701c5c42bb2d564dd08a151,
-        type: 2}
-    - target: {fileID: 114958235845290548, guid: 551a488ce8c1ccb4cb2f54e215e0c28b,
-        type: 3}
-      propertyPath: hairList.Array.data[8]
-      value: 
-      objectReference: {fileID: 11400000, guid: fe2216c328268334f8b1fca909012adf,
-        type: 2}
-    - target: {fileID: 114958235845290548, guid: 551a488ce8c1ccb4cb2f54e215e0c28b,
-        type: 3}
-      propertyPath: costumeList.Array.data[2]
-      value: 
-      objectReference: {fileID: 11400000, guid: 475d6b279411a37438293a79881eb820,
-        type: 2}
-    - target: {fileID: 114958235845290548, guid: 551a488ce8c1ccb4cb2f54e215e0c28b,
-        type: 3}
-      propertyPath: hairList.Array.data[0]
-      value: 
-      objectReference: {fileID: 11400000, guid: 4bded551f3f2cf842b396a872ff1b095,
-        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 551a488ce8c1ccb4cb2f54e215e0c28b, type: 3}
 --- !u!1 &1145645534
@@ -4248,7 +4203,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1312595831
 GameObject:
@@ -4375,7 +4330,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1321968569
 GameObject:
@@ -4713,7 +4668,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1420180357
 GameObject:
@@ -4973,7 +4928,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1518811826
 GameObject:
@@ -5545,51 +5500,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1675676498}
   m_CullTransparentMesh: 0
---- !u!1 &1689319298
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1689319300}
-  - component: {fileID: 1689319299}
-  m_Layer: 0
-  m_Name: Colors
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1689319299
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1689319298}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d5263a7cf53781409837a0b228d1250, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hairColor: {r: 1, g: 1, b: 1, a: 0}
-  eyeColor: {r: 1, g: 1, b: 1, a: 0}
---- !u!4 &1689319300
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1689319298}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 579.54504, y: 290.41644, z: -15.71875}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 10
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1700377938
 GameObject:
   m_ObjectHideFlags: 0
@@ -6571,7 +6481,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1930539227
 GameObject:

@@ -37,13 +37,13 @@ public class PlayerStatistics : MonoBehaviour
     private SpriteMeshInstance hairScript;
 
     // Use this for initialization
-    void Start()
+    void Awake()
     {
-
         eyeScript = GameObject.Find("MC Sprite").transform.GetChild(1).GetChild(4).GetChild(0).GetComponent<SpriteMeshInstance>();
         hairScript = GameObject.Find("MC Sprite").transform.GetChild(1).GetChild(4).GetChild(2).GetComponent<SpriteMeshInstance>();
-        eyeScript.color = GlobalColor.Instance.eyeColor;
-        hairScript.color = GlobalColor.Instance.hairColor;
+        UpdateColors();
+        if (eyeScript == null || hairScript == null)
+            Debug.LogError("Player hair and eye customization did not load");
         
         //The idea here is to create a Checkpoint at the location of the player, but it's not working and doesn't need to because 
         //Checkpoint = new Checkpoint(gameObject.transform.position);
@@ -51,12 +51,18 @@ public class PlayerStatistics : MonoBehaviour
 
         for (int i = 0; i < transform.childCount; i++)
         {
-            // Gets the player's body by name. This is far from optimal sense the name may be different.
+            // Gets the player's body by name. This is far from optimal since the name may be different.
             if (transform.GetChild(i).gameObject.name.Equals("MC Sprite"))
                 playerBody = transform.GetChild(i).transform.GetChild(1).gameObject;
         }
 
         stamina = 100;
+    }
+
+    public void UpdateColors()
+    {
+        eyeScript.color = GlobalColor.Instance.eyeColor;
+        hairScript.color = GlobalColor.Instance.hairColor;
     }
 
 
@@ -335,10 +341,7 @@ public class PlayerStatistics : MonoBehaviour
             //Otherwise go to Checkpoint
             else
             {
-                // The commented line was originally used. While it does work, it feels odd sense the camera slides back to the player's position instead of warping to it
-                //gameObject.GetComponent<Rigidbody2D>().MovePosition(checkpoint.transform.position);
-                gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-                gameObject.transform.position = checkpoint.transform.position;
+                ReloadAtCheckpoint();
 
                 stamina = 100f;
 
@@ -352,6 +355,15 @@ public class PlayerStatistics : MonoBehaviour
             numPlayerDeaths++;
             playerCharacter.StopSliding();
         }
+    }
+
+    public void ReloadAtCheckpoint()
+    {
+        // The commented line was originally used. While it does work, it feels odd sense the camera slides back to the player's position instead of warping to it
+        //gameObject.GetComponent<Rigidbody2D>().MovePosition(checkpoint.transform.position);
+        Debug.Log("Moving player character to the position of the last checkpoint hit");
+        gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        gameObject.transform.position = checkpoint.transform.position;
     }
 
 
