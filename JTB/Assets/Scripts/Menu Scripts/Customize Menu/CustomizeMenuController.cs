@@ -4,7 +4,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Anima2D;
-public class CustomizeMenuController : MonoBehaviour {
+public class CustomizeMenuController : MonoBehaviour
+{
 
     [SerializeField]
     private Slider skinColorSlider;
@@ -14,7 +15,8 @@ public class CustomizeMenuController : MonoBehaviour {
     private SpriteMeshInstance eyeScript;
     private SpriteMeshInstance hairScript;
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         // Reference the mesh instance script that is on the eyes on the character sprite
         eyeScript = GameObject.Find("MC Sprite").transform.GetChild(1).GetChild(4).GetChild(0).GetComponent<SpriteMeshInstance>();
         hairScript = GameObject.Find("MC Sprite").transform.GetChild(1).GetChild(4).GetChild(2).GetComponent<SpriteMeshInstance>();
@@ -45,26 +47,6 @@ public class CustomizeMenuController : MonoBehaviour {
     }
 
     //Eye
-    public void SetYellowEyeColor()
-    {
-        Color yellowHue = new Color(1, .8f, 0, .75f);
-        eyeScript.color = yellowHue;
-        GlobalColor.Instance.eyeColor = yellowHue;
-
-    }
-    public void SetPurpleEyeColor()
-    {   
-        Color purpleHue = new Color(.58f, .1f, .9f, .75f);
-        eyeScript.color = purpleHue;
-        GlobalColor.Instance.eyeColor = purpleHue;
-    }
-    public void SetPinkEyeColor()
-    {
-        Color pinkHue = new Color(1, .45f, .98f, .75f);
-        eyeScript.color = pinkHue;
-        GlobalColor.Instance.eyeColor = pinkHue;
-
-    }
     public void SetBlueEyeColor()
     {
         Color blueHue = new Color(0, .7f, 1, .75f);
@@ -77,13 +59,6 @@ public class CustomizeMenuController : MonoBehaviour {
         Color whiteHue = new Color(1, 1, 1, .75f);
         eyeScript.color = whiteHue;
         GlobalColor.Instance.eyeColor = whiteHue;
-
-    }
-    public void SetGreenEyeColor()
-    {
-        Color greenHue = new Color(0, .9f, .15f, .75f);
-        eyeScript.color = greenHue;
-        GlobalColor.Instance.eyeColor = greenHue;
 
     }
     public void SetBrownEyeColor()
@@ -109,20 +84,6 @@ public class CustomizeMenuController : MonoBehaviour {
         GlobalColor.Instance.hairColor = yellowHue;
 
     }
-    public void SetPurpleHairColor()
-    {
-        Color purpleHue = new Color(.58f, .1f, .9f, 1);
-        hairScript.color = purpleHue;
-        GlobalColor.Instance.hairColor = purpleHue;
-
-    }
-    public void SetPinkHairColor()
-    {
-        Color pinkHue = new Color(1, .45f, .98f, 1f);
-        hairScript.color = pinkHue;
-        GlobalColor.Instance.hairColor = pinkHue;
-
-    }
     public void SetBlueHairColor()
     {
         Color blueHue = new Color(0, .7f, 1, 1);
@@ -142,13 +103,6 @@ public class CustomizeMenuController : MonoBehaviour {
         Color blackHue = new Color(.3f, .3f, .3f, 1);
         hairScript.color = blackHue;
         GlobalColor.Instance.hairColor = blackHue;
-
-    }
-    public void SetGreenHairColor()
-    {
-        Color greenHue = new Color(.1f, .82f, .20f, 1);
-        hairScript.color = greenHue;
-        GlobalColor.Instance.hairColor = greenHue;
 
     }
     public void SetRedHairColor()

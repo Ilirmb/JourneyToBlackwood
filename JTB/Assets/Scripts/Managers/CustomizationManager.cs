@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -50,21 +51,23 @@ public class CustomizationManager : MonoBehaviour {
 
 
     // Current Selected costume
+    [SerializeField]
     private CostumeData currentCostume;
-
+    [SerializeField]
     // Current Selected costume
     private CostumeData currentHair;
-
+    [SerializeField]
     // Current Selected costume
     private CostumeData currentFace;
 
 
 
     // Current costume index
+    [SerializeField]
     private int currentCostumeIndex, currentHairIndex, currentFaceIndex;
-    public int CurrentCostumeIndex{ get; }
-    public int CurrentHairIndex { get; }
-    public int CurrentFaceIndex { get; }
+    public int CurrentCostumeIndex{ get { return currentCostumeIndex; } }
+    public int CurrentHairIndex { get { return currentHairIndex; } }
+    public int CurrentFaceIndex { get { return currentFaceIndex; } }
 
 
     // Event that is called whenever the skin color is changed
@@ -88,9 +91,9 @@ public class CustomizationManager : MonoBehaviour {
 
     // Use this for initialization
     void Awake () {
-		
+
         // Check if a customization manager instance exists
-        if(instance == null)
+        if (instance == null)
         {
             // If no, this object is our instance
             instance = this;
@@ -103,7 +106,6 @@ public class CustomizationManager : MonoBehaviour {
             return;
         }
 
-       
 
         // Set current costume to the first in the list if the list is not empty
         currentCostume = costumeList.Count > 0 ? costumeList[0] : null;
@@ -117,9 +119,9 @@ public class CustomizationManager : MonoBehaviour {
         currentFace = faceList.Count > 0 ? faceList[0] : null;
         currentFaceIndex = faceList.Count > 0 ? 0 : -1;
 
-        
     }
 
+    #region Accessors/Mutators
 
     /// <summary>
     /// AdjustSkinToneValues
@@ -380,6 +382,7 @@ public class CustomizationManager : MonoBehaviour {
         return null;
     }
 
+    #endregion
 
     #region Costume Inclusion Check
 
@@ -445,4 +448,89 @@ public class CustomizationManager : MonoBehaviour {
     }
 
     #endregion
+
+    public CustomizerState State()
+    {
+        return new CustomizerState(instance);
+    }
+    public void SetState(CustomizerState state)
+    {
+        Debug.Log("Loading customization state");
+        skinToneVal = state.skinToneVal;
+
+        //Debug.Log("Global eye color before load " + GlobalColor.Instance.eyeColor);
+        GlobalColor.Instance.setEyeColor(new Color(
+            state.eyeColor[(int)colorVal.r], 
+            state.eyeColor[(int)colorVal.g], 
+            state.eyeColor[(int)colorVal.b], 
+            state.eyeColor[(int)colorVal.a])
+            );
+
+        //Debug.Log("Global hair color before load " + GlobalColor.Instance.hairColor);
+        GlobalColor.Instance.setHairColor(new Color(
+            state.hairColor[(int)colorVal.r], 
+            state.hairColor[(int)colorVal.g], 
+            state.hairColor[(int)colorVal.b], 
+            state.hairColor[(int)colorVal.a])
+            );
+        //This is a bit of a hack
+        GameManager.instance.GetPlayerStatistics().UpdateColors();
+
+        Debug.Log("Loading current costume " + state.currentCostumeIndex);
+        this.SetCurrentCostume(state.currentCostumeIndex);
+        Debug.Log("Current costume loaded as " + CurrentCostumeIndex);
+        this.SetCurrentFace(state.currentFaceIndex);
+        Debug.Log("Loading current hairsttyle " + state.currentHairIndex);
+        this.SetCurrentHairStyle(state.currentHairIndex);
+        Debug.Log("Current hair loaded as " + CurrentHairIndex);
+
+        Debug.Log("Customization state successfully loaded: Be sure to initialize the colors with 'playerstatistics.UpdateColors()");
+    }
+}
+
+[Serializable]
+public class CustomizerState
+{
+    public float skinToneVal;
+
+    public float[] eyeColor, hairColor;
+
+    public int currentCostumeIndex, currentHairIndex, currentFaceIndex;
+
+    public CustomizerState(CustomizationManager manager)
+    {
+        Debug.Log("Retreiving customizaton state");
+        skinToneVal = manager.GetSkinVal();
+
+        Color eyeToSerialize, hairToSerialize;
+        if (GlobalColor.Instance == null) 
+        {
+            eyeToSerialize = Color.white;
+            hairToSerialize = Color.white;
+        }
+        else
+        {
+            eyeToSerialize = GlobalColor.Instance.eyeColor;
+            hairToSerialize = GlobalColor.Instance.hairColor;
+        }
+
+            eyeColor = new float[4];
+        eyeColor[(int)colorVal.r] = eyeToSerialize.r;
+        eyeColor[(int)colorVal.b] = eyeToSerialize.b;
+        eyeColor[(int)colorVal.g] = eyeToSerialize.g;
+        eyeColor[(int)colorVal.a] = eyeToSerialize.a;
+
+        hairColor = new float[4];
+        hairColor[(int)colorVal.r] = hairToSerialize.r;
+        hairColor[(int)colorVal.b] = hairToSerialize.b;
+        hairColor[(int)colorVal.g] = hairToSerialize.g;
+        hairColor[(int)colorVal.a] = hairToSerialize.a;
+
+        currentCostumeIndex = manager.CurrentCostumeIndex;
+        Debug.Log("Saving currentCostumeIndex: " + currentCostumeIndex);
+        currentHairIndex = manager.CurrentHairIndex;
+        Debug.Log("Saving currentHairIndex: " + currentHairIndex);
+        currentFaceIndex = manager.CurrentFaceIndex;
+        Debug.Log("Saving currentFaceIndex: " + currentFaceIndex);
+    }
 }

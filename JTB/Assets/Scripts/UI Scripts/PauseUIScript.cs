@@ -50,9 +50,9 @@ public class PauseUIScript : MonoBehaviour
 	}
 
 	//Resets the Player's current position and progress on a quest
-	public void Restart()
+	public void Save()
 	{
-		
+		GameManager.instance.SaveProgress();
 	}
 
 	//Brings the Player back to the main menu
