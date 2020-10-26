@@ -7,7 +7,6 @@ public class Quicksand : MonoBehaviour
     public float sinkSpeed = 10;
     public float maxSinkSpeed = -1f; //Maximum negitave velocity when sinking
     private Rigidbody2D player;
-    private Vector3 respawnPoint;
     private float gravity;
     private float maxSpeed;
 
@@ -16,39 +15,40 @@ public class Quicksand : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody2D>();
         gravity = player.gravityScale;
-        respawnPoint = this.transform.GetChild(0).position; //The index 0 child of the quicksand should be it's respawn point
         maxSpeed = player.GetComponent<CustomPlatformerCharacter2D>().m_GroundedSpeed;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player") && other.GetType() == typeof(CircleCollider2D))
+        if (other.CompareTag("Player") && other.GetType() == typeof(CapsuleCollider2D))
         {
             player.gravityScale = 0;
-            player.GetComponent<CustomPlatformerCharacter2D>().m_GroundedSpeed = maxSpeed / 2f;
+            //player.GetComponent<CustomPlatformerCharacter2D>().m_GroundedSpeed = .05f;
             player.velocity = new Vector2(player.velocity.x, 0f);
             player.GetComponent<CustomPlatformerCharacter2D>().ableToMove = true;
+            player.GetComponent<CustomPlatformerCharacter2D>().m_AirControl = false;
+            player.velocity = new Vector2(0f, 0f);
         }
         Debug.Log("Enter");
     }
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("Player") && other.GetType() == typeof(CircleCollider2D))
+        if (other.CompareTag("Player") && other.GetType() == typeof(CapsuleCollider2D))
         {
             player.gravityScale = gravity;
             player.GetComponent<CustomPlatformerCharacter2D>().m_GroundedSpeed = maxSpeed;
             player.GetComponent<CustomPlatformerCharacter2D>().ableToMove = true;
+            player.GetComponent<CustomPlatformerCharacter2D>().m_AirControl = true;
         }
         Debug.Log("Exit");
     }
     private void OnTriggerStay2D(Collider2D other)
     {
-        if (other.CompareTag("Player") && other.GetType() == typeof(CircleCollider2D))
+        if (other.CompareTag("Player") && other.GetType() == typeof(CapsuleCollider2D))
         {
             if (this.GetComponent<BoxCollider2D>().bounds.Contains(player.transform.GetChild(1).position)) //GetChild(1)should be the ceiling check object aka the top of the players head
             {
                 player.GetComponent<PlayerStatistics>().damageStamina(10, 1f);
-                player.MovePosition(respawnPoint);
             }
 
             if (Input.GetKeyDown(KeyCode.Space) && !player.GetComponent<CustomPlatformerCharacter2D>().m_Grounded) // If they press space in quicksand and arent considered grounded
