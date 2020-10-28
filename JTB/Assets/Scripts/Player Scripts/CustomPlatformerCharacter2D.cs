@@ -11,7 +11,7 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
     public float m_JumpForce = 400f;                  // Amount of force added when the player jumps. Unaerialized to change with code
     private float JumpForce; //Private field for actual value after modification
     [Range(0, 1)] [SerializeField] private float m_CrouchSpeed = .36f;  // Amount of maxSpeed applied to crouching movement. 1 = 100%
-    [SerializeField] private bool m_AirControl = false;                 // Whether or not a player can steer while jumping;
+    [SerializeField] public bool m_AirControl = false;                 // Whether or not a player can steer while jumping;
     [SerializeField] private LayerMask m_WhatIsGround;                  // A mask determining what is ground to the character
     [SerializeField] private float m_RunMultiplier = 1.5f;
     private float m_GravityScale = 3.0f;
