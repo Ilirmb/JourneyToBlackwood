@@ -50,6 +50,8 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
     private WaveManager waveManager;
     public bool OnRiverLog = false;
     public bool isCrouching = false;
+
+    public ParticleSystem mud;
     #region Gameplay Ref
 
     private Ladder ladderRef;
@@ -222,6 +224,11 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
             }
             else // If sliding
             {
+                mud.gameObject.SetActive(true);
+
+                if (m_Grounded == true)
+                    mud.Play();
+
                 MaxSlip--;
                 m_Rigidbody2D.AddForce(new Vector2(move * (m_TrueSpeed/2), 0f));
             }
@@ -363,6 +370,11 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
     public bool GetOnLadder()
     {
         return m_OnLadder;
+    }
+
+    public void mudSplat()
+    {
+        mud.Play();
     }
 }
 
