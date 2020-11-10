@@ -132,7 +132,9 @@ MonoBehaviour:
   childNodes:
   - condition: 0
     targetID: 1
-  actions: []
+  actions:
+  - action: 1
+    param: true
   auto:
     isAuto: 0
     autoSpeed: 0
@@ -219,7 +221,7 @@ MonoBehaviour:
   m_Name: Dialogue
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 3656, y: -392}
+  position: {x: 2904, y: -184}
   ports:
     keys:
     - previous
@@ -344,6 +346,132 @@ MonoBehaviour:
     isAuto: 0
     autoSpeed: 0
     pauseBeforeNext: 0
+--- !u!114 &-6615021307819430534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ac085fae4e799c44ab966161326a142, type: 3}
+  m_Name: Dialogue
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 3672, y: -600}
+  ports:
+    keys:
+    - previous
+    - childNodes
+    values:
+    - _fieldName: previous
+      _node: {fileID: -6615021307819430534}
+      _typeQualifiedName: DialogueNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: childNodes 0
+        node: {fileID: -6482087040427495999}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: childNodes
+      _node: {fileID: -6615021307819430534}
+      _typeQualifiedName: System.Collections.Generic.List`1[[DialogueNode+DialogueBranchCondition,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  ID: 23
+  previous: {fileID: 0}
+  dialogueNodeType: 0
+  dialogueSpeaker: Thief
+  dialogueText: I'll see ya, later!
+  dialogueSprite: {fileID: 0}
+  childNodes: []
+  actions:
+  - action: 1
+    param: true
+  - action: 5
+    param: 1
+  auto:
+    isAuto: 0
+    autoSpeed: 0
+    pauseBeforeNext: 0
+--- !u!114 &-6482087040427495999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ac085fae4e799c44ab966161326a142, type: 3}
+  m_Name: Dialogue
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 3400, y: -632}
+  ports:
+    keys:
+    - previous
+    - childNodes
+    - childNodes 0
+    values:
+    - _fieldName: previous
+      _node: {fileID: -6482087040427495999}
+      _typeQualifiedName: DialogueNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: childNodes 0
+        node: {fileID: 8120038744064407048}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: childNodes
+      _node: {fileID: -6482087040427495999}
+      _typeQualifiedName: System.Collections.Generic.List`1[[DialogueNode+DialogueBranchCondition,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: childNodes 0
+      _node: {fileID: -6482087040427495999}
+      _typeQualifiedName: System.Collections.Generic.List`1[[DialogueNode+DialogueBranchCondition,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: previous
+        node: {fileID: -6615021307819430534}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+  ID: 22
+  previous: {fileID: 0}
+  dialogueNodeType: 0
+  dialogueSpeaker: 
+  dialogueText: To grab a hook, touch the hook(Shift + click the hook)
+  dialogueSprite: {fileID: 0}
+  childNodes:
+  - condition: 0
+    targetID: 14
+  actions: []
+  auto:
+    isAuto: 0
+    autoSpeed: 0
+    pauseBeforeNext: 0
 --- !u!114 &-6407942927842467593
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -408,9 +536,7 @@ MonoBehaviour:
   childNodes:
   - condition: 0
     targetID: 20
-  actions:
-  - action: 0
-    param: 
+  actions: []
   auto:
     isAuto: 0
     autoSpeed: 0
@@ -479,9 +605,7 @@ MonoBehaviour:
   childNodes:
   - condition: 0
     targetID: 11
-  actions:
-  - action: 0
-    param: 
+  actions: []
   auto:
     isAuto: 0
     autoSpeed: 0
@@ -499,7 +623,7 @@ MonoBehaviour:
   m_Name: Dialogue
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 4008, y: -392}
+  position: {x: 3304, y: -232}
   ports:
     keys:
     - previous
@@ -534,7 +658,9 @@ MonoBehaviour:
   dialogueText: I'll see ya, later!
   dialogueSprite: {fileID: 0}
   childNodes: []
-  actions: []
+  actions:
+  - action: 0
+    param: true
   auto:
     isAuto: 0
     autoSpeed: 0
@@ -603,9 +729,7 @@ MonoBehaviour:
   childNodes:
   - condition: 0
     targetID: 12
-  actions:
-  - action: 11
-    param: 
+  actions: []
   auto:
     isAuto: 0
     autoSpeed: 0
@@ -659,7 +783,7 @@ MonoBehaviour:
         mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: previous
-        node: {fileID: 6431748703040835581}
+        node: {fileID: 8120038744064407048}
         reroutePoints: []
       _direction: 1
       _connectionType: 0
@@ -673,12 +797,8 @@ MonoBehaviour:
   dialogueSprite: {fileID: 0}
   childNodes:
   - condition: 0
-    targetID: 12
-  actions:
-  - action: 1
-    param: 
-  - action: 5
-    param: 1
+    targetID: 21
+  actions: []
   auto:
     isAuto: 0
     autoSpeed: 0
@@ -920,6 +1040,9 @@ MonoBehaviour:
   m_Name: RogueMushQuestStart
   m_EditorClassIdentifier: 
   nodes:
+  - {fileID: 8120038744064407048}
+  - {fileID: -6482087040427495999}
+  - {fileID: -6615021307819430534}
   - {fileID: -8621253480224395547}
   - {fileID: -8707536533262935487}
   - {fileID: -3446533593029392051}
@@ -942,6 +1065,9 @@ MonoBehaviour:
   - {fileID: -6407942927842467593}
   - {fileID: 3296625985708891351}
   dialogue:
+  - {fileID: 8120038744064407048}
+  - {fileID: -6482087040427495999}
+  - {fileID: -6615021307819430534}
   - {fileID: -8621253480224395547}
   - {fileID: -8707536533262935487}
   - {fileID: -3446533593029392051}
@@ -1236,8 +1362,8 @@ MonoBehaviour:
   dialogueSprite: {fileID: 0}
   childNodes: []
   actions:
-  - action: 11
-    param: 
+  - action: 0
+    param: true
   auto:
     isAuto: 0
     autoSpeed: 0
@@ -1324,7 +1450,7 @@ MonoBehaviour:
   m_Name: Dialogue
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 3272, y: -392}
+  position: {x: 2520, y: -184}
   ports:
     keys:
     - previous
@@ -1338,9 +1464,6 @@ MonoBehaviour:
       connections:
       - fieldName: childNodes 0
         node: {fileID: -4887283367432199505}
-        reroutePoints: []
-      - fieldName: childNodes 0
-        node: {fileID: -3542530286857941954}
         reroutePoints: []
       _direction: 0
       _connectionType: 0
@@ -1518,6 +1641,75 @@ MonoBehaviour:
   childNodes:
   - condition: 0
     targetID: 18
+  actions: []
+  auto:
+    isAuto: 0
+    autoSpeed: 0
+    pauseBeforeNext: 0
+--- !u!114 &8120038744064407048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ac085fae4e799c44ab966161326a142, type: 3}
+  m_Name: Dialogue
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 3096, y: -632}
+  ports:
+    keys:
+    - previous
+    - childNodes
+    - childNodes 0
+    values:
+    - _fieldName: previous
+      _node: {fileID: 8120038744064407048}
+      _typeQualifiedName: DialogueNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: childNodes 0
+        node: {fileID: -3542530286857941954}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: childNodes
+      _node: {fileID: 8120038744064407048}
+      _typeQualifiedName: System.Collections.Generic.List`1[[DialogueNode+DialogueBranchCondition,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: childNodes 0
+      _node: {fileID: 8120038744064407048}
+      _typeQualifiedName: System.Collections.Generic.List`1[[DialogueNode+DialogueBranchCondition,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: previous
+        node: {fileID: -6482087040427495999}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+  ID: 21
+  previous: {fileID: 0}
+  dialogueNodeType: 0
+  dialogueSpeaker: 
+  dialogueText: Acquired the Rope Hook!
+  dialogueSprite: {fileID: 0}
+  childNodes:
+  - condition: 0
+    targetID: 22
   actions: []
   auto:
     isAuto: 0
