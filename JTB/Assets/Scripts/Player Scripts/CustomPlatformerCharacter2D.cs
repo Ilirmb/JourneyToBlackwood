@@ -37,7 +37,6 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
     public float vspeed;
     public float hspeed;
 
-
     private float MaxSlip = 300;
     private bool ResetSlip = false;
 
@@ -160,6 +159,11 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
                 crouch = true;
             }
         }*/
+
+        if (GameObject.FindGameObjectsWithTag("Buttons").Length > 0)
+        {
+            move = 0;
+        }
 
         if (MaxSlip <= 0)
         {
