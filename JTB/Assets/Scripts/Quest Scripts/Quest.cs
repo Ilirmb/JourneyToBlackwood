@@ -261,7 +261,7 @@ public class Quest : MonoBehaviour {
 	/// </summary>
     public void ToggleInteractivity(bool status)
     {
-        col.enabled = status;
+       col.enabled = status;
     }
 
 

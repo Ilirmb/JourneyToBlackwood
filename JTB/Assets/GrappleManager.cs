@@ -41,24 +41,22 @@ public class GrappleManager : MonoBehaviour
     void Update()
     {
         //This code must go before the following block to prevent the attachment from deactivating it the same frame it's activated
-        if (isAttached && (Input.GetKeyDown(KeyCode.Space)))
+        if (isAttached && ((Input.GetKeyDown(KeyCode.Space)) || Input.GetMouseButtonUp(0)))
         {
             deattach();
-            if (Input.GetKeyDown(KeyCode.Space))
+            Vector2 velDir = Vector2.zero;
+
+            if (type == GrappleType.SwingingPoint)
             {
-                Vector2 velDir = Vector2.zero;
+                velDir = transform.InverseTransformDirection(rb.velocity);
+            } else
 
-                if (type == GrappleType.SwingingPoint)
-                {
-                    velDir = transform.InverseTransformDirection(rb.velocity);
-                } else
-                if (type == GrappleType.GoToPoint)
-                {
-                    velDir = Vector2.up * 20f;
-                }
-
-                rb.velocity += velDir * jumpOffForce * Time.deltaTime;
+            if (type == GrappleType.GoToPoint)
+            {
+                velDir = Vector2.up * 20f;
             }
+        
+            rb.velocity += velDir * jumpOffForce * Time.deltaTime;
         }
         //Here is where we raycast and test for attachment
         if (Input.GetKeyDown(KeyCode.Mouse0))
