@@ -41,9 +41,7 @@ public class LoadFileListManager : MonoBehaviour
             playermodel.UpdateColors();
 
             GameObject newData = Instantiate(SavePrefab);
-<<<<<<< Updated upstream
             newData.GetComponentInChildren<Text>().text = saveData.name;
-=======
             //Yeah this is the only way I could find to get the name of a scene
 
             string scenepath = UnityEngine.SceneManagement.SceneUtility.GetScenePathByBuildIndex(saveData.sceneID);
@@ -56,7 +54,6 @@ public class LoadFileListManager : MonoBehaviour
                 "Checkpoint X = " + saveData.checkpoint[(int)vectorVal.x] + '\n' +
                 "Date: " + saveData.statValues[saveData.lastScene]["savetime"];
 
->>>>>>> Stashed changes
             FileObjects.Add(newData);
             newData.transform.SetParent(this.transform);
             Image profileImage = newData.transform.GetChild(0).GetComponent<Image>();

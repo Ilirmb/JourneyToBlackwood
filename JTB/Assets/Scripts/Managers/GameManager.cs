@@ -172,7 +172,9 @@ public class GameManager : MonoBehaviour
             playerMov = player.transform.GetComponent<CustomPlatformer2DUserControl>();
             playerAnim = player.transform.GetComponentInChildren<Animator>();
             playerRb2d = player.transform.GetComponent<Rigidbody2D>();
-        } else Debug.LogError("No Player Found");
+        } 
+        else 
+            Debug.LogWarning("No Player Found");
         sceneLoaded = true;
         LoadQuestData();
     }
