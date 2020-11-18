@@ -22,8 +22,13 @@ public class SaveData {
     public int sceneID;
     public float[] checkpoint;
 
-    public Hashtable socialValues;
-    public Hashtable friendshipValues;
+    public int lastScene;
+    public string[] sceneNames;
+    public Hashtable[] statValues;
+    public Hashtable[] socialValues;
+    public Hashtable[] friendshipValues;
+
     public List<QuestData> questData;
+    public string[][] questFlags;
 
 }

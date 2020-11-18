@@ -203,10 +203,16 @@ public class PlayerStatistics : MonoBehaviour
 
     private float reduceDamageByFrustration(float damage)
     {
+        //Conveniently because every damage value is passed through here it's a convenient place to do things relating to every time the player takes damage
+        GameManager.instance.AffectStatValue("Total Damage Taken", damage);
+
         // Frustration is a value between 1 and 100. This is convenient because it essentially gives a percentage. 
         //We can invert it by taking 100 and subtracting frustration, then dividing by a hundred to get the percentage to apply to damage
         // hopefully
-        return (damage * ((100 - frustration) / 100));
+        float reduceddamage = (damage * ((100 - frustration) / 100));
+        GameManager.instance.AffectStatValue("Total Damage After Frustration Reduction", reduceddamage);
+        GameManager.instance.AffectStatValue("Health saved by Frustration", damage - reduceddamage);
+        return reduceddamage;
     }
 
 
@@ -300,6 +306,7 @@ public class PlayerStatistics : MonoBehaviour
 
     public void damageFromJump(float damage)
     {
+        GameManager.instance.AffectStatValue("Jumps", 1);
         damage = reduceDamageByFrustration(damage);
         stamina -= damage;
         textSpawn.spawnText(string.Format("{0:0.##}", damage), new Color(255, 255, 0));
@@ -353,6 +360,7 @@ public class PlayerStatistics : MonoBehaviour
             GameManager.instance.OnPlayerDeath.Invoke();
 
             numPlayerDeaths++;
+            GameManager.instance.AffectStatValue("Num Deaths", 1);
             playerCharacter.StopSliding();
         }
     }

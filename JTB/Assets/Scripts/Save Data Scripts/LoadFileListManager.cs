@@ -4,6 +4,7 @@ using UnityEngine;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine.UI;
+using UnityEngine.Experimental.VFX;
 
 /// <summary>
 /// Loads up the profile prefabs for each .sav file found in the save directory
@@ -40,15 +41,31 @@ public class LoadFileListManager : MonoBehaviour
             playermodel.UpdateColors();
 
             GameObject newData = Instantiate(SavePrefab);
+<<<<<<< Updated upstream
             newData.GetComponentInChildren<Text>().text = saveData.name;
+=======
+            //Yeah this is the only way I could find to get the name of a scene
+
+            string scenepath = UnityEngine.SceneManagement.SceneUtility.GetScenePathByBuildIndex(saveData.sceneID);
+            int lastslash = scenepath.LastIndexOf('/');
+            string scenename = scenepath.Substring(lastslash + 1, scenepath.LastIndexOf(".") - lastslash - 1);
+            string name = saveData.name;
+
+            newData.GetComponentInChildren<Text>().text = name + '\n' +
+                scenename + '\n' +
+                "Checkpoint X = " + saveData.checkpoint[(int)vectorVal.x] + '\n' +
+                "Date: " + saveData.statValues[saveData.lastScene]["savetime"];
+
+>>>>>>> Stashed changes
             FileObjects.Add(newData);
             newData.transform.SetParent(this.transform);
             Image profileImage = newData.transform.GetChild(0).GetComponent<Image>();
             profilestateimage.Add(state, profileImage);
 
+            stream.Close();
 
             Button loadbutton = newData.GetComponentInChildren<Button>();
-            loadbutton.onClick.AddListener(delegate { GameManager.instance.LoadProgress(saveData.name); } ) ;
+            loadbutton.onClick.AddListener(delegate { GameManager.instance.LoadProgress(name); } ) ;
 
             Debug.Log("Loadmenu Object created for " + stream.Name);
         }
