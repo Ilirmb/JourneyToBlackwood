@@ -18,6 +18,9 @@ public class HideText : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        textBoxes.SetActive(false);
+        if (textBoxes)
+        {
+            textBoxes.SetActive(false);
+        }
     }
 }
