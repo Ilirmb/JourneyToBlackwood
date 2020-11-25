@@ -217,27 +217,27 @@ MonoBehaviour:
   m_Name: RogueQuestMushEnd
   m_EditorClassIdentifier: 
   nodes:
-  - {fileID: -6677759535797691470}
-  - {fileID: 7369896620039173255}
-  - {fileID: 6493816388713241273}
-  - {fileID: 7896578376789663575}
-  - {fileID: 8428845401052633506}
-  - {fileID: -2509997141430065219}
-  - {fileID: 4067554682323151240}
-  - {fileID: -3980151819364957750}
-  - {fileID: 8791971066071454279}
   - {fileID: 1270836280850178537}
+  - {fileID: 8791971066071454279}
+  - {fileID: -3980151819364957750}
+  - {fileID: 4067554682323151240}
+  - {fileID: -2509997141430065219}
+  - {fileID: 8428845401052633506}
+  - {fileID: 7896578376789663575}
+  - {fileID: 6493816388713241273}
+  - {fileID: 7369896620039173255}
+  - {fileID: -6677759535797691470}
   dialogue:
-  - {fileID: -6677759535797691470}
-  - {fileID: 7369896620039173255}
-  - {fileID: 6493816388713241273}
-  - {fileID: 7896578376789663575}
-  - {fileID: 8428845401052633506}
-  - {fileID: -2509997141430065219}
-  - {fileID: 4067554682323151240}
-  - {fileID: -3980151819364957750}
-  - {fileID: 8791971066071454279}
   - {fileID: 1270836280850178537}
+  - {fileID: 8791971066071454279}
+  - {fileID: -3980151819364957750}
+  - {fileID: 4067554682323151240}
+  - {fileID: -2509997141430065219}
+  - {fileID: 8428845401052633506}
+  - {fileID: 7896578376789663575}
+  - {fileID: 6493816388713241273}
+  - {fileID: 7369896620039173255}
+  - {fileID: -6677759535797691470}
   firstNode: {fileID: -6677759535797691470}
 --- !u!114 &1270836280850178537
 MonoBehaviour:
@@ -340,7 +340,9 @@ MonoBehaviour:
   dialogueText: You then hear him mutter loser under his breath.
   dialogueSprite: {fileID: 0}
   childNodes: []
-  actions: []
+  actions:
+  - action: 5
+    param: -2
   auto:
     isAuto: 0
     autoSpeed: 0
@@ -443,7 +445,7 @@ MonoBehaviour:
   m_Name: Dialogue
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -88, y: -136}
+  position: {x: -56, y: -136}
   ports:
     keys:
     - previous
@@ -512,7 +514,7 @@ MonoBehaviour:
   m_Name: Dialogue
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 603, y: 35.5}
+  position: {x: 600, y: 56}
   ports:
     keys:
     - previous
@@ -654,7 +656,7 @@ MonoBehaviour:
   m_Name: Dialogue
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1304, y: -312}
+  position: {x: 1304, y: -344}
   ports:
     keys:
     - previous
@@ -705,7 +707,9 @@ MonoBehaviour:
   childNodes:
   - condition: 0
     targetID: 9
-  actions: []
+  actions:
+  - action: 6
+    param: 20
   auto:
     isAuto: 0
     autoSpeed: 0

@@ -11,7 +11,7 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
     public float m_JumpForce = 400f;                  // Amount of force added when the player jumps. Unaerialized to change with code
     private float JumpForce; //Private field for actual value after modification
     [Range(0, 1)] [SerializeField] private float m_CrouchSpeed = .36f;  // Amount of maxSpeed applied to crouching movement. 1 = 100%
-    [SerializeField] private bool m_AirControl = false;                 // Whether or not a player can steer while jumping;
+    [SerializeField] public bool m_AirControl = false;                 // Whether or not a player can steer while jumping;
     [SerializeField] private LayerMask m_WhatIsGround;                  // A mask determining what is ground to the character
     [SerializeField] private float m_RunMultiplier = 1.5f;
     private float m_GravityScale = 3.0f;
@@ -37,7 +37,6 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
     public float vspeed;
     public float hspeed;
 
-
     private float MaxSlip = 300;
     private bool ResetSlip = false;
 
@@ -50,6 +49,8 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
     private WaveManager waveManager;
     public bool OnRiverLog = false;
     public bool isCrouching = false;
+
+    public ParticleSystem mud;
     #region Gameplay Ref
 
     private Ladder ladderRef;
@@ -159,6 +160,11 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
             }
         }*/
 
+        if (GameObject.FindGameObjectsWithTag("Buttons").Length > 0)
+        {
+            move = 0;
+        }
+
         if (MaxSlip <= 0)
         {
             StopSliding();
@@ -222,6 +228,11 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
             }
             else // If sliding
             {
+                mud.gameObject.SetActive(true);
+
+                if (m_Grounded == true)
+                    mud.Play();
+
                 MaxSlip--;
                 m_Rigidbody2D.AddForce(new Vector2(move * (m_TrueSpeed/2), 0f));
             }
@@ -363,6 +374,11 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
     public bool GetOnLadder()
     {
         return m_OnLadder;
+    }
+
+    public void mudSplat()
+    {
+        mud.Play();
     }
 }
 
