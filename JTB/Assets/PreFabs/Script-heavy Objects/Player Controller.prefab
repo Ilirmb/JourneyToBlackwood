@@ -67,6 +67,7 @@ Transform:
   - {fileID: 1491189035776086653}
   - {fileID: 1486596293332895093}
   - {fileID: 1494725920519724305}
+  - {fileID: 6416493049620154491}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -271,7 +272,6 @@ MonoBehaviour:
   hspeed: 0
   OnRiverLog: 0
   isCrouching: 0
-  mud: {fileID: 0}
 --- !u!1 &1491189035776052829
 GameObject:
   m_ObjectHideFlags: 0
@@ -394,7 +394,7 @@ SkinnedMeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -500394253
   m_SortingLayer: 4
-  m_SortingOrder: 6
+  m_SortingOrder: 2
   serializedVersion: 2
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
@@ -503,7 +503,7 @@ SkinnedMeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -500394253
   m_SortingLayer: 4
-  m_SortingOrder: 5
+  m_SortingOrder: -1
   serializedVersion: 2
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
@@ -609,7 +609,7 @@ SkinnedMeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -500394253
   m_SortingLayer: 4
-  m_SortingOrder: 5
+  m_SortingOrder: 0
   serializedVersion: 2
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
@@ -904,7 +904,7 @@ SkinnedMeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -500394253
   m_SortingLayer: 4
-  m_SortingOrder: 5
+  m_SortingOrder: 2
   serializedVersion: 2
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
@@ -1113,7 +1113,7 @@ SkinnedMeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -500394253
   m_SortingLayer: 4
-  m_SortingOrder: 3
+  m_SortingOrder: -3
   serializedVersion: 2
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
@@ -1553,7 +1553,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Length: 1.1894602
+  m_Length: 1.1895056
   m_ChildTransform: {fileID: 1495079535945212019}
   m_AttachedIK: {fileID: 0}
 --- !u!1 &1492073945051072657
@@ -1722,7 +1722,7 @@ SkinnedMeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -500394253
   m_SortingLayer: 4
-  m_SortingOrder: 2
+  m_SortingOrder: -3
   serializedVersion: 2
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
@@ -1826,7 +1826,7 @@ SkinnedMeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -500394253
   m_SortingLayer: 4
-  m_SortingOrder: 4
+  m_SortingOrder: 1
   serializedVersion: 2
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
@@ -1930,7 +1930,7 @@ SkinnedMeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -500394253
   m_SortingLayer: 4
-  m_SortingOrder: 2
+  m_SortingOrder: -3
   serializedVersion: 2
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
@@ -2034,7 +2034,7 @@ SkinnedMeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -500394253
   m_SortingLayer: 4
-  m_SortingOrder: 2
+  m_SortingOrder: -1
   serializedVersion: 2
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
@@ -2137,7 +2137,7 @@ SkinnedMeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 4
+  m_SortingOrder: 5
   serializedVersion: 2
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
@@ -2358,7 +2358,7 @@ SkinnedMeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -500394253
   m_SortingLayer: 4
-  m_SortingOrder: 2
+  m_SortingOrder: -4
   serializedVersion: 2
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
@@ -2891,7 +2891,7 @@ SkinnedMeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -500394253
   m_SortingLayer: 4
-  m_SortingOrder: 3
+  m_SortingOrder: -3
   serializedVersion: 2
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
@@ -2950,7 +2950,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Length: 1.2719687
+  m_Length: 1.2719569
   m_ChildTransform: {fileID: 1486616169443505741}
   m_AttachedIK: {fileID: 0}
 --- !u!1 &1492742777236043045
@@ -3144,7 +3144,7 @@ SkinnedMeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -500394253
   m_SortingLayer: 4
-  m_SortingOrder: 4
+  m_SortingOrder: 0
   serializedVersion: 2
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
@@ -3487,7 +3487,7 @@ SkinnedMeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -500394253
   m_SortingLayer: 4
-  m_SortingOrder: 3
+  m_SortingOrder: -3
   serializedVersion: 2
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
@@ -3743,7 +3743,7 @@ SkinnedMeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -500394253
   m_SortingLayer: 4
-  m_SortingOrder: 3
+  m_SortingOrder: 0
   serializedVersion: 2
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
@@ -3894,7 +3894,7 @@ SkinnedMeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -500394253
   m_SortingLayer: 4
-  m_SortingOrder: 6
+  m_SortingOrder: 2
   serializedVersion: 2
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
@@ -3908,3 +3908,33 @@ SkinnedMeshRenderer:
     m_Center: {x: 1.0662695, y: 0.08116239, z: 0}
     m_Extent: {x: 1.1544799, y: 0.40697205, z: 0}
   m_DirtyAABB: 0
+--- !u!1 &2040428153513846585
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6416493049620154491}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6416493049620154491
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2040428153513846585}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1491189035776086651}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
