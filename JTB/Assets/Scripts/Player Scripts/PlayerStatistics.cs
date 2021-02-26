@@ -338,6 +338,7 @@ public class PlayerStatistics : MonoBehaviour
     {
         if (stamina <= 0)
         {
+            Debug.Log("Testing Check if Dead. If this Message Appears, success!");
             //if Checkpoint is null, just reload the scene
             if (checkpoint == null)
             {
