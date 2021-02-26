@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class HideText : MonoBehaviour
 {
-    public GameObject textBoxes;
+    private GameObject textBoxes;
 
 
     // Start is called before the first frame update
