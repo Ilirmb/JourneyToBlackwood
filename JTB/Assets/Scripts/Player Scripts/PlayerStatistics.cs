@@ -12,7 +12,7 @@ public class PlayerStatistics : MonoBehaviour
     private float damageOverTime = 0;
     public float stamina;
     public float maxStamina = 100;
-    
+    public float respawnTimer = 200;
     // Frustration variables
     public float frustration = 0;
     private bool highFrustration;
@@ -370,9 +370,20 @@ public class PlayerStatistics : MonoBehaviour
         // The commented line was originally used. While it does work, it feels odd sense the camera slides back to the player's position instead of warping to it
         //gameObject.GetComponent<Rigidbody2D>().MovePosition(checkpoint.transform.position);
         Debug.Log("Moving player character to the position of the last checkpoint hit");
+        while (respawnTimer >= 1)
+        {
+            PlayerMovement.m_MaxSpeed = 0f;
+            PlayerMovement.m_JumpForce = 0f;
+    respawnTimer -= 0.1f;
+
+        }
         gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+       
         gameObject.transform.position = checkpoint.transform.position;
-    }
+        respawnTimer = 200;
+        PlayerMovement.m_MaxSpeed = 10f;
+        PlayerMovement.m_JumpForce = 400f;
+}
 
 
     /*IEnumerator BreakTimer()
