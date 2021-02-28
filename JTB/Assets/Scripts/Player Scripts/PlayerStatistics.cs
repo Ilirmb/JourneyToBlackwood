@@ -114,9 +114,6 @@ public class PlayerStatistics : MonoBehaviour
 
         }
 
-        //Remove?
-        //CheckIfDead();
-
         if (isMoving)
         {
             float distanceSinceLastFrame = Mathf.Abs((transform.position.x - positionLastFrame.x)); //In unity distance units
@@ -153,8 +150,6 @@ public class PlayerStatistics : MonoBehaviour
     {
         stamina = newStamina;
         if (stamina > maxStamina) stamina = maxStamina;
-        
-        CheckIfDead();
     }
 
 
@@ -237,11 +232,10 @@ public class PlayerStatistics : MonoBehaviour
     {
         reduceDamageByFrustration(damage);
         if (invulnTimer <= 0)
-        { 
+        {
             stamina -= damage;
             textSpawn.spawnText(string.Format("{0:0.##}", damage), new Color(255, 0, 0));
         }
-
         CheckIfDead();
     }
 
@@ -260,7 +254,6 @@ public class PlayerStatistics : MonoBehaviour
             textSpawn.spawnText(string.Format("{0:0.##}", damage), new Color(255, 0, 0));
             invulnTimer = invuln;
         }
-
         CheckIfDead();
     }
 
@@ -281,7 +274,6 @@ public class PlayerStatistics : MonoBehaviour
         {
             invulnTimer = invuln;
         }
-
         CheckIfDead();
     }
 
@@ -293,13 +285,12 @@ public class PlayerStatistics : MonoBehaviour
         stamina -= damage;
         damageOverTime += damage;
         //if (++textFrameTimer == 20)
-        if(damageOverTime >= 1.0f)
+        if (damageOverTime >= 1.0f)
         {
             textSpawn.spawnText(string.Format("{0:0.##}", 1.0f), new Color(0, 255, 0));
             //textFrameTimer = 0;
             damageOverTime = 0;
         }
-
         CheckIfDead();
     }
 
@@ -310,7 +301,6 @@ public class PlayerStatistics : MonoBehaviour
         damage = reduceDamageByFrustration(damage);
         stamina -= damage;
         textSpawn.spawnText(string.Format("{0:0.##}", damage), new Color(255, 255, 0));
-
         CheckIfDead();
     }
 
@@ -334,8 +324,9 @@ public class PlayerStatistics : MonoBehaviour
     /// Checks if the player is out of stamina
     /// </summary>
     // This function was made from code originally in the update function
-    private void CheckIfDead()
+    public void CheckIfDead()
     {
+        //Debug.Log("Testing Check if Dead. If this Message Appears, success!");
         if (stamina <= 0)
         {
             Debug.Log("Testing Check if Dead. If this Message Appears, success!");
