@@ -235,8 +235,9 @@ public class PlayerStatistics : MonoBehaviour
         {
             stamina -= damage;
             textSpawn.spawnText(string.Format("{0:0.##}", damage), new Color(255, 0, 0));
+            CheckIfDead();
         }
-        CheckIfDead();
+     
     }
 
 
@@ -253,8 +254,9 @@ public class PlayerStatistics : MonoBehaviour
             stamina -= damage;
             textSpawn.spawnText(string.Format("{0:0.##}", damage), new Color(255, 0, 0));
             invulnTimer = invuln;
+            CheckIfDead();
         }
-        CheckIfDead();
+       
     }
 
 
@@ -273,8 +275,9 @@ public class PlayerStatistics : MonoBehaviour
         if (invuln > 0)
         {
             invulnTimer = invuln;
+            CheckIfDead();
         }
-        CheckIfDead();
+        
     }
 
 
@@ -290,8 +293,9 @@ public class PlayerStatistics : MonoBehaviour
             textSpawn.spawnText(string.Format("{0:0.##}", 1.0f), new Color(0, 255, 0));
             //textFrameTimer = 0;
             damageOverTime = 0;
+            CheckIfDead();
         }
-        CheckIfDead();
+      
     }
 
 
@@ -366,7 +370,7 @@ public class PlayerStatistics : MonoBehaviour
         {
             PlayerMovement.m_MaxSpeed = 0f;
             PlayerMovement.m_JumpForce = 0f;
-    respawnTimer -= 0.1f;
+    respawnTimer -= Time.deltaTime;
 
         }
         gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
