@@ -66,7 +66,7 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
 
     private void Awake()
     {
-    
+
         // Setting up references.
         m_GroundCheck = transform.Find("GroundCheck");
         m_CeilingCheck = transform.Find("CeilingCheck");
@@ -88,15 +88,15 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
             JumpForce = 500f;
         }
     }
-   
+
 
     private void FixedUpdate()
     {
         m_Grounded = false;
 
         //Change values if crouching
-        MaxSpeed = isCrouching ? m_MaxSpeed*.6f : m_MaxSpeed;
-        JumpForce = isCrouching ? m_JumpForce*.6f : m_JumpForce;
+        MaxSpeed = isCrouching ? m_MaxSpeed * .6f : m_MaxSpeed;
+        JumpForce = isCrouching ? m_JumpForce * .6f : m_JumpForce;
 
         // The player is grounded if a circlecast to the groundcheck position hits anything designated as ground
         // This can be done using layers instead but Sample Assets will not overwrite your project settings.
@@ -157,7 +157,8 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
 
 
         //Noclip toggle
-        if (Input.GetButtonDown("Noclip")) {
+        if (Input.GetButtonDown("Noclip"))
+        {
 
             //if going into noclip, save current gravity value then turn off gravity
             if (!noclip)
@@ -171,7 +172,8 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
                 noclipCamera.SetActive(true);
             }
             //if going out of noclip, set gravity to previous value
-            else if (noclip) {
+            else if (noclip)
+            {
 
                 m_Rigidbody2D.gravityScale = 4;
 
@@ -326,29 +328,35 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
             }
         }
         //Noclip movement
-        else if (noclip) {
-            if (!Input.GetButton("Sprint") && ncSpeed != .6f) {
+        else if (noclip)
+        {
+            if (!Input.GetButton("Sprint") && ncSpeed != .6f)
+            {
                 ncSpeed = .6f;
-            } 
-            else if (Input.GetButton("Sprint") && ncSpeed != 2f) {
+            }
+            else if (Input.GetButton("Sprint") && ncSpeed != 2f)
+            {
                 ncSpeed = 2f;
             }
 
             //Move down 
-            if (Input.GetAxis("Vertical") > 0) {
+            if (Input.GetAxis("Vertical") > 0)
+            {
                 transform.position = new Vector3(transform.position.x, transform.position.y + ncSpeed, transform.position.z);
             }
             //Move up
-            else if (Input.GetAxis("Vertical") < 0) 
+            else if (Input.GetAxis("Vertical") < 0)
             {
                 transform.position = new Vector3(transform.position.x, transform.position.y - ncSpeed, transform.position.z);
             }
             //Move left
-            if (Input.GetAxis("Horizontal") < 0) {
+            if (Input.GetAxis("Horizontal") < 0)
+            {
                 transform.position = new Vector3(transform.position.x - ncSpeed, transform.position.y, transform.position.z);
             }
             //Move right
-            else if (Input.GetAxis("Horizontal") > 0) {
+            else if (Input.GetAxis("Horizontal") > 0)
+            {
                 transform.position = new Vector3(transform.position.x + ncSpeed, transform.position.y, transform.position.z);
             }
         }
@@ -401,7 +409,7 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
     {
         return m_Running;
     }
-    
+
 
     private IEnumerator DisableGroundCheck(float time)
     {
@@ -419,7 +427,7 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
         m_Rigidbody2D.drag = m_SlidingDrag;
         m_MaxSpeed = m_SlidingSpeed;
     }
-    public void StopSliding() 
+    public void StopSliding()
     {
         //Debug.Log("Stop Sliding Now");
         m_Sliding = false;
@@ -455,5 +463,13 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
     {
         mud.Play();
     }
+
+    /*public void OnCollisionEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "water")
+        {
+            gameObject.GetComponent<PlayerStatistics>().stamina = 0;
+        }
+    }*/
 }
 

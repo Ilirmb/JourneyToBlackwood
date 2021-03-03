@@ -332,7 +332,7 @@ public class PlayerStatistics : MonoBehaviour
         //    respawnTimer -= Time.deltaTime;
         //}
         gameObject.GetComponent<CustomPlatformer2DUserControl>().enabled = false;
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(.75f);
 
 
         //if Checkpoint is null, just reload the scene
