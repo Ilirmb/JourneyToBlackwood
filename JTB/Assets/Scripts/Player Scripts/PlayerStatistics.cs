@@ -12,7 +12,7 @@ public class PlayerStatistics : MonoBehaviour
     private float damageOverTime = 0;
     public float stamina;
     public float maxStamina = 100;
-    public float respawnTimer = 200;
+    public float respawnTimer = 20000f;
     // Frustration variables
     public float frustration = 0;
     private bool highFrustration;
@@ -93,7 +93,7 @@ public class PlayerStatistics : MonoBehaviour
             //StartCoroutine(BreakTimer());
             frustrationCount = 0;
         }*/
-
+        CheckIfDead();
 
         if (invulnTimer > 0)
         {
@@ -334,8 +334,14 @@ public class PlayerStatistics : MonoBehaviour
         if (stamina <= 0)
         {
             Debug.Log("Testing Check if Dead. If this Message Appears, success!");
-            //if Checkpoint is null, just reload the scene
-            if (checkpoint == null)
+            while (respawnTimer >= 1)
+            {
+                PlayerMovement.m_MaxSpeed = 0f;
+                PlayerMovement.m_JumpForce = 0f;
+                respawnTimer -= Time.deltaTime;
+            }
+                //if Checkpoint is null, just reload the scene
+                if (checkpoint == null)
             {
                 // Restart if stamina is equal to or less than 0
                 // Pretty blunt way of reloading, reloads the current scene
@@ -366,19 +372,15 @@ public class PlayerStatistics : MonoBehaviour
         // The commented line was originally used. While it does work, it feels odd sense the camera slides back to the player's position instead of warping to it
         //gameObject.GetComponent<Rigidbody2D>().MovePosition(checkpoint.transform.position);
         Debug.Log("Moving player character to the position of the last checkpoint hit");
-        while (respawnTimer >= 1)
-        {
-            PlayerMovement.m_MaxSpeed = 0f;
-            PlayerMovement.m_JumpForce = 0f;
-    respawnTimer -= Time.deltaTime;
-
-        }
+      
+        
         gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
        
         gameObject.transform.position = checkpoint.transform.position;
         respawnTimer = 200;
         PlayerMovement.m_MaxSpeed = 10f;
         PlayerMovement.m_JumpForce = 400f;
+        respawnTimer = 2000f;
 }
 
 
