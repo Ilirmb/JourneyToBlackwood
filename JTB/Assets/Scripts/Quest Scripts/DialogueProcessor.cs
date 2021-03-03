@@ -88,6 +88,7 @@ public class DialogueProcessor : MonoBehaviour {
     {
         currentTree = tree;
         currentNode = tree.GetFirstNode();
+        
 
         firstLine = true;
         useTopTextBox = false;

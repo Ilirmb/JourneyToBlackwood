@@ -25,7 +25,10 @@ public class FallingAppleSpawner : MonoBehaviour {
         isRunning = true;
         while (isOnScreen || willSpawnOffscreen)
         {
-            Instantiate(applePrefab, this.transform);
+            if (Time.timeScale > 0)
+            {
+                Instantiate(applePrefab, this.transform);
+            }
             yield return new WaitForSecondsRealtime(waitTime);
         }
         isRunning = false;

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Cinemachine.Utility;
 
 public class CustomPlatformerCharacter2D : MonoBehaviour
 {
@@ -14,7 +15,7 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
     [SerializeField] public bool m_AirControl = false;                 // Whether or not a player can steer while jumping;
     [SerializeField] private LayerMask m_WhatIsGround;                  // A mask determining what is ground to the character
     [SerializeField] private float m_RunMultiplier = 1.5f;
-    private float m_GravityScale = 3.0f;
+    [SerializeField] private float m_GravityScale = 3.0f;
     [SerializeField] private bool m_GravityOnGround = true;
     [SerializeField] private bool m_SlideDownSlope = false;
 
@@ -36,6 +37,8 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
     public bool m_Sliding = false;
     public float vspeed;
     public float hspeed;
+    private float lastGrav;
+    private float ncSpeed = .6f;
 
     private float MaxSlip = 300;
     private bool ResetSlip = false;
@@ -49,7 +52,10 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
     private WaveManager waveManager;
     public bool OnRiverLog = false;
     public bool isCrouching = false;
+    public bool noclip = false;
 
+    public GameObject mainCamera;
+    public GameObject noclipCamera;
     public ParticleSystem mud;
     #region Gameplay Ref
 
@@ -61,12 +67,15 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
     private void Awake()
     {
     
-       // Setting up references.
-       m_GroundCheck = transform.Find("GroundCheck");
+        // Setting up references.
+        m_GroundCheck = transform.Find("GroundCheck");
         m_CeilingCheck = transform.Find("CeilingCheck");
         m_Anim = GetComponentInChildren<Animator>();
         m_Rigidbody2D = GetComponent<Rigidbody2D>();
         //m_Rigidbody2D.gravityScale = 0.0f;
+        mainCamera = GameObject.Find("Main Camera");
+        noclipCamera = GameObject.Find("Noclip Camera");
+        noclipCamera.SetActive(false);
 
         playerStatistics = GetComponent<PlayerStatistics>();
         ableToMove = false;
@@ -145,139 +154,204 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
         m_Anim.SetFloat("vSpeed", vspeed);
 
         m_PrevGrounded = m_Grounded;
+
+
+        //Noclip toggle
+        if (Input.GetButtonDown("Noclip")) {
+
+            //if going into noclip, save current gravity value then turn off gravity
+            if (!noclip)
+            {
+                m_Rigidbody2D.gravityScale = 0;
+                lastGrav = m_Rigidbody2D.gravityScale;
+                m_Rigidbody2D.gravityScale = 0;
+
+                //Swap active cameras
+                mainCamera.SetActive(false);
+                noclipCamera.SetActive(true);
+            }
+            //if going out of noclip, set gravity to previous value
+            else if (noclip) {
+
+                m_Rigidbody2D.gravityScale = 4;
+
+                //Reset camera size
+                noclipCamera.GetComponent<Camera>().orthographicSize = mainCamera.GetComponent<Camera>().orthographicSize;
+                noclipCamera.GetComponent<CameraZoom>().targetOrtho = noclipCamera.GetComponent<Camera>().orthographicSize;
+
+                //Swap active cameras
+                noclipCamera.SetActive(false);
+                mainCamera.SetActive(true);
+            }
+            //flip boolean
+            noclip = !noclip;
+
+        }
     }
 
 
     public void Move(float move, bool crouch, bool jump, bool run)
     {
-        // If crouching, check to see if the character can stand up
-        /*if (!crouch && m_Anim.GetBool("Crouch"))
+        if (!noclip)
         {
-            // If the character has a ceiling preventing them from standing up, keep them crouching
-            if (Physics2D.OverlapCircle(m_CeilingCheck.position, k_CeilingRadius, m_WhatIsGround))
+            // If crouching, check to see if the character can stand up
+            /*if (!crouch && m_Anim.GetBool("Crouch"))
             {
-                crouch = true;
-            }
-        }*/
-
-        if (GameObject.FindGameObjectsWithTag("Buttons").Length > 0)
-        {
-            move = 0;
-        }
-
-        if (MaxSlip <= 0)
-        {
-            StopSliding();
-            ResetSlip = true;
-        }
-        else
-        {
-            if (m_Sliding == false && MaxSlip == 300 && ResetSlip == true && move != 0)
-            {
-                StartSliding();
-                ResetSlip = false;
-            }
-        }
-
-        m_Running = (run && m_Grounded && Mathf.Abs(move) > 0.85f) || (m_RunLock && Mathf.Abs(move) > 0.85f);
-
-        // Set whether or not the character is crouching in the animator
-        //m_Anim.SetBool("Crouch", crouch);
-
-        //only control the player if grounded or airControl is turned on
-        if (m_Grounded || m_AirControl)
-        {
-            // Reduce the speed if crouching by the crouchSpeed multiplier
-            move = (crouch ? move * m_CrouchSpeed : move);
-
-            // The Speed animator parameter is set to the absolute value of the horizontal input.
-
-            // If the input is moving the player right and the player is facing left...
-            if (move > 0 && !m_FacingRight)
-            {
-                // ... flip the player.
-                Flip();
-            }
-            // Otherwise if the input is moving the player left and the player is facing right...
-            else if (move < 0 && m_FacingRight)
-            {
-                // ... flip the player.
-                Flip();
-            }
-
-            // Move the character
-            float tempSpeed = (m_Sliding && m_Grounded ? m_SlidingSpeed : MaxSpeed);
-            m_TrueSpeed = (m_Running ? tempSpeed * 1.5f : tempSpeed);
-
-            float _yVelocity = m_Grounded && !m_OnLadder ? 0.0f: m_Rigidbody2D.velocity.y;
-            float _xVelocity = m_Grounded && !m_OnLadder ? 0.0f : m_Rigidbody2D.velocity.x;
-
-            /*m_Rigidbody2D.velocity = m_Grounded && -normal.x <= 0 ? new Vector2(move * m_TrueSpeed * normal.y, m_yVelocity + (move * m_TrueSpeed * -normal.x)) 
-                : new Vector2(move * m_TrueSpeed, m_yVelocity);*/
-
-            //m_Rigidbody2D.AddForce(new Vector2(move * m_TrueSpeed, 0f));
-
-
-            if (m_Grounded && ((-normal.x * move) < 0) && !m_Sliding) // If grounded/downslope
-            {
-                m_Rigidbody2D.velocity = new Vector2(((move * normal.y) * m_TrueSpeed), ((move * -normal.x) * m_TrueSpeed) + _yVelocity);
-            }
-            else if(!m_Sliding) // If airborn/upslope
-            {
-                m_Rigidbody2D.velocity = new Vector2(((move * normal.y) * m_TrueSpeed), _yVelocity);
-            }
-            else // If sliding
-            {
-                mud.gameObject.SetActive(true);
-
-                if (m_Grounded == true)
+                // If the character has a ceiling preventing them from standing up, keep them crouching
+                if (Physics2D.OverlapCircle(m_CeilingCheck.position, k_CeilingRadius, m_WhatIsGround))
                 {
-                    mud.Play();
+                    crouch = true;
                 }
-                MaxSlip--;
-                m_Rigidbody2D.AddForce(new Vector2(move * (m_TrueSpeed/2), 0f));
+            }*/
+
+            if (GameObject.FindGameObjectsWithTag("Buttons").Length > 0)
+            {
+                move = 0;
             }
-            //m_Rigidbody2D = new Vector2((move * normal.y) * m_TrueSpeed, ((move * -normal.x) * m_TrueSpeed) + m_yVelocity);
+
+            if (MaxSlip <= 0)
+            {
+                StopSliding();
+                ResetSlip = true;
+            }
+            else
+            {
+                if (m_Sliding == false && MaxSlip == 300 && ResetSlip == true && move != 0)
+                {
+                    StartSliding();
+                    ResetSlip = false;
+                }
+            }
+
+            m_Running = (run && m_Grounded && Mathf.Abs(move) > 0.85f) || (m_RunLock && Mathf.Abs(move) > 0.85f);
+
+            // Set whether or not the character is crouching in the animator
+            //m_Anim.SetBool("Crouch", crouch);
+
+            //only control the player if grounded or airControl is turned on
+            if (m_Grounded || m_AirControl)
+            {
+                // Reduce the speed if crouching by the crouchSpeed multiplier
+                move = (crouch ? move * m_CrouchSpeed : move);
+
+                // The Speed animator parameter is set to the absolute value of the horizontal input.
+
+                // If the input is moving the player right and the player is facing left...
+                if (move > 0 && !m_FacingRight)
+                {
+                    // ... flip the player.
+                    Flip();
+                }
+                // Otherwise if the input is moving the player left and the player is facing right...
+                else if (move < 0 && m_FacingRight)
+                {
+                    // ... flip the player.
+                    Flip();
+                }
+
+                // Move the character
+                float tempSpeed = (m_Sliding && m_Grounded ? m_SlidingSpeed : MaxSpeed);
+                m_TrueSpeed = (m_Running ? tempSpeed * 1.5f : tempSpeed);
+
+                float _yVelocity = m_Grounded && !m_OnLadder ? 0.0f : m_Rigidbody2D.velocity.y;
+                float _xVelocity = m_Grounded && !m_OnLadder ? 0.0f : m_Rigidbody2D.velocity.x;
+
+                /*m_Rigidbody2D.velocity = m_Grounded && -normal.x <= 0 ? new Vector2(move * m_TrueSpeed * normal.y, m_yVelocity + (move * m_TrueSpeed * -normal.x)) 
+                    : new Vector2(move * m_TrueSpeed, m_yVelocity);*/
+
+                //m_Rigidbody2D.AddForce(new Vector2(move * m_TrueSpeed, 0f));
 
 
-            m_Anim.SetFloat("Speed", Mathf.Abs(m_Rigidbody2D.velocity.x),.3f, Time.deltaTime);
+                if (m_Grounded && ((-normal.x * move) < 0) && !m_Sliding) // If grounded/downslope
+                {
+                    m_Rigidbody2D.velocity = new Vector2(((move * normal.y) * m_TrueSpeed), ((move * -normal.x) * m_TrueSpeed) + _yVelocity);
+                }
+                else if (!m_Sliding) // If airborn/upslope
+                {
+                    m_Rigidbody2D.velocity = new Vector2(((move * normal.y) * m_TrueSpeed), _yVelocity);
+                }
+                else // If sliding
+                {
+                    mud.gameObject.SetActive(true);
 
-            //Tells the player object if it's moving or not
-            //I've decided to only allow the player to be considered moving under their own will if they are grounded, in case something else decides to move the player while they're in the air. Essentially, stamina will only be added while on the ground.
-            //There are tentative plans to move this system to a local velocity based system by calculating valocity without taking into account other
-            playerStatistics.moving(move != 0 && (m_Grounded || ableToMove));
-        }
-
-        /*if (!m_Grounded)
-            m_Rigidbody2D.AddForce(Physics2D.gravity * m_GravityScale);*/
-
-        // If the player should jump...
-        if ((m_Grounded || m_OnLadder) && jump)
-        {
-            // Add a vertical force to the player.
-            m_Grounded = false;
-            m_Anim.SetBool("Grounded", false);
-            //Obselete code to maintain left/right movement
-            //Vector2 vel = new Vector2(m_Rigidbody2D.velocity.x, 0.0f);
-            //m_Rigidbody2D.velocity += vel;
-
-            m_Rigidbody2D.velocity += new Vector2(0f, JumpForce);
+                    if (m_Grounded == true)
+                    {
+                        mud.Play();
+                    }
+                    MaxSlip--;
+                    m_Rigidbody2D.AddForce(new Vector2(move * (m_TrueSpeed / 2), 0f));
+                }
+                //m_Rigidbody2D = new Vector2((move * normal.y) * m_TrueSpeed, ((move * -normal.x) * m_TrueSpeed) + m_yVelocity);
 
 
-            // Prevents an issue that occasionally stops the player from jumping due to oddities with the ground check.
-            StartCoroutine(DisableGroundCheck(0.1f));
+                m_Anim.SetFloat("Speed", Mathf.Abs(m_Rigidbody2D.velocity.x), .3f, Time.deltaTime);
 
-            // Set a flag that says the player was running if they were
-            m_RunLock = m_Running;
+                //Tells the player object if it's moving or not
+                //I've decided to only allow the player to be considered moving under their own will if they are grounded, in case something else decides to move the player while they're in the air. Essentially, stamina will only be added while on the ground.
+                //There are tentative plans to move this system to a local velocity based system by calculating valocity without taking into account other
+                playerStatistics.moving(move != 0 && (m_Grounded || ableToMove));
+            }
 
-            playerStatistics.damageFromJump(GameConst.STAMINA_TO_JUMP);
+            /*if (!m_Grounded)
+                m_Rigidbody2D.AddForce(Physics2D.gravity * m_GravityScale);*/
 
-            if (m_OnLadder)
+            // If the player should jump...
+            if ((m_Grounded || m_OnLadder) && jump)
+            {
+                // Add a vertical force to the player.
+                m_Grounded = false;
+                m_Anim.SetBool("Grounded", false);
+                //Obselete code to maintain left/right movement
+                //Vector2 vel = new Vector2(m_Rigidbody2D.velocity.x, 0.0f);
+                //m_Rigidbody2D.velocity += vel;
+
+                m_Rigidbody2D.velocity += new Vector2(0f, JumpForce);
+
+
+                // Prevents an issue that occasionally stops the player from jumping due to oddities with the ground check.
+                StartCoroutine(DisableGroundCheck(0.1f));
+
+                // Set a flag that says the player was running if they were
+                m_RunLock = m_Running;
+
+                playerStatistics.damageFromJump(GameConst.STAMINA_TO_JUMP);
+
+                if (m_OnLadder)
+                    m_OnLadder = false;
+            }
+
+            if (m_OnLadder && Mathf.Abs(move) > 0.75f && ladderRef.GetOnTime() <= 0.0f)
+            {
                 m_OnLadder = false;
+            }
         }
+        //Noclip movement
+        else if (noclip) {
+            if (!Input.GetButton("Sprint") && ncSpeed != .6f) {
+                ncSpeed = .6f;
+            } 
+            else if (Input.GetButton("Sprint") && ncSpeed != 2f) {
+                ncSpeed = 2f;
+            }
 
-        if(m_OnLadder && Mathf.Abs(move) > 0.75f && ladderRef.GetOnTime() <= 0.0f)
-            m_OnLadder = false;
+            //Move down 
+            if (Input.GetAxis("Vertical") > 0) {
+                transform.position = new Vector3(transform.position.x, transform.position.y + ncSpeed, transform.position.z);
+            }
+            //Move up
+            else if (Input.GetAxis("Vertical") < 0) 
+            {
+                transform.position = new Vector3(transform.position.x, transform.position.y - ncSpeed, transform.position.z);
+            }
+            //Move left
+            if (Input.GetAxis("Horizontal") < 0) {
+                transform.position = new Vector3(transform.position.x - ncSpeed, transform.position.y, transform.position.z);
+            }
+            //Move right
+            else if (Input.GetAxis("Horizontal") > 0) {
+                transform.position = new Vector3(transform.position.x + ncSpeed, transform.position.y, transform.position.z);
+            }
+        }
     }
 
 
