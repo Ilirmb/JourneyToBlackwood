@@ -231,8 +231,9 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
                 mud.gameObject.SetActive(true);
 
                 if (m_Grounded == true)
+                {
                     mud.Play();
-
+                }
                 MaxSlip--;
                 m_Rigidbody2D.AddForce(new Vector2(move * (m_TrueSpeed/2), 0f));
             }

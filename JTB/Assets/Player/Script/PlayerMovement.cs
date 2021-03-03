@@ -3,9 +3,9 @@
 public class PlayerMovement : MonoBehaviour {
 
     [SerializeField]
-    private float m_MaxSpeed = 10f;                    // The fastest the player can travel in the x axis.
+    public static float m_MaxSpeed = 10f;                    // The fastest the player can travel in the x axis.
     [SerializeField]
-    private float m_JumpForce = 400f;                  // Amount of force added when the player jumps.
+    public static float m_JumpForce = 400f;                  // Amount of force added when the player jumps.
     [SerializeField]
     private bool m_AirControl = false;                 // Whether or not a player can steer while jumping;
     [SerializeField]

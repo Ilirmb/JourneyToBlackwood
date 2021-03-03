@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class HideText : MonoBehaviour
 {
-    public GameObject textBoxes;
+    private GameObject textBoxes;
 
 
     // Start is called before the first frame update
@@ -18,6 +18,9 @@ public class HideText : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        textBoxes.SetActive(false);
+        if (textBoxes)
+        {
+            textBoxes.SetActive(false);
+        }
     }
 }

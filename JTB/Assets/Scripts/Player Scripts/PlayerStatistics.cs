@@ -12,7 +12,7 @@ public class PlayerStatistics : MonoBehaviour
     private float damageOverTime = 0;
     public float stamina;
     public float maxStamina = 100;
-    
+    public float respawnTimer = 200;
     // Frustration variables
     public float frustration = 0;
     private bool highFrustration;
@@ -114,9 +114,6 @@ public class PlayerStatistics : MonoBehaviour
 
         }
 
-        //Remove?
-        //CheckIfDead();
-
         if (isMoving)
         {
             float distanceSinceLastFrame = Mathf.Abs((transform.position.x - positionLastFrame.x)); //In unity distance units
@@ -153,8 +150,6 @@ public class PlayerStatistics : MonoBehaviour
     {
         stamina = newStamina;
         if (stamina > maxStamina) stamina = maxStamina;
-        
-        CheckIfDead();
     }
 
 
@@ -203,10 +198,16 @@ public class PlayerStatistics : MonoBehaviour
 
     private float reduceDamageByFrustration(float damage)
     {
+        //Conveniently because every damage value is passed through here it's a convenient place to do things relating to every time the player takes damage
+        GameManager.instance.AffectStatValue("Total Damage Taken", damage);
+
         // Frustration is a value between 1 and 100. This is convenient because it essentially gives a percentage. 
         //We can invert it by taking 100 and subtracting frustration, then dividing by a hundred to get the percentage to apply to damage
         // hopefully
-        return (damage * ((100 - frustration) / 100));
+        float reduceddamage = (damage * ((100 - frustration) / 100));
+        GameManager.instance.AffectStatValue("Total Damage After Frustration Reduction", reduceddamage);
+        GameManager.instance.AffectStatValue("Health saved by Frustration", damage - reduceddamage);
+        return reduceddamage;
     }
 
 
@@ -231,12 +232,12 @@ public class PlayerStatistics : MonoBehaviour
     {
         reduceDamageByFrustration(damage);
         if (invulnTimer <= 0)
-        { 
+        {
             stamina -= damage;
             textSpawn.spawnText(string.Format("{0:0.##}", damage), new Color(255, 0, 0));
+            CheckIfDead();
         }
-
-        CheckIfDead();
+     
     }
 
 
@@ -253,9 +254,9 @@ public class PlayerStatistics : MonoBehaviour
             stamina -= damage;
             textSpawn.spawnText(string.Format("{0:0.##}", damage), new Color(255, 0, 0));
             invulnTimer = invuln;
+            CheckIfDead();
         }
-
-        CheckIfDead();
+       
     }
 
 
@@ -274,9 +275,9 @@ public class PlayerStatistics : MonoBehaviour
         if (invuln > 0)
         {
             invulnTimer = invuln;
+            CheckIfDead();
         }
-
-        CheckIfDead();
+        
     }
 
 
@@ -287,23 +288,23 @@ public class PlayerStatistics : MonoBehaviour
         stamina -= damage;
         damageOverTime += damage;
         //if (++textFrameTimer == 20)
-        if(damageOverTime >= 1.0f)
+        if (damageOverTime >= 1.0f)
         {
             textSpawn.spawnText(string.Format("{0:0.##}", 1.0f), new Color(0, 255, 0));
             //textFrameTimer = 0;
             damageOverTime = 0;
+            CheckIfDead();
         }
-
-        CheckIfDead();
+      
     }
 
 
     public void damageFromJump(float damage)
     {
+        GameManager.instance.AffectStatValue("Jumps", 1);
         damage = reduceDamageByFrustration(damage);
         stamina -= damage;
         textSpawn.spawnText(string.Format("{0:0.##}", damage), new Color(255, 255, 0));
-
         CheckIfDead();
     }
 
@@ -327,10 +328,12 @@ public class PlayerStatistics : MonoBehaviour
     /// Checks if the player is out of stamina
     /// </summary>
     // This function was made from code originally in the update function
-    private void CheckIfDead()
+    public void CheckIfDead()
     {
+        //Debug.Log("Testing Check if Dead. If this Message Appears, success!");
         if (stamina <= 0)
         {
+            Debug.Log("Testing Check if Dead. If this Message Appears, success!");
             //if Checkpoint is null, just reload the scene
             if (checkpoint == null)
             {
@@ -353,6 +356,7 @@ public class PlayerStatistics : MonoBehaviour
             GameManager.instance.OnPlayerDeath.Invoke();
 
             numPlayerDeaths++;
+            GameManager.instance.AffectStatValue("Num Deaths", 1);
             playerCharacter.StopSliding();
         }
     }
@@ -362,9 +366,20 @@ public class PlayerStatistics : MonoBehaviour
         // The commented line was originally used. While it does work, it feels odd sense the camera slides back to the player's position instead of warping to it
         //gameObject.GetComponent<Rigidbody2D>().MovePosition(checkpoint.transform.position);
         Debug.Log("Moving player character to the position of the last checkpoint hit");
+        while (respawnTimer >= 1)
+        {
+            PlayerMovement.m_MaxSpeed = 0f;
+            PlayerMovement.m_JumpForce = 0f;
+    respawnTimer -= Time.deltaTime;
+
+        }
         gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+       
         gameObject.transform.position = checkpoint.transform.position;
-    }
+        respawnTimer = 200;
+        PlayerMovement.m_MaxSpeed = 10f;
+        PlayerMovement.m_JumpForce = 400f;
+}
 
 
     /*IEnumerator BreakTimer()
