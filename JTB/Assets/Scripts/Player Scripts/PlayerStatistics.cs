@@ -322,7 +322,45 @@ public class PlayerStatistics : MonoBehaviour
         checkpoint = newCheckpoint;
     }
 
+     IEnumerator deathTimer()
+    {
+        Debug.Log("Testing Check if Dead. If this Message Appears, success!");
+        //if (respawnTimer >= 1)
+        //{
+        //    PlayerMovement.m_MaxSpeed = 0f;
+        //    PlayerMovement.m_JumpForce = 0f;
+        //    respawnTimer -= Time.deltaTime;
+        //}
+        gameObject.GetComponent<CustomPlatformer2DUserControl>().enabled = false;
+        yield return new WaitForSeconds(.75f);
 
+
+        //if Checkpoint is null, just reload the scene
+        if (checkpoint == null)
+        {
+            // Restart if stamina is equal to or less than 0
+            // Pretty blunt way of reloading, reloads the current scene
+            ls.ReloadCurrentScene();
+        }
+        //Otherwise go to Checkpoint
+        else
+       
+        {
+            ReloadAtCheckpoint();
+            gameObject.GetComponent<CustomPlatformer2DUserControl>().enabled = true;
+            stamina = 100f;
+
+            //We set the invulnerability timer to allow the player to reorient themselves at the Checkpoint
+            invulnTimer = 1.5f;
+        }
+
+        // Invokes the player death event
+        GameManager.instance.OnPlayerDeath.Invoke();
+
+        numPlayerDeaths++;
+        GameManager.instance.AffectStatValue("Num Deaths", 1);
+        playerCharacter.StopSliding();
+    }
     /// <summary>
     /// CheckIfDead
     /// Checks if the player is out of stamina
@@ -333,37 +371,38 @@ public class PlayerStatistics : MonoBehaviour
         //Debug.Log("Testing Check if Dead. If this Message Appears, success!");
         if (stamina <= 0)
         {
-            Debug.Log("Testing Check if Dead. If this Message Appears, success!");
-            while (respawnTimer >= 1)
-            {
-                PlayerMovement.m_MaxSpeed = 0f;
-                PlayerMovement.m_JumpForce = 0f;
-                respawnTimer -= Time.deltaTime;
-            }
-                //if Checkpoint is null, just reload the scene
-                if (checkpoint == null)
-            {
-                // Restart if stamina is equal to or less than 0
-                // Pretty blunt way of reloading, reloads the current scene
-                ls.ReloadCurrentScene();
-            }
-            //Otherwise go to Checkpoint
-            else
-            {
-                ReloadAtCheckpoint();
+            StartCoroutine(deathTimer());
+            //Debug.Log("Testing Check if Dead. If this Message Appears, success!");
+            //if (respawnTimer >= 1)
+            //{
+            //    PlayerMovement.m_MaxSpeed = 0f;
+            //    PlayerMovement.m_JumpForce = 0f;
+            //    respawnTimer -= Time.deltaTime;
+            //}
+            //    //if Checkpoint is null, just reload the scene
+            //    if (checkpoint == null)
+            //{
+            //    // Restart if stamina is equal to or less than 0
+            //    // Pretty blunt way of reloading, reloads the current scene
+            //    ls.ReloadCurrentScene();
+            //}
+            ////Otherwise go to Checkpoint
+            //else
+            //{
+            //    ReloadAtCheckpoint();
 
-                stamina = 100f;
+            //    stamina = 100f;
 
-                //We set the invulnerability timer to allow the player to reorient themselves at the Checkpoint
-                invulnTimer = 1.5f;
-            }
+            //    //We set the invulnerability timer to allow the player to reorient themselves at the Checkpoint
+            //    invulnTimer = 1.5f;
+            //}
 
-            // Invokes the player death event
-            GameManager.instance.OnPlayerDeath.Invoke();
+            //// Invokes the player death event
+            //GameManager.instance.OnPlayerDeath.Invoke();
 
-            numPlayerDeaths++;
-            GameManager.instance.AffectStatValue("Num Deaths", 1);
-            playerCharacter.StopSliding();
+            //numPlayerDeaths++;
+            //GameManager.instance.AffectStatValue("Num Deaths", 1);
+            //playerCharacter.StopSliding();
         }
     }
 
