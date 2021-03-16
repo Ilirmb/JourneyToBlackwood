@@ -4,14 +4,21 @@ using UnityEngine;
 
 public class DoDamageOnTrigger : MonoBehaviour
 {
-    [SerializeField]
-    float damageValue;
+    GameObject Player;
+    PlayerStatistics playerStatsScript;
 
-    private void OnTriggerStay2D(Collider2D collision)
+    void Start()
     {
-        if (collision.gameObject.name == "Player")
+        Player = GameObject.FindWithTag("Player");
+        playerStatsScript = GameObject.FindWithTag("Player").GetComponent<PlayerStatistics>();
+    }
+
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
         {
-            collision.gameObject.SendMessage("ReceiveDamage", damageValue);
+            playerStatsScript.stamina = 0;
+            playerStatsScript.CheckIfDead();
         }
     }
 }
