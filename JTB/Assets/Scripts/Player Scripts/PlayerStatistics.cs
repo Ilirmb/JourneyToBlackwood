@@ -321,7 +321,7 @@ public class PlayerStatistics : MonoBehaviour
         }
         checkpoint = newCheckpoint;
     }
-
+    //creates respawn timer for when the player is dead
      IEnumerator deathTimer()
     {
         Debug.Log("Testing Check if Dead. If this Message Appears, success!");
