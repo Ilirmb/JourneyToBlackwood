@@ -89,6 +89,7 @@ MonoBehaviour:
   invulnTimer: 0
   stamina: 100
   maxStamina: 100
+  respawnTimer: 20000
   frustration: 0
   walkDistanceToDamageStam: 4
   ls: {fileID: 0}
@@ -109,6 +110,7 @@ MonoBehaviour:
   joystick: {fileID: 0}
   canControl: 1
   move: 0
+  TestingArea: {fileID: 0}
 --- !u!50 &1491189035772560313
 Rigidbody2D:
   serializedVersion: 4
@@ -125,7 +127,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 4
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: f18b11c2c3b5f9646b854cd982d61a27, type: 2}
   m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 1
@@ -262,6 +264,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   m_RunMultiplier: 1.5
+  m_GravityScale: 3
   m_GravityOnGround: 1
   m_SlideDownSlope: 0
   m_Grounded: 0
@@ -272,6 +275,10 @@ MonoBehaviour:
   hspeed: 0
   OnRiverLog: 0
   isCrouching: 0
+  noclip: 0
+  mainCamera: {fileID: 0}
+  noclipCamera: {fileID: 0}
+  mud: {fileID: 0}
 --- !u!1 &1491189035776052829
 GameObject:
   m_ObjectHideFlags: 0
@@ -394,7 +401,7 @@ SkinnedMeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -500394253
   m_SortingLayer: 4
-  m_SortingOrder: 2
+  m_SortingOrder: 6
   serializedVersion: 2
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
@@ -503,7 +510,7 @@ SkinnedMeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -500394253
   m_SortingLayer: 4
-  m_SortingOrder: -1
+  m_SortingOrder: 5
   serializedVersion: 2
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
@@ -609,7 +616,7 @@ SkinnedMeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -500394253
   m_SortingLayer: 4
-  m_SortingOrder: 0
+  m_SortingOrder: 5
   serializedVersion: 2
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
@@ -904,7 +911,7 @@ SkinnedMeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -500394253
   m_SortingLayer: 4
-  m_SortingOrder: 2
+  m_SortingOrder: 5
   serializedVersion: 2
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
@@ -1113,7 +1120,7 @@ SkinnedMeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -500394253
   m_SortingLayer: 4
-  m_SortingOrder: -3
+  m_SortingOrder: 3
   serializedVersion: 2
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
@@ -1553,7 +1560,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Length: 1.1895056
+  m_Length: 1.1894602
   m_ChildTransform: {fileID: 1495079535945212019}
   m_AttachedIK: {fileID: 0}
 --- !u!1 &1492073945051072657
@@ -1722,7 +1729,7 @@ SkinnedMeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -500394253
   m_SortingLayer: 4
-  m_SortingOrder: -3
+  m_SortingOrder: 2
   serializedVersion: 2
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
@@ -1826,7 +1833,7 @@ SkinnedMeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -500394253
   m_SortingLayer: 4
-  m_SortingOrder: 1
+  m_SortingOrder: 4
   serializedVersion: 2
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
@@ -1930,7 +1937,7 @@ SkinnedMeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -500394253
   m_SortingLayer: 4
-  m_SortingOrder: -3
+  m_SortingOrder: 2
   serializedVersion: 2
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
@@ -2034,7 +2041,7 @@ SkinnedMeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -500394253
   m_SortingLayer: 4
-  m_SortingOrder: -1
+  m_SortingOrder: 2
   serializedVersion: 2
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
@@ -2137,7 +2144,7 @@ SkinnedMeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 5
+  m_SortingOrder: 4
   serializedVersion: 2
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
@@ -2358,7 +2365,7 @@ SkinnedMeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -500394253
   m_SortingLayer: 4
-  m_SortingOrder: -4
+  m_SortingOrder: 2
   serializedVersion: 2
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
@@ -2891,7 +2898,7 @@ SkinnedMeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -500394253
   m_SortingLayer: 4
-  m_SortingOrder: -3
+  m_SortingOrder: 3
   serializedVersion: 2
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
@@ -2950,7 +2957,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Length: 1.2719569
+  m_Length: 1.2719687
   m_ChildTransform: {fileID: 1486616169443505741}
   m_AttachedIK: {fileID: 0}
 --- !u!1 &1492742777236043045
@@ -3144,7 +3151,7 @@ SkinnedMeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -500394253
   m_SortingLayer: 4
-  m_SortingOrder: 0
+  m_SortingOrder: 4
   serializedVersion: 2
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
@@ -3487,7 +3494,7 @@ SkinnedMeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -500394253
   m_SortingLayer: 4
-  m_SortingOrder: -3
+  m_SortingOrder: 3
   serializedVersion: 2
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
@@ -3743,7 +3750,7 @@ SkinnedMeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -500394253
   m_SortingLayer: 4
-  m_SortingOrder: 0
+  m_SortingOrder: 3
   serializedVersion: 2
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
@@ -3894,7 +3901,7 @@ SkinnedMeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -500394253
   m_SortingLayer: 4
-  m_SortingOrder: 2
+  m_SortingOrder: 6
   serializedVersion: 2
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
