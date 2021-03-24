@@ -12,7 +12,7 @@ public class PlayerStatistics : MonoBehaviour
     private float damageOverTime = 0;
     public float stamina;
     public float maxStamina = 100;
-    
+    public float respawnTimer = 20000f;
     // Frustration variables
     public float frustration = 0;
     private bool highFrustration;
@@ -37,13 +37,13 @@ public class PlayerStatistics : MonoBehaviour
     private SpriteMeshInstance hairScript;
 
     // Use this for initialization
-    void Start()
+    void Awake()
     {
-
         eyeScript = GameObject.Find("MC Sprite").transform.GetChild(1).GetChild(4).GetChild(0).GetComponent<SpriteMeshInstance>();
         hairScript = GameObject.Find("MC Sprite").transform.GetChild(1).GetChild(4).GetChild(2).GetComponent<SpriteMeshInstance>();
-        eyeScript.color = GlobalColor.Instance.eyeColor;
-        hairScript.color = GlobalColor.Instance.hairColor;
+        UpdateColors();
+        if (eyeScript == null || hairScript == null)
+            Debug.LogError("Player hair and eye customization did not load");
         
         //The idea here is to create a Checkpoint at the location of the player, but it's not working and doesn't need to because 
         //Checkpoint = new Checkpoint(gameObject.transform.position);
@@ -51,12 +51,18 @@ public class PlayerStatistics : MonoBehaviour
 
         for (int i = 0; i < transform.childCount; i++)
         {
-            // Gets the player's body by name. This is far from optimal sense the name may be different.
+            // Gets the player's body by name. This is far from optimal since the name may be different.
             if (transform.GetChild(i).gameObject.name.Equals("MC Sprite"))
                 playerBody = transform.GetChild(i).transform.GetChild(1).gameObject;
         }
 
         stamina = 100;
+    }
+
+    public void UpdateColors()
+    {
+        eyeScript.color = GlobalColor.Instance.eyeColor;
+        hairScript.color = GlobalColor.Instance.hairColor;
     }
 
 
@@ -87,7 +93,7 @@ public class PlayerStatistics : MonoBehaviour
             //StartCoroutine(BreakTimer());
             frustrationCount = 0;
         }*/
-
+        CheckIfDead();
 
         if (invulnTimer > 0)
         {
@@ -107,9 +113,6 @@ public class PlayerStatistics : MonoBehaviour
             }
 
         }
-
-        //Remove?
-        //CheckIfDead();
 
         if (isMoving)
         {
@@ -147,8 +150,6 @@ public class PlayerStatistics : MonoBehaviour
     {
         stamina = newStamina;
         if (stamina > maxStamina) stamina = maxStamina;
-        
-        CheckIfDead();
     }
 
 
@@ -197,10 +198,16 @@ public class PlayerStatistics : MonoBehaviour
 
     private float reduceDamageByFrustration(float damage)
     {
+        //Conveniently because every damage value is passed through here it's a convenient place to do things relating to every time the player takes damage
+        GameManager.instance.AffectStatValue("Total Damage Taken", damage);
+
         // Frustration is a value between 1 and 100. This is convenient because it essentially gives a percentage. 
         //We can invert it by taking 100 and subtracting frustration, then dividing by a hundred to get the percentage to apply to damage
         // hopefully
-        return (damage * ((100 - frustration) / 100));
+        float reduceddamage = (damage * ((100 - frustration) / 100));
+        GameManager.instance.AffectStatValue("Total Damage After Frustration Reduction", reduceddamage);
+        GameManager.instance.AffectStatValue("Health saved by Frustration", damage - reduceddamage);
+        return reduceddamage;
     }
 
 
@@ -225,12 +232,12 @@ public class PlayerStatistics : MonoBehaviour
     {
         reduceDamageByFrustration(damage);
         if (invulnTimer <= 0)
-        { 
+        {
             stamina -= damage;
             textSpawn.spawnText(string.Format("{0:0.##}", damage), new Color(255, 0, 0));
+            CheckIfDead();
         }
-
-        CheckIfDead();
+     
     }
 
 
@@ -247,9 +254,9 @@ public class PlayerStatistics : MonoBehaviour
             stamina -= damage;
             textSpawn.spawnText(string.Format("{0:0.##}", damage), new Color(255, 0, 0));
             invulnTimer = invuln;
+            CheckIfDead();
         }
-
-        CheckIfDead();
+       
     }
 
 
@@ -268,9 +275,9 @@ public class PlayerStatistics : MonoBehaviour
         if (invuln > 0)
         {
             invulnTimer = invuln;
+            CheckIfDead();
         }
-
-        CheckIfDead();
+        
     }
 
 
@@ -281,23 +288,23 @@ public class PlayerStatistics : MonoBehaviour
         stamina -= damage;
         damageOverTime += damage;
         //if (++textFrameTimer == 20)
-        if(damageOverTime >= 1.0f)
+        if (damageOverTime >= 1.0f)
         {
             textSpawn.spawnText(string.Format("{0:0.##}", 1.0f), new Color(0, 255, 0));
             //textFrameTimer = 0;
             damageOverTime = 0;
+            CheckIfDead();
         }
-
-        CheckIfDead();
+      
     }
 
 
     public void damageFromJump(float damage)
     {
+        GameManager.instance.AffectStatValue("Jumps", 1);
         damage = reduceDamageByFrustration(damage);
         stamina -= damage;
         textSpawn.spawnText(string.Format("{0:0.##}", damage), new Color(255, 255, 0));
-
         CheckIfDead();
     }
 
@@ -314,45 +321,106 @@ public class PlayerStatistics : MonoBehaviour
         }
         checkpoint = newCheckpoint;
     }
+    //creates respawn timer for when the player is dead
+     IEnumerator deathTimer()
+    {
+        Debug.Log("Testing Check if Dead. If this Message Appears, success!");
+        //if (respawnTimer >= 1)
+        //{
+        //    PlayerMovement.m_MaxSpeed = 0f;
+        //    PlayerMovement.m_JumpForce = 0f;
+        //    respawnTimer -= Time.deltaTime;
+        //}
+        gameObject.GetComponent<CustomPlatformer2DUserControl>().enabled = false;
+        yield return new WaitForSeconds(.75f);
 
 
+        //if Checkpoint is null, just reload the scene
+        if (checkpoint == null)
+        {
+            // Restart if stamina is equal to or less than 0
+            // Pretty blunt way of reloading, reloads the current scene
+            ls.ReloadCurrentScene();
+        }
+        //Otherwise go to Checkpoint
+        else
+       
+        {
+            ReloadAtCheckpoint();
+            gameObject.GetComponent<CustomPlatformer2DUserControl>().enabled = true;
+            stamina = 100f;
+
+            //We set the invulnerability timer to allow the player to reorient themselves at the Checkpoint
+            invulnTimer = 1.5f;
+        }
+
+        // Invokes the player death event
+        GameManager.instance.OnPlayerDeath.Invoke();
+
+        numPlayerDeaths++;
+        GameManager.instance.AffectStatValue("Num Deaths", 1);
+        playerCharacter.StopSliding();
+    }
     /// <summary>
     /// CheckIfDead
     /// Checks if the player is out of stamina
     /// </summary>
     // This function was made from code originally in the update function
-    private void CheckIfDead()
+    public void CheckIfDead()
     {
+        //Debug.Log("Testing Check if Dead. If this Message Appears, success!");
         if (stamina <= 0)
         {
-            //if Checkpoint is null, just reload the scene
-            if (checkpoint == null)
-            {
-                // Restart if stamina is equal to or less than 0
-                // Pretty blunt way of reloading, reloads the current scene
-                ls.ReloadCurrentScene();
-            }
-            //Otherwise go to Checkpoint
-            else
-            {
-                // The commented line was originally used. While it does work, it feels odd sense the camera slides back to the player's position instead of warping to it
-                //gameObject.GetComponent<Rigidbody2D>().MovePosition(checkpoint.transform.position);
-                gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-                gameObject.transform.position = checkpoint.transform.position;
+            StartCoroutine(deathTimer());
+            //Debug.Log("Testing Check if Dead. If this Message Appears, success!");
+            //if (respawnTimer >= 1)
+            //{
+            //    PlayerMovement.m_MaxSpeed = 0f;
+            //    PlayerMovement.m_JumpForce = 0f;
+            //    respawnTimer -= Time.deltaTime;
+            //}
+            //    //if Checkpoint is null, just reload the scene
+            //    if (checkpoint == null)
+            //{
+            //    // Restart if stamina is equal to or less than 0
+            //    // Pretty blunt way of reloading, reloads the current scene
+            //    ls.ReloadCurrentScene();
+            //}
+            ////Otherwise go to Checkpoint
+            //else
+            //{
+            //    ReloadAtCheckpoint();
 
-                stamina = 100f;
+            //    stamina = 100f;
 
-                //We set the invulnerability timer to allow the player to reorient themselves at the Checkpoint
-                invulnTimer = 1.5f;
-            }
+            //    //We set the invulnerability timer to allow the player to reorient themselves at the Checkpoint
+            //    invulnTimer = 1.5f;
+            //}
 
-            // Invokes the player death event
-            GameManager.instance.OnPlayerDeath.Invoke();
+            //// Invokes the player death event
+            //GameManager.instance.OnPlayerDeath.Invoke();
 
-            numPlayerDeaths++;
-            playerCharacter.StopSliding();
+            //numPlayerDeaths++;
+            //GameManager.instance.AffectStatValue("Num Deaths", 1);
+            //playerCharacter.StopSliding();
         }
     }
+
+    public void ReloadAtCheckpoint()
+    {
+        // The commented line was originally used. While it does work, it feels odd sense the camera slides back to the player's position instead of warping to it
+        //gameObject.GetComponent<Rigidbody2D>().MovePosition(checkpoint.transform.position);
+        Debug.Log("Moving player character to the position of the last checkpoint hit");
+      
+        
+        gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+       
+        gameObject.transform.position = checkpoint.transform.position;
+        respawnTimer = 200;
+        PlayerMovement.m_MaxSpeed = 10f;
+        PlayerMovement.m_JumpForce = 400f;
+        respawnTimer = 2000f;
+}
 
 
     /*IEnumerator BreakTimer()

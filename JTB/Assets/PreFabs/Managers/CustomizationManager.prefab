@@ -52,15 +52,24 @@ MonoBehaviour:
   costumeList:
   - {fileID: 11400000, guid: 596624aece07cd9488f2b4afb8c72f73, type: 2}
   - {fileID: 11400000, guid: 4380a1731c3fb96468ffb38b6b69d4a1, type: 2}
-  - {fileID: 11400000, guid: bc9a091f5e29e1246821c5688335195c, type: 2}
-  - {fileID: 11400000, guid: ad41f58012b3dda40adc04519f2f186c, type: 2}
   - {fileID: 11400000, guid: 475d6b279411a37438293a79881eb820, type: 2}
   hairList:
-  - {fileID: 11400000, guid: ad41f58012b3dda40adc04519f2f186c, type: 2}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 4bded551f3f2cf842b396a872ff1b095, type: 2}
+  - {fileID: 11400000, guid: da3d5198f3ba07d4da30e23a023be435, type: 2}
+  - {fileID: 11400000, guid: 853ddd85494c22643b04022f4195e26f, type: 2}
+  - {fileID: 11400000, guid: f8cdddc4c155eee4c9b4cc92af90143a, type: 2}
+  - {fileID: 11400000, guid: 86afba6c03914ea4f9cd46221d51b1ee, type: 2}
+  - {fileID: 11400000, guid: 5a1744913969522438ae4caa62d02da6, type: 2}
+  - {fileID: 11400000, guid: 56286bd27701c5c42bb2d564dd08a151, type: 2}
   faceList:
   - {fileID: 11400000, guid: ea7cd3debe2411e4387317fe470f0241, type: 2}
   - {fileID: 11400000, guid: bfda448f3bbeab94a89c8ab921eae2db, type: 2}
+  currentCostume: {fileID: 0}
+  currentHair: {fileID: 0}
+  currentFace: {fileID: 0}
+  currentCostumeIndex: 0
+  currentHairIndex: 0
+  currentFaceIndex: 0
   OnSkinChanged:
     m_PersistentCalls:
       m_Calls: []

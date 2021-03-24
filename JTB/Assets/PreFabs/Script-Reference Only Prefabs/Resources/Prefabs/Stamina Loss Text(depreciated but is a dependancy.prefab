@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 114293443222407688}
   - component: {fileID: 114084553771893344}
   m_Layer: 5
-  m_Name: Stamina Loss Text
+  m_Name: Stamina Loss Text(depreciated but is a dependancy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -209,7 +209,8 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6165615127740785944, guid: d2d9f06153427554abf2a8989950e74f, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: d2d9f06153427554abf2a8989950e74f, type: 3}
 --- !u!224 &224708470059484938 stripped
 RectTransform:

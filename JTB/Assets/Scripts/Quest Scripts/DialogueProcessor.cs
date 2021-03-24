@@ -88,6 +88,7 @@ public class DialogueProcessor : MonoBehaviour {
     {
         currentTree = tree;
         currentNode = tree.GetFirstNode();
+        
 
         firstLine = true;
         useTopTextBox = false;
@@ -289,7 +290,7 @@ public class DialogueProcessor : MonoBehaviour {
                         // The biggest problem right now is that there is no validation for SVs.
                         // This would work, but it runs the risk of people using slightly different names and throwing saving off.
                         // I'll probably add some kind of validation here which would remove social, scrub all non-letters, etc.
-                        GameManager.instance.AffectSocialValue(temp[0], val);
+                        GameManager.instance.AffectStatValue(temp[0], val);
                     }
                     else
                         Debug.LogError("Param Error: too many or few parameters!");

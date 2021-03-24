@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 // Quest givers need a collider in order to be clicked on
@@ -176,7 +177,11 @@ public class Quest : MonoBehaviour {
             clicked = true;
         }
 
+        Debug.Log("Current State: " + currentState);
+
         GameManager.instance.SetCurrentQuest(this);
+
+        Debug.Log("Current State: " + currentState);
 
         // If the player has not been interacted, we just need to start the quest
         if (firstEncounter)
@@ -185,6 +190,7 @@ public class Quest : MonoBehaviour {
             return;
         }
 
+        Debug.Log("Current State: " + currentState);
         // Do different interactions based on the current state of the quest.
         switch (currentState)
         {
@@ -255,7 +261,7 @@ public class Quest : MonoBehaviour {
 	/// </summary>
     public void ToggleInteractivity(bool status)
     {
-        col.enabled = status;
+       col.enabled = status;
     }
 
 
@@ -287,7 +293,6 @@ public class Quest : MonoBehaviour {
     public void CompleteQuest()
     {
         currentState = QuestState.completed;
-		cleared = true;
     }
 
 
@@ -295,6 +300,7 @@ public class Quest : MonoBehaviour {
     {
         Debug.Log(friendship);
         currentState = QuestState.finished;
+        cleared = true;
     }
 
 
@@ -382,11 +388,14 @@ public class Quest : MonoBehaviour {
 
         if (data.cleared)
         {
+            Debug.Log("Quest loaded in with the 'cleared' state active!");
             clicked = true;
             cleared = true;
             firstEncounter = false;
             currentState = QuestState.finished;
         }
+        else
+            Debug.Log("Quest loaded in with uncleared state!");
 
         friendship = data.friendship;
         failed = data.failed;

@@ -18,7 +18,6 @@ public class QuestItem : MonoBehaviour {
 
     [SerializeField]
     private DialogueTree itemText;
-
     private Collider2D col;
     private Quest owner;
 

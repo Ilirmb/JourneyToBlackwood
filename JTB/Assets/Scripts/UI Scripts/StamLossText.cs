@@ -11,8 +11,8 @@ public class StamLossText : MonoBehaviour {
 
     public void init(StamLossTextManager creator, string Text, Color color)
     {
-        GetComponent<Text>().color = color;
-        GetComponent<Text>().text = Text;
+        GetComponentInChildren<Text>().color = color;
+        GetComponentInChildren<Text>().text = Text;
         destroyer = creator;
     }
     public void setKillTime(float time)
