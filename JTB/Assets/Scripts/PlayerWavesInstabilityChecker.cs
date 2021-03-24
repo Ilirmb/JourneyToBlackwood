@@ -6,18 +6,30 @@ public class PlayerWavesInstabilityChecker : MonoBehaviour
 {
     public float checkLength = 3f;
     public WaveManager currentWaveManager;
-    public LayerMask hittables = LayerMask.NameToLayer("Ground");
+    LayerMask hittables;
+    //public LayerMask hittables = LayerMask.NameToLayer("Ground");
+
+    void Start()
+    {
+        hittables = LayerMask.NameToLayer("Ground");
+    }
 
     private void Update()
     {
         var hit = Physics2D.Raycast(this.transform.position, Vector2.down, checkLength, hittables);
         if(hit.collider != null && (hit.collider.CompareTag("RiverLog") || hit.collider.CompareTag("Water")))
         {
-            currentWaveManager.isEffected = true;
+            if (currentWaveManager != null)
+            {
+                currentWaveManager.isEffected = true;
+            }
         }
         else
         {
-            currentWaveManager.isEffected = false;
+            if (currentWaveManager != null)
+            {
+                currentWaveManager.isEffected = false;
+            }
         }
     }
 

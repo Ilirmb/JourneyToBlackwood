@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &530512219203935450
+--- !u!1 &1802144907656388724
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,117 +8,28 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3701116839683338135}
-  - component: {fileID: 7216817749206259859}
-  - component: {fileID: 8447419453819173915}
-  - component: {fileID: 8874486451992831326}
-  m_Layer: 4
-  m_Name: River Log (4)
-  m_TagString: RiverLog
+  - component: {fileID: 9131097625461784712}
+  m_Layer: 0
+  m_Name: WaveSpawnLoc
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3701116839683338135
+--- !u!4 &9131097625461784712
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 530512219203935450}
+  m_GameObject: {fileID: 1802144907656388724}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 89.81, y: -4.78, z: 1.88}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -30.15, y: 0.7, z: -56.293617}
+  m_LocalScale: {x: 2.8409998, y: 2.8409998, z: 2.8409998}
   m_Children: []
-  m_Father: {fileID: 6244482692852215638}
+  m_Father: {fileID: 6244482692307423229}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &7216817749206259859
-SpriteRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 530512219203935450}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 4294967295
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 9375f834b46fead43b38a5aaf7a50095, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 9.6, y: 4.8}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
---- !u!50 &8447419453819173915
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 530512219203935450}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 0.5
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 1
---- !u!70 &8874486451992831326
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 530512219203935450}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.0000000869816, y: -0.7296546}
-  m_Size: {x: 9.000004, y: 2.7400825}
-  m_Direction: 1
 --- !u!1 &2206423714969061060
 GameObject:
   m_ObjectHideFlags: 0
@@ -238,6 +149,79 @@ CapsuleCollider2D:
   m_Offset: {x: -0.0000000869816, y: -0.7296546}
   m_Size: {x: 9.000004, y: 2.7400825}
   m_Direction: 1
+--- !u!1 &2715363996934526945
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6048586302251957298}
+  - component: {fileID: 2427498236481268416}
+  - component: {fileID: 781310039216086227}
+  m_Layer: 0
+  m_Name: RoughWatersExit
+  m_TagString: RoughWaters
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6048586302251957298
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2715363996934526945}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 26.8, y: 9.300003, z: -66.73938}
+  m_LocalScale: {x: 5.95149, y: 5.95149, z: 5.95149}
+  m_Children: []
+  m_Father: {fileID: 6244482692307423229}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &2427498236481268416
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2715363996934526945}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.37, y: -0.13}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.23, y: 0.8664159}
+  m_EdgeRadius: 0
+--- !u!114 &781310039216086227
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2715363996934526945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ce04406f7261714d8bef696f711d3b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  exitTrigger: 1
+  timeBetweenWaves: 5
+  spawningWaves: 0
 --- !u!1 &4478982692705689840
 GameObject:
   m_ObjectHideFlags: 0
@@ -476,6 +460,36 @@ CapsuleCollider2D:
   m_Offset: {x: -0.0000000869816, y: -0.7296546}
   m_Size: {x: 9.000004, y: 2.7400825}
   m_Direction: 1
+--- !u!1 &6153204543964171842
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 701932032650206544}
+  m_Layer: 0
+  m_Name: WaveSpawnLoc2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &701932032650206544
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6153204543964171842}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1.4, y: 0.3, z: -56.293617}
+  m_LocalScale: {x: 2.8409998, y: 2.8409998, z: 2.8409998}
+  m_Children: []
+  m_Father: {fileID: 6244482692307423229}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6244482692307423227
 GameObject:
   m_ObjectHideFlags: 0
@@ -489,9 +503,8 @@ GameObject:
   - component: {fileID: 6244482692307423231}
   - component: {fileID: 6244482692307423230}
   - component: {fileID: 6244482692307423225}
-  - component: {fileID: 6244482692307423224}
   - component: {fileID: 6244482692307423218}
-  - component: {fileID: 6244482692307423219}
+  - component: {fileID: 1939507865935390918}
   m_Layer: 4
   m_Name: Water
   m_TagString: Water
@@ -512,6 +525,10 @@ Transform:
   m_Children:
   - {fileID: 6244482694009003306}
   - {fileID: 6244482694211886795}
+  - {fileID: 2831136584811049647}
+  - {fileID: 6048586302251957298}
+  - {fileID: 9131097625461784712}
+  - {fileID: 701932032650206544}
   m_Father: {fileID: 3815291611445711935}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -527,7 +544,7 @@ BuoyancyEffector2D:
   m_ColliderMask:
     serializedVersion: 2
     m_Bits: 4407
-  m_SurfaceLevel: 3.8066106
+  m_SurfaceLevel: 2.7893481
   m_Density: 2
   m_LinearDrag: 5
   m_AngularDrag: 5
@@ -558,7 +575,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 74.03746, y: 8.099172}
+  m_Size: {x: 65.304665, y: 5.811142}
   m_EdgeRadius: 0
 --- !u!23 &6244482692307423230
 MeshRenderer:
@@ -595,9 +612,9 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 597095477
-  m_SortingLayer: 6
-  m_SortingOrder: 10
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
 --- !u!33 &6244482692307423225
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -606,7 +623,28 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6244482692307423227}
   m_Mesh: {fileID: 0}
---- !u!114 &6244482692307423224
+--- !u!114 &6244482692307423218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6244482692307423227}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da649f019619054ca13366947354030, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rapidWaves: 0
+  isEffected: 1
+  timer: 0
+  playerAnimator: {fileID: 0}
+  playerController: {fileID: 0}
+  InvisWave: {fileID: 0}
+  InvisWave2: {fileID: 0}
+  waveSpawnLoc: {fileID: 0}
+  waveSpawnLoc2: {fileID: 0}
+--- !u!114 &1939507865935390918
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -618,28 +656,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7f8092d3bbd9544e9eded51ac39ec64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waterSize: {x: 74.03746, y: 8.099172}
-  subdivisionsCountPerUnit: 1
-  damping: 0.023
-  stiffness: 58.7
-  spread: 1209
-  useCustomBoundaries: 1
-  firstCustomBoundary: 25.3
-  secondCustomBoundary: -36.5
+  waterSize: {x: 65.304665, y: 5.811142}
+  subdivisionsCountPerUnit: 3
+  damping: 0.05
+  stiffness: 60
+  spread: 60
+  useCustomBoundaries: 0
+  firstCustomBoundary: 0.5
+  secondCustomBoundary: -0.5
   activateOnCollisionOnWaterEnterRipples: 1
   activateOnCollisionOnWaterExitRipples: 1
-  onCollisionRipplesMinimumDisturbance: 0.05
-  onCollisionRipplesMaximumDisturbance: 0.675
+  onCollisionRipplesMinimumDisturbance: 0.1
+  onCollisionRipplesMaximumDisturbance: 0.75
   onCollisionRipplesVelocityMultiplier: 0.12
   onCollisionRipplesCollisionMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 4294967279
   onCollisionRipplesCollisionMinimumDepth: -10
   onCollisionRipplesCollisionMaximumDepth: 10
-  onCollisionRipplesCollisionRaycastMaxDistance: 1
-  onCollisionRipplesActivateOnWaterEnterParticleEffect: 1
+  onCollisionRipplesCollisionRaycastMaxDistance: 0.5
+  onCollisionRipplesActivateOnWaterEnterParticleEffect: 0
   onCollisionRipplesOnWaterEnterParticleEffect: {fileID: 0}
-  onCollisionRipplesOnWaterEnterParticleEffectSpawnOffset: {x: 0, y: 0, z: 0.5}
+  onCollisionRipplesOnWaterEnterParticleEffectSpawnOffset: {x: 0, y: 0, z: 0}
   onCollisionRipplesOnWaterEnterParticleEffectStopAction:
     m_PersistentCalls:
       m_Calls: []
@@ -647,7 +685,7 @@ MonoBehaviour:
       Culture=neutral, PublicKeyToken=null
   onCollisionRipplesOnWaterEnterParticleEffectPoolSize: 10
   onCollisionRipplesOnWaterEnterParticleEffectPoolExpandIfNecessary: 1
-  onCollisionRipplesActivateOnWaterEnterSoundEffect: 0
+  onCollisionRipplesActivateOnWaterEnterSoundEffect: 1
   onCollisionRipplesOnWaterEnterAudioClip: {fileID: 0}
   onCollisionRipplesUseConstantOnWaterEnterAudioPitch: 0
   onCollisionRipplesOnWaterEnterAudioPitch: 1
@@ -685,23 +723,23 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  activateConstantRipples: 1
-  constantRipplesUpdateWhenOffscreen: 1
+  activateConstantRipples: 0
+  constantRipplesUpdateWhenOffscreen: 0
   constantRipplesRandomizeDisturbance: 0
-  constantRipplesSmoothDisturbance: 1
-  constantRipplesSmoothFactor: 0.714
+  constantRipplesSmoothDisturbance: 0
+  constantRipplesSmoothFactor: 0.5
   constantRipplesDisturbance: 0.1
   constantRipplesMinimumDisturbance: 0.08
-  constantRipplesMaximumDisturbance: 0.15
+  constantRipplesMaximumDisturbance: 0.12
   constantRipplesRandomizeInterval: 0
-  constantRipplesInterval: 2
+  constantRipplesInterval: 1
   constantRipplesMinimumInterval: 0.75
   constantRipplesMaximumInterval: 1.25
-  constantRipplesRandomizeRipplesSourcesPositions: 1
-  constantRipplesRandomizeRipplesSourcesCount: 4
+  constantRipplesRandomizeRipplesSourcesPositions: 0
+  constantRipplesRandomizeRipplesSourcesCount: 3
   constantRipplesAllowDuplicateRipplesSourcesPositions: 0
   constantRipplesSourcePositions: []
-  constantRipplesActivateSoundEffect: 1
+  constantRipplesActivateSoundEffect: 0
   constantRipplesUseConstantAudioPitch: 0
   constantRipplesAudioClip: {fileID: 0}
   constantRipplesAudioPitch: 1
@@ -710,7 +748,7 @@ MonoBehaviour:
   constantRipplesSoundEffectPoolSize: 10
   constantRipplesSoundEffectPoolExpandIfNecessary: 1
   constantRipplesAudioVolume: 1
-  constantRipplesActivateParticleEffect: 1
+  constantRipplesActivateParticleEffect: 0
   constantRipplesParticleEffect: {fileID: 0}
   constantRipplesParticleEffectSpawnOffset: {x: 0, y: 0, z: 0}
   constantRipplesParticleEffectStopAction:
@@ -722,7 +760,7 @@ MonoBehaviour:
   constantRipplesParticleEffectPoolExpandIfNecessary: 1
   scriptGeneratedRipplesMinimumDisturbance: 0.1
   scriptGeneratedRipplesMaximumDisturbance: 0.75
-  scriptGeneratedRipplesActivateSoundEffect: 1
+  scriptGeneratedRipplesActivateSoundEffect: 0
   scriptGeneratedRipplesAudioClip: {fileID: 0}
   scriptGeneratedRipplesUseConstantAudioPitch: 0
   scriptGeneratedRipplesAudioPitch: 1
@@ -731,7 +769,7 @@ MonoBehaviour:
   scriptGeneratedRipplesAudioVolume: 1
   scriptGeneratedRipplesSoundEffectPoolSize: 10
   scriptGeneratedRipplesSoundEffectPoolExpandIfNecessary: 1
-  scriptGeneratedRipplesActivateParticleEffect: 1
+  scriptGeneratedRipplesActivateParticleEffect: 0
   scriptGeneratedRipplesParticleEffect: {fileID: 0}
   scriptGeneratedRipplesParticleEffectSpawnOffset: {x: 0, y: 0, z: 0}
   scriptGeneratedRipplesParticleEffectStopAction:
@@ -744,7 +782,7 @@ MonoBehaviour:
   refractionRenderTextureResizeFactor: 1
   refractionCullingMask:
     serializedVersion: 2
-    m_Bits: 4294967243
+    m_Bits: 4294967279
   refractionPartiallySubmergedObjectsCullingMask:
     serializedVersion: 2
     m_Bits: 0
@@ -760,51 +798,13 @@ MonoBehaviour:
     m_Bits: 0
   reflectionRenderTextureFilterMode: 1
   reflectionZOffset: 0
-  sortingLayerID: 597095477
-  sortingOrder: 10
+  sortingLayerID: 0
+  sortingOrder: 0
   farClipPlane: 100
   renderPixelLights: 1
   allowMSAA: 0
   allowHDR: 0
-  buoyancyEffectorSurfaceLevel: 0.03
---- !u!114 &6244482692307423218
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6244482692307423227}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2da649f019619054ca13366947354030, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rapidWaves: 0
-  timer: 0
-  InvisWave: {fileID: 0}
-  InvisWave2: {fileID: 0}
-  waveSpawnLoc: {fileID: 0}
-  waveSpawnLoc2: {fileID: 0}
---- !u!68 &6244482692307423219
-EdgeCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6244482692307423227}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_EdgeRadius: 0
-  m_Points:
-  - {x: -37.01873, y: 4.049586}
-  - {x: -37.01873, y: -4.049586}
-  - {x: 37.01873, y: -4.049586}
-  - {x: 37.01873, y: 4.049586}
+  buoyancyEffectorSurfaceLevel: 0.02
 --- !u!1 &6244482692342776578
 GameObject:
   m_ObjectHideFlags: 0
@@ -834,7 +834,8 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 34.99, y: -4.78, z: 1.88}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1226772852700812955}
   m_Father: {fileID: 6244482692852215638}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -955,7 +956,6 @@ Transform:
   - {fileID: 6488100791899455509}
   - {fileID: 3209025580929267078}
   - {fileID: 7065870338902997766}
-  - {fileID: 3701116839683338135}
   m_Father: {fileID: 3815291611445711935}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1086,6 +1086,79 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b10630cb13519194fbf3a8cd503f304e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &6902674387868429954
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2831136584811049647}
+  - component: {fileID: 6216379354568511970}
+  - component: {fileID: 2603595021971168961}
+  m_Layer: 0
+  m_Name: RoughWatersEnter
+  m_TagString: RoughWaters
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2831136584811049647
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6902674387868429954}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -24.26, y: 9.3, z: -66.73938}
+  m_LocalScale: {x: 5.951494, y: 5.951494, z: 5.951494}
+  m_Children: []
+  m_Father: {fileID: 6244482692307423229}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &6216379354568511970
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6902674387868429954}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.37, y: -0.13}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.23, y: 0.8664159}
+  m_EdgeRadius: 0
+--- !u!114 &2603595021971168961
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6902674387868429954}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ce04406f7261714d8bef696f711d3b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  exitTrigger: 0
+  timeBetweenWaves: 5
+  spawningWaves: 0
 --- !u!1 &8165853604225272637
 GameObject:
   m_ObjectHideFlags: 0
@@ -1097,7 +1170,7 @@ GameObject:
   - component: {fileID: 3815291611445711935}
   m_Layer: 0
   m_Name: WaterSection
-  m_TagString: Untagged
+  m_TagString: Water
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1118,3 +1191,47 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8504074772683953414
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1226772852700812955}
+  - component: {fileID: 4495233133712681955}
+  m_Layer: 4
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1226772852700812955
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8504074772683953414}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6244482692342776583}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &4495233133712681955
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8504074772683953414}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 7.820305, y: 3.7281132, z: 1}
+  m_Center: {x: -0.1573906, y: 0.31478214, z: 0}

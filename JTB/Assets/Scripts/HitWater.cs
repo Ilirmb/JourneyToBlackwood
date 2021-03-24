@@ -55,11 +55,13 @@ public class HitWater : MonoBehaviour
         }
     }
 
-    public void OnTriggerEnter2D(Collider2D collision)
+   public void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
-            if (playerStatsScript.checkpoint == null)
+            playerStatsScript.stamina = 0;
+            playerStatsScript.CheckIfDead();
+            /*if (playerStatsScript.checkpoint == null)
             {
                 playerStatsScript.ReloadCurrentScene();
             }
@@ -84,7 +86,7 @@ public class HitWater : MonoBehaviour
             //if(playerStatsScript.gameObject != null)
             //GameManager.instance.OnPlayerDeath.Invoke();
 
-            playerStatsScript.numPlayerDeaths++;
+            playerStatsScript.numPlayerDeaths++;*/
         }
 
     }
