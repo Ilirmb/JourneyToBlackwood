@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Quicksand : MonoBehaviour
 {
-    public float sinkSpeed = 10;
-    public float maxSinkSpeed = -1f; //Maximum negitave velocity when sinking
+    public float sinkSpeed = 25;
+    public float maxSinkSpeed = -10f; //Maximum negitave velocity when sinking
     private Rigidbody2D player;
     private float gravity;
     private float maxSpeed;
@@ -22,12 +22,11 @@ public class Quicksand : MonoBehaviour
     {
         if (other.CompareTag("Player") && other.GetType() == typeof(CapsuleCollider2D))
         {
+            player.GetComponent<CustomPlatformerCharacter2D>().quicksand = true;
             player.gravityScale = 0;
-            //player.GetComponent<CustomPlatformerCharacter2D>().m_GroundedSpeed = .05f;
-            player.velocity = new Vector2(player.velocity.x, 0f);
+            player.GetComponent<CustomPlatformerCharacter2D>().m_GroundedSpeed = .05f;
+            player.velocity = new Vector2(player.velocity.x, .1f);
             player.GetComponent<CustomPlatformerCharacter2D>().ableToMove = true;
-            player.GetComponent<CustomPlatformerCharacter2D>().m_AirControl = false;
-            player.velocity = new Vector2(0f, 0f);
         }
         Debug.Log("Enter");
     }
@@ -35,10 +34,12 @@ public class Quicksand : MonoBehaviour
     {
         if (other.CompareTag("Player") && other.GetType() == typeof(CapsuleCollider2D))
         {
+            player.GetComponent<CustomPlatformerCharacter2D>().quicksand = false;
             player.gravityScale = gravity;
             player.GetComponent<CustomPlatformerCharacter2D>().m_GroundedSpeed = maxSpeed;
             player.GetComponent<CustomPlatformerCharacter2D>().ableToMove = true;
             player.GetComponent<CustomPlatformerCharacter2D>().m_AirControl = true;
+            player.AddForce(Vector2.up * 100f * Time.deltaTime);
         }
         Debug.Log("Exit");
     }
@@ -46,15 +47,9 @@ public class Quicksand : MonoBehaviour
     {
         if (other.CompareTag("Player") && other.GetType() == typeof(CapsuleCollider2D))
         {
-            if (this.GetComponent<BoxCollider2D>().bounds.Contains(player.transform.GetChild(1).position)) //GetChild(1)should be the ceiling check object aka the top of the players head
+            if (this.GetComponent<BoxCollider2D>().bounds.Contains(player.transform.GetChild(1).position))
             {
                 player.GetComponent<PlayerStatistics>().damageStamina(10, 1f);
-            }
-
-            if (Input.GetKeyDown(KeyCode.Space) && !player.GetComponent<CustomPlatformerCharacter2D>().m_Grounded) // If they press space in quicksand and arent considered grounded
-            {
-                player.AddForce(Vector2.down * sinkSpeed * Time.deltaTime);
-                player.GetComponent<PlayerStatistics>().damageFromJump(GameConst.STAMINA_TO_JUMP);
             }
 
             if (Input.GetAxis("Horizontal") != 0)
@@ -63,15 +58,20 @@ public class Quicksand : MonoBehaviour
                 {
                     float tempHorizMultiplier = Mathf.Abs(Input.GetAxis("Horizontal"));
                     tempHorizMultiplier = (Input.GetKey(KeyCode.LeftShift) ? tempHorizMultiplier * 10f : tempHorizMultiplier); // If the player is holding the run button, multiply the rate you sink at
-                    player.AddForce(Vector2.down * sinkSpeed * tempHorizMultiplier * Time.deltaTime * .2f);
+                    player.AddForce(Vector2.up * sinkSpeed * tempHorizMultiplier * Time.deltaTime * .2f);
                 }
+            }
+
+            if (player.velocity.y > 0)
+            {
+                player.gravityScale = gravity;
             }
             else
             {
-                if (player.velocity.y < 0) player.velocity = new Vector2(player.velocity.x, 0f);
-                player.AddForce(Vector2.up * sinkSpeed * Time.deltaTime * .75f);
+                player.gravityScale = 0;
             }
-        }
 
+            player.AddForce(Vector2.down * sinkSpeed * Time.deltaTime);
+        }
     }
 }
