@@ -72,6 +72,16 @@ public class Quicksand : MonoBehaviour
             }
 
             player.AddForce(Vector2.down * sinkSpeed * Time.deltaTime);
+
+            if (player.GetComponent<PlayerStatistics>().stamina <= 0)
+            {
+                player.GetComponent<CustomPlatformerCharacter2D>().quicksand = false;
+                player.gravityScale = gravity;
+                player.GetComponent<CustomPlatformerCharacter2D>().m_GroundedSpeed = maxSpeed;
+                player.GetComponent<CustomPlatformerCharacter2D>().ableToMove = true;
+                player.GetComponent<CustomPlatformerCharacter2D>().m_AirControl = true;
+            }
+
         }
     }
 }
