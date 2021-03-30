@@ -45,6 +45,7 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
 
     private bool m_OnLadder = false;
     private bool m_RunLock = false;
+    public bool quicksand = false;
 
     private PlayerStatistics playerStatistics;
     private Vector3 velocity = Vector3.zero;
@@ -298,7 +299,7 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
                 m_Rigidbody2D.AddForce(Physics2D.gravity * m_GravityScale);*/
 
             // If the player should jump...
-            if ((m_Grounded || m_OnLadder) && jump)
+            if ((m_Grounded || m_OnLadder || quicksand) && jump)
             {
                 // Add a vertical force to the player.
                 m_Grounded = false;
