@@ -17,7 +17,7 @@ public class DoDamageOnTrigger : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            playerStatsScript.stamina = 0;
+            playerStatsScript.stamina -=100;
             playerStatsScript.CheckIfDead();
         }
     }

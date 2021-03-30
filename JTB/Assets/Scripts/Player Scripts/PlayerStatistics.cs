@@ -235,7 +235,7 @@ public class PlayerStatistics : MonoBehaviour
         {
             stamina -= damage;
             textSpawn.spawnText(string.Format("{0:0.##}", damage), new Color(255, 0, 0));
-            CheckIfDead();
+            //CheckIfDead();
         }
      
     }
@@ -254,7 +254,7 @@ public class PlayerStatistics : MonoBehaviour
             stamina -= damage;
             textSpawn.spawnText(string.Format("{0:0.##}", damage), new Color(255, 0, 0));
             invulnTimer = invuln;
-            CheckIfDead();
+            //CheckIfDead();
         }
        
     }
