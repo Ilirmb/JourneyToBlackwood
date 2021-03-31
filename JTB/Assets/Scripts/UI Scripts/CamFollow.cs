@@ -52,72 +52,73 @@ public class CamFollow : MonoBehaviour {
     }
 	
     // LateUpdate fires after all other update functions
-	void LateUpdate ()
+	void Update ()
     {
+        ResetCamera();
         //gameObject.transform.position = newPos;
 
-        Vector3 playerPos = cam.WorldToViewportPoint(new Vector3(player.position.x + (0.5f * playerMov.GetDirection()), player.position.y));
-        playerPos.x = (Mathf.Round(playerPos.x * 100.0f) / 100.0f);
-        playerPos.y = (Mathf.Round(playerPos.y * 100.0f) / 100.0f);
+        //Vector3 playerPos = cam.WorldToViewportPoint(new Vector3(player.position.x + (0.5f * playerMov.GetDirection()), player.position.y));
+        //playerPos.x = (Mathf.Round(playerPos.x * 100.0f) / 100.0f);
+        //playerPos.y = (Mathf.Round(playerPos.y * 100.0f) / 100.0f);
 
 
-        // Adjust the camera position if the player has moved out of the "neutral position" horizontally or vertically.
-        if (playerPos.x > (horizontalDeadZoneCenter + horizontalDeadZoneLength / 2.0f) || 
-            playerPos.x < (horizontalDeadZoneCenter - horizontalDeadZoneLength / 2.0f) ||
-            (playerPos.y > (verticalDeadZoneCenter + verticalDeadZoneLength / 2.0f) && playerMov.GetIsGrounded()) || 
-            playerPos.y < (verticalDeadZoneCenter - verticalDeadZoneLength / 2.0f))
-        {
-            // Adjusts camera to display more of the level in the player's direction, SMW style
-            if (playerMov.GetDirection() == 1)//((playerPos.x > (horizontalDeadZoneCenter + (horizontalDeadZoneLength / 2.0f))) || 
-                //(playerMov.GetDirection() == 1 && playerMov.GetIsRunning()))
-                horizontalDeadZoneCenter = hdzc;
-            else if (playerMov.GetDirection() == -1)//((playerPos.x < (horizontalDeadZoneCenter - (horizontalDeadZoneLength / 2.0f))) ||
-                //(playerMov.GetDirection() == -1 && playerMov.GetIsRunning()))
-                horizontalDeadZoneCenter = 1 - hdzc;
+        //// Adjust the camera position if the player has moved out of the "neutral position" horizontally or vertically.
+        //if (playerPos.x > (horizontalDeadZoneCenter + horizontalDeadZoneLength / 2.0f) || 
+        //    playerPos.x < (horizontalDeadZoneCenter - horizontalDeadZoneLength / 2.0f) ||
+        //    (playerPos.y > (verticalDeadZoneCenter + verticalDeadZoneLength / 2.0f) && playerMov.GetIsGrounded()) || 
+        //    playerPos.y < (verticalDeadZoneCenter - verticalDeadZoneLength / 2.0f))
+        //{
+        //    // Adjusts camera to display more of the level in the player's direction, SMW style
+        //    if (playerMov.GetDirection() == 1)//((playerPos.x > (horizontalDeadZoneCenter + (horizontalDeadZoneLength / 2.0f))) || 
+        //        //(playerMov.GetDirection() == 1 && playerMov.GetIsRunning()))
+        //        horizontalDeadZoneCenter = hdzc;
+        //    else if (playerMov.GetDirection() == -1)//((playerPos.x < (horizontalDeadZoneCenter - (horizontalDeadZoneLength / 2.0f))) ||
+        //        //(playerMov.GetDirection() == -1 && playerMov.GetIsRunning()))
+        //        horizontalDeadZoneCenter = 1 - hdzc;
 
-            float offset = 5.0f * hdzc * playerMov.GetDirection();
+        //    float offset = 5.0f * hdzc * playerMov.GetDirection();
 
-            Vector3 newPos = new Vector3(player.position.x + offset, transform.position.y, -10f);
+        //    Vector3 newPos = new Vector3(player.position.x + offset, transform.position.y, -10f);
 
-            float speed = playerMov.GetIsRunning() ? movementSpeed / 1.5f : movementSpeed;
+        //    float speed = playerMov.GetIsRunning() ? movementSpeed / 1.5f : movementSpeed;
 
-            // Track player y position if the player is not jumping.
-            if (playerMov.GetIsGrounded())
-            {
-                newPos.y = player.position.y + offsetY;
-            }
-            // Track player y position if the player falls out of the vertical dead zone
-            else if(!playerMov.GetIsGrounded() && playerPos.y < (verticalDeadZoneCenter - verticalDeadZoneLength / 2.0f))
-            {
-                newPos.y = player.position.y + offsetY;
+        //    // Track player y position if the player is not jumping.
+        //    if (playerMov.GetIsGrounded())
+        //    {
+        //        newPos.y = player.position.y + offsetY;
+        //    }
+        //    // Track player y position if the player falls out of the vertical dead zone
+        //    else if(!playerMov.GetIsGrounded() && playerPos.y < (verticalDeadZoneCenter - verticalDeadZoneLength / 2.0f))
+        //    {
+        //        newPos.y = player.position.y + offsetY;
 
-                // If the player is moving
-                if(playerRigidbody.velocity.y < 0.0f)
-                {
-                    // Set the camera to the player's position unless they camera reaches its peak
-                    transform.position = newPos.y < minCameraHeight ?
-                        new Vector3(transform.position.x, minCameraHeight, transform.position.z) : 
-                        new Vector3(transform.position.x, newPos.y, transform.position.z);
-                }
-            }
+        //        // If the player is moving
+        //        if(playerRigidbody.velocity.y < 0.0f)
+        //        {
+        //            // Set the camera to the player's position unless they camera reaches its peak
+        //            transform.position = newPos.y < minCameraHeight ?
+        //                new Vector3(transform.position.x, minCameraHeight, transform.position.z) : 
+        //                new Vector3(transform.position.x, newPos.y, transform.position.z);
+        //        }
+        //    }
 
 
-            // Clamp camera height
-            if (newPos.y > maxCameraHeight)
-                newPos.y = maxCameraHeight;
-            else if (newPos.y < minCameraHeight)
-                newPos.y = minCameraHeight;
+        //    // Clamp camera height
+        //    if (newPos.y > maxCameraHeight)
+        //        newPos.y = maxCameraHeight;
+        //    else if (newPos.y < minCameraHeight)
+        //        newPos.y = minCameraHeight;
 
-            // Clap camera x dimension
-            if (newPos.x > maxCameraLength)
-                newPos.x = maxCameraLength;
-            else if (newPos.x < minCameraLength)
-                newPos.x = minCameraLength;
+        //    // Clap camera x dimension
+        //    if (newPos.x > maxCameraLength)
+        //        newPos.x = maxCameraLength;
+        //    else if (newPos.x < minCameraLength)
+        //        newPos.x = minCameraLength;
 
-            transform.position = Vector3.SmoothDamp(transform.position, newPos, ref velocity, speed);
+        //    transform.position = Vector3.SmoothDamp(transform.position, newPos, ref velocity, speed);
 
-            //Debug.Log("Adjust");
-        }
+        //    //Debug.Log("Adjust");
+        //}
 
     }
 
