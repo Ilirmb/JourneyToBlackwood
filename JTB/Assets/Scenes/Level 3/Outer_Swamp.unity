@@ -26741,6 +26741,11 @@ PrefabInstance:
       propertyPath: playerCharacter
       value: 
       objectReference: {fileID: 1630773545}
+    - target: {fileID: 1523427118063040015, guid: 0b34f959d1e416c488f0547173c9959c,
+        type: 3}
+      propertyPath: camera
+      value: 
+      objectReference: {fileID: 1992574161}
     - target: {fileID: 1524065183359430369, guid: 0b34f959d1e416c488f0547173c9959c,
         type: 3}
       propertyPath: TestingArea
@@ -36682,11 +36687,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4525302726031564411, guid: 71343c6d95c5adb49b187fc07af2bba8,
-        type: 3}
-      propertyPath: m_Name
-      value: Hint Display
-      objectReference: {fileID: 0}
     - target: {fileID: 1184396523632076, guid: 71343c6d95c5adb49b187fc07af2bba8, type: 3}
       propertyPath: m_Name
       value: GUI
@@ -36694,6 +36694,22 @@ PrefabInstance:
     - target: {fileID: 1184396523632076, guid: 71343c6d95c5adb49b187fc07af2bba8, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7159353162017759038, guid: 71343c6d95c5adb49b187fc07af2bba8,
+        type: 3}
+      propertyPath: MenuCards.Array.size
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7159353162017759038, guid: 71343c6d95c5adb49b187fc07af2bba8,
+        type: 3}
+      propertyPath: current
+      value: 
+      objectReference: {fileID: 21300000, guid: 1845780bef192564797cef6c3da7b767,
+        type: 3}
+    - target: {fileID: 4525302726031564411, guid: 71343c6d95c5adb49b187fc07af2bba8,
+        type: 3}
+      propertyPath: m_Name
+      value: Hint Display
       objectReference: {fileID: 0}
     - target: {fileID: 224580764219837304, guid: 71343c6d95c5adb49b187fc07af2bba8,
         type: 3}
@@ -37031,17 +37047,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
-    - target: {fileID: 7159353162017759038, guid: 71343c6d95c5adb49b187fc07af2bba8,
-        type: 3}
-      propertyPath: MenuCards.Array.size
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 7159353162017759038, guid: 71343c6d95c5adb49b187fc07af2bba8,
-        type: 3}
-      propertyPath: current
-      value: 
-      objectReference: {fileID: 21300000, guid: 1845780bef192564797cef6c3da7b767,
-        type: 3}
     - target: {fileID: 2664935933678995461, guid: 71343c6d95c5adb49b187fc07af2bba8,
         type: 3}
       propertyPath: m_RootOrder

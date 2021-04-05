@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Anima2D;
+using Cinemachine;
 public class PlayerStatistics : MonoBehaviour
 {
     public CustomPlatformerCharacter2D playerCharacter;
     public StamLossTextManager textSpawn;
     public Checkpoint checkpoint;
-    
+    public CinemachineVirtualCamera camera;
     public float invulnTimer = 0;
     private float damageOverTime = 0;
     public float stamina;
@@ -346,6 +347,8 @@ public class PlayerStatistics : MonoBehaviour
         else
        
         {
+            Debug.Log("Resetting camera");
+            camera.transform.position = checkpoint.transform.position;
             ReloadAtCheckpoint();
             gameObject.GetComponent<CustomPlatformer2DUserControl>().enabled = true;
             stamina = 100f;
@@ -410,17 +413,18 @@ public class PlayerStatistics : MonoBehaviour
     {
         // The commented line was originally used. While it does work, it feels odd sense the camera slides back to the player's position instead of warping to it
         //gameObject.GetComponent<Rigidbody2D>().MovePosition(checkpoint.transform.position);
+        Debug.Log("Resetting camera");
         Debug.Log("Moving player character to the position of the last checkpoint hit");
-      
-        
+
+
         gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-       
         gameObject.transform.position = checkpoint.transform.position;
+        Debug.Log("Resetting camera");
         respawnTimer = 200;
         PlayerMovement.m_MaxSpeed = 10f;
         PlayerMovement.m_JumpForce = 400f;
         respawnTimer = 2000f;
-}
+    }
 
 
     /*IEnumerator BreakTimer()
