@@ -59,8 +59,10 @@ public class HitWater : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
+            playerStatsScript.hittingWater = true;
             playerStatsScript.stamina = 0;
             playerStatsScript.CheckIfDead();
+            
             /*if (playerStatsScript.checkpoint == null)
             {
                 playerStatsScript.ReloadCurrentScene();

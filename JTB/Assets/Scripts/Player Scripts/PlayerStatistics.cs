@@ -7,7 +7,7 @@ public class PlayerStatistics : MonoBehaviour
     public CustomPlatformerCharacter2D playerCharacter;
     public StamLossTextManager textSpawn;
     public Checkpoint checkpoint;
-    
+
     public float invulnTimer = 0;
     private float damageOverTime = 0;
     public float stamina;
@@ -19,6 +19,7 @@ public class PlayerStatistics : MonoBehaviour
     private int frustrationCount;
     private int highFrustrationCount;
     private float timeLeft = 15f;
+    public bool hittingWater = false;
 
     [Tooltip("The distance a player has to walk before they take one 'GameConst.STAMINA_DRAIN_PER_DISTANCE_WALKED' worth of stamina damage")]
     public float walkDistanceToDamageStam = 4.0f;
@@ -331,8 +332,18 @@ public class PlayerStatistics : MonoBehaviour
         //    PlayerMovement.m_JumpForce = 0f;
         //    respawnTimer -= Time.deltaTime;
         //}
+
+        //Disable player control
         gameObject.GetComponent<CustomPlatformer2DUserControl>().enabled = false;
-        yield return new WaitForSeconds(.75f);
+        //Wait for an amount of time
+        if (hittingWater)
+        {
+            yield return new WaitForSeconds(.75f);
+        }
+        else {
+            yield return new WaitForSeconds(.3f);
+        }
+        
 
 
         //if Checkpoint is null, just reload the scene
@@ -420,6 +431,7 @@ public class PlayerStatistics : MonoBehaviour
         PlayerMovement.m_MaxSpeed = 10f;
         PlayerMovement.m_JumpForce = 400f;
         respawnTimer = 2000f;
+        hittingWater = false;
 }
 
 
@@ -440,6 +452,4 @@ public class PlayerStatistics : MonoBehaviour
         }
     }*/
 
-
- 
 }

@@ -169,8 +169,9 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
                 m_Rigidbody2D.gravityScale = 0;
 
                 //Swap active cameras
-                mainCamera.SetActive(false);
                 noclipCamera.SetActive(true);
+                mainCamera.SetActive(false);
+
             }
             //if going out of noclip, set gravity to previous value
             else if (noclip)
@@ -183,8 +184,9 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
                 noclipCamera.GetComponent<CameraZoom>().targetOrtho = noclipCamera.GetComponent<Camera>().orthographicSize;
 
                 //Swap active cameras
-                noclipCamera.SetActive(false);
                 mainCamera.SetActive(true);
+                noclipCamera.SetActive(false);
+
             }
             //flip boolean
             noclip = !noclip;
@@ -464,13 +466,5 @@ public class CustomPlatformerCharacter2D : MonoBehaviour
     {
         mud.Play();
     }
-
-    /*public void OnCollisionEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "water")
-        {
-            gameObject.GetComponent<PlayerStatistics>().stamina = 0;
-        }
-    }*/
 }
 
