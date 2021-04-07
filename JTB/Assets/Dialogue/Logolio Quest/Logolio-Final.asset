@@ -1,0 +1,2126 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-9201323197603998956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ac085fae4e799c44ab966161326a142, type: 3}
+  m_Name: Dialogue
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 3192, y: -232}
+  ports:
+    keys:
+    - previous
+    - childNodes
+    - childNodes 0
+    values:
+    - _fieldName: previous
+      _node: {fileID: -9201323197603998956}
+      _typeQualifiedName: DialogueNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: childNodes 0
+        node: {fileID: -1111506986496432888}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: childNodes
+      _node: {fileID: -9201323197603998956}
+      _typeQualifiedName: System.Collections.Generic.List`1[[DialogueNode+DialogueBranchCondition,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: childNodes 0
+      _node: {fileID: -9201323197603998956}
+      _typeQualifiedName: System.Collections.Generic.List`1[[DialogueNode+DialogueBranchCondition,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: previous
+        node: {fileID: 9058356357932928218}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+  ID: 7
+  previous: {fileID: 0}
+  dialogueNodeType: 0
+  dialogueSpeaker: Logolio
+  dialogueText: Whatever it is that you'll do to me, just do it!
+  dialogueSprite: {fileID: 0}
+  childNodes:
+  - condition: 0
+    targetID: 8
+  actions: []
+  auto:
+    isAuto: 0
+    autoSpeed: 0
+    pauseBeforeNext: 0
+--- !u!114 &-8264938191767294069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ac085fae4e799c44ab966161326a142, type: 3}
+  m_Name: Dialogue
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 7288, y: -232}
+  ports:
+    keys:
+    - previous
+    - childNodes
+    - childNodes 0
+    values:
+    - _fieldName: previous
+      _node: {fileID: -8264938191767294069}
+      _typeQualifiedName: DialogueNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: childNodes 0
+        node: {fileID: 9022734414980613010}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: childNodes
+      _node: {fileID: -8264938191767294069}
+      _typeQualifiedName: System.Collections.Generic.List`1[[DialogueNode+DialogueBranchCondition,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: childNodes 0
+      _node: {fileID: -8264938191767294069}
+      _typeQualifiedName: System.Collections.Generic.List`1[[DialogueNode+DialogueBranchCondition,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: previous
+        node: {fileID: 7308188827775098337}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+  ID: 28
+  previous: {fileID: 0}
+  dialogueNodeType: 0
+  dialogueSpeaker: Logolio
+  dialogueText: You mean it? Even after all I've done?
+  dialogueSprite: {fileID: 0}
+  childNodes:
+  - condition: 0
+    targetID: 29
+  actions: []
+  auto:
+    isAuto: 0
+    autoSpeed: 0
+    pauseBeforeNext: 0
+--- !u!114 &-7907598156871510293
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ac085fae4e799c44ab966161326a142, type: 3}
+  m_Name: Dialogue
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 5992, y: -520}
+  ports:
+    keys:
+    - previous
+    - childNodes
+    values:
+    - _fieldName: previous
+      _node: {fileID: -7907598156871510293}
+      _typeQualifiedName: DialogueNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: childNodes 0
+        node: {fileID: 8534862457532954528}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: childNodes
+      _node: {fileID: -7907598156871510293}
+      _typeQualifiedName: System.Collections.Generic.List`1[[DialogueNode+DialogueBranchCondition,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  ID: 16
+  previous: {fileID: 0}
+  dialogueNodeType: 0
+  dialogueSpeaker: 
+  dialogueText: You'll be coming with us then!
+  dialogueSprite: {fileID: 0}
+  childNodes: []
+  actions: []
+  auto:
+    isAuto: 0
+    autoSpeed: 0
+    pauseBeforeNext: 0
+--- !u!114 &-5766954073736519696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ac085fae4e799c44ab966161326a142, type: 3}
+  m_Name: Dialogue
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 6296, y: -232}
+  ports:
+    keys:
+    - previous
+    - childNodes
+    - childNodes 0
+    values:
+    - _fieldName: previous
+      _node: {fileID: -5766954073736519696}
+      _typeQualifiedName: DialogueNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: childNodes 0
+        node: {fileID: 2034940558587905196}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: childNodes
+      _node: {fileID: -5766954073736519696}
+      _typeQualifiedName: System.Collections.Generic.List`1[[DialogueNode+DialogueBranchCondition,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: childNodes 0
+      _node: {fileID: -5766954073736519696}
+      _typeQualifiedName: System.Collections.Generic.List`1[[DialogueNode+DialogueBranchCondition,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: previous
+        node: {fileID: 619467909893554711}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+  ID: 25
+  previous: {fileID: 0}
+  dialogueNodeType: 0
+  dialogueSpeaker: Logolio
+  dialogueText: '*sniffles* T-Thank you... this tune feels soothing...'
+  dialogueSprite: {fileID: 0}
+  childNodes:
+  - condition: 0
+    targetID: 26
+  actions: []
+  auto:
+    isAuto: 0
+    autoSpeed: 0
+    pauseBeforeNext: 0
+--- !u!114 &-5629325300367567589
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ac085fae4e799c44ab966161326a142, type: 3}
+  m_Name: Dialogue
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 702.47546, y: 96.017204}
+  ports:
+    keys:
+    - previous
+    - childNodes
+    - childNodes 0
+    values:
+    - _fieldName: previous
+      _node: {fileID: -5629325300367567589}
+      _typeQualifiedName: DialogueNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: childNodes
+      _node: {fileID: -5629325300367567589}
+      _typeQualifiedName: System.Collections.Generic.List`1[[DialogueNode+DialogueBranchCondition,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: childNodes 0
+      _node: {fileID: -5629325300367567589}
+      _typeQualifiedName: System.Collections.Generic.List`1[[DialogueNode+DialogueBranchCondition,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: previous
+        node: {fileID: 3989813358090624869}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+  ID: 0
+  previous: {fileID: 0}
+  dialogueNodeType: 0
+  dialogueSpeaker: 
+  dialogueText: Logolio is seen on his bed panting.
+  dialogueSprite: {fileID: 0}
+  childNodes:
+  - condition: 0
+    targetID: 1
+  actions: []
+  auto:
+    isAuto: 0
+    autoSpeed: 0
+    pauseBeforeNext: 0
+--- !u!114 &-2441752577245875316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ac085fae4e799c44ab966161326a142, type: 3}
+  m_Name: Dialogue
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 1464, y: -72}
+  ports:
+    keys:
+    - previous
+    - childNodes
+    - childNodes 0
+    values:
+    - _fieldName: previous
+      _node: {fileID: -2441752577245875316}
+      _typeQualifiedName: DialogueNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: childNodes 0
+        node: {fileID: 3989813358090624869}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: childNodes
+      _node: {fileID: -2441752577245875316}
+      _typeQualifiedName: System.Collections.Generic.List`1[[DialogueNode+DialogueBranchCondition,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: childNodes 0
+      _node: {fileID: -2441752577245875316}
+      _typeQualifiedName: System.Collections.Generic.List`1[[DialogueNode+DialogueBranchCondition,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: previous
+        node: {fileID: -1496905486241051680}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+  ID: 2
+  previous: {fileID: 0}
+  dialogueNodeType: 0
+  dialogueSpeaker: 
+  dialogueText: It's over, Logolio.
+  dialogueSprite: {fileID: 0}
+  childNodes:
+  - condition: 0
+    targetID: 3
+  actions: []
+  auto:
+    isAuto: 0
+    autoSpeed: 0
+    pauseBeforeNext: 0
+--- !u!114 &-2207641251802676829
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ac085fae4e799c44ab966161326a142, type: 3}
+  m_Name: Dialogue
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 5208, y: -232}
+  ports:
+    keys:
+    - previous
+    - childNodes
+    - childNodes 0
+    values:
+    - _fieldName: previous
+      _node: {fileID: -2207641251802676829}
+      _typeQualifiedName: DialogueNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: childNodes 0
+        node: {fileID: 2617823164916229144}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: childNodes
+      _node: {fileID: -2207641251802676829}
+      _typeQualifiedName: System.Collections.Generic.List`1[[DialogueNode+DialogueBranchCondition,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: childNodes 0
+      _node: {fileID: -2207641251802676829}
+      _typeQualifiedName: System.Collections.Generic.List`1[[DialogueNode+DialogueBranchCondition,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: previous
+        node: {fileID: 8534862457532954528}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+  ID: 14
+  previous: {fileID: 0}
+  dialogueNodeType: 0
+  dialogueSpeaker: Logolio
+  dialogueText: You wouldn't understand!
+  dialogueSprite: {fileID: 0}
+  childNodes:
+  - condition: 0
+    targetID: 15
+  actions: []
+  auto:
+    isAuto: 0
+    autoSpeed: 0
+    pauseBeforeNext: 0
+--- !u!114 &-1496905486241051680
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ac085fae4e799c44ab966161326a142, type: 3}
+  m_Name: Dialogue
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 1816, y: -72}
+  ports:
+    keys:
+    - previous
+    - childNodes
+    - childNodes 0
+    values:
+    - _fieldName: previous
+      _node: {fileID: -1496905486241051680}
+      _typeQualifiedName: DialogueNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: childNodes 0
+        node: {fileID: -2441752577245875316}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: childNodes
+      _node: {fileID: -1496905486241051680}
+      _typeQualifiedName: System.Collections.Generic.List`1[[DialogueNode+DialogueBranchCondition,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: childNodes 0
+      _node: {fileID: -1496905486241051680}
+      _typeQualifiedName: System.Collections.Generic.List`1[[DialogueNode+DialogueBranchCondition,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: previous
+        node: {fileID: 2751596241125751146}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+  ID: 3
+  previous: {fileID: 0}
+  dialogueNodeType: 0
+  dialogueSpeaker: Logolio
+  dialogueText: '*huff... puff* Ugh... just... couldn''t... shake you...'
+  dialogueSprite: {fileID: 0}
+  childNodes:
+  - condition: 0
+    targetID: 4
+  actions: []
+  auto:
+    isAuto: 0
+    autoSpeed: 0
+    pauseBeforeNext: 0
+--- !u!114 &-1111506986496432888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ac085fae4e799c44ab966161326a142, type: 3}
+  m_Name: Dialogue
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 2840, y: -232}
+  ports:
+    keys:
+    - previous
+    - childNodes
+    - childNodes 0
+    values:
+    - _fieldName: previous
+      _node: {fileID: -1111506986496432888}
+      _typeQualifiedName: DialogueNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: childNodes 0
+        node: {fileID: 985384835253381972}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: childNodes
+      _node: {fileID: -1111506986496432888}
+      _typeQualifiedName: System.Collections.Generic.List`1[[DialogueNode+DialogueBranchCondition,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: childNodes 0
+      _node: {fileID: -1111506986496432888}
+      _typeQualifiedName: System.Collections.Generic.List`1[[DialogueNode+DialogueBranchCondition,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: previous
+        node: {fileID: -9201323197603998956}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+  ID: 6
+  previous: {fileID: 0}
+  dialogueNodeType: 0
+  dialogueSpeaker: 
+  dialogueText: Logolio?
+  dialogueSprite: {fileID: 0}
+  childNodes:
+  - condition: 0
+    targetID: 7
+  actions: []
+  auto:
+    isAuto: 0
+    autoSpeed: 0
+    pauseBeforeNext: 0
+--- !u!114 &-1574601808868525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ac085fae4e799c44ab966161326a142, type: 3}
+  m_Name: Dialogue
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 3832, y: -232}
+  ports:
+    keys:
+    - previous
+    - childNodes
+    - childNodes 0
+    values:
+    - _fieldName: previous
+      _node: {fileID: -1574601808868525}
+      _typeQualifiedName: DialogueNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: childNodes 0
+        node: {fileID: 9058356357932928218}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: childNodes
+      _node: {fileID: -1574601808868525}
+      _typeQualifiedName: System.Collections.Generic.List`1[[DialogueNode+DialogueBranchCondition,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: childNodes 0
+      _node: {fileID: -1574601808868525}
+      _typeQualifiedName: System.Collections.Generic.List`1[[DialogueNode+DialogueBranchCondition,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: previous
+        node: {fileID: 7372644394312831789}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+  ID: 9
+  previous: {fileID: 0}
+  dialogueNodeType: 1
+  dialogueSpeaker: 
+  dialogueText: 
+  dialogueSprite: {fileID: 0}
+  childNodes:
+  - condition: 0
+    targetID: 11
+  actions: []
+  auto:
+    isAuto: 0
+    autoSpeed: 0
+    pauseBeforeNext: 0
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78a6427c4260bc64790aa6bd03ac8d5e, type: 3}
+  m_Name: Logolio-Final
+  m_EditorClassIdentifier: 
+  nodes:
+  - {fileID: -5629325300367567589}
+  - {fileID: 3989813358090624869}
+  - {fileID: -2441752577245875316}
+  - {fileID: -1496905486241051680}
+  - {fileID: 2751596241125751146}
+  - {fileID: 985384835253381972}
+  - {fileID: -1111506986496432888}
+  - {fileID: -9201323197603998956}
+  - {fileID: 9058356357932928218}
+  - {fileID: -1574601808868525}
+  - {fileID: 7372644394312831789}
+  - {fileID: 5744548612282076797}
+  - {fileID: 2617823164916229144}
+  - {fileID: -2207641251802676829}
+  - {fileID: 8534862457532954528}
+  - {fileID: -7907598156871510293}
+  - {fileID: 7986976283747191099}
+  - {fileID: 2034940558587905196}
+  - {fileID: 1885096450095143570}
+  - {fileID: 6920323039753052485}
+  - {fileID: 3224301064360017404}
+  - {fileID: 6937607491436848569}
+  - {fileID: 348891309335974668}
+  - {fileID: 3673996716746654545}
+  - {fileID: 2605938539816091128}
+  - {fileID: -5766954073736519696}
+  - {fileID: 619467909893554711}
+  - {fileID: 9022734414980613010}
+  - {fileID: -8264938191767294069}
+  - {fileID: 7308188827775098337}
+  dialogue:
+  - {fileID: -5629325300367567589}
+  - {fileID: 3989813358090624869}
+  - {fileID: -2441752577245875316}
+  - {fileID: -1496905486241051680}
+  - {fileID: 2751596241125751146}
+  - {fileID: 985384835253381972}
+  - {fileID: -1111506986496432888}
+  - {fileID: -9201323197603998956}
+  - {fileID: 9058356357932928218}
+  - {fileID: -1574601808868525}
+  - {fileID: 7372644394312831789}
+  - {fileID: 5744548612282076797}
+  - {fileID: 2617823164916229144}
+  - {fileID: -2207641251802676829}
+  - {fileID: 8534862457532954528}
+  - {fileID: -7907598156871510293}
+  - {fileID: 7986976283747191099}
+  - {fileID: 2034940558587905196}
+  - {fileID: 1885096450095143570}
+  - {fileID: 6920323039753052485}
+  - {fileID: 3224301064360017404}
+  - {fileID: 6937607491436848569}
+  - {fileID: 348891309335974668}
+  - {fileID: 3673996716746654545}
+  - {fileID: 2605938539816091128}
+  - {fileID: -5766954073736519696}
+  - {fileID: 619467909893554711}
+  - {fileID: 9022734414980613010}
+  - {fileID: -8264938191767294069}
+  - {fileID: 7308188827775098337}
+  firstNode: {fileID: -5629325300367567589}
+--- !u!114 &348891309335974668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ac085fae4e799c44ab966161326a142, type: 3}
+  m_Name: Dialogue
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 7320, y: 88}
+  ports:
+    keys:
+    - previous
+    - childNodes
+    - childNodes 0
+    values:
+    - _fieldName: previous
+      _node: {fileID: 348891309335974668}
+      _typeQualifiedName: DialogueNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: childNodes 0
+        node: {fileID: 6937607491436848569}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: childNodes
+      _node: {fileID: 348891309335974668}
+      _typeQualifiedName: System.Collections.Generic.List`1[[DialogueNode+DialogueBranchCondition,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: childNodes 0
+      _node: {fileID: 348891309335974668}
+      _typeQualifiedName: System.Collections.Generic.List`1[[DialogueNode+DialogueBranchCondition,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: previous
+        node: {fileID: 3673996716746654545}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+  ID: 22
+  previous: {fileID: 0}
+  dialogueNodeType: 0
+  dialogueSpeaker: Logolio
+  dialogueText: If I don't cast curses and magic once a day, my body starts to ache
+    and my head starts to spin!
+  dialogueSprite: {fileID: 0}
+  childNodes:
+  - condition: 0
+    targetID: 23
+  actions: []
+  auto:
+    isAuto: 0
+    autoSpeed: 0
+    pauseBeforeNext: 0
+--- !u!114 &619467909893554711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ac085fae4e799c44ab966161326a142, type: 3}
+  m_Name: Dialogue
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 6584, y: -232}
+  ports:
+    keys:
+    - previous
+    - childNodes
+    - childNodes 0
+    values:
+    - _fieldName: previous
+      _node: {fileID: 619467909893554711}
+      _typeQualifiedName: DialogueNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: childNodes 0
+        node: {fileID: -5766954073736519696}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: childNodes
+      _node: {fileID: 619467909893554711}
+      _typeQualifiedName: System.Collections.Generic.List`1[[DialogueNode+DialogueBranchCondition,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: childNodes 0
+      _node: {fileID: 619467909893554711}
+      _typeQualifiedName: System.Collections.Generic.List`1[[DialogueNode+DialogueBranchCondition,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: previous
+        node: {fileID: 9022734414980613010}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+  ID: 26
+  previous: {fileID: 0}
+  dialogueNodeType: 1
+  dialogueSpeaker: 
+  dialogueText: 
+  dialogueSprite: {fileID: 0}
+  childNodes:
+  - condition: 0
+    targetID: 27
+  actions: []
+  auto:
+    isAuto: 0
+    autoSpeed: 0
+    pauseBeforeNext: 0
+--- !u!114 &985384835253381972
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ac085fae4e799c44ab966161326a142, type: 3}
+  m_Name: Dialogue
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 2488, y: -72}
+  ports:
+    keys:
+    - previous
+    - childNodes
+    - childNodes 0
+    values:
+    - _fieldName: previous
+      _node: {fileID: 985384835253381972}
+      _typeQualifiedName: DialogueNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: childNodes 0
+        node: {fileID: 2751596241125751146}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: childNodes
+      _node: {fileID: 985384835253381972}
+      _typeQualifiedName: System.Collections.Generic.List`1[[DialogueNode+DialogueBranchCondition,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: childNodes 0
+      _node: {fileID: 985384835253381972}
+      _typeQualifiedName: System.Collections.Generic.List`1[[DialogueNode+DialogueBranchCondition,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: previous
+        node: {fileID: -1111506986496432888}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+  ID: 5
+  previous: {fileID: 0}
+  dialogueNodeType: 1
+  dialogueSpeaker: 
+  dialogueText: 
+  dialogueSprite: {fileID: 0}
+  childNodes:
+  - condition: 0
+    targetID: 6
+  actions: []
+  auto:
+    isAuto: 0
+    autoSpeed: 0
+    pauseBeforeNext: 0
+--- !u!114 &1885096450095143570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ac085fae4e799c44ab966161326a142, type: 3}
+  m_Name: Dialogue
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 6296, y: -520}
+  ports:
+    keys:
+    - previous
+    - childNodes
+    values:
+    - _fieldName: previous
+      _node: {fileID: 1885096450095143570}
+      _typeQualifiedName: DialogueNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: childNodes
+      _node: {fileID: 1885096450095143570}
+      _typeQualifiedName: System.Collections.Generic.List`1[[DialogueNode+DialogueBranchCondition,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  ID: 19
+  previous: {fileID: 0}
+  dialogueNodeType: 0
+  dialogueSpeaker: Riley
+  dialogueText: Your reign of terror ends here!
+  dialogueSprite: {fileID: 0}
+  childNodes: []
+  actions: []
+  auto:
+    isAuto: 0
+    autoSpeed: 0
+    pauseBeforeNext: 0
+--- !u!114 &2034940558587905196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ac085fae4e799c44ab966161326a142, type: 3}
+  m_Name: Dialogue
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 5992, y: -232}
+  ports:
+    keys:
+    - previous
+    - childNodes
+    - childNodes 0
+    values:
+    - _fieldName: previous
+      _node: {fileID: 2034940558587905196}
+      _typeQualifiedName: DialogueNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: childNodes 2
+        node: {fileID: 8534862457532954528}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: childNodes
+      _node: {fileID: 2034940558587905196}
+      _typeQualifiedName: System.Collections.Generic.List`1[[DialogueNode+DialogueBranchCondition,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: childNodes 0
+      _node: {fileID: 2034940558587905196}
+      _typeQualifiedName: System.Collections.Generic.List`1[[DialogueNode+DialogueBranchCondition,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: previous
+        node: {fileID: -5766954073736519696}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+  ID: 18
+  previous: {fileID: 0}
+  dialogueNodeType: 0
+  dialogueSpeaker: 
+  dialogueText: (Pulls out a music box) Music always calms me down
+  dialogueSprite: {fileID: 0}
+  childNodes:
+  - condition: 0
+    targetID: 25
+  actions: []
+  auto:
+    isAuto: 0
+    autoSpeed: 0
+    pauseBeforeNext: 0
+--- !u!114 &2605938539816091128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ac085fae4e799c44ab966161326a142, type: 3}
+  m_Name: Dialogue
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 8008, y: 88}
+  ports:
+    keys:
+    - previous
+    - childNodes
+    values:
+    - _fieldName: previous
+      _node: {fileID: 2605938539816091128}
+      _typeQualifiedName: DialogueNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: childNodes 0
+        node: {fileID: 3673996716746654545}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: childNodes
+      _node: {fileID: 2605938539816091128}
+      _typeQualifiedName: System.Collections.Generic.List`1[[DialogueNode+DialogueBranchCondition,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  ID: 24
+  previous: {fileID: 0}
+  dialogueNodeType: 0
+  dialogueSpeaker: Logolio
+  dialogueText: P-please... I need help! I can't do this on my own!
+  dialogueSprite: {fileID: 0}
+  childNodes: []
+  actions: []
+  auto:
+    isAuto: 0
+    autoSpeed: 0
+    pauseBeforeNext: 0
+--- !u!114 &2617823164916229144
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ac085fae4e799c44ab966161326a142, type: 3}
+  m_Name: Dialogue
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 4856, y: -232}
+  ports:
+    keys:
+    - previous
+    - childNodes
+    - childNodes 0
+    values:
+    - _fieldName: previous
+      _node: {fileID: 2617823164916229144}
+      _typeQualifiedName: DialogueNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: childNodes 0
+        node: {fileID: 5744548612282076797}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: childNodes
+      _node: {fileID: 2617823164916229144}
+      _typeQualifiedName: System.Collections.Generic.List`1[[DialogueNode+DialogueBranchCondition,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: childNodes 0
+      _node: {fileID: 2617823164916229144}
+      _typeQualifiedName: System.Collections.Generic.List`1[[DialogueNode+DialogueBranchCondition,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: previous
+        node: {fileID: -2207641251802676829}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+  ID: 13
+  previous: {fileID: 0}
+  dialogueNodeType: 0
+  dialogueSpeaker: Ridley
+  dialogueText: Hide? What are you hiding from?
+  dialogueSprite: {fileID: 0}
+  childNodes:
+  - condition: 0
+    targetID: 14
+  actions: []
+  auto:
+    isAuto: 0
+    autoSpeed: 0
+    pauseBeforeNext: 0
+--- !u!114 &2751596241125751146
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ac085fae4e799c44ab966161326a142, type: 3}
+  m_Name: Dialogue
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 2152, y: -72}
+  ports:
+    keys:
+    - previous
+    - childNodes
+    - childNodes 0
+    values:
+    - _fieldName: previous
+      _node: {fileID: 2751596241125751146}
+      _typeQualifiedName: DialogueNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: childNodes 0
+        node: {fileID: -1496905486241051680}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: childNodes
+      _node: {fileID: 2751596241125751146}
+      _typeQualifiedName: System.Collections.Generic.List`1[[DialogueNode+DialogueBranchCondition,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: childNodes 0
+      _node: {fileID: 2751596241125751146}
+      _typeQualifiedName: System.Collections.Generic.List`1[[DialogueNode+DialogueBranchCondition,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: previous
+        node: {fileID: 985384835253381972}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+  ID: 4
+  previous: {fileID: 0}
+  dialogueNodeType: 0
+  dialogueSpeaker: 
+  dialogueText: You scan the room noticing all the junk laying about, and Logolio
+    curled up in a ball
+  dialogueSprite: {fileID: 0}
+  childNodes:
+  - condition: 0
+    targetID: 5
+  actions: []
+  auto:
+    isAuto: 0
+    autoSpeed: 0
+    pauseBeforeNext: 0
+--- !u!114 &3224301064360017404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ac085fae4e799c44ab966161326a142, type: 3}
+  m_Name: Dialogue
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 6648, y: 88}
+  ports:
+    keys:
+    - previous
+    - childNodes
+    - childNodes 0
+    values:
+    - _fieldName: previous
+      _node: {fileID: 3224301064360017404}
+      _typeQualifiedName: DialogueNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: childNodes 0
+        node: {fileID: 6920323039753052485}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: childNodes
+      _node: {fileID: 3224301064360017404}
+      _typeQualifiedName: System.Collections.Generic.List`1[[DialogueNode+DialogueBranchCondition,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: childNodes 0
+      _node: {fileID: 3224301064360017404}
+      _typeQualifiedName: System.Collections.Generic.List`1[[DialogueNode+DialogueBranchCondition,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: previous
+        node: {fileID: 6937607491436848569}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+  ID: 20
+  previous: {fileID: 0}
+  dialogueNodeType: 0
+  dialogueSpeaker: Riley
+  dialogueText: WHAT?
+  dialogueSprite: {fileID: 0}
+  childNodes:
+  - condition: 0
+    targetID: 21
+  actions: []
+  auto:
+    isAuto: 0
+    autoSpeed: 0
+    pauseBeforeNext: 0
+--- !u!114 &3673996716746654545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ac085fae4e799c44ab966161326a142, type: 3}
+  m_Name: Dialogue
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 7688, y: 88}
+  ports:
+    keys:
+    - previous
+    - childNodes
+    - childNodes 0
+    values:
+    - _fieldName: previous
+      _node: {fileID: 3673996716746654545}
+      _typeQualifiedName: DialogueNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: childNodes 0
+        node: {fileID: 348891309335974668}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: childNodes
+      _node: {fileID: 3673996716746654545}
+      _typeQualifiedName: System.Collections.Generic.List`1[[DialogueNode+DialogueBranchCondition,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: childNodes 0
+      _node: {fileID: 3673996716746654545}
+      _typeQualifiedName: System.Collections.Generic.List`1[[DialogueNode+DialogueBranchCondition,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: previous
+        node: {fileID: 2605938539816091128}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+  ID: 23
+  previous: {fileID: 0}
+  dialogueNodeType: 0
+  dialogueSpeaker: Logolio
+  dialogueText: I don't want to use this magic, but it takes the aches away.
+  dialogueSprite: {fileID: 0}
+  childNodes:
+  - condition: 0
+    targetID: 24
+  actions: []
+  auto:
+    isAuto: 0
+    autoSpeed: 0
+    pauseBeforeNext: 0
+--- !u!114 &3989813358090624869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ac085fae4e799c44ab966161326a142, type: 3}
+  m_Name: Dialogue
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 1096, y: 88}
+  ports:
+    keys:
+    - previous
+    - childNodes
+    - childNodes 0
+    - childNodes 1
+    values:
+    - _fieldName: previous
+      _node: {fileID: 3989813358090624869}
+      _typeQualifiedName: DialogueNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: childNodes 0
+        node: {fileID: -5629325300367567589}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: childNodes
+      _node: {fileID: 3989813358090624869}
+      _typeQualifiedName: System.Collections.Generic.List`1[[DialogueNode+DialogueBranchCondition,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: childNodes 0
+      _node: {fileID: 3989813358090624869}
+      _typeQualifiedName: System.Collections.Generic.List`1[[DialogueNode+DialogueBranchCondition,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: previous
+        node: {fileID: -2441752577245875316}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: childNodes 1
+      _node: {fileID: 3989813358090624869}
+      _typeQualifiedName: System.Collections.Generic.List`1[[DialogueNode+DialogueBranchCondition,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+  ID: 1
+  previous: {fileID: 0}
+  dialogueNodeType: 1
+  dialogueSpeaker: 
+  dialogueText: 
+  dialogueSprite: {fileID: 0}
+  childNodes:
+  - condition: 0
+    targetID: 2
+  - condition: 0
+    targetID: 10
+  actions: []
+  auto:
+    isAuto: 0
+    autoSpeed: 0
+    pauseBeforeNext: 0
+--- !u!114 &5744548612282076797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ac085fae4e799c44ab966161326a142, type: 3}
+  m_Name: Dialogue
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 4520, y: -232}
+  ports:
+    keys:
+    - previous
+    - childNodes
+    - childNodes 0
+    values:
+    - _fieldName: previous
+      _node: {fileID: 5744548612282076797}
+      _typeQualifiedName: DialogueNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: childNodes 0
+        node: {fileID: 7372644394312831789}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: childNodes
+      _node: {fileID: 5744548612282076797}
+      _typeQualifiedName: System.Collections.Generic.List`1[[DialogueNode+DialogueBranchCondition,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: childNodes 0
+      _node: {fileID: 5744548612282076797}
+      _typeQualifiedName: System.Collections.Generic.List`1[[DialogueNode+DialogueBranchCondition,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: previous
+        node: {fileID: 2617823164916229144}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+  ID: 12
+  previous: {fileID: 0}
+  dialogueNodeType: 0
+  dialogueSpeaker: 
+  dialogueText: I have nothing else but this castle... it's the only place I can hide
+    in peace!
+  dialogueSprite: {fileID: 0}
+  childNodes:
+  - condition: 0
+    targetID: 13
+  actions: []
+  auto:
+    isAuto: 0
+    autoSpeed: 0
+    pauseBeforeNext: 0
+--- !u!114 &6920323039753052485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ac085fae4e799c44ab966161326a142, type: 3}
+  m_Name: Dialogue
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 6344, y: 88}
+  ports:
+    keys:
+    - previous
+    - childNodes
+    - childNodes 0
+    values:
+    - _fieldName: previous
+      _node: {fileID: 6920323039753052485}
+      _typeQualifiedName: DialogueNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: childNodes 0
+        node: {fileID: 7986976283747191099}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: childNodes
+      _node: {fileID: 6920323039753052485}
+      _typeQualifiedName: System.Collections.Generic.List`1[[DialogueNode+DialogueBranchCondition,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: childNodes 0
+      _node: {fileID: 6920323039753052485}
+      _typeQualifiedName: System.Collections.Generic.List`1[[DialogueNode+DialogueBranchCondition,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: previous
+        node: {fileID: 3224301064360017404}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+  ID: 10
+  previous: {fileID: 0}
+  dialogueNodeType: 0
+  dialogueSpeaker: 
+  dialogueText: W-well I'm not a dark sorceror! I'm not!
+  dialogueSprite: {fileID: 0}
+  childNodes:
+  - condition: 0
+    targetID: 20
+  actions: []
+  auto:
+    isAuto: 0
+    autoSpeed: 0
+    pauseBeforeNext: 0
+--- !u!114 &6937607491436848569
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ac085fae4e799c44ab966161326a142, type: 3}
+  m_Name: Dialogue
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 7000, y: 88}
+  ports:
+    keys:
+    - previous
+    - childNodes
+    - childNodes 0
+    values:
+    - _fieldName: previous
+      _node: {fileID: 6937607491436848569}
+      _typeQualifiedName: DialogueNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: childNodes 0
+        node: {fileID: 3224301064360017404}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: childNodes
+      _node: {fileID: 6937607491436848569}
+      _typeQualifiedName: System.Collections.Generic.List`1[[DialogueNode+DialogueBranchCondition,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: childNodes 0
+      _node: {fileID: 6937607491436848569}
+      _typeQualifiedName: System.Collections.Generic.List`1[[DialogueNode+DialogueBranchCondition,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: previous
+        node: {fileID: 348891309335974668}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+  ID: 21
+  previous: {fileID: 0}
+  dialogueNodeType: 0
+  dialogueSpeaker: Logolio
+  dialogueText: I read a forbidden spell book a long time ago, and I've been cursed
+    ever since!
+  dialogueSprite: {fileID: 0}
+  childNodes:
+  - condition: 0
+    targetID: 22
+  actions: []
+  auto:
+    isAuto: 0
+    autoSpeed: 0
+    pauseBeforeNext: 0
+--- !u!114 &7308188827775098337
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ac085fae4e799c44ab966161326a142, type: 3}
+  m_Name: Dialogue
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 7640, y: -232}
+  ports:
+    keys:
+    - previous
+    - childNodes
+    values:
+    - _fieldName: previous
+      _node: {fileID: 7308188827775098337}
+      _typeQualifiedName: DialogueNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: childNodes 0
+        node: {fileID: -8264938191767294069}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: childNodes
+      _node: {fileID: 7308188827775098337}
+      _typeQualifiedName: System.Collections.Generic.List`1[[DialogueNode+DialogueBranchCondition,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  ID: 29
+  previous: {fileID: 0}
+  dialogueNodeType: 0
+  dialogueSpeaker: Logolio
+  dialogueText: Oh thank you, thank you Hero!
+  dialogueSprite: {fileID: 0}
+  childNodes: []
+  actions: []
+  auto:
+    isAuto: 0
+    autoSpeed: 0
+    pauseBeforeNext: 0
+--- !u!114 &7372644394312831789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ac085fae4e799c44ab966161326a142, type: 3}
+  m_Name: Dialogue
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 4168, y: -232}
+  ports:
+    keys:
+    - previous
+    - childNodes
+    - childNodes 0
+    values:
+    - _fieldName: previous
+      _node: {fileID: 7372644394312831789}
+      _typeQualifiedName: DialogueNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: childNodes 0
+        node: {fileID: -1574601808868525}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: childNodes
+      _node: {fileID: 7372644394312831789}
+      _typeQualifiedName: System.Collections.Generic.List`1[[DialogueNode+DialogueBranchCondition,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: childNodes 0
+      _node: {fileID: 7372644394312831789}
+      _typeQualifiedName: System.Collections.Generic.List`1[[DialogueNode+DialogueBranchCondition,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: previous
+        node: {fileID: 5744548612282076797}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+  ID: 11
+  previous: {fileID: 0}
+  dialogueNodeType: 0
+  dialogueSpeaker: 
+  dialogueText: Is this where you live?
+  dialogueSprite: {fileID: 0}
+  childNodes:
+  - condition: 0
+    targetID: 12
+  actions: []
+  auto:
+    isAuto: 0
+    autoSpeed: 0
+    pauseBeforeNext: 0
+--- !u!114 &7986976283747191099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ac085fae4e799c44ab966161326a142, type: 3}
+  m_Name: Dialogue
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 5992, y: 88}
+  ports:
+    keys:
+    - previous
+    - childNodes
+    - childNodes 0
+    values:
+    - _fieldName: previous
+      _node: {fileID: 7986976283747191099}
+      _typeQualifiedName: DialogueNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: childNodes 1
+        node: {fileID: 8534862457532954528}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: childNodes
+      _node: {fileID: 7986976283747191099}
+      _typeQualifiedName: System.Collections.Generic.List`1[[DialogueNode+DialogueBranchCondition,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: childNodes 0
+      _node: {fileID: 7986976283747191099}
+      _typeQualifiedName: System.Collections.Generic.List`1[[DialogueNode+DialogueBranchCondition,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: previous
+        node: {fileID: 6920323039753052485}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+  ID: 17
+  previous: {fileID: 0}
+  dialogueNodeType: 0
+  dialogueSpeaker: 
+  dialogueText: Tell me what's wrong
+  dialogueSprite: {fileID: 0}
+  childNodes:
+  - condition: 0
+    targetID: 10
+  actions: []
+  auto:
+    isAuto: 0
+    autoSpeed: 0
+    pauseBeforeNext: 0
+--- !u!114 &8534862457532954528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ac085fae4e799c44ab966161326a142, type: 3}
+  m_Name: Dialogue
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 5547.6924, y: -228.79657}
+  ports:
+    keys:
+    - previous
+    - childNodes
+    - childNodes 0
+    - childNodes 1
+    - childNodes 2
+    values:
+    - _fieldName: previous
+      _node: {fileID: 8534862457532954528}
+      _typeQualifiedName: DialogueNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: childNodes 0
+        node: {fileID: -2207641251802676829}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: childNodes
+      _node: {fileID: 8534862457532954528}
+      _typeQualifiedName: System.Collections.Generic.List`1[[DialogueNode+DialogueBranchCondition,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: childNodes 0
+      _node: {fileID: 8534862457532954528}
+      _typeQualifiedName: System.Collections.Generic.List`1[[DialogueNode+DialogueBranchCondition,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: previous
+        node: {fileID: -7907598156871510293}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: childNodes 1
+      _node: {fileID: 8534862457532954528}
+      _typeQualifiedName: System.Collections.Generic.List`1[[DialogueNode+DialogueBranchCondition,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: previous
+        node: {fileID: 7986976283747191099}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: childNodes 2
+      _node: {fileID: 8534862457532954528}
+      _typeQualifiedName: System.Collections.Generic.List`1[[DialogueNode+DialogueBranchCondition,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: previous
+        node: {fileID: 2034940558587905196}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+  ID: 15
+  previous: {fileID: 0}
+  dialogueNodeType: 1
+  dialogueSpeaker: 
+  dialogueText: 
+  dialogueSprite: {fileID: 0}
+  childNodes:
+  - condition: 0
+    targetID: 16
+  - condition: 0
+    targetID: 17
+  - condition: 0
+    targetID: 18
+  actions: []
+  auto:
+    isAuto: 0
+    autoSpeed: 0
+    pauseBeforeNext: 0
+--- !u!114 &9022734414980613010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ac085fae4e799c44ab966161326a142, type: 3}
+  m_Name: Dialogue
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 6936, y: -232}
+  ports:
+    keys:
+    - previous
+    - childNodes
+    - childNodes 0
+    values:
+    - _fieldName: previous
+      _node: {fileID: 9022734414980613010}
+      _typeQualifiedName: DialogueNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: childNodes 0
+        node: {fileID: 619467909893554711}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: childNodes
+      _node: {fileID: 9022734414980613010}
+      _typeQualifiedName: System.Collections.Generic.List`1[[DialogueNode+DialogueBranchCondition,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: childNodes 0
+      _node: {fileID: 9022734414980613010}
+      _typeQualifiedName: System.Collections.Generic.List`1[[DialogueNode+DialogueBranchCondition,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: previous
+        node: {fileID: -8264938191767294069}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+  ID: 27
+  previous: {fileID: 0}
+  dialogueNodeType: 0
+  dialogueSpeaker: 
+  dialogueText: I can help you...
+  dialogueSprite: {fileID: 0}
+  childNodes:
+  - condition: 0
+    targetID: 28
+  actions: []
+  auto:
+    isAuto: 0
+    autoSpeed: 0
+    pauseBeforeNext: 0
+--- !u!114 &9058356357932928218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ac085fae4e799c44ab966161326a142, type: 3}
+  m_Name: Dialogue
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 3512, y: -232}
+  ports:
+    keys:
+    - previous
+    - childNodes
+    - childNodes 0
+    values:
+    - _fieldName: previous
+      _node: {fileID: 9058356357932928218}
+      _typeQualifiedName: DialogueNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: childNodes 0
+        node: {fileID: -9201323197603998956}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: childNodes
+      _node: {fileID: 9058356357932928218}
+      _typeQualifiedName: System.Collections.Generic.List`1[[DialogueNode+DialogueBranchCondition,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: childNodes 0
+      _node: {fileID: 9058356357932928218}
+      _typeQualifiedName: System.Collections.Generic.List`1[[DialogueNode+DialogueBranchCondition,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: previous
+        node: {fileID: -1574601808868525}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+  ID: 8
+  previous: {fileID: 0}
+  dialogueNodeType: 0
+  dialogueSpeaker: Riley
+  dialogueText: Well... uh...
+  dialogueSprite: {fileID: 0}
+  childNodes:
+  - condition: 0
+    targetID: 9
+  actions: []
+  auto:
+    isAuto: 0
+    autoSpeed: 0
+    pauseBeforeNext: 0
