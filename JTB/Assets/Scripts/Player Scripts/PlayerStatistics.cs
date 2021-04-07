@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Anima2D;
+using Cinemachine;
 public class PlayerStatistics : MonoBehaviour
 {
     public CustomPlatformerCharacter2D playerCharacter;
     public StamLossTextManager textSpawn;
     public Checkpoint checkpoint;
-
+    public GameObject camera;
+    public GameObject player;
     public float invulnTimer = 0;
     private float damageOverTime = 0;
     public float stamina;
@@ -19,7 +21,6 @@ public class PlayerStatistics : MonoBehaviour
     private int frustrationCount;
     private int highFrustrationCount;
     private float timeLeft = 15f;
-    public bool hittingWater = false;
 
     [Tooltip("The distance a player has to walk before they take one 'GameConst.STAMINA_DRAIN_PER_DISTANCE_WALKED' worth of stamina damage")]
     public float walkDistanceToDamageStam = 4.0f;
@@ -325,23 +326,15 @@ public class PlayerStatistics : MonoBehaviour
     //creates respawn timer for when the player is dead
      IEnumerator deathTimer()
     {
-        //Disable player control
+        Debug.Log("Testing Check if Dead. If this Message Appears, success!");
+        //if (respawnTimer >= 1)
+        //{
+        //    PlayerMovement.m_MaxSpeed = 0f;
+        //    PlayerMovement.m_JumpForce = 0f;
+        //    respawnTimer -= Time.deltaTime;
+        //}
         gameObject.GetComponent<CustomPlatformer2DUserControl>().enabled = false;
-
-
-        //Wait for an amount of time
-
-        //If colliding with water, wait longer so player disappears below surface
-        if (hittingWater)
-        {
-            
-            yield return new WaitForSeconds(.75f);
-        }
-        //Shorter wait via spikes and whatnot
-        else {
-            yield return new WaitForSeconds(.3f);
-        }
-        
+        yield return new WaitForSeconds(.75f);
 
 
         //if Checkpoint is null, just reload the scene
@@ -355,6 +348,7 @@ public class PlayerStatistics : MonoBehaviour
         else
        
         {
+ 
             ReloadAtCheckpoint();
             gameObject.GetComponent<CustomPlatformer2DUserControl>().enabled = true;
             stamina = 100f;
@@ -420,17 +414,16 @@ public class PlayerStatistics : MonoBehaviour
         // The commented line was originally used. While it does work, it feels odd sense the camera slides back to the player's position instead of warping to it
         //gameObject.GetComponent<Rigidbody2D>().MovePosition(checkpoint.transform.position);
         Debug.Log("Moving player character to the position of the last checkpoint hit");
-      
+        //gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         
-        gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-       
-        gameObject.transform.position = checkpoint.transform.position;
+        player.transform.position = checkpoint.transform.position;
+        Debug.Log("Resetting camera");
+        camera.transform.position = player.transform.position;
         respawnTimer = 200;
         PlayerMovement.m_MaxSpeed = 10f;
         PlayerMovement.m_JumpForce = 400f;
         respawnTimer = 2000f;
-        hittingWater = false;
-}
+    }
 
 
     /*IEnumerator BreakTimer()
@@ -450,4 +443,6 @@ public class PlayerStatistics : MonoBehaviour
         }
     }*/
 
+
+ 
 }
