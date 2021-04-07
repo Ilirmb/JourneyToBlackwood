@@ -325,21 +325,19 @@ public class PlayerStatistics : MonoBehaviour
     //creates respawn timer for when the player is dead
      IEnumerator deathTimer()
     {
-        Debug.Log("Testing Check if Dead. If this Message Appears, success!");
-        //if (respawnTimer >= 1)
-        //{
-        //    PlayerMovement.m_MaxSpeed = 0f;
-        //    PlayerMovement.m_JumpForce = 0f;
-        //    respawnTimer -= Time.deltaTime;
-        //}
-
         //Disable player control
         gameObject.GetComponent<CustomPlatformer2DUserControl>().enabled = false;
+
+
         //Wait for an amount of time
+
+        //If colliding with water, wait longer so player disappears below surface
         if (hittingWater)
         {
+            
             yield return new WaitForSeconds(.75f);
         }
+        //Shorter wait via spikes and whatnot
         else {
             yield return new WaitForSeconds(.3f);
         }
