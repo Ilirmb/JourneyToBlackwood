@@ -348,6 +348,7 @@ public class PlayerStatistics : MonoBehaviour
         else
        
         {
+ 
             ReloadAtCheckpoint();
             gameObject.GetComponent<CustomPlatformer2DUserControl>().enabled = true;
             stamina = 100f;
@@ -414,9 +415,10 @@ public class PlayerStatistics : MonoBehaviour
         //gameObject.GetComponent<Rigidbody2D>().MovePosition(checkpoint.transform.position);
         Debug.Log("Moving player character to the position of the last checkpoint hit");
         //gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        
         player.transform.position = checkpoint.transform.position;
         Debug.Log("Resetting camera");
-        camera.transform.position = checkpoint.transform.position;
+        camera.transform.position = player.transform.position;
         respawnTimer = 200;
         PlayerMovement.m_MaxSpeed = 10f;
         PlayerMovement.m_JumpForce = 400f;
