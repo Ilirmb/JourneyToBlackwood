@@ -7923,6 +7923,7 @@ GameObject:
   m_Component:
   - component: {fileID: 243440444}
   - component: {fileID: 243440445}
+  - component: {fileID: 243440446}
   m_Layer: 0
   m_Name: Quest Dialogue (2)
   m_TagString: Untagged
@@ -7970,6 +7971,32 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 8.285156, y: 5.05925}
   m_EdgeRadius: 0
+--- !u!114 &243440446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 243440443}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96c8f4f54c914624b885315b8940dd30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  questName: 
+  characterName: 
+  characterSprite: {fileID: 0}
+  questItems: []
+  collisionStartsFirstEncounter: 1
+  questIntro: {fileID: 11400000, guid: 1a927915165adad46853d58507037bec, type: 2}
+  rejectedDialogue: {fileID: 0}
+  activeDialogue: {fileID: 0}
+  completedDialogue: {fileID: 0}
+  failedDialogue: {fileID: 0}
+  finishedDialogue: {fileID: 0}
+  friendshipThreshold: 0
+  questsRequired: []
+  removeItemsIfInactive: 0
 --- !u!1 &244618167
 GameObject:
   m_ObjectHideFlags: 0
@@ -15550,6 +15577,7 @@ GameObject:
   m_Component:
   - component: {fileID: 461117381}
   - component: {fileID: 461117382}
+  - component: {fileID: 461117383}
   m_Layer: 0
   m_Name: Quest Dialogue
   m_TagString: Untagged
@@ -15597,6 +15625,32 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 8.285156, y: 5.05925}
   m_EdgeRadius: 0
+--- !u!114 &461117383
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 461117380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96c8f4f54c914624b885315b8940dd30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  questName: Logolio Quest
+  characterName: Logolio
+  characterSprite: {fileID: 0}
+  questItems: []
+  collisionStartsFirstEncounter: 1
+  questIntro: {fileID: 11400000, guid: 476e8c809234e104cba3133708e21375, type: 2}
+  rejectedDialogue: {fileID: 0}
+  activeDialogue: {fileID: 0}
+  completedDialogue: {fileID: 0}
+  failedDialogue: {fileID: 0}
+  finishedDialogue: {fileID: 0}
+  friendshipThreshold: 0
+  questsRequired: []
+  removeItemsIfInactive: 0
 --- !u!1 &464228342
 GameObject:
   m_ObjectHideFlags: 0
@@ -17181,7 +17235,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 500062367}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1296.6, y: 227.6848, z: -10}
+  m_LocalPosition: {x: -1297.95, y: 227.8248, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 714687004}
@@ -18244,6 +18298,7 @@ GameObject:
   m_Component:
   - component: {fileID: 532707348}
   - component: {fileID: 532707349}
+  - component: {fileID: 532707350}
   m_Layer: 0
   m_Name: Quest Dialogue (1)
   m_TagString: Untagged
@@ -18291,6 +18346,32 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 8.285156, y: 5.05925}
   m_EdgeRadius: 0
+--- !u!114 &532707350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 532707347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96c8f4f54c914624b885315b8940dd30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  questName: 
+  characterName: 
+  characterSprite: {fileID: 0}
+  questItems: []
+  collisionStartsFirstEncounter: 1
+  questIntro: {fileID: 11400000, guid: 0d34f5fefe47eb3428405af1e8d9b862, type: 2}
+  rejectedDialogue: {fileID: 0}
+  activeDialogue: {fileID: 0}
+  completedDialogue: {fileID: 0}
+  failedDialogue: {fileID: 0}
+  finishedDialogue: {fileID: 0}
+  friendshipThreshold: 0
+  questsRequired: []
+  removeItemsIfInactive: 0
 --- !u!1 &532967773
 GameObject:
   m_ObjectHideFlags: 0
@@ -29756,12 +29837,12 @@ PrefabInstance:
     - target: {fileID: 1491189035776086651, guid: 0b34f959d1e416c488f0547173c9959c,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1296.6
+      value: -1297.95
       objectReference: {fileID: 0}
     - target: {fileID: 1491189035776086651, guid: 0b34f959d1e416c488f0547173c9959c,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 226.63
+      value: 226.77
       objectReference: {fileID: 0}
     - target: {fileID: 1491189035776086651, guid: 0b34f959d1e416c488f0547173c9959c,
         type: 3}
@@ -30863,6 +30944,7 @@ GameObject:
   m_Component:
   - component: {fileID: 871311432}
   - component: {fileID: 871311433}
+  - component: {fileID: 871311434}
   m_Layer: 0
   m_Name: Quest Dialogue (3)
   m_TagString: Untagged
@@ -30894,7 +30976,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.20898438, y: -0.53725433}
@@ -30910,6 +30992,32 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 8.285156, y: 5.05925}
   m_EdgeRadius: 0
+--- !u!114 &871311434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 871311431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96c8f4f54c914624b885315b8940dd30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  questName: 
+  characterName: 
+  characterSprite: {fileID: 0}
+  questItems: []
+  collisionStartsFirstEncounter: 1
+  questIntro: {fileID: 11400000, guid: 13098c2372ff30c42a6c0bdda33dede1, type: 2}
+  rejectedDialogue: {fileID: 0}
+  activeDialogue: {fileID: 0}
+  completedDialogue: {fileID: 0}
+  failedDialogue: {fileID: 0}
+  finishedDialogue: {fileID: 0}
+  friendshipThreshold: 0
+  questsRequired: []
+  removeItemsIfInactive: 0
 --- !u!1001 &871606632
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -53713,7 +53821,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1569860428}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1296.6, y: 227.6848, z: -10}
+  m_LocalPosition: {x: -1297.95, y: 227.8248, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
