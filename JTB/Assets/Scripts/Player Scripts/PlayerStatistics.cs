@@ -8,9 +8,9 @@ public class PlayerStatistics : MonoBehaviour
     public CustomPlatformerCharacter2D playerCharacter;
     public StamLossTextManager textSpawn;
     public Checkpoint checkpoint;
-    public GameObject camera;
     public GameObject player;
     public float invulnTimer = 0;
+    public bool hittingWater = false;
     private float damageOverTime = 0;
     public float stamina;
     public float maxStamina = 100;
@@ -334,6 +334,7 @@ public class PlayerStatistics : MonoBehaviour
         //    respawnTimer -= Time.deltaTime;
         //}
         gameObject.GetComponent<CustomPlatformer2DUserControl>().enabled = false;
+        hittingWater = false;
         yield return new WaitForSeconds(.75f);
 
 
@@ -415,10 +416,8 @@ public class PlayerStatistics : MonoBehaviour
         //gameObject.GetComponent<Rigidbody2D>().MovePosition(checkpoint.transform.position);
         Debug.Log("Moving player character to the position of the last checkpoint hit");
         //gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-        
+
         player.transform.position = checkpoint.transform.position;
-        Debug.Log("Resetting camera");
-        camera.transform.position = player.transform.position;
         respawnTimer = 200;
         PlayerMovement.m_MaxSpeed = 10f;
         PlayerMovement.m_JumpForce = 400f;
