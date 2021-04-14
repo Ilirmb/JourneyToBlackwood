@@ -48,7 +48,9 @@ MonoBehaviour:
   dialogueText: Alright! Go get em' and I might share, how does that sound?
   dialogueSprite: {fileID: 0}
   childNodes: []
-  actions: []
+  actions:
+  - action: 1
+    param: 
   auto:
     isAuto: 0
     autoSpeed: 0
@@ -132,23 +134,23 @@ MonoBehaviour:
   m_Name: RogueMushMidpoint
   m_EditorClassIdentifier: 
   nodes:
-  - {fileID: 5263454702694345882}
-  - {fileID: 5622118420029768050}
-  - {fileID: 4528695765782758815}
-  - {fileID: 9092776326529435844}
-  - {fileID: 7697011298692167680}
-  - {fileID: 1108410284356932832}
-  - {fileID: -8530719024195009918}
   - {fileID: -4470724648289680208}
+  - {fileID: -8530719024195009918}
+  - {fileID: 1108410284356932832}
+  - {fileID: 7697011298692167680}
+  - {fileID: 9092776326529435844}
+  - {fileID: 4528695765782758815}
+  - {fileID: 5622118420029768050}
+  - {fileID: 5263454702694345882}
   dialogue:
-  - {fileID: 5263454702694345882}
-  - {fileID: 5622118420029768050}
-  - {fileID: 4528695765782758815}
-  - {fileID: 9092776326529435844}
-  - {fileID: 7697011298692167680}
-  - {fileID: 1108410284356932832}
-  - {fileID: -8530719024195009918}
   - {fileID: -4470724648289680208}
+  - {fileID: -8530719024195009918}
+  - {fileID: 1108410284356932832}
+  - {fileID: 7697011298692167680}
+  - {fileID: 9092776326529435844}
+  - {fileID: 4528695765782758815}
+  - {fileID: 5622118420029768050}
+  - {fileID: 5263454702694345882}
   firstNode: {fileID: -4470724648289680208}
 --- !u!114 &1108410284356932832
 MonoBehaviour:
