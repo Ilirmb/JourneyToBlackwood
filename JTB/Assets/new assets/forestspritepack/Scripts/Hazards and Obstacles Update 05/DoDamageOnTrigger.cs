@@ -6,7 +6,7 @@ public class DoDamageOnTrigger : MonoBehaviour
 {
     GameObject Player;
     PlayerStatistics playerStatsScript;
-    public Checkpoint checkPoint;
+    //public Checkpoint checkPoint;
 
     void Start()
     {
@@ -18,10 +18,10 @@ public class DoDamageOnTrigger : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            checkPoint = playerStatsScript.checkpoint;
+            //checkPoint = playerStatsScript.checkpoint;
             playerStatsScript.stamina -=100;
-            Player.transform.position = checkPoint.transform.position;
-            // playerStatsScript.CheckIfDead();
+            //Player.transform.position = checkPoint.transform.position;
+            playerStatsScript.CheckIfDead();
         }
     }
 }
