@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 1555903190437761987}
   - component: {fileID: 1461832100044115807}
   - component: {fileID: 3666730575359708784}
+  - component: {fileID: 6367904107993217750}
   m_Layer: 0
   m_Name: Player Controller
   m_TagString: Player
@@ -93,6 +94,7 @@ MonoBehaviour:
   respawnTimer: 20000
   frustration: 0
   walkDistanceToDamageStam: 4
+  hittingWater: 0
   ls: {fileID: 0}
   numPlayerDeaths: 0
 --- !u!114 &1524065183359430369
@@ -274,12 +276,27 @@ MonoBehaviour:
   m_Sliding: 0
   vspeed: 0
   hspeed: 0
+  quicksand: 0
   OnRiverLog: 0
   isCrouching: 0
   noclip: 0
   mainCamera: {fileID: 0}
   noclipCamera: {fileID: 0}
   mud: {fileID: 0}
+--- !u!114 &6367904107993217750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1491189035776052827}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37bed8872b1be634b98fe9c52cb0e1ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  checkLength: 3
+  currentWaveManager: {fileID: 0}
 --- !u!1 &1491189035776052829
 GameObject:
   m_ObjectHideFlags: 0

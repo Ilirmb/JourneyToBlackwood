@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Anima2D;
 using Cinemachine;
 public class PlayerStatistics : MonoBehaviour
@@ -8,13 +9,13 @@ public class PlayerStatistics : MonoBehaviour
     public CustomPlatformerCharacter2D playerCharacter;
     public StamLossTextManager textSpawn;
     public Checkpoint checkpoint;
-    public GameObject camera;
-    public GameObject player;
+
     public float invulnTimer = 0;
     private float damageOverTime = 0;
     public float stamina;
     public float maxStamina = 100;
     public float respawnTimer = 20000f;
+
     // Frustration variables
     public float frustration = 0;
     private bool highFrustration;
@@ -26,6 +27,7 @@ public class PlayerStatistics : MonoBehaviour
     public float walkDistanceToDamageStam = 4.0f;
     private bool isMoving = false;
     private Vector2 positionLastFrame;
+    public bool hittingWater = false;
 
     // The player's body. Some old behavior relating to invul flashing no longer works sense the player is no longer a single sprite
     private GameObject playerBody;
@@ -58,7 +60,7 @@ public class PlayerStatistics : MonoBehaviour
                 playerBody = transform.GetChild(i).transform.GetChild(1).gameObject;
         }
 
-        stamina = 100;
+        stamina = maxStamina;
     }
 
     public void UpdateColors()
@@ -71,30 +73,6 @@ public class PlayerStatistics : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*if (frustration >= 70f && timeLeft > 0f)
-        {
-            highFrustration = true;
-            timeLeft -= Time.deltaTime;
-        }
-        if (frustration < 70f)
-        {
-            highFrustration = false;
-            timeLeft = 15f;
-        }
-        if (timeLeft <= 0)
-        {
-            //hint here
-            Debug.Log("Frustration High");
-            frustrationCount++;
-            timeLeft = 15f;
-        }
-
-        // Pause the game
-        if (frustrationCount >= 3)
-        {
-            //StartCoroutine(BreakTimer());
-            frustrationCount = 0;
-        }*/
         CheckIfDead();
 
         if (invulnTimer > 0)
@@ -127,7 +105,7 @@ public class PlayerStatistics : MonoBehaviour
 
     public void ReloadCurrentScene()
     {
-        ls.ReloadCurrentScene();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public float getStamina()
@@ -326,14 +304,20 @@ public class PlayerStatistics : MonoBehaviour
     //creates respawn timer for when the player is dead
      IEnumerator deathTimer()
     {
-        Debug.Log("Testing Check if Dead. If this Message Appears, success!");
-        //if (respawnTimer >= 1)
-        //{
-        //    PlayerMovement.m_MaxSpeed = 0f;
-        //    PlayerMovement.m_JumpForce = 0f;
-        //    respawnTimer -= Time.deltaTime;
-        //}
         gameObject.GetComponent<CustomPlatformer2DUserControl>().enabled = false;
+
+        //If colliding with water, wait longer so player disappears below surface
+        if (hittingWater)
+        {
+
+            yield return new WaitForSeconds(.75f);
+        }
+        //Shorter wait via spikes and whatnot
+        else
+        {
+            yield return new WaitForSeconds(.3f);
+        }
+
         yield return new WaitForSeconds(.75f);
 
 
@@ -342,19 +326,12 @@ public class PlayerStatistics : MonoBehaviour
         {
             // Restart if stamina is equal to or less than 0
             // Pretty blunt way of reloading, reloads the current scene
-            ls.ReloadCurrentScene();
+            ReloadCurrentScene();
         }
         //Otherwise go to Checkpoint
         else
-       
         {
- 
             ReloadAtCheckpoint();
-            gameObject.GetComponent<CustomPlatformer2DUserControl>().enabled = true;
-            stamina = 100f;
-
-            //We set the invulnerability timer to allow the player to reorient themselves at the Checkpoint
-            invulnTimer = 1.5f;
         }
 
         // Invokes the player death event
@@ -364,85 +341,32 @@ public class PlayerStatistics : MonoBehaviour
         GameManager.instance.AffectStatValue("Num Deaths", 1);
         playerCharacter.StopSliding();
     }
-    /// <summary>
-    /// CheckIfDead
-    /// Checks if the player is out of stamina
-    /// </summary>
-    // This function was made from code originally in the update function
+
     public void CheckIfDead()
     {
-        //Debug.Log("Testing Check if Dead. If this Message Appears, success!");
         if (stamina <= 0)
         {
             StartCoroutine(deathTimer());
-            //Debug.Log("Testing Check if Dead. If this Message Appears, success!");
-            //if (respawnTimer >= 1)
-            //{
-            //    PlayerMovement.m_MaxSpeed = 0f;
-            //    PlayerMovement.m_JumpForce = 0f;
-            //    respawnTimer -= Time.deltaTime;
-            //}
-            //    //if Checkpoint is null, just reload the scene
-            //    if (checkpoint == null)
-            //{
-            //    // Restart if stamina is equal to or less than 0
-            //    // Pretty blunt way of reloading, reloads the current scene
-            //    ls.ReloadCurrentScene();
-            //}
-            ////Otherwise go to Checkpoint
-            //else
-            //{
-            //    ReloadAtCheckpoint();
-
-            //    stamina = 100f;
-
-            //    //We set the invulnerability timer to allow the player to reorient themselves at the Checkpoint
-            //    invulnTimer = 1.5f;
-            //}
-
-            //// Invokes the player death event
-            //GameManager.instance.OnPlayerDeath.Invoke();
-
-            //numPlayerDeaths++;
-            //GameManager.instance.AffectStatValue("Num Deaths", 1);
-            //playerCharacter.StopSliding();
         }
     }
 
     public void ReloadAtCheckpoint()
     {
-        // The commented line was originally used. While it does work, it feels odd sense the camera slides back to the player's position instead of warping to it
-        //gameObject.GetComponent<Rigidbody2D>().MovePosition(checkpoint.transform.position);
+        gameObject.GetComponent<Rigidbody2D>().MovePosition(checkpoint.transform.position);
         Debug.Log("Moving player character to the position of the last checkpoint hit");
-        //gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-        
-        player.transform.position = checkpoint.transform.position;
+        gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+
+        gameObject.GetComponent<CustomPlatformer2DUserControl>().enabled = true;
+        stamina = 100f;
+        hittingWater = false;
+        invulnTimer = 1.5f;
+
+        transform.position = checkpoint.transform.position;
         Debug.Log("Resetting camera");
-        camera.transform.position = player.transform.position;
+
         respawnTimer = 200;
         PlayerMovement.m_MaxSpeed = 10f;
         PlayerMovement.m_JumpForce = 400f;
         respawnTimer = 2000f;
     }
-
-
-    /*IEnumerator BreakTimer()
-    {
-        Time.timeScale = 0.0f;
-        yield return WaitForUnscaledSeconds(5f);
-        Time.timeScale = 1.0f;
-    }
-
-    IEnumerator WaitForUnscaledSeconds(float dur)
-    {
-        var cur = 0f;
-        while (cur < dur)
-        {
-            yield return null;
-            cur += Time.unscaledDeltaTime;
-        }
-    }*/
-
-
- 
 }

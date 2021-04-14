@@ -9,15 +9,6 @@ public class Checkpoint : MonoBehaviour {
 
     private PlayerStatistics playerStatistics;
 
-    //This is just so at the initial load-in we can create a 'Checkpoint' that they can respawn at rather than resetting the scene
-    //Too bad it doesn't work *hairpull*
-    //I might have to use some sort of instansiate() and immediately disable 
-    /*public Checkpoint(Vector3 position)
-    {
-        gameObject.transform.position = position;
-        //GetComponent<SpriteRenderer>().enabled = false;
-    }*/
-
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "Player")
@@ -32,9 +23,10 @@ public class Checkpoint : MonoBehaviour {
         this.GetComponent<SpriteRenderer>().sprite = inactiveSprite;
     }
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         playerStatistics = GameObject.Find(GameConst.PLAYER_OBJECT_NAME).GetComponent<PlayerStatistics>();
-	}
+    }
 	
 	// Update is called once per frame
 	void Update () {
