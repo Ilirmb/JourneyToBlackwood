@@ -287,7 +287,9 @@ MonoBehaviour:
   dialogueText: I'll see you around friend!
   dialogueSprite: {fileID: 0}
   childNodes: []
-  actions: []
+  actions:
+  - action: 2
+    param: 
   auto:
     isAuto: 0
     autoSpeed: 0
@@ -343,6 +345,8 @@ MonoBehaviour:
   actions:
   - action: 5
     param: -2
+  - action: 2
+    param: 0
   auto:
     isAuto: 0
     autoSpeed: 0
