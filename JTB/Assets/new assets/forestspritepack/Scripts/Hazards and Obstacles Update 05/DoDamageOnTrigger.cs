@@ -12,16 +12,13 @@ public class DoDamageOnTrigger : MonoBehaviour
     {
         Player = GameObject.FindWithTag("Player");
         playerStatsScript = GameObject.FindWithTag("Player").GetComponent<PlayerStatistics>();
-        checkPoint = playerStatsScript.checkpoint;
     }
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
-            checkPoint = playerStatsScript.checkpoint;
             playerStatsScript.stamina -=100;
-            Player.transform.position = checkPoint.transform.position;
             playerStatsScript.CheckIfDead();
         }
     }

@@ -215,7 +215,7 @@ public class PlayerStatistics : MonoBehaviour
         {
             stamina -= damage;
             textSpawn.spawnText(string.Format("{0:0.##}", damage), new Color(255, 0, 0));
-            //CheckIfDead();
+            CheckIfDead();
         }
      
     }
@@ -302,28 +302,40 @@ public class PlayerStatistics : MonoBehaviour
         checkpoint = newCheckpoint;
     }
     //creates respawn timer for when the player is dead
-     IEnumerator deathTimer()
+    IEnumerator deathTimer()
     {
         gameObject.GetComponent<CustomPlatformer2DUserControl>().enabled = false;
 
-        //If colliding with water, wait longer so player disappears below surface
-        if (hittingWater)
-        {
+        ////If colliding with water, wait longer so player disappears below surface
+        //if (hittingWater)
+        //{
 
-            yield return new WaitForSeconds(.75f);
-        }
-        //Shorter wait via spikes and whatnot
-        else
-        {
-            yield return new WaitForSeconds(.3f);
-        }
+        //    yield return new WaitForSeconds(.75f);
+        //}
+        ////Shorter wait via spikes and whatnot
+        //else
+        //{
+        //    yield return new WaitForSeconds(.3f);
+        //}
 
-        yield return new WaitForSeconds(.75f);
+        //yield return new WaitForSeconds(.75f);
 
 
         //if Checkpoint is null, just reload the scene
         if (checkpoint == null)
         {
+
+            //If colliding with water, wait longer so player disappears below surface
+            if (hittingWater)
+            {
+
+                yield return new WaitForSeconds(.75f);
+            }
+            //Shorter wait via spikes and whatnot
+            else
+            {
+                yield return new WaitForSeconds(.7f);
+            }
             // Restart if stamina is equal to or less than 0
             // Pretty blunt way of reloading, reloads the current scene
             ReloadCurrentScene();
@@ -331,21 +343,36 @@ public class PlayerStatistics : MonoBehaviour
         //Otherwise go to Checkpoint
         else
         {
-            ReloadAtCheckpoint();
+
+            //If colliding with water, wait longer so player disappears below surface
+            if (hittingWater)
+            {
+                PlayerMovement.m_MaxSpeed = 0f;
+                PlayerMovement.m_JumpForce = 0f;
+                yield return new WaitForSeconds(.75f);
+            }
+            //Shorter wait via spikes and whatnot
+            else
+            {
+                PlayerMovement.m_MaxSpeed = 0f;
+                PlayerMovement.m_JumpForce = 0f;
+                yield return new WaitForSeconds(.7f);
+                ReloadAtCheckpoint();
+            }
+
+            // Invokes the player death event
+            GameManager.instance.OnPlayerDeath.Invoke();
+
+            numPlayerDeaths++;
+            GameManager.instance.AffectStatValue("Num Deaths", 1);
+            playerCharacter.StopSliding();
         }
-
-        // Invokes the player death event
-        GameManager.instance.OnPlayerDeath.Invoke();
-
-        numPlayerDeaths++;
-        GameManager.instance.AffectStatValue("Num Deaths", 1);
-        playerCharacter.StopSliding();
     }
-
     public void CheckIfDead()
     {
         if (stamina <= 0)
         {
+            Debug.Log("you are dead");
             StartCoroutine(deathTimer());
         }
     }
