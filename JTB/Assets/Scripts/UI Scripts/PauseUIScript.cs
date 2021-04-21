@@ -8,7 +8,9 @@ public class PauseUIScript : MonoBehaviour
 	//The State in where the game would be active
     public static bool GameIsPaused = false;
 
-	public GameObject PauseMenuUI;
+    public GameObject PauseMenuUI;
+    public MenuHintShuffle menuHintShuffle;
+
 
     void Start()
 	{
@@ -24,6 +26,7 @@ public class PauseUIScript : MonoBehaviour
 		{
 			if (GameIsPaused)
 			{
+                menuHintShuffle.Shuffle();
 				Resume();
 			} 
 			else
