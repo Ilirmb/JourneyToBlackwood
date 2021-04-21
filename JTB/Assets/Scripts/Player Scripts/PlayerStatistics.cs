@@ -185,6 +185,7 @@ public class PlayerStatistics : MonoBehaviour
         //We can invert it by taking 100 and subtracting frustration, then dividing by a hundred to get the percentage to apply to damage
         // hopefully
         float reduceddamage = (damage * ((100 - frustration) / 100));
+        if (reduceddamage < .001f) { reduceddamage = .01f; }
         GameManager.instance.AffectStatValue("Total Damage After Frustration Reduction", reduceddamage);
         GameManager.instance.AffectStatValue("Health saved by Frustration", damage - reduceddamage);
         return reduceddamage;
