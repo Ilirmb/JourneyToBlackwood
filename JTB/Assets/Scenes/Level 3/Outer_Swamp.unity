@@ -4448,6 +4448,7 @@ GameObject:
   - component: {fileID: 295677426}
   - component: {fileID: 295677429}
   - component: {fileID: 295677428}
+  - component: {fileID: 295677430}
   m_Layer: 0
   m_Name: JtB_StoneTiles
   m_TagString: Untagged
@@ -4529,7 +4530,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -4555,7 +4556,7 @@ EdgeCollider2D:
   m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -4563,6 +4564,18 @@ EdgeCollider2D:
   m_Points:
   - {x: -1.28, y: 0}
   - {x: 1.28, y: 0}
+--- !u!114 &295677430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 295677425}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0faee6a60180cef4e911511a73f73c99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &302442570
 GameObject:
   m_ObjectHideFlags: 0
@@ -4769,6 +4782,7 @@ GameObject:
   - component: {fileID: 317903549}
   - component: {fileID: 317903548}
   - component: {fileID: 317903550}
+  - component: {fileID: 317903551}
   m_Layer: 0
   m_Name: JtB_StoneTiles (8)
   m_TagString: Untagged
@@ -4850,7 +4864,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -4866,6 +4880,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.56, y: 2.56}
   m_EdgeRadius: 0
+--- !u!114 &317903551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 317903547}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0faee6a60180cef4e911511a73f73c99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &320310508
 GameObject:
   m_ObjectHideFlags: 0
@@ -7715,6 +7741,36 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 451708746}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &452444876 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1681914674938810, guid: 894dc8164b13b4343aeaceb9f27fcf03,
+    type: 3}
+  m_PrefabInstance: {fileID: 1530421565}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &452444878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 452444876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0faee6a60180cef4e911511a73f73c99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &452444882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 452444876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dab97f8ee2ccc8e47a1984e61c9d823d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &456642572
 GameObject:
   m_ObjectHideFlags: 0
@@ -13384,6 +13440,7 @@ GameObject:
   - component: {fileID: 789624159}
   - component: {fileID: 789624158}
   - component: {fileID: 789624160}
+  - component: {fileID: 789624161}
   m_Layer: 0
   m_Name: JtB_StoneTiles (9)
   m_TagString: Untagged
@@ -13465,7 +13522,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -13481,6 +13538,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.56, y: 2.56}
   m_EdgeRadius: 0
+--- !u!114 &789624161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 789624157}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0faee6a60180cef4e911511a73f73c99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &790490801
 GameObject:
   m_ObjectHideFlags: 0
@@ -20627,6 +20696,7 @@ GameObject:
   - component: {fileID: 1276993813}
   - component: {fileID: 1276993812}
   - component: {fileID: 1276993814}
+  - component: {fileID: 1276993815}
   m_Layer: 0
   m_Name: JtB_StoneTiles (6)
   m_TagString: Untagged
@@ -20708,7 +20778,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -20724,6 +20794,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.56, y: 2.56}
   m_EdgeRadius: 0
+--- !u!114 &1276993815
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1276993811}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0faee6a60180cef4e911511a73f73c99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1289683379
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -26163,6 +26245,7 @@ GameObject:
   - component: {fileID: 1576265142}
   - component: {fileID: 1576265141}
   - component: {fileID: 1576265143}
+  - component: {fileID: 1576265144}
   m_Layer: 0
   m_Name: JtB_StoneTiles (7)
   m_TagString: Untagged
@@ -26244,7 +26327,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -26260,6 +26343,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.56, y: 2.56}
   m_EdgeRadius: 0
+--- !u!114 &1576265144
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1576265140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0faee6a60180cef4e911511a73f73c99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1578552304
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -27654,6 +27749,7 @@ GameObject:
   - component: {fileID: 1634679453}
   - component: {fileID: 1634679452}
   - component: {fileID: 1634679454}
+  - component: {fileID: 1634679455}
   m_Layer: 0
   m_Name: JtB_StoneTiles (5)
   m_TagString: Untagged
@@ -27735,7 +27831,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -27751,6 +27847,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.56, y: 2.56}
   m_EdgeRadius: 0
+--- !u!114 &1634679455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1634679451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0faee6a60180cef4e911511a73f73c99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1636068534
 GameObject:
   m_ObjectHideFlags: 0
@@ -37860,6 +37968,17 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7159353162017759038, guid: 71343c6d95c5adb49b187fc07af2bba8,
+        type: 3}
+      propertyPath: MenuCards.Array.size
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7159353162017759038, guid: 71343c6d95c5adb49b187fc07af2bba8,
+        type: 3}
+      propertyPath: current
+      value: 
+      objectReference: {fileID: 21300000, guid: 1845780bef192564797cef6c3da7b767,
+        type: 3}
     - target: {fileID: 224580764219837304, guid: 71343c6d95c5adb49b187fc07af2bba8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -38190,17 +38309,6 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 38e9054b294ca4244969fce072ef481c,
-        type: 3}
-    - target: {fileID: 7159353162017759038, guid: 71343c6d95c5adb49b187fc07af2bba8,
-        type: 3}
-      propertyPath: MenuCards.Array.size
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 7159353162017759038, guid: 71343c6d95c5adb49b187fc07af2bba8,
-        type: 3}
-      propertyPath: current
-      value: 
-      objectReference: {fileID: 21300000, guid: 1845780bef192564797cef6c3da7b767,
         type: 3}
     - target: {fileID: 5333595582577066814, guid: 71343c6d95c5adb49b187fc07af2bba8,
         type: 3}
