@@ -4,7 +4,8 @@
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -64,7 +65,8 @@ MonoBehaviour:
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -95,7 +97,7 @@ MonoBehaviour:
       _node: {fileID: 114012929763732582}
       _typeQualifiedName: System.Collections.Generic.List`1[[DialogueNode+DialogueBranchCondition,
         Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
-        mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
       connections: []
       _direction: 1
       _connectionType: 0
@@ -119,16 +121,21 @@ MonoBehaviour:
   dialogueNodeType: 0
   dialogueSpeaker: Wizard
   dialogueText: What? Why not?
-  dialogueSprite: {fileID: 21300000, guid: a10d6e1636f6ae64e9282e1bd31018b8, type: 3}
+  dialogueSprite: {fileID: 0}
   childNodes:
   - condition: 0
     targetID: 6
   actions: []
+  auto:
+    isAuto: 0
+    autoSpeed: 0
+    pauseBeforeNext: 0
 --- !u!114 &114042348679409764
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -160,7 +167,7 @@ MonoBehaviour:
       _node: {fileID: 114042348679409764}
       _typeQualifiedName: System.Collections.Generic.List`1[[DialogueNode+DialogueBranchCondition,
         Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
-        mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
       connections: []
       _direction: 1
       _connectionType: 0
@@ -204,11 +211,16 @@ MonoBehaviour:
   - condition: 0
     targetID: 18
   actions: []
+  auto:
+    isAuto: 0
+    autoSpeed: 0
+    pauseBeforeNext: 0
 --- !u!114 &114074661978130626
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -239,7 +251,7 @@ MonoBehaviour:
       _node: {fileID: 114074661978130626}
       _typeQualifiedName: System.Collections.Generic.List`1[[DialogueNode+DialogueBranchCondition,
         Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
-        mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
       connections: []
       _direction: 1
       _connectionType: 0
@@ -268,11 +280,16 @@ MonoBehaviour:
   - condition: 0
     targetID: 5
   actions: []
+  auto:
+    isAuto: 0
+    autoSpeed: 0
+    pauseBeforeNext: 0
 --- !u!114 &114218430197215586
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -303,7 +320,7 @@ MonoBehaviour:
       _node: {fileID: 114218430197215586}
       _typeQualifiedName: System.Collections.Generic.List`1[[DialogueNode+DialogueBranchCondition,
         Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
-        mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
       connections: []
       _direction: 1
       _connectionType: 0
@@ -332,11 +349,16 @@ MonoBehaviour:
   - condition: 0
     targetID: 20
   actions: []
+  auto:
+    isAuto: 0
+    autoSpeed: 0
+    pauseBeforeNext: 0
 --- !u!114 &114319131190145028
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -367,7 +389,7 @@ MonoBehaviour:
       _node: {fileID: 114319131190145028}
       _typeQualifiedName: System.Collections.Generic.List`1[[DialogueNode+DialogueBranchCondition,
         Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
-        mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
       connections: []
       _direction: 1
       _connectionType: 0
@@ -391,16 +413,21 @@ MonoBehaviour:
   dialogueNodeType: 0
   dialogueSpeaker: Wizard
   dialogueText: Where did that apple go...?
-  dialogueSprite: {fileID: 21300000, guid: a10d6e1636f6ae64e9282e1bd31018b8, type: 3}
+  dialogueSprite: {fileID: 0}
   childNodes:
   - condition: 0
     targetID: 19
   actions: []
+  auto:
+    isAuto: 0
+    autoSpeed: 0
+    pauseBeforeNext: 0
 --- !u!114 &114426785601452430
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -431,7 +458,7 @@ MonoBehaviour:
       _node: {fileID: 114426785601452430}
       _typeQualifiedName: System.Collections.Generic.List`1[[DialogueNode+DialogueBranchCondition,
         Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
-        mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
       connections: []
       _direction: 1
       _connectionType: 0
@@ -460,11 +487,16 @@ MonoBehaviour:
   - condition: 0
     targetID: 14
   actions: []
+  auto:
+    isAuto: 0
+    autoSpeed: 0
+    pauseBeforeNext: 0
 --- !u!114 &114489523757901890
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -495,7 +527,7 @@ MonoBehaviour:
       _node: {fileID: 114489523757901890}
       _typeQualifiedName: System.Collections.Generic.List`1[[DialogueNode+DialogueBranchCondition,
         Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
-        mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
       connections: []
       _direction: 1
       _connectionType: 0
@@ -524,11 +556,16 @@ MonoBehaviour:
   - condition: 0
     targetID: 21
   actions: []
+  auto:
+    isAuto: 0
+    autoSpeed: 0
+    pauseBeforeNext: 0
 --- !u!114 &114501861579743842
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -558,7 +595,7 @@ MonoBehaviour:
       _node: {fileID: 114501861579743842}
       _typeQualifiedName: System.Collections.Generic.List`1[[DialogueNode+DialogueBranchCondition,
         Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
-        mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
       connections: []
       _direction: 1
       _connectionType: 0
@@ -570,7 +607,7 @@ MonoBehaviour:
   dialogueSpeaker: Wizard
   dialogueText: Here, you should take the apple if you're going after Logolio. You
     might need the energy.
-  dialogueSprite: {fileID: 21300000, guid: a10d6e1636f6ae64e9282e1bd31018b8, type: 3}
+  dialogueSprite: {fileID: 0}
   childNodes: []
   actions:
   - action: 7
@@ -579,11 +616,16 @@ MonoBehaviour:
     param: 20
   - action: 5
     param: 1
+  auto:
+    isAuto: 0
+    autoSpeed: 0
+    pauseBeforeNext: 0
 --- !u!114 &114522835470278762
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -613,7 +655,7 @@ MonoBehaviour:
       _node: {fileID: 114522835470278762}
       _typeQualifiedName: System.Collections.Generic.List`1[[DialogueNode+DialogueBranchCondition,
         Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
-        mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
       connections: []
       _direction: 1
       _connectionType: 0
@@ -624,18 +666,23 @@ MonoBehaviour:
   dialogueNodeType: 0
   dialogueSpeaker: Wizard
   dialogueText: Here, you can have this. It's all cleaned up now.
-  dialogueSprite: {fileID: 21300000, guid: a10d6e1636f6ae64e9282e1bd31018b8, type: 3}
+  dialogueSprite: {fileID: 0}
   childNodes: []
   actions:
   - action: 7
     param: 
   - action: 5
     param: 1
+  auto:
+    isAuto: 0
+    autoSpeed: 0
+    pauseBeforeNext: 0
 --- !u!114 &114532979302892894
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -664,7 +711,7 @@ MonoBehaviour:
       _node: {fileID: 114532979302892894}
       _typeQualifiedName: System.Collections.Generic.List`1[[DialogueNode+DialogueBranchCondition,
         Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
-        mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
       connections: []
       _direction: 1
       _connectionType: 0
@@ -701,18 +748,23 @@ MonoBehaviour:
   dialogueNodeType: 0
   dialogueSpeaker: Wizard
   dialogueText: Hmmm...
-  dialogueSprite: {fileID: 21300000, guid: a10d6e1636f6ae64e9282e1bd31018b8, type: 3}
+  dialogueSprite: {fileID: 0}
   childNodes:
   - condition: 2
     targetID: 16
   - condition: 0
     targetID: 1
   actions: []
+  auto:
+    isAuto: 0
+    autoSpeed: 0
+    pauseBeforeNext: 0
 --- !u!114 &114534619850084112
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -743,7 +795,7 @@ MonoBehaviour:
       _node: {fileID: 114534619850084112}
       _typeQualifiedName: System.Collections.Generic.List`1[[DialogueNode+DialogueBranchCondition,
         Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
-        mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
       connections: []
       _direction: 1
       _connectionType: 0
@@ -767,16 +819,21 @@ MonoBehaviour:
   dialogueNodeType: 0
   dialogueSpeaker: Wizard
   dialogueText: It doesn't matter, can I have that?
-  dialogueSprite: {fileID: 21300000, guid: a10d6e1636f6ae64e9282e1bd31018b8, type: 3}
+  dialogueSprite: {fileID: 0}
   childNodes:
   - condition: 0
     targetID: 4
   actions: []
+  auto:
+    isAuto: 0
+    autoSpeed: 0
+    pauseBeforeNext: 0
 --- !u!114 &114551631427282096
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -806,7 +863,7 @@ MonoBehaviour:
       _node: {fileID: 114551631427282096}
       _typeQualifiedName: System.Collections.Generic.List`1[[DialogueNode+DialogueBranchCondition,
         Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
-        mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
       connections: []
       _direction: 1
       _connectionType: 0
@@ -817,14 +874,19 @@ MonoBehaviour:
   dialogueNodeType: 0
   dialogueSpeaker: Wizard
   dialogueText: Fine, keep it, but trust me, you don't want it.
-  dialogueSprite: {fileID: 21300000, guid: a10d6e1636f6ae64e9282e1bd31018b8, type: 3}
+  dialogueSprite: {fileID: 0}
   childNodes: []
   actions: []
+  auto:
+    isAuto: 0
+    autoSpeed: 0
+    pauseBeforeNext: 0
 --- !u!114 &114613508540012656
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -855,7 +917,7 @@ MonoBehaviour:
       _node: {fileID: 114613508540012656}
       _typeQualifiedName: System.Collections.Generic.List`1[[DialogueNode+DialogueBranchCondition,
         Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
-        mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
       connections: []
       _direction: 1
       _connectionType: 0
@@ -880,16 +942,21 @@ MonoBehaviour:
   dialogueSpeaker: Wizard
   dialogueText: Oh sure! Just keep going down until you hit the river with the beavers,
     and continue on. You're on the right path!
-  dialogueSprite: {fileID: 21300000, guid: a10d6e1636f6ae64e9282e1bd31018b8, type: 3}
+  dialogueSprite: {fileID: 0}
   childNodes:
   - condition: 0
     targetID: 15
   actions: []
+  auto:
+    isAuto: 0
+    autoSpeed: 0
+    pauseBeforeNext: 0
 --- !u!114 &114641350826869010
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -920,7 +987,7 @@ MonoBehaviour:
       _node: {fileID: 114641350826869010}
       _typeQualifiedName: System.Collections.Generic.List`1[[DialogueNode+DialogueBranchCondition,
         Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
-        mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
       connections: []
       _direction: 1
       _connectionType: 0
@@ -949,11 +1016,16 @@ MonoBehaviour:
   - condition: 0
     targetID: 7
   actions: []
+  auto:
+    isAuto: 0
+    autoSpeed: 0
+    pauseBeforeNext: 0
 --- !u!114 &114644363990941766
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -984,7 +1056,7 @@ MonoBehaviour:
       _node: {fileID: 114644363990941766}
       _typeQualifiedName: System.Collections.Generic.List`1[[DialogueNode+DialogueBranchCondition,
         Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
-        mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
       connections: []
       _direction: 1
       _connectionType: 0
@@ -1013,11 +1085,16 @@ MonoBehaviour:
   - condition: 0
     targetID: 10
   actions: []
+  auto:
+    isAuto: 0
+    autoSpeed: 0
+    pauseBeforeNext: 0
 --- !u!114 &114665252528953246
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -1049,7 +1126,7 @@ MonoBehaviour:
       _node: {fileID: 114665252528953246}
       _typeQualifiedName: System.Collections.Generic.List`1[[DialogueNode+DialogueBranchCondition,
         Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
-        mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
       connections: []
       _direction: 1
       _connectionType: 0
@@ -1093,11 +1170,16 @@ MonoBehaviour:
   - condition: 0
     targetID: 12
   actions: []
+  auto:
+    isAuto: 0
+    autoSpeed: 0
+    pauseBeforeNext: 0
 --- !u!114 &114675132209153270
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -1128,7 +1210,7 @@ MonoBehaviour:
       _node: {fileID: 114675132209153270}
       _typeQualifiedName: System.Collections.Generic.List`1[[DialogueNode+DialogueBranchCondition,
         Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
-        mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
       connections: []
       _direction: 1
       _connectionType: 0
@@ -1152,16 +1234,21 @@ MonoBehaviour:
   dialogueNodeType: 0
   dialogueSpeaker: Wizard
   dialogueText: Wait, you have the apple? How'd you get that?
-  dialogueSprite: {fileID: 21300000, guid: a10d6e1636f6ae64e9282e1bd31018b8, type: 3}
+  dialogueSprite: {fileID: 0}
   childNodes:
   - condition: 0
     targetID: 3
   actions: []
+  auto:
+    isAuto: 0
+    autoSpeed: 0
+    pauseBeforeNext: 0
 --- !u!114 &114713926681575588
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -1191,7 +1278,7 @@ MonoBehaviour:
       _node: {fileID: 114713926681575588}
       _typeQualifiedName: System.Collections.Generic.List`1[[DialogueNode+DialogueBranchCondition,
         Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
-        mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
       connections: []
       _direction: 1
       _connectionType: 0
@@ -1203,16 +1290,21 @@ MonoBehaviour:
   dialogueSpeaker: Wizard
   dialogueText: You can't just eat everything you find! It was filled with pooooison!
     You could've been hurt! Be more careful in the future!
-  dialogueSprite: {fileID: 21300000, guid: a10d6e1636f6ae64e9282e1bd31018b8, type: 3}
+  dialogueSprite: {fileID: 0}
   childNodes: []
   actions:
   - action: 7
     param: 
+  auto:
+    isAuto: 0
+    autoSpeed: 0
+    pauseBeforeNext: 0
 --- !u!114 &114720762612141090
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -1243,7 +1335,7 @@ MonoBehaviour:
       _node: {fileID: 114720762612141090}
       _typeQualifiedName: System.Collections.Generic.List`1[[DialogueNode+DialogueBranchCondition,
         Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
-        mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
       connections: []
       _direction: 1
       _connectionType: 0
@@ -1272,11 +1364,16 @@ MonoBehaviour:
   - condition: 0
     targetID: 9
   actions: []
+  auto:
+    isAuto: 0
+    autoSpeed: 0
+    pauseBeforeNext: 0
 --- !u!114 &114823793877519420
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -1307,7 +1404,7 @@ MonoBehaviour:
       _node: {fileID: 114823793877519420}
       _typeQualifiedName: System.Collections.Generic.List`1[[DialogueNode+DialogueBranchCondition,
         Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
-        mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
       connections: []
       _direction: 1
       _connectionType: 0
@@ -1331,16 +1428,21 @@ MonoBehaviour:
   dialogueNodeType: 0
   dialogueSpeaker: Wizard
   dialogueText: How am I going to get that apple...?
-  dialogueSprite: {fileID: 21300000, guid: a10d6e1636f6ae64e9282e1bd31018b8, type: 3}
+  dialogueSprite: {fileID: 0}
   childNodes:
   - condition: 1
     targetID: 2
   actions: []
+  auto:
+    isAuto: 0
+    autoSpeed: 0
+    pauseBeforeNext: 0
 --- !u!114 &114867687366352546
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -1371,7 +1473,7 @@ MonoBehaviour:
       _node: {fileID: 114867687366352546}
       _typeQualifiedName: System.Collections.Generic.List`1[[DialogueNode+DialogueBranchCondition,
         Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
-        mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
       connections: []
       _direction: 1
       _connectionType: 0
@@ -1395,16 +1497,21 @@ MonoBehaviour:
   dialogueNodeType: 0
   dialogueSpeaker: Wizard
   dialogueText: Ah, thank you!
-  dialogueSprite: {fileID: 21300000, guid: a10d6e1636f6ae64e9282e1bd31018b8, type: 3}
+  dialogueSprite: {fileID: 0}
   childNodes:
   - condition: 0
     targetID: 8
   actions: []
+  auto:
+    isAuto: 0
+    autoSpeed: 0
+    pauseBeforeNext: 0
 --- !u!114 &114895875399472290
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -1435,7 +1542,7 @@ MonoBehaviour:
       _node: {fileID: 114895875399472290}
       _typeQualifiedName: System.Collections.Generic.List`1[[DialogueNode+DialogueBranchCondition,
         Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
-        mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
       connections: []
       _direction: 1
       _connectionType: 0
@@ -1464,11 +1571,16 @@ MonoBehaviour:
   - condition: 0
     targetID: 13
   actions: []
+  auto:
+    isAuto: 0
+    autoSpeed: 0
+    pauseBeforeNext: 0
 --- !u!114 &114949263370537558
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -1499,7 +1611,7 @@ MonoBehaviour:
       _node: {fileID: 114949263370537558}
       _typeQualifiedName: System.Collections.Generic.List`1[[DialogueNode+DialogueBranchCondition,
         Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
-        mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
       connections: []
       _direction: 1
       _connectionType: 0
@@ -1523,8 +1635,12 @@ MonoBehaviour:
   dialogueNodeType: 0
   dialogueSpeaker: Wizard
   dialogueText: Wait, did you eat it?
-  dialogueSprite: {fileID: 21300000, guid: a10d6e1636f6ae64e9282e1bd31018b8, type: 3}
+  dialogueSprite: {fileID: 0}
   childNodes:
   - condition: 0
     targetID: 22
   actions: []
+  auto:
+    isAuto: 0
+    autoSpeed: 0
+    pauseBeforeNext: 0
