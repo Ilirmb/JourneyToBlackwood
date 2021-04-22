@@ -73,7 +73,6 @@ public class Quest : MonoBehaviour {
     [SerializeField]
     private bool removeItemsIfInactive = false;
 
-
     // Use this for initialization
     void Start () {
 
