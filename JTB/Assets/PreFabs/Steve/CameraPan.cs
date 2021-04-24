@@ -6,28 +6,47 @@ using Cinemachine;
 
 public class CameraPan : MonoBehaviour
 {
-    public Transform Player;
-    public CinemachineVirtualCamera Pan;
-    public Text Speaker;
-    public GameObject testObject;
+    GameObject Player;
+    CinemachineVirtualCamera Pan;
+    Text Speaker;
+    bool cutscene = false;
 
     // Start is called before the first frame update
     void Start()
     {
+        Speaker = GameObject.FindGameObjectWithTag("SpeakerName").GetComponent<Text>() as Text;
+        Player = GameObject.FindGameObjectWithTag("Player");
         Pan = GameObject.Find("CM 2DCam").GetComponent<CinemachineVirtualCamera>() as CinemachineVirtualCamera;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Speaker.text == "Logolio")
+        if (Speaker.text == "Logolio" && cutscene == true)
         {
-            //Debug.Log("Shift Pan Target Here");
-            Pan.Follow = testObject.transform;
+            Pan.Follow = transform.GetChild(0).gameObject.transform;
         }
         else
         {
-            Pan.Follow = Player;
+            Pan.Follow = Player.transform;
+        }
+    }
+
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            cutscene = true;
+        }
+    }
+
+    public void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            cutscene = false;
+            Pan.Follow = Player.transform;
+            gameObject.active = false;
         }
     }
 }
