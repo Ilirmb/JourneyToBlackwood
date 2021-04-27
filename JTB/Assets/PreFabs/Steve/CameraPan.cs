@@ -21,7 +21,7 @@ public class CameraPan : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
+    { 
         if (Speaker.text == "Logolio" && cutscene == true)
         {
             Pan.Follow = transform.GetChild(0).gameObject.transform;
