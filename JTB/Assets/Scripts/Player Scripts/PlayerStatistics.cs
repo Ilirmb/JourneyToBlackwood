@@ -198,7 +198,7 @@ public class PlayerStatistics : MonoBehaviour
         float reduceddamage = (damage * ((100 - frustration) / 100));
 
         if (increaseStamReduction) { 
-            reduceddamage = ((damage*1.5) * ((100 - frustration) / 100)); 
+            reduceddamage = ((damage*1.5f) * ((100 - frustration) / 100)); 
         }
         
         GameManager.instance.AffectStatValue("Total Damage After Frustration Reduction", reduceddamage);
