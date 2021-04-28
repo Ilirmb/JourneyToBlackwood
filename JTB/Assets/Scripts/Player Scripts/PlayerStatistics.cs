@@ -150,6 +150,7 @@ public class PlayerStatistics : MonoBehaviour
     //This function is called to translate the value of the slider into frustration
     public void onSliderValueChange(float sliderValue)
     {
+        //Debug.Log("Slider Value Change works");
         //Slider value is between 0 and 10 so we can multiply it by itself to get an exponential curve between 0 and 100
         frustration = (Mathf.Pow(sliderValue,2));
 

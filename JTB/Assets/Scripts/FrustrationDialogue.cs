@@ -5,19 +5,19 @@ using UnityEngine;
 public class FrustrationDialogue : MonoBehaviour
 {
     PlayerStatistics player;
-     string line;
+    string line;
     DialogueManager manager;
+
     // Start is called before the first frame update
     void Start()
     {
-
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStatistics>();
     }
 
     // Update is called once per frame
     void Update()
     {
-
- // checks player frustration level
+        // checks player frustration level
         if (player.frustration >= 100f)
         {
             
@@ -25,6 +25,6 @@ public class FrustrationDialogue : MonoBehaviour
             new WaitForSeconds(30);
             Debug.Log("Showing Dialogue");
             manager.startDialogue();
+        }
     }
 }
-    }
