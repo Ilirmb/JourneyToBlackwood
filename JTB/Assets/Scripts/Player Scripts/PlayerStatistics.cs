@@ -22,6 +22,7 @@ public class PlayerStatistics : MonoBehaviour
     private int frustrationCount;
     private int highFrustrationCount;
     private float timeLeft = 15f;
+    private bool increaseStamReduction = false;
 
     [Tooltip("The distance a player has to walk before they take one 'GameConst.STAMINA_DRAIN_PER_DISTANCE_WALKED' worth of stamina damage")]
     public float walkDistanceToDamageStam = 4.0f;
@@ -101,6 +102,16 @@ public class PlayerStatistics : MonoBehaviour
         }
 
         positionLastFrame = new Vector2(transform.position.x, transform.position.y);
+
+        //If eaten apple or mushrooms, increase stamina reduction
+        if (maxStamina > 100 && !increaseStamReduction) {
+            increaseStamReduction = true;
+        }
+
+        //Turn off the increased stamina reduction in the event that max stamina is set back to normal
+        else if (maxStamina <= 100 && increaseStamReduction) {
+            increaseStamReduction = false;
+        }
     }
 
     public void ReloadCurrentScene()
@@ -185,6 +196,11 @@ public class PlayerStatistics : MonoBehaviour
         //We can invert it by taking 100 and subtracting frustration, then dividing by a hundred to get the percentage to apply to damage
         // hopefully
         float reduceddamage = (damage * ((100 - frustration) / 100));
+
+        if (increaseStamReduction) {
+            reduceddamage = ((damage * 1.5f) * ((100 - frustration) / 100));
+        }
+
         GameManager.instance.AffectStatValue("Total Damage After Frustration Reduction", reduceddamage);
         GameManager.instance.AffectStatValue("Health saved by Frustration", damage - reduceddamage);
         return reduceddamage;
