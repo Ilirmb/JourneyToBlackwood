@@ -23,7 +23,7 @@ public class DialogueProcessor : MonoBehaviour {
     [SerializeField]
     private Text topTextBox;
     [SerializeField]
-    private Text speakerName;
+    public Text speakerName;
     [SerializeField]
     private Text topSpeakerName;
     [SerializeField]
