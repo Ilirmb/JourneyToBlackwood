@@ -226,10 +226,17 @@ public class PlayerStatistics : MonoBehaviour
         // hopefully
         float reduceddamage = (damage * ((100 - frustration) / 100));
 
+<<<<<<< HEAD
         if (increaseStamReduction) { 
             reduceddamage = ((damage*1.5f) * ((100 - frustration) / 100)); 
         }
         
+=======
+        if (increaseStamReduction) {
+            reduceddamage = ((damage * 1.5f) * ((100 - frustration) / 100));
+        }
+
+>>>>>>> Level1Branch
         GameManager.instance.AffectStatValue("Total Damage After Frustration Reduction", reduceddamage);
         GameManager.instance.AffectStatValue("Health saved by Frustration", damage - reduceddamage);
         return reduceddamage;
