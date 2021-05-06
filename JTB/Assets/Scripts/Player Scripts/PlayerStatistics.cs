@@ -41,6 +41,9 @@ public class PlayerStatistics : MonoBehaviour
     private SpriteMeshInstance eyeScript;
     private SpriteMeshInstance hairScript;
 
+    private bool warping = false;
+    public GameObject TopOfHead;
+
     // Use this for initialization
     void Awake()
     {
@@ -49,7 +52,7 @@ public class PlayerStatistics : MonoBehaviour
         UpdateColors();
         if (eyeScript == null || hairScript == null)
             Debug.LogError("Player hair and eye customization did not load");
-        
+
         //The idea here is to create a Checkpoint at the location of the player, but it's not working and doesn't need to because 
         //Checkpoint = new Checkpoint(gameObject.transform.position);
         positionLastFrame = transform.position;
@@ -74,7 +77,33 @@ public class PlayerStatistics : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        GameObject owl = GameObject.FindGameObjectWithTag("Owl");
         CheckIfDead();
+
+        if (warping == true)
+        {
+            gameObject.GetComponent<Rigidbody2D>().isKinematic = true;
+            owl.GetComponent<OwlMovement>().enabled = false;
+            owl.transform.position = Vector2.MoveTowards(owl.transform.position, TopOfHead.transform.position, 2.0f);
+            transform.position = Vector2.MoveTowards(transform.position, checkpoint.transform.position, 1.0f);
+            if (transform.position == checkpoint.transform.position)
+            {
+                Debug.Log("Releasing from warp");
+                warping = false;
+                gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+                gameObject.GetComponent<CustomPlatformer2DUserControl>().enabled = true;
+                stamina = 100f;
+                hittingWater = false;
+                invulnTimer = 1.5f;
+                respawnTimer = 200;
+                PlayerMovement.m_MaxSpeed = 10f;
+                PlayerMovement.m_JumpForce = 400f;
+                respawnTimer = 2000f;
+                owl.GetComponent<OwlMovement>().enabled = true;
+                gameObject.GetComponent<Rigidbody2D>().isKinematic = false;
+            }
+        }
 
         if (invulnTimer > 0)
         {
@@ -92,7 +121,6 @@ public class PlayerStatistics : MonoBehaviour
                 //For future math reasons we reset the timer to zero because time.delta time can make it less than that.
                 invulnTimer = 0;
             }
-
         }
 
         if (isMoving)
@@ -144,7 +172,7 @@ public class PlayerStatistics : MonoBehaviour
     }
 
 
-   public void increaseMaxStamina(float maxStamIncrease)
+    public void increaseMaxStamina(float maxStamIncrease)
     {
         maxStamina += maxStamIncrease;
         stamina += maxStamIncrease;
@@ -163,14 +191,14 @@ public class PlayerStatistics : MonoBehaviour
     {
         //Debug.Log("Slider Value Change works");
         //Slider value is between 0 and 10 so we can multiply it by itself to get an exponential curve between 0 and 100
-        frustration = (Mathf.Pow(sliderValue,2));
+        frustration = (Mathf.Pow(sliderValue, 2));
 
         // Player has felt frustrated.
         if ((Mathf.Pow(sliderValue, 2)) > frustration)
             frustrationCount++;
-        
+
         // High frustration
-        if(frustration >= 70.0f)
+        if (frustration >= 70.0f)
         {
             // Number of times player has been at high frustration.
             highFrustrationCount++;
@@ -212,7 +240,7 @@ public class PlayerStatistics : MonoBehaviour
     public void recoverStamina(float recoveredStamina)
     {
         stamina += recoveredStamina;
-        if(stamina > maxStamina)
+        if (stamina > maxStamina)
         {
             stamina = maxStamina;
         }
@@ -234,7 +262,7 @@ public class PlayerStatistics : MonoBehaviour
             textSpawn.spawnText(string.Format("{0:0.##}", damage), new Color(255, 0, 0));
             CheckIfDead();
         }
-     
+
     }
 
 
@@ -253,7 +281,7 @@ public class PlayerStatistics : MonoBehaviour
             invulnTimer = invuln;
             //CheckIfDead();
         }
-       
+
     }
 
 
@@ -274,7 +302,7 @@ public class PlayerStatistics : MonoBehaviour
             invulnTimer = invuln;
             CheckIfDead();
         }
-        
+
     }
 
 
@@ -292,7 +320,7 @@ public class PlayerStatistics : MonoBehaviour
             damageOverTime = 0;
             CheckIfDead();
         }
-      
+
     }
 
 
@@ -374,7 +402,8 @@ public class PlayerStatistics : MonoBehaviour
                 PlayerMovement.m_MaxSpeed = 0f;
                 PlayerMovement.m_JumpForce = 0f;
                 yield return new WaitForSeconds(.7f);
-                ReloadAtCheckpoint();
+                CarryBackToCheckpoint();
+                //ReloadAtCheckpoint();
             }
 
             // Invokes the player death event
@@ -385,6 +414,7 @@ public class PlayerStatistics : MonoBehaviour
             playerCharacter.StopSliding();
         }
     }
+
     public void CheckIfDead()
     {
         if (stamina <= 0)
@@ -412,5 +442,10 @@ public class PlayerStatistics : MonoBehaviour
         PlayerMovement.m_MaxSpeed = 10f;
         PlayerMovement.m_JumpForce = 400f;
         respawnTimer = 2000f;
+    }
+
+    public void CarryBackToCheckpoint()
+    {
+        warping = true;
     }
 }
