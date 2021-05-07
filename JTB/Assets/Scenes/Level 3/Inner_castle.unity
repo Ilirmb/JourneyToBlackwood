@@ -1265,16 +1265,6 @@ PrefabInstance:
       propertyPath: Speaker
       value: 
       objectReference: {fileID: 1642286036}
-    - target: {fileID: 5331513059149009009, guid: 7a05382eede56b246a5a764c76c29b34,
-        type: 3}
-      propertyPath: Player
-      value: 
-      objectReference: {fileID: 2084767870}
-    - target: {fileID: 5331513059149009009, guid: 7a05382eede56b246a5a764c76c29b34,
-        type: 3}
-      propertyPath: Pan
-      value: 
-      objectReference: {fileID: 500062368}
     - target: {fileID: 5331513059449696063, guid: 7a05382eede56b246a5a764c76c29b34,
         type: 3}
       propertyPath: questIntro
@@ -4862,16 +4852,6 @@ PrefabInstance:
       propertyPath: Speaker
       value: 
       objectReference: {fileID: 1642286036}
-    - target: {fileID: 5331513059149009009, guid: 7a05382eede56b246a5a764c76c29b34,
-        type: 3}
-      propertyPath: Player
-      value: 
-      objectReference: {fileID: 2084767870}
-    - target: {fileID: 5331513059149009009, guid: 7a05382eede56b246a5a764c76c29b34,
-        type: 3}
-      propertyPath: Pan
-      value: 
-      objectReference: {fileID: 500062368}
     - target: {fileID: 5331513059449696063, guid: 7a05382eede56b246a5a764c76c29b34,
         type: 3}
       propertyPath: questIntro
@@ -37185,16 +37165,6 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 6416493049620154491, guid: 0b34f959d1e416c488f0547173c9959c,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 6416493049620154491, guid: 0b34f959d1e416c488f0547173c9959c,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1494685827586720327, guid: 0b34f959d1e416c488f0547173c9959c,
         type: 3}
       propertyPath: m_LocalPosition.z
@@ -37529,11 +37499,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -10.359
-      objectReference: {fileID: 0}
-    - target: {fileID: 2040428153513846585, guid: 0b34f959d1e416c488f0547173c9959c,
-        type: 3}
-      propertyPath: m_Name
-      value: TopOfHead
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1523490772684065029, guid: 0b34f959d1e416c488f0547173c9959c, type: 3}
@@ -61000,16 +60965,6 @@ PrefabInstance:
       propertyPath: Speaker
       value: 
       objectReference: {fileID: 1642286036}
-    - target: {fileID: 5331513059149009009, guid: 7a05382eede56b246a5a764c76c29b34,
-        type: 3}
-      propertyPath: Player
-      value: 
-      objectReference: {fileID: 2084767870}
-    - target: {fileID: 5331513059149009009, guid: 7a05382eede56b246a5a764c76c29b34,
-        type: 3}
-      propertyPath: Pan
-      value: 
-      objectReference: {fileID: 500062368}
     - target: {fileID: 5331513059449696063, guid: 7a05382eede56b246a5a764c76c29b34,
         type: 3}
       propertyPath: questIntro
@@ -75036,11 +74991,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Owl
       objectReference: {fileID: 0}
-    - target: {fileID: 1314218867652015491, guid: 4c06eb0965d9fa04983605e09f4240cf,
-        type: 3}
-      propertyPath: m_TagString
-      value: Owl
-      objectReference: {fileID: 0}
     - target: {fileID: 1314218867652015494, guid: 4c06eb0965d9fa04983605e09f4240cf,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -75101,8 +75051,7 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 2084767871}
-    m_RemovedComponents:
-    - {fileID: 1314218867652015495, guid: 4c06eb0965d9fa04983605e09f4240cf, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4c06eb0965d9fa04983605e09f4240cf, type: 3}
 --- !u!1 &1789104125
 GameObject:
@@ -88024,6 +87973,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 699b6e3ea91c5544989b6b27a2ab19c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxFrustration: 0
 --- !u!1 &2085185142
 GameObject:
   m_ObjectHideFlags: 0
@@ -89485,7 +89435,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2141338857}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1261.39, y: 254.11, z: 0}
+  m_LocalPosition: {x: -1171.4, y: 295.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -90014,15 +89964,5 @@ PrefabInstance:
       propertyPath: Speaker
       value: 
       objectReference: {fileID: 1642286036}
-    - target: {fileID: 5331513059149009009, guid: 7a05382eede56b246a5a764c76c29b34,
-        type: 3}
-      propertyPath: Player
-      value: 
-      objectReference: {fileID: 2084767870}
-    - target: {fileID: 5331513059149009009, guid: 7a05382eede56b246a5a764c76c29b34,
-        type: 3}
-      propertyPath: Pan
-      value: 
-      objectReference: {fileID: 500062368}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7a05382eede56b246a5a764c76c29b34, type: 3}
