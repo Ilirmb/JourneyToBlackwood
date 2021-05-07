@@ -156,7 +156,6 @@ MonoBehaviour:
     keys:
     - previous
     - childNodes
-    - childNodes 0
     values:
     - _fieldName: previous
       _node: {fileID: -7907598156871510293}
@@ -180,28 +179,13 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-    - _fieldName: childNodes 0
-      _node: {fileID: -7907598156871510293}
-      _typeQualifiedName: System.Collections.Generic.List`1[[DialogueNode+DialogueBranchCondition,
-        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
-        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: previous
-        node: {fileID: 1885096450095143570}
-        reroutePoints: []
-      _direction: 1
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 1
   ID: 16
   previous: {fileID: 0}
   dialogueNodeType: 0
   dialogueSpeaker: 
   dialogueText: You'll be coming with us then!
   dialogueSprite: {fileID: 0}
-  childNodes:
-  - condition: 0
-    targetID: 19
+  childNodes: []
   actions: []
   auto:
     isAuto: 0
@@ -289,7 +273,7 @@ MonoBehaviour:
   m_Name: Dialogue
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 344, y: 104}
+  position: {x: 702.47546, y: 96.017204}
   ports:
     keys:
     - previous
@@ -332,7 +316,7 @@ MonoBehaviour:
   previous: {fileID: 0}
   dialogueNodeType: 0
   dialogueSpeaker: 
-  dialogueText: Logolio is seen at the top of the tower. He seems out of breath.
+  dialogueText: Logolio is seen on his bed panting.
   dialogueSprite: {fileID: 0}
   childNodes:
   - condition: 0
@@ -700,67 +684,67 @@ MonoBehaviour:
   m_Name: Logolio-Final
   m_EditorClassIdentifier: 
   nodes:
-  - {fileID: 7308188827775098337}
-  - {fileID: -8264938191767294069}
-  - {fileID: 9022734414980613010}
-  - {fileID: 619467909893554711}
-  - {fileID: -5766954073736519696}
-  - {fileID: 2605938539816091128}
-  - {fileID: 3673996716746654545}
-  - {fileID: 348891309335974668}
-  - {fileID: 6937607491436848569}
-  - {fileID: 3224301064360017404}
-  - {fileID: 6920323039753052485}
-  - {fileID: 1885096450095143570}
-  - {fileID: 2034940558587905196}
-  - {fileID: 7986976283747191099}
-  - {fileID: -7907598156871510293}
-  - {fileID: 8534862457532954528}
-  - {fileID: -2207641251802676829}
-  - {fileID: 2617823164916229144}
-  - {fileID: 5744548612282076797}
-  - {fileID: 7372644394312831789}
-  - {fileID: -1574601808868525}
-  - {fileID: 9058356357932928218}
-  - {fileID: -9201323197603998956}
-  - {fileID: -1111506986496432888}
-  - {fileID: 985384835253381972}
-  - {fileID: 2751596241125751146}
-  - {fileID: -1496905486241051680}
-  - {fileID: -2441752577245875316}
-  - {fileID: 3989813358090624869}
   - {fileID: -5629325300367567589}
+  - {fileID: 3989813358090624869}
+  - {fileID: -2441752577245875316}
+  - {fileID: -1496905486241051680}
+  - {fileID: 2751596241125751146}
+  - {fileID: 985384835253381972}
+  - {fileID: -1111506986496432888}
+  - {fileID: -9201323197603998956}
+  - {fileID: 9058356357932928218}
+  - {fileID: -1574601808868525}
+  - {fileID: 7372644394312831789}
+  - {fileID: 5744548612282076797}
+  - {fileID: 2617823164916229144}
+  - {fileID: -2207641251802676829}
+  - {fileID: 8534862457532954528}
+  - {fileID: -7907598156871510293}
+  - {fileID: 7986976283747191099}
+  - {fileID: 2034940558587905196}
+  - {fileID: 1885096450095143570}
+  - {fileID: 6920323039753052485}
+  - {fileID: 3224301064360017404}
+  - {fileID: 6937607491436848569}
+  - {fileID: 348891309335974668}
+  - {fileID: 3673996716746654545}
+  - {fileID: 2605938539816091128}
+  - {fileID: -5766954073736519696}
+  - {fileID: 619467909893554711}
+  - {fileID: 9022734414980613010}
+  - {fileID: -8264938191767294069}
+  - {fileID: 7308188827775098337}
   dialogue:
-  - {fileID: 7308188827775098337}
-  - {fileID: -8264938191767294069}
-  - {fileID: 9022734414980613010}
-  - {fileID: 619467909893554711}
-  - {fileID: -5766954073736519696}
-  - {fileID: 2605938539816091128}
-  - {fileID: 3673996716746654545}
-  - {fileID: 348891309335974668}
-  - {fileID: 6937607491436848569}
-  - {fileID: 3224301064360017404}
-  - {fileID: 6920323039753052485}
-  - {fileID: 1885096450095143570}
-  - {fileID: 2034940558587905196}
-  - {fileID: 7986976283747191099}
-  - {fileID: -7907598156871510293}
-  - {fileID: 8534862457532954528}
-  - {fileID: -2207641251802676829}
-  - {fileID: 2617823164916229144}
-  - {fileID: 5744548612282076797}
-  - {fileID: 7372644394312831789}
-  - {fileID: -1574601808868525}
-  - {fileID: 9058356357932928218}
-  - {fileID: -9201323197603998956}
-  - {fileID: -1111506986496432888}
-  - {fileID: 985384835253381972}
-  - {fileID: 2751596241125751146}
-  - {fileID: -1496905486241051680}
-  - {fileID: -2441752577245875316}
-  - {fileID: 3989813358090624869}
   - {fileID: -5629325300367567589}
+  - {fileID: 3989813358090624869}
+  - {fileID: -2441752577245875316}
+  - {fileID: -1496905486241051680}
+  - {fileID: 2751596241125751146}
+  - {fileID: 985384835253381972}
+  - {fileID: -1111506986496432888}
+  - {fileID: -9201323197603998956}
+  - {fileID: 9058356357932928218}
+  - {fileID: -1574601808868525}
+  - {fileID: 7372644394312831789}
+  - {fileID: 5744548612282076797}
+  - {fileID: 2617823164916229144}
+  - {fileID: -2207641251802676829}
+  - {fileID: 8534862457532954528}
+  - {fileID: -7907598156871510293}
+  - {fileID: 7986976283747191099}
+  - {fileID: 2034940558587905196}
+  - {fileID: 1885096450095143570}
+  - {fileID: 6920323039753052485}
+  - {fileID: 3224301064360017404}
+  - {fileID: 6937607491436848569}
+  - {fileID: 348891309335974668}
+  - {fileID: 3673996716746654545}
+  - {fileID: 2605938539816091128}
+  - {fileID: -5766954073736519696}
+  - {fileID: 619467909893554711}
+  - {fileID: 9022734414980613010}
+  - {fileID: -8264938191767294069}
+  - {fileID: 7308188827775098337}
   firstNode: {fileID: -5629325300367567589}
 --- !u!114 &348891309335974668
 MonoBehaviour:
@@ -993,10 +977,7 @@ MonoBehaviour:
       _node: {fileID: 1885096450095143570}
       _typeQualifiedName: DialogueNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
-      connections:
-      - fieldName: childNodes 0
-        node: {fileID: -7907598156871510293}
-        reroutePoints: []
+      connections: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
@@ -1273,8 +1254,8 @@ MonoBehaviour:
   previous: {fileID: 0}
   dialogueNodeType: 0
   dialogueSpeaker: 
-  dialogueText: You scan the room, notcing the lack of any furnishings, or even a
-    bed of some sort.
+  dialogueText: You scan the room noticing all the junk laying about, and Logolio
+    curled up in a ball
   dialogueSprite: {fileID: 0}
   childNodes:
   - condition: 0
