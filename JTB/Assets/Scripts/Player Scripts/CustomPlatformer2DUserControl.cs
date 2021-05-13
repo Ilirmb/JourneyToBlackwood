@@ -18,9 +18,6 @@ public class CustomPlatformer2DUserControl : MonoBehaviour
     private float previousFrame = 0.0f;
     private bool startedMoving = false;
 
-    public Transform TestingArea;
-
-
     private void Awake()
     {
         m_Character = GetComponent<CustomPlatformerCharacter2D>();
@@ -65,15 +62,6 @@ public class CustomPlatformer2DUserControl : MonoBehaviour
                 startedMoving = true;
 
             previousFrame = move;
-
-            // FOR TESTING CERTAIN AREAS
-            if (Input.GetKeyDown(KeyCode.Keypad7))
-            {
-                Debug.Log("Warping.");
-                transform.position = TestingArea.position;
-            }
-            // FOR TESTING CERTAIN AREAS
-
         }
         else
             m_Character.Move(0, false, false, false);

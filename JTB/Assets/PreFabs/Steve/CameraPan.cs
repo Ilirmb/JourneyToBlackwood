@@ -22,14 +22,21 @@ public class CameraPan : MonoBehaviour
     // Update is called once per frame
     void Update()
     { 
-        if (Speaker.text == "Logolio" && cutscene == true)
+        if (Speaker)
         {
-            Pan.Follow = transform.GetChild(0).gameObject.transform;
+            if (Pan)
+            {
+                if (Speaker.text == "Logolio" && cutscene == true)
+                {
+                    Pan.Follow = transform.GetChild(0).gameObject.transform;
+                }
+                else
+                {
+                    Pan.Follow = Player.transform;
+                }
+            }
         }
-        else
-        {
-            Pan.Follow = Player.transform;
-        }
+        
     }
 
     public void OnTriggerEnter2D(Collider2D collision)
