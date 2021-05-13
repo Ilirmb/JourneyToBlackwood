@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class DoDamageOnTrigger : MonoBehaviour
 {
-    GameObject Player;
-    PlayerStatistics playerStatsScript;
-   Checkpoint checkPoint;
+   GameObject Player;
+   PlayerStatistics playerStatsScript;
+   //Checkpoint checkPoint;
 
     void Start()
     {
         Player = GameObject.FindWithTag("Player");
-        playerStatsScript = GameObject.FindWithTag("Player").GetComponent<PlayerStatistics>();
+        playerStatsScript = Player.GetComponent<PlayerStatistics>();
     }
 
     public void OnTriggerEnter2D(Collider2D collision)
