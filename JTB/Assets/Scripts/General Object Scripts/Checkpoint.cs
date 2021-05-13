@@ -29,7 +29,9 @@ public class Checkpoint : MonoBehaviour {
     }
 	
 	// Update is called once per frame
-	void Update () {
-		
+	void Update ()
+    {
+        //Debug.Log("This works!");
+        playerStatistics.enabled = true;
 	}
 }
